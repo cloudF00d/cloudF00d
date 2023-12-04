@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 세부사항</title>
+    <link rel="stylesheet" href="/resources/css/memberNotice/user_sellerComplaintAnswered.css">
+</head>
+<body>
+    <header>
+        <!-- 로고 이미지 -->
+		<img src="../../../resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+
+	<!-- 상단 메뉴 -->
+	<nav>
+		<ul>
+			<li><a href="#">홈</a></li>
+			<li><a href="#">프로젝트</a></li>
+			<li><a href="#">펀딩</a></li>
+			<li><a href="#">도움말</a></li>
+		</ul>
+	</nav>
+
+	<!-- 상단 - 더보기 메뉴 -->
+	<div class="menu-item">
+		<label class="toggle-label" id="toggle-label">더보기</label>
+		<div class="menu-content" id="menu-content">
+			<ul>
+				<li><a href="#">메뉴 항목 1</a></li>
+				<li><a href="#">메뉴 항목 2</a></li>
+				<li><a href="#">메뉴 항목 3</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 더보기 토글 제이쿼리 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- 더보기 토글 함수 -->
+	<script>
+		$(document).ready(function () {
+			$('#toggle-label').click(function () {
+				$('#menu-content').slideToggle(500);
+			});
+		});
+	</script>
+
+	<!-- 검색창 -->
+	<div class="search-box">
+		<input type="text" placeholder="검색어를 입력하세요">
+		<i class="fas fa-search"></i>
+	</div>
+
+            <!-- 로그인 회원가입 -->
+            <div class="login-signup">
+                <nav>
+                    <ul>
+                        <li><a href="#">로그아웃</a></li>
+                        <!-- <li><a href="#">회원가입</a></li> -->
+                    </ul>
+                </nav>
+            </div>
+        
+            <!-- 프로젝트 시작하기 -->
+            <div class="project1-button">
+                <!-- <a href="#">프로젝트 시작하기</a> -->
+            </div>     
+        
+
+    </header>
+
+    
+
+    <div class="container">
+ <!-- 사이드바 배경 -->
+ <div class="sideBar">
+        
+	<!-- 사이드바 메뉴 -->
+
+	
+	<div class="sideBar-menu">
+		<strong><div class="title12">마이페이지</div></strong>
+		
+		<div id="navSide">
+			<ul class="sideBar-toggle">
+				<li><a href="#">내정보관리</a><br>
+					<ul class="sub">
+							<li><a href="#">개인정보 변경</a>
+							<li><a href="/view/memberWithdrawal/user/userWithdrawal.html">회원탈퇴 </a>
+							<li><a href="/view/changePage/sellerPage.html">판매자 전환</a>
+					</ul>
+				</li>
+			</ul>
+			<ul class="sideBar-toggle">
+				<li><a href="#">장바구니</a>
+					<ul class="sub">
+						<li><a href="#">나의 펀딩 리스트</a>
+						<li><a href="#">관심 펀딩 리스트</a>
+					</ul>
+				</li>
+			</ul>
+			<li><a href="/view/userQnA/userMainPage/userQnAmainpage.html">QnA</a></li>
+			<li><a href="/view/userDeliver/userMainPage/userDeliverMainPage.html">배송현황</a></li>
+			<li><a href="#">공지사항</a></li>
+			<li><a href="/view/userSupport/userSupportMain.html">고객센터</a></li>
+
+		</div>
+			<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function () {
+					$("#navSide ul.sub").hide();
+					$("#navSide ul.sideBar-toggle li").click(function () {
+						$("ul", this).slideToggle("normal");
+					});
+				});
+			</script>
+
+				<div class="sideBar-adver">
+					<div class="sideBar-adver-back"></div>
+					<span class="sideBar-adver-text">요금제를 업그레이드하고
+						더 많은 광고기회를 얻으세요</span>
+					<div class="sideBar-adver-button">
+						<div class="sideBar-adver-button-back"></div>
+						<span class="sideBar-adver-button-text">지금 업그레이드!</span>
+					</div>
+				</div>
+	</div>       
+
+</div>
+        
+
+		<div class="middle">
+            <!-- 가운데 컨텐츠 -->
+            <div class="first">
+                <span><a class="black-link" href="./noticeMain.html">공지사항</a></span>
+                <span><strong>></strong></span>
+                <span>세부사항</span>
+            </div>
+        
+            <div>
+				<a href="#"><img class="logo1" src="../../../resources/images/01_logoimg/textLogoNone.png" alt=""></a>            </div>
+            
+
+            <div class="box">
+                <span class="box1">작성번호 : 1</span>
+                <!-- <span class="box1">작성자:김민*</span> -->
+                <span class="box2">작성일자:2023/11/15</span>
+                <!-- <span class="box3">처리완료</span> -->
+            </div>
+            
+            <div>
+                <form action="">
+                    <div class="title">
+                        <span id="details">제목</span>
+                        <span id="details2">욕설을 했습니다</span>
+                    </div>
+                    <div class="detail">
+                        <div id="details">작성자 정보</div>
+
+                        <div id="details2">
+							<div id="color">작성자(신고당한 사람)</div>
+							<div id="writer">홍길*</div>
+							<div id="color">세부 내용</div>
+							<div id="writer">블라블라블라블라블라욕욕(너무 길면 중간에 자르고 링크로 이동해서 확인)</div>
+							<div id="color">해당 위치로 이동</div>
+							<div id="writer">(이동 링크)</div>
+						</div>
+                    </div>
+                    <div class="detail">
+                        <div id="details">신고 세부 사유</div>
+
+						<div id="details2">이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁</div>
+
+                    </div>
+                    <div class="submitbtn"><button type="submit">글쓰기</button></div>
+                </form>
+            </div>
+
+        
+            
+
+        </div>
+
+
+        <div class="right">
+            <!-- 우측 컨텐츠 -->
+        </div>
+    </div>
+
+
+    <footer>
+         <!-- Footer -->
+	 <div class=footer>
+		<div class="footer-back"></div>
+		<div class="footer-left"></div>
+		<div class=footer-group>
+		  <div class=footer-group-design><span  class="footer-down">
+	  일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+	  해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+			<div class=footer-up><span  class="footer-up-right">이메일 상담   abcdefg@gmail.com
+	  유선 상담 1234-5678</span><span  class="footer-up-left">Cloud Fooding 클라우드 푸딩
+	  사업자 등록번호 1234-56-7890
+	  서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+	  </span>
+	</div>
+	<img class="footer-logo" src="../../../resources/images/01_logoimg/logoNone.png">
+		  </div>
+		</div>
+	  </div>
+    </footer>
+</body>
+</html>

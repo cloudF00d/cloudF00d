@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../resources/css/productPage/productPage.css">
+
+    <link rel="stylesheet" href="/resources/css/header-project/css.css">
+    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+</head>
+
+
+<body>
+    
+<!-- 헤더시작 -->
+<header>
+    <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+
+    <!-- 상단 메뉴 -->
+    <nav>
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">프로젝트</a></li>
+            <li><a href="#">펀딩</a></li>
+            <li><a href="#">도움말</a></li>
+        </ul>
+    </nav>
+
+    <!-- 메뉴 2: 토글 기능 있음 -->
+    <div class="menu-item">
+        <label class="toggle-label" id="toggle-label">더보기</label>
+        <div class="menu-content" id="menu-content">
+            <ul>
+                <li><a href="#">메뉴 항목 1</a></li>
+                <li><a href="#">메뉴 항목 2</a></li>
+                <li><a href="#">메뉴 항목 3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 검색창 -->
+    <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <img src="/resources/images/돋보기 아이콘.avif" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+        </div>
+    </div>
+        
+    <!-- 로그인 회원가입 -->
+    <div class="login-signup">
+        <nav>
+            <ul>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 프로젝트 시작하기 -->
+    <div class="project-button">
+        <a href="#">프로젝트 시작하기</a>
+    </div>
+</header>
+
+<!-- 헤더끝 -->
+<div class="bodyking">
+        <div class="main-box">
+        <!-- 주석주석 -->
+    <div class="story-con">
+        <a href="/view/productPage/productStory.html" class="story">스토리</a><br>
+        <a href="/view/productPage/productPage.html" class="review">구매후기</a>
+        
+    </div>
+    <div class="story-con2">
+       
+    </div>
+        <div class="bigPage">
+            
+            
+            <div class="left">
+                <button class="writing">글쓰기</button>
+
+                <div class="reviews-con"><div class="reviews">구매후기</div></div>
+            
+                <div class="review-box">
+                    <div class="img">
+                    <img src="/resources/images/minicon/foodbox.png" alt="">
+                      <div class="img-right">김민하</div>
+                    </div>
+                    <div class="comment-box">
+                        <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
+                            클라우드 푸딩에서 만나서 너무너무 반갑네요!</div>
+                    </div>
+                </div>
+                
+                <div class="review-box">
+                    <div class="img">
+                    <img src="/resources/images/minicon/checkbtn.PNG" alt="">
+                      <div class="img-right">김인하</div>
+                    </div>
+                    <div class="comment-box">
+                        <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
+                            클라우드 푸딩에서 만나서 너무너무 반갑네요!</div>
+                    </div>
+                </div>
+
+                <div class="review-box">
+                    <div class="img">
+                    <img src="/resources/images/minicon/insta.png" alt="">
+                      <div class="img-right">김이나</div>
+                    </div>
+                    <div class="comment-box">
+                        <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
+                            클라우드 푸딩에서 만나서 너무너무 반갑네요!</div>
+                    </div>
+                </div>
+                    <div class="pro-box">
+                        <div class="pro-1">프로젝트문의</div>
+                        <button class="pro-2">문의하기 바로가기</button>
+                    </div>
+                <div class="seller-con">
+                    <div class="seller">
+                        <div class="img">
+                            <img src="/resources/images/minicon/good.png" alt="">
+                              <div class="img-right">주식회사 민하킴</div>
+                            </div>
+                            <div>
+                                <span><span>홈페이지 : </span><span class="seller-addr">http://minha.com/minhaminha</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                    </div>
+                </div>
+                <div class="guide">
+                    <div class="guide-top">
+                        <div class="guide-img">
+                            <img src="../../resources/images/돋보기 아이콘.avif" alt="" style="width: 25px; height: 25px;" >
+                              <div class="guide-title">커뮤니티가이드</div>
+                            </div>
+                            <div class="pre-con">
+<pre >            프로젝트와 무관한 글, 사진, 광고성, 욕설, 비방, 도배 등의 글은 예고 없이 삭제 등 조치가 취해질 수 있습니다. 해당 내용으로
+            인해 메이커, 서포터, 제3자에게 피해가 발생되지 않도록 유의해 주세요.
+
+            삭제가 필요한 글은 info@wadiz.kr 로 신고를 접수해 주세요. 신고 접수 시 반드시 신고인 아이디, 게시물 작성자 아이디, 프
+            로젝트 이름 또는 URL을 포함해 주세요.
+
+            이름 비공개로 펀딩/예약구매 참여하면 글 작성 시 ‘참여’ 라벨이 노출되지 않습니다. 펀딩/예약구매가 필요한 이벤트에 참여
+            할 경우 유의해 주세요.
+            
+            지지서명, 응원/의견/체험리뷰는 오픈예정 또는 진행 중인 프로젝트일 때만 작성할 수 있어요.</pre>
+                            </div>
+                            
+                    </div>
+            
+                </div>
+            </div>
+            <div class="right">
+
+                <div class="introduction-con">
+                <div><div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;">자두의 무한변신!! 철 없는 자두떡! 철 없는
+                    자두청!</div>
+                    <div style="font-size: 23px; margin-bottom: 50px;">김천 자두의 색다른 변신~! 사시사철 즐기는 철 없는 자두떡! 철 없는 자두청! 건강하고 맛있는 간식!</div>
+                <div style="margin-bottom: 50px;"><span style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span class="introduction-span" style="margin-left: 20px;">10일 남음</span></span></div>
+                </div>
+
+                <div style="margin-bottom: 50px;"><span style="font-size: 40px; font-weight: bold;">1,056,000</span><span>원 달성<span class="introduction-span" style="margin-left: 20px;">211% 달성</span></span></div>
+                    
+                
+                    
+                </div>
+
+                <div class="btns-con">
+                    <button class="goodbtn"><div onclick="like('button1')" class="like-button" id="button1">&#10084;</div><span id="likeCount">0</span></button>
+                    <button class="buybtn">예약 구매하기</button>
+                    <script>
+                        let liked1 = false; // 첫 번째 좋아요 상태를 나타내는 변수
+                        let liked2 = false; // 두 번째 좋아요 상태를 나타내는 변수
+                        let likeCount = 0;   // 좋아요 개수를 저장하는 변수
+                    
+                        function like(buttonId) {
+                            const button1 = document.getElementById('button1');
+                            const button2 = document.getElementById('button2');
+                            const likeCountElement = document.getElementById('likeCount');
+                    
+                            if (buttonId === 'button1') {
+                                liked1 = !liked1;
+                                liked2 = liked1;
+                            } else if (buttonId === 'button2') {
+                                liked2 = !liked2;
+                                liked1 = liked2;
+                            }
+                    
+                            if (liked1 || liked2) {
+                                // 하나 이상의 버튼이 좋아요 상태인 경우
+                                button1.classList.add('liked');
+                                button2.classList.add('liked');
+                                likeCount++;
+                            } else {
+                                // 두 버튼이 모두 좋아요 상태가 아닌 경우
+                                button1.classList.remove('liked');
+                                button2.classList.remove('liked');
+                                likeCount--;
+                            }
+                    
+                            // 좋아요 개수 업데이트
+                            likeCountElement.textContent = likeCount;
+                        }
+                    </script>
+                </div>
+                <div class="businesscard-con">
+                    <div class="businesscard">
+                        <img src="/resources/images/minicon/good.png" alt="">
+                          <div class="businesscard-right">주식회사 민하킴</div>
+                        </div>
+                        <div class="businesscard-home">홈페이지<div class="addr">http://minha.com/minhaminha</div></div>
+                        <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
+                </div>
+                <div class="report-con">
+                    <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a href="프로젝트신고">신고하러가기  ></a></span></span>
+                </div>
+                <div class="pickkeyword-con">
+                    <div class="pickkeyword">리워드 선택</div>
+                </div>
+                <!-- 스크롤바 -->
+                <div class="scroll-container">
+                    <!-- 상품선택하는 곳 -->
+                <div class="select-con">
+                    
+                    <div class="select-a">
+                        <div class="product-0">
+                            
+                        <div class="productprice-1">47.000원</div>
+                        <div class="product-1">
+                        <div>[ A set 온 가족이 즐겨요 ] (자두떡ver.)</div>
+                    </div>
+                            </div>
+                
+                        <hr>
+                        
+                        <div class="product-2">
+                        <div>자두떡 8개 세트 4개 (개당 50g 총 32개)</div>
+                        
+                    </div>
+                        <hr>
+                        
+                        <div class="product-3"><div>배송비</div><div style="font-weight: bold;">6000원</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-4"><div>발송 시작일</div><div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-5"><div>제한 수량</div><div style="font-weight: bold;">50개</div></div>
+                    </div>
+
+                    <div class="select-b">
+                        <div class="product-0">
+                            
+                        <div class="productprice-1">38.000원</div>
+                        <div class="product-1">
+                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
+                    </div>
+                            </div>
+                
+                        <hr>
+                        
+                        <div class="product-2">
+                        <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
+                        <div>자두청 350ml 1병</div>
+                    </div>
+                        <hr>
+                        
+                        <div class="product-3"><div>배송비</div><div style="font-weight: bold;">6000원</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-4"><div>발송 시작일</div><div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-5"><div>제한 수량</div><div style="font-weight: bold;">50개</div></div>
+                    </div>
+                    
+                    <div class="select-c">
+                        <div class="product-0">
+                            
+                        <div class="productprice-1">38.000원</div>
+                        <div class="product-1">
+                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
+                    </div>
+                            </div>
+                
+                        <hr>
+                        
+                        <div class="product-2">
+                        <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
+                        <div>자두청 350ml 1병</div>
+                    </div>
+                        <hr>
+                        
+                        <div class="product-3"><div>배송비</div><div style="font-weight: bold;">6000원</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-4"><div>발송 시작일</div><div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div></div>
+                        
+                        <hr>
+                        
+                        <div class="product-5"><div>제한 수량</div><div style="font-weight: bold;">50개</div></div>
+                    </div>
+
+                    </div>
+                    <br>
+                </div>
+                <div class="btns-con">
+                    
+                    <button class="goodbtn"><div onclick="like('button2')" class="like-button" id="button2">&#10084;</div></button>
+                    <button class="buybtn">예약 구매하기</button>
+
+                </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+        <!-- ... (사이드바 내용은 여기에 추가) ... -->
+        <!-- 사이드바 배경 -->
+
+
+    
+
+    
+    <!-- 사이드바 끝 -->
+
+    
+        
+
+    
+        
+
+    
+
+<!-- 푸터는 이아래에 붙여 -->
+
+<!-- 푸터 시작 -->
+<!-- Footer -->
+<div class="footer-container">
+    
+    <div class="footer-logo">               
+        <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+    </div>
+
+    <div class="footer">
+        <div class="footer-back"></div>
+        <div class="footer-left"></div>
+        <div class=footer-group>
+            <div class=footer-group-design><span class="footer-down">
+                일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                    해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                        유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                        사업자 등록번호 1234-56-7890
+                        서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- 푸터끝 -->
+    
+
+
+
+
+  <script>
+    let counterValue = 0;
+
+    // 증가 함수
+    function increase() {
+        counterValue++;
+        updateCounter();
+    }
+
+    // 감소 함수
+    function decrease() {
+        if (counterValue > 0) {
+            counterValue--;
+            updateCounter();
+        }
+    }
+    function updateCounter() {
+        document.getElementById('counter-value').innerText = counterValue;
+    }
+</script>
+
+</body>
+</html>

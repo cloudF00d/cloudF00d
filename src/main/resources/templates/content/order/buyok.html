@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../resources/css/payment/buyok.css">
+    
+    <link rel="stylesheet" href="/resources/css/header-project/css.css">
+    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+    
+</head>
+<body>
+
+    <header>
+        <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+    
+        <!-- 상단 메뉴 -->
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">프로젝트</a></li>
+                <li><a href="#">펀딩</a></li>
+                <li><a href="#">도움말</a></li>
+            </ul>
+        </nav>
+    
+        <!-- 메뉴 2: 토글 기능 있음 -->
+        <div class="menu-item">
+            <label class="toggle-label" id="toggle-label">더보기</label>
+            <div class="menu-content" id="menu-content">
+                <ul>
+                    <li><a href="#">메뉴 항목 1</a></li>
+                    <li><a href="#">메뉴 항목 2</a></li>
+                    <li><a href="#">메뉴 항목 3</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- 검색창 -->
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <img src="/resources/images/돋보기 아이콘.avif" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+            </div>
+        </div>
+            
+        <!-- 로그인 회원가입 -->
+        <div class="login-signup">
+            <nav>
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- 프로젝트 시작하기 -->
+        <div class="project-button">
+            <a href="#">프로젝트 시작하기</a>
+        </div>
+    </header>
+
+    <div class="buyok">
+        <div class="buyokay">
+
+        
+        <div class="payinfo">
+            <div style="float: left;">
+                <a href="/resources/images/minicon/logonon_1 (1).png"><img src="/resources/images/minicon/backbtn.jpg"
+                     width="25px" height="25px"></a>
+            </div>
+        <div><h2>결제 정보</h2></div>
+    </div>
+    <div class="maininfo">
+        
+        <div class="payment-confirmation">
+            <div class="firstlogo"><a href="mainpage"><img src="/resources/images/minicon/로고2.png" alt="" width="150px"></a></div>
+            
+            <h3><pre>        구매해주셔서 감사합니다.
+         결제가 완료되셨습니다.
+            </pre></h3>
+            <div class="secondlogo"><img src="/resources/images/minicon/로고1.PNG" alt=""></div>
+        </div>
+        <div class="product-status">
+            <div class="orderStatus">
+                <span><div class="pay" style="color: orange;">주문/결제</div></span>&mdash;<span><img src="/resources/images/minicon/checkbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/resources/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+            </div>
+        </div>
+        <div class="product-list">
+            <!-- <div class="payProct"><h4>결제상품</h4></div> -->
+            <div class="under">
+                <div class="prd"><h4>결제 상품</h4></div>
+                
+                <div class="product-area">  
+                    <div class="food">
+                    <span class="tt" style="float: left;"><img src="/resources/images/minicon/TT.jpg" alt=""></span>
+                    <span>주문한 음식이름</span>
+                    <span style="float: right ;" class="won">음식가격</span>
+                    <div class="amt">수량</div> 
+                </div>
+                
+                <div class="food">
+                    <span class="tt" style="float: left;"><img src="/resources/images/minicon/TT.jpg" alt=""></span>
+                    <span>주문한 음식이름</span>
+                    <span style="float: right ;" class="won">음식가격</span>
+                    <div class="amt">수량</div> 
+                </div>
+                </div>
+                
+            
+            
+                <span class="history">
+                    <span>상품 전체금액</span>
+                    <span style="float: right ;" class="won">상품전체금액</span>
+                    <br>
+                    <br>
+                    <span>쿠폰 적용금액</span>
+                    <span style="float: right ;" class="won">쿠폰 적용금액</span>
+                    <br><br>
+                    <span>배송비</span>
+                    <span style="float: right ;" class="won">배송비</span>
+                    <br><br>
+                    <span style="color: orange;">총 금액</span>
+                    <span style="float: right ; color: orange;" class="won" >총 금액</span>
+                </span>
+
+                <div class="btn-con">
+                    <button class="btn1"><a href="/view/main.html" style="color: white;">메인으로 돌아가기</a></button>
+                    <button class="btn2"><a href="/view/list/watchlist.html" style="color: white;">구매내역</a></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+</div>
+    <footer>
+    <!-- Footer -->
+    <div class="footer-container">
+    
+        <div class="footer-logo">               
+            <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+        </div>
+    
+        <div class="footer">
+            <div class="footer-back"></div>
+            <div class="footer-left"></div>
+            <div class=footer-group>
+                <div class=footer-group-design><span class="footer-down">
+                    일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                        해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                    <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                            유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                            사업자 등록번호 1234-56-7890
+                            서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+</body>
+</html>

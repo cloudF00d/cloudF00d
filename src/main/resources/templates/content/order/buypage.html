@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../resources/css/payment/buypage.css">
+
+    <link rel="stylesheet" href="/resources/css/header-project/css.css">
+    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+</head>
+
+<body>
+    <header>
+        <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+    
+        <!-- 상단 메뉴 -->
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">프로젝트</a></li>
+                <li><a href="#">펀딩</a></li>
+                <li><a href="#">도움말</a></li>
+            </ul>
+        </nav>
+    
+        <!-- 메뉴 2: 토글 기능 있음 -->
+        <div class="menu-item">
+            <label class="toggle-label" id="toggle-label">더보기</label>
+            <div class="menu-content" id="menu-content">
+                <ul>
+                    <li><a href="#">메뉴 항목 1</a></li>
+                    <li><a href="#">메뉴 항목 2</a></li>
+                    <li><a href="#">메뉴 항목 3</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- 검색창 -->
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <img src="/resources/images/돋보기 아이콘.avif" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+            </div>
+        </div>
+            
+        <!-- 로그인 회원가입 -->
+        <div class="login-signup">
+            <nav>
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- 프로젝트 시작하기 -->
+        <div class="project-button">
+            <a href="#">프로젝트 시작하기</a>
+        </div>
+    </header>
+    <div id="body">
+
+        <div id="left">
+            <div class="payment-info">
+                <div style="float: left;">
+                    <a href="/resources/images/minicon/logonon_1 (1).png"><img src="/resources/images/minicon/backbtn.jpg" width="25px"
+                            height="25px"></a>
+                </div>
+                <div>
+                    <h2>결제정보</h2>
+                </div>
+            </div>
+
+            <div class="payment-area">
+                <div class="payment-product">
+                    <h4>결제상품</h4>
+                    <div style="float: left;">
+                        <a href="/resources/images/minicon/KakaoTalk_20231019_131150823.jpg"><img
+                                src="/resources/images/minicon/TT.jpg" width="60px" height="60px"></a>
+                    </div>
+
+                    <div class="menu-item">
+                        <span class="menu-name">결제할 음식 이름</span>
+                        <span class="menu-price">30,000won</span>
+                    </div>
+
+
+                    <div id="counter-container">
+                        <div id="counter-controls">
+                            <button class="btn" onclick="decrease(1)">-</button>
+                            <span id="counter-value1">1</span>
+                            <button class="btn" onclick="increase(1)">+</button>
+                        </div>
+                        <!-- 휴지통버튼 -->
+                        <button class="trash-btn"></button>
+                    </div>
+
+                </div>
+                <div class="payment-product">
+
+                    <div style="float: left;">
+                        <a href="/resources/images/minicon/KakaoTalk_20231019_131150823.jpg"><img
+                                src="/resources/images/minicon/good.png" width="60px" height="60px"></a>
+                    </div>
+
+                    <div class="menu-item">
+                        <span class="menu-name">결제할 음식 이름</span>
+                        <span class="menu-price">30,000won</span>
+                    </div>
+
+
+                    <div id="counter-container">
+                        <div id="counter-controls">
+                            <button class="btn" onclick="decrease(2)">-</button>
+                            <span id="counter-value2">1</span>
+                            <button class="btn" onclick="increase(2)">+</button>
+                        </div>
+                        <!-- 휴지통버튼 -->
+                        <button class="trash-btn"></button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="bilge">
+
+                <form action="search" method="post">
+                    <div class="coupon-action">
+                        
+                        <div>
+                            <div>할인쿠폰</div>
+                          <input type="text" name="적용하기" required>&nbsp; 
+                            <!-- <input type="submit" value="적용하기">  -->
+                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div class="coupon-btn">
+                            <button type="submit">적용하기</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+
+                <div class="total-product-amount">
+                    <span class="total-amount">상품 전체금액</span>
+                    <span class="total-price">30,000won</span>
+                </div>
+                <div class="apply-coupon">
+                    <span class="total-amount">쿠폰 적용금액</span>
+                    <span class="total-price">23,000won</span>
+                </div>
+                <div class="delivery-fee">
+                    <span class="shipping-cost">배송비</span>
+                    <span class="cost">3,000won</span>
+                </div>
+                <div class="final-amount">
+                    <span class="gun-cost">총금액</span>
+                    <span class="gun-won">26,000won</span>
+                </div>
+
+            </div>
+            <a href="/view/payment/buyok.html" class="payment-con">
+                <button class="payment" type="button">결제</button>
+            </a>
+        </div>
+
+
+        <div class="right">
+
+        
+        <div id="right">
+            <div id="progress">
+                <span><div class="pay">주문/결제</div></span>&mdash;<span><img src="/resources/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/resources/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+            </div>
+            <div class="orderer-info-con">
+                
+                <div class="orderer-info">
+                <h4>주문자 정보</h4>
+                <div class="name">
+                    <div class="firstname">
+                        <div>성</div>
+                        <input type="text" name="firstname" required>&nbsp;
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="lastname">
+                        <div>이름</div>
+                        <input type="text" name="lastname" required>&nbsp;
+                    </div>
+                </div>
+                <div class="email">
+                    <div>이메일</div>
+                    <input type="email" name="email" required>&nbsp;
+                </div>
+                <div class="number">핸드폰 번호</div>
+                <form class="phone">
+                            
+                    <select id="countryCode">
+                        <option value="+82" selected>대한민국 (+82)</option>
+                        <option value="+1">미국 (+1)</option>
+                        <option value="+44">영국 (+44)</option>
+                        <option value="+81">일본 (+81)</option>
+                    </select>
+                    <input type="text" name="phone" required>&nbsp;
+                
+                </form>
+            </div>
+        </div>
+            <div class="void"></div>
+
+        <div class="order-details-con">
+
+        
+            <div class="order-details">
+                <h4>주문 상세정보</h4>
+
+                <div class="adrs">
+                    <div class="adrss1">주소</div>
+                    <input type="text" name="adrs" required>&nbsp;
+                </div>
+                <div class="detailed-address">
+                    <div class="adrss2">상세주소</div>
+                    <input type="text" name="detailed-adrs" required>&nbsp;
+                </div>
+                <div class="requested">
+                    <div class="req">요청사항</div>
+                    <input type="text" name="requested" required>&nbsp;
+                </div>
+                <div class="order-confirmation">
+                    <input type="checkbox" id="confirmationCheckbox">
+                    <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        let counterValue1 = 1;
+        let counterValue2 = 1;
+    
+        // 증가 함수
+        function increase(productNumber) {
+            if (productNumber === 1) {
+                counterValue1++;
+                updateCounter(productNumber);
+            } else if (productNumber === 2) {
+                counterValue2++;
+                updateCounter(productNumber);
+            }
+        }
+    
+        // 감소 함수
+        function decrease(productNumber) {
+            if (productNumber === 1 && counterValue1 > 0) {
+                counterValue1--;
+                updateCounter(productNumber);
+            } else if (productNumber === 2 && counterValue2 > 0) {
+                counterValue2--;
+                updateCounter(productNumber);
+            }
+        }
+    
+        function updateCounter(productNumber) {
+            const counterElement = document.getElementById(`counter-value${productNumber}`);
+            const counterValue = productNumber === 1 ? counterValue1 : counterValue2;
+            counterElement.innerText = counterValue;
+        }
+    </script>
+     
+ 
+
+
+    <footer> <!-- Footer -->
+        <div class="footer-container">
+            
+            <div class="footer-logo">               
+                <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+            </div>
+        
+            <div class="footer">
+                <div class="footer-back"></div>
+                <div class="footer-left"></div>
+                <div class=footer-group>
+                    <div class=footer-group-design><span class="footer-down">
+                        일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                            해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                        <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                                유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                                사업자 등록번호 1234-56-7890
+                                서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></footer>
+</body>
+
+</html>

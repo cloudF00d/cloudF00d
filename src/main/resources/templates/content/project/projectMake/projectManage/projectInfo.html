@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 제이쿼리 -->
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 폰트패밀리: Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script src="/resources/js/header.js"></script>
+    <script src="/resources/js/sideBar.js"></script>
+    <!-- 항상 변경 해야할 js 링크 -->
+    <script src="/resources/js/projectMake-main/projectManage/projectInfo.js"></script>
+    <link rel="stylesheet" href="/resources/css/header-project/css.css">
+    <link rel="stylesheet" href="/resources/css/sideBar/css.css">
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+    <link rel="stylesheet" href="/resources/css/background-board/css.css">
+    <!-- 항상 변경 해야할 css 링크 -->
+    <link rel="stylesheet" href="/resources/css/projectMake-main/projectManage-main/projectInfo/css.css">
+
+    <title>projectMake</title>
+</head>
+
+<body>
+    <header>
+        <a class="logo-container" href="/view/main.html">
+            <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+        </a>
+
+        <!-- 상단 메뉴 -->
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">프로젝트</a></li>
+                <li><a href="#">펀딩</a></li>
+                <li><a href="#">도움말</a></li>
+            </ul>
+        </nav>
+
+        <!-- 메뉴 2: 토글 기능 있음 -->
+        <div class="menu-item">
+            <label class="toggle-label" id="toggle-label">더보기</label>
+            <div class="menu-content" id="menu-content">
+                <ul>
+                    <li><a href="#">메뉴 항목 1</a></li>
+                    <li><a href="#">메뉴 항목 2</a></li>
+                    <li><a href="#">메뉴 항목 3</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 검색창 -->
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <img src="/resources/images/04_etc/magnifying glass.png" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+        </div>
+        </div>
+
+        <!-- 로그인 회원가입 -->
+        <div class="login-signup">
+            <nav>
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 프로젝트 시작하기 >>> 나가기 -->
+        <div class="project-button">
+            <a href="/view/main.html">나가기</a>
+        </div>
+    </header>
+
+    <div class="back-side-container">
+
+        <!-- 사이드바 배경 -->
+        <div class="sideBar">
+
+            <!-- 사이드바 메뉴 -->
+            <div class="sideBar-menu">
+
+                <div id="navSide">
+                    <ul class="sideBar-toggle">
+                        <li><a href="#">프로젝트 관리</a><br>
+                            <ul class="sub">
+                                <li><a href="#">요금제 선택</a></li>
+                                <li><a href="#">프로젝트 정보</a></li>
+                                <li><a href="#">기본 정보</a></li>
+                                <li><a href="#">스토리 작성</a></li>
+                                <li><a href="#">리워드 작성</a></li>
+                                <li><a href="#">정책</a></li>
+                                <li><a href="#">판매자 정보</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">프로젝트 현황</a><br>
+                            <ul class="sub">
+                                <li><a href="#">완료된 펀딩</a></li>
+                                <li><a href="#">진행중인 펀딩</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">구매자 조회</a><br>
+                            <ul class="sub">
+                                <li><a href="#">완료된 펀딩</a></li>
+                                <li><a href="#">진행중인 펀딩</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">배송 관리</a><br>
+                            <ul class="sub">
+                                <li><a href="#">발송 관리</a></li>
+                                <li><a href="#">환불 관리</a></li>
+                                <li><a href="#">교환 관리</a></li>
+                            </ul>
+                        <li><a href="#">QnA 관리</a><br>
+                            <ul class="sub">
+                                <li><a href="#">배송 QnA</a></li>
+                                <li><a href="#">프로젝트 QnA</a></li>
+                            </ul>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <br><br><br><br><br><br><br>
+                <div class="sideBar-adver">
+                    <div class="sideBar-adver-back"></div>
+                    <span class="sideBar-adver-text">요금제를 업그레이드하고
+                        더 많은 광고기회를 얻으세요</span>
+                    <div class="sideBar-adver-button">
+                        <div class="sideBar-adver-button-back"></div>
+                        <span class="sideBar-adver-button-text">지금 업그레이드!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <sect class="back-board-container">
+            <!-- 배경 시트 좌측 상단 텍스트 -->
+            <div class="greeting-text">프로젝트 정보</div>
+            <!-- 배경 시트 -->
+            <div class="back-board">
+                <!-- 로고 -->
+                <div class="board-logo img">
+                    <img src="/resources/images/01_logoimg/textLogoNone.png">
+                </div>
+
+                <div class="category-text">카테고리<span class="greeting-text-star"> *</span></div>
+                <div class="category-sub-text">프로젝트와 가장 잘 어울리는 카테고리를 선택해 주세요. 프로젝트를 만들고 바꿀 수 있어요.</div><br><br>
+
+                <!-- 체크박스 -->
+                <div class="checkbox-list">
+                    <label>
+                        <input type="checkbox" name="checkbox1" value="value1">
+                        <strong>펀딩</strong>&nbsp;첫 출시예요.<br><br>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="checkbox2" value="value2">
+                        <strong>리펀딩</strong>&nbsp;클라우드푸딩에서 성공한 프로젝트를 다시 공개해요.<br><br>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="checkbox3" value="value3">
+                        <strong>모의펀딩</strong>&nbsp;펀딩을 하기 전 제시한 상품의 성공 가능성을 체크해요.<br><br>
+                    </label>
+                </div> <!-- 체크박스 -->
+
+                <!-- 대표자 정보 -->
+
+                <div class="category-text">대표자 정보<span class="greeting-text-star"> *</span></div><br>
+                <div class="owner-container">
+                    <p>대표자 이메일</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="email" placeholder="example@example.com">
+
+                        <label for="site"></label>
+                        <select id="site" name="site" onchange="updateEmailDomain()">
+                            <option value="" disabled selected>주소를 선택하세요.</option>
+                            <option value="site1">@gmail.com</option>
+                            <option value="site2">@naver.com</option>
+                            <option value="site3">@daum.net</option>
+                            <option value="site3">@yahoo.com</option>
+                        </select>
+                        <p>대표자 본인인증</p>
+                        <div type="owner-button" class="owner-button" onclick="certification()">본인 인증</div>
+                        <!-- 본인 인증시 알림팝업 -->
+                        <script>
+                            function certification() {
+                                alert("메일이 발송되었습니다.");
+                            }
+                        </script>
+                    </div>
+                </div> <!-- owner-container -->
+
+                <br><br>
+                <div class="category-text">심사 서류<span class="greeting-text-star"> *</span></div><br>
+                <div class="paper-box-container">
+                    <div class="paper-box" onclick="openFileAttachmentPopup()">
+                        <i class="fas fa-paperclip"></i>
+                        <p id="attachmentMessage">사업자 등록증을 등록해 주세요.</p>
+                    </div>
+                    <div id="attachedFileName"></div>
+                </div>
+
+                <!-- 파일 첨부 팝업  -->
+                <div id="fileAttachmentPopup">
+                    <!-- 파일 첨부 팝업의 내용 -->
+                    <p>파일을 첨부하세요.</p>
+                    <input type="file" accept=".img, .imag, .pdf, .png, .doc, .docx" id="fileInput"> <!-- 입력 요소 -->
+                    <button onclick="completeFileAttachment()">저장</button>
+                </div>
+
+                <!-- 등록 완료 팝업을 위한 스타일과 스크립트를 추가합니다. -->
+                <div id="registrationCompletePopup">
+                    <p id="registrationCompleteMessage">등록이 완료되었습니다.</p>
+                    <p id="attachedFileName"></p> <!-- 첨부된 파일명을 나타내는 요소 -->
+                    <button onclick="closeRegistrationCompletePopup()">확인</button>
+                </div>
+
+                <script>
+                    function openFileAttachmentPopup() {
+                        document.getElementById('fileAttachmentPopup').style.display = 'block';
+                    }
+
+                    function completeFileAttachment() {
+
+                        var attachedFile = document.getElementById('fileInput').files[0];
+
+                        document.getElementById('attachmentMessage').innerText = '등록이 완료되었습니다.';
+                        document.getElementById('attachedFileName').innerText = '등록 파일명: ' + attachedFile.name;
+
+                        document.getElementById('fileAttachmentPopup').style.display = 'none';
+                        document.getElementById('registrationCompletePopup').style.display = 'block';
+                    }
+
+                    function closeRegistrationCompletePopup() {
+                        document.getElementById('registrationCompletePopup').style.display = 'none';
+                    }
+
+                    // 등록된 파일명을 표시
+                    var attachedFileNameContainer = document.getElementById('attachedFileNameContainer');
+                    attachedFileNameContainer.innerHTML = '첨부된 파일명: ' + (attachedFile ? attachedFile.name : '없음');
+                </script>
+
+                <div class="category-text">목표금액<span class="greeting-text-star"> *</span></div>
+                <div class="category-sub-text">최소 50만원 ~ 최대 1억원 사이에서 설정해 주세요.</div><br><br>
+                <div class="priceBox">
+                    <input type="text" id="price" name="price" placeholder="목표 금액을 입력해 주세요.">
+                    <span id="currencyText">원</span>
+                </div>
+                <br>
+
+                <div type="saveButton" class="saveButton" onclick="saveButton()">저장하기</div>
+                <script>
+                    function saveButton() {
+                        alert("목표금액이 저장되었습니다.");
+                    }
+                </script>
+
+                <br><br><br><br><br>
+                <a class="project-start" href="/view/projectMake/projectManage.html">제출하기</a>
+            </div>
+
+
+
+
+
+    </div> <!-- back-board -->
+    </div> <!-- greeting-text -->
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer-container">
+
+        <div class="footer-logo">
+            <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+        </div>
+
+        <div class="footer">
+            <div class="footer-back"></div>
+            <div class="footer-left"></div>
+            <div class=footer-group>
+                <div class=footer-group-design><span class="footer-down">
+                        일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                        해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                    <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                            유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                            사업자 등록번호 1234-56-7890
+                            서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

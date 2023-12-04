@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../resources/css/cart/cart.css">
+
+    <link rel="stylesheet" href="/resources/css/header-project/css.css">
+    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+</head>
+
+
+<body>
+    
+<!-- 헤더시작 -->
+<header>
+    <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+
+    <!-- 상단 메뉴 -->
+    <nav>
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">프로젝트</a></li>
+            <li><a href="#">펀딩</a></li>
+            <li><a href="#">도움말</a></li>
+        </ul>
+    </nav>
+
+    <!-- 메뉴 2: 토글 기능 있음 -->
+    <div class="menu-item">
+        <label class="toggle-label" id="toggle-label">더보기</label>
+        <div class="menu-content" id="menu-content">
+            <ul>
+                <li><a href="#">메뉴 항목 1</a></li>
+                <li><a href="#">메뉴 항목 2</a></li>
+                <li><a href="#">메뉴 항목 3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 검색창 -->
+    <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <img src="/resources/images/돋보기 아이콘.avif" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+        </div>
+    </div>
+        
+    <!-- 로그인 회원가입 -->
+    <div class="login-signup">
+        <nav>
+            <ul>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 프로젝트 시작하기 -->
+    <div class="project-button">
+        <a href="#">프로젝트 시작하기</a>
+    </div>
+</header>
+
+<!-- 헤더끝 -->
+
+<!-- 헤더끝 -->
+<div class="bodyking">
+    
+
+        <!-- ... (사이드바 내용은 여기에 추가) ... -->
+        <!-- 사이드바 배경 -->
+        
+     <div class="sideBar">
+        
+            <!-- 사이드바 메뉴 -->
+        
+            
+            <div class="sideBar-menu">
+                <strong><div class="title">마이페이지</div></strong>
+                
+                <div id="navSide">
+                    <ul class="sideBar-toggle">
+                        <strong><li><a href="#">내정보관리</a><br></strong>
+                            <ul class="sub">
+                                    <li><a href="#">개인정보 변경</a>
+                                    <strong><li><a href="#">회원탈퇴 </a></strong>
+                                    <li><a href="/view/changePage/userChange.html">퍈매자 전환</a>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="sideBar-toggle">
+                        <li><a href="#">장바구니</a>
+                            <ul class="sub">
+                                <li><a href="/view/list/watchlist.html">나의 펀딩 리스트</a>
+                                    <li><a href="/view/cart/cart.html">관심 펀딩 리스트</a>
+                            </ul>
+                        </li>
+                    </ul>
+                    <li><a href="/view/sellerQnA/sellerMainPage/sellerQnAmainpage.html">QnA</a></li>
+                    <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>
+                    <li><a href="#">게시판</a></li>
+                    </ul>
+                    
+                </div>
+                    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $("#navSide ul.sub").hide();
+                            $("#navSide ul.sideBar-toggle li").click(function () {
+                                $("ul", this).slideToggle("normal");
+                            });
+                        });
+                    </script>
+        
+                        <div class="sideBar-adver">
+                            <div class="sideBar-adver-back"></div>
+                            <span class="sideBar-adver-text">요금제를 업그레이드하고
+                                더 많은 광고기회를 얻으세요</span>
+                            <div class="sideBar-adver-button">
+                                <div class="sideBar-adver-button-back"></div>
+                                <span class="sideBar-adver-button-text">지금 업그레이드!</span>
+                            </div>
+                        </div>
+            </div>       
+        
+        </div>      
+
+    <div class="mid-con">
+        <h3>장바구니</h3>
+        <div class="mid">
+            <div class="midmenu">
+                <div class="logo">
+                    <a href=""><img src="/resources/images/minicon/로고2.png" width="150px" alt=""></a>                   
+                </div>
+                <div class="mypage">
+                    <span><a href="/3조결제완료창/back.jpg"><img src="/resources/images/minicon/backicon.jpg" width="25px" alt=""></a> 마이페이지</span>
+                </div>
+                <div class="criteria">
+                    <span class="criteria1">상품명</span>
+                    <span class="criteria2">주문수량</span>
+                    <span class="criteria3">가격</span>
+                </div>
+                <div class="menucheck">
+                    <div class="checkbox-con">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="foodimg">
+                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                    </div>
+                    <div class="nameAndCount">
+                        <div class="name">음식이름</div>
+                        <div class="count">남은시간</div>
+                    </div>
+                    <div class="btn-con">
+                            <button class="btn" onclick="decrease()">-</button>
+                            <span id="counter-value">1</span>
+                            <button class="btn" onclick="increase()">+</button>                        
+                    </div>
+                    <div class="price-con">
+                        <div class="price">30000원</div>
+                    </div>
+                    <div class="trash-con">
+                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                    </div>
+                </div>
+                <div class="menucheck">
+                    <div class="checkbox-con">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="foodimg">
+                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                    </div>
+                    <div class="nameAndCount">
+                        <div class="name">음식이름</div>
+                        <div class="count">남은시간</div>
+                    </div>
+                    <div class="btn-con">
+                            <button class="btn" onclick="decrease()">-</button>
+                            <span id="counter-value">1</span>
+                            <button class="btn" onclick="increase()">+</button>                        
+                    </div>
+                    <div class="price-con">
+                        <div class="price">30000원</div>
+                    </div>
+                    <div class="trash-con">
+                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                    </div>
+                </div>
+                <div class="menucheck">
+                    <div class="checkbox-con">
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="foodimg">
+                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                    </div>
+                    <div class="nameAndCount">
+                        <div class="name">음식이름</div>
+                        <div class="count">남은시간</div>
+                    </div>
+                    <div class="btn-con">
+                            <button class="btn" onclick="decrease()">-</button>
+                            <span id="counter-value">1</span>
+                            <button class="btn" onclick="increase()">+</button>                        
+                    </div>
+                    <div class="price-con">
+                        <div class="price">30000원</div>
+                    </div>
+                    <div class="trash-con">
+                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                    </div>
+                </div>
+                <div class="bilge-con">
+                <div class="bilge">
+
+                    <form action="search" method="post">
+                        <div class="coupon-action">
+                            
+                            <div>
+                                <div>할인쿠폰</div>
+                              <input class="applybutton1" type="text" name="적용하기"  required>&nbsp; 
+                                <!-- <input type="submit" value="적용하기">  -->
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+                            <div class="coupon-btn">
+                                <button type="submit" class="applybutton">적용하기</button>
+                            </div>
+    
+                        </div>
+    
+    
+                    </form>
+    
+                    <div class="total-product-amount">
+                        <span class="total-amount">상품 전체금액</span>
+                        <span class="total-price">30,000won</span>
+                    </div>
+                    <div class="apply-coupon">
+                        <span class="total-amount">쿠폰 적용금액</span>
+                        <span class="total-price">23,000won</span>
+                    </div>
+                    <div class="delivery-fee">
+                        <span class="shipping-cost">배송비</span>
+                        <span class="cost">3,000won</span>
+                    </div>
+                    <div class="final-amount">
+                        <span class="gun-cost">총금액</span>
+                        <span class="gun-won">26,000won</span>
+                    </div>
+    
+                </div>
+                
+            </div>
+            <a class="paybtn-con" href="/view/payment/buypage.html">
+                <button class="paybtn"> 결제하기 </button>
+            </a>
+            </div>
+        </div>
+        <div class="pagination">
+            <div class="pagination-box">
+                <a href="#" class="prev">＜</a>
+                <div class="page-links">
+                    <a href="#" class="page-link">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    
+                </div>
+                <a href="#" class="next">＞</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- 사이드바 끝 -->
+
+    
+        
+
+    
+        
+
+    
+</div>
+<!-- 푸터는 이아래에 붙여 -->
+
+<!-- 푸터 시작 -->
+<body>
+    <!-- Footer -->
+<div class="footer-container">
+    
+    <div class="footer-logo">               
+        <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+    </div>
+
+    <div class="footer">
+        <div class="footer-back"></div>
+        <div class="footer-left"></div>
+        <div class=footer-group>
+            <div class=footer-group-design><span class="footer-down">
+                일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                    해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                        유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                        사업자 등록번호 1234-56-7890
+                        서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+  <!-- 푸터끝 -->
+    
+
+
+
+
+  <script>
+    let counterValue = 1;
+
+    // 증가 함수
+    function increase() {
+        counterValue++;
+        updateCounter();
+    }
+
+    // 감소 함수
+    function decrease() {
+        if (counterValue > 0) {
+            counterValue--;
+            updateCounter();
+        }
+    }
+    function updateCounter() {
+        document.getElementById('counter-value').innerText = counterValue;
+    }
+</script>
+
+</body>
+</html>

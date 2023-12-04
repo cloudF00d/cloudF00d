@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="/resources/css/login/changeInfo.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 폰트패밀리: Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/header-main/css.css">
+    <link rel="stylesheet" href="/resources/css/sideBar/css.css">
+    <link rel="stylesheet" href="/resources/css/footer/css.css">
+</head>
+<body>
+    <header>
+        <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+
+        <!-- 상단 메뉴 -->
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">프로젝트</a></li>
+                <li><a href="#">펀딩</a></li>
+                <li><a href="#">도움말</a></li>
+            </ul>
+        </nav>
+
+        <!-- 메뉴 2: 토글 기능 있음 -->
+        <div class="menu-item">
+            <label class="toggle-label" id="toggle-label">더보기</label>
+            <div class="menu-content" id="menu-content">
+                <ul>
+                    <li><a href="#">메뉴 항목 1</a></li>
+                    <li><a href="#">메뉴 항목 2</a></li>
+                    <li><a href="#">메뉴 항목 3</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 검색창 -->
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <img src="/resources/images/04_etc/magnifying glass.png" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
+        </div>
+        </div>
+
+        <!-- 로그인 회원가입 -->
+        <div class="login-signup">
+            <nav>
+                <ul>
+                    <li><a href="#">로그아웃</a></li>
+                    <li><a href="#">회원가입</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 프로젝트 시작하기 >>> 나가기 -->
+        <div class="project-button">
+            <a href="/view/main.html">메인으로</a>
+        </div>
+
+	
+    </header>
+
+        <div class="container">
+            <div class="left">
+                <div class="sideBar">
+
+                <!-- 사이드바 메뉴 -->
+	<div class="sideBar-menu">
+        <strong><div class="title">마이페이지</div></strong>
+        
+        <div id="navSide">
+            <ul class="sideBar-toggle">
+                <li><a href="#">내정보관리</a><br>
+                    <ul class="sub">
+                            <li><a href="/view/Member/login/changeInfo.html">개인정보 변경</a>
+                            <li><a href="/view/memberWithdrawal/user/">회원탈퇴 </a>
+                            <li><a href="">판매자 전환</a>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="sideBar-toggle">
+                <li><a href="#">장바구니</a>
+                    <ul class="sub">
+                        <li><a href="/view/cart/cart.html">나의 펀딩 리스트</a>
+                        <li><a href="#">관심 펀딩 리스트</a>
+                    </ul>
+                </li>
+            </ul>
+            <li><a href="/view/userQnA/userMainPage/userQnAmainpage.html">QnA</a></li>
+            <li><a href="/view/userDeliver/userMainPage/userDeliverMainPage.html">배송현황</a></li>
+            <li><a href="/view/manager/board/noticeMain.html">공지사항</a></li>
+           
+
+
+        </div>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#navSide ul.sub").hide();
+				$("#navSide ul.sideBar-toggle li").click(function () {
+					$("ul", this).slideToggle("normal");
+				});
+			});
+		</script>
+
+		<div class="sideBar-adver">
+			<div class="sideBar-adver-back"></div>
+			<span class="sideBar-adver-text">요금제를 업그레이드하고
+				더 많은 광고기회를 얻으세요</span>
+			<div class="sideBar-adver-button">
+				<div class="sideBar-adver-button-back"></div>
+				<span class="sideBar-adver-button-text">지금 업그레이드!</span>
+			</div>
+		</div>
+	</div>
+                </div>
+                
+                
+            </div>
+            <div class="middle">
+                <!-- 가운데 컨텐츠 -->
+                <div class="changeinfotitle">개인정보 변경</div>
+                <div class="ligoimg"><img src="/resources/images/textlogonone_2.png" alt=""></div>
+            
+
+            
+            <div class="changeInfo">
+                <!-- 회원정보 변경 폼-->
+
+
+            <form action="/submit-form"></form>
+
+            <div class="profileimg">
+                <img class="profileimg1" src="/resources/images/lcon/avatar-profile-icon_188544-4755.avif" alt="">
+                <button class="profilebtn">프로필 사진 수정</button>
+            </div>
+            <div>
+                    <li>이름</li>
+                    <li><span><input class="box1" type="text"></span></li>
+                </div>
+
+                <div>
+                    <li>이메일 주소</li>
+                    <span><input type="text" class="box2"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" >인증번호 받기</button></span>
+                    <li>이메일 코드입력</li>
+                    <span><input type="text" class="box2"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" >인증번호 확인</button></span>
+                </div>
+
+                <div>
+                    
+                        <li><span>비밀번호</span><span class="movetext2">비밀번호 확인</span></li>
+                        <li><span><input placeholder="8자 이상의 영어, 숫자 입력" class="box3" type="password" id="passwordField" name="passwordField"></span>&nbsp;&nbsp;<span><input class="box3" type="password" id="confirmPasswordField" name="confirmPasswordField"></span></li>
+                        
+                        
+                        
+                        
+                        <input type="checkbox" id="showPassword" onchange="togglePassword()">
+                        <label for="showPassword">비밀번호 보이기</label>
+                        
+                        
+                    
+                </div>
+
+                <div>
+                    
+                    <label for="">주소</label><br>
+                    <textarea name="" class="box4" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <label for="">상세주소</label><br>
+                    <textarea name="" class="box4" id="" cols="30" rows="10"></textarea>
+                </div>
+            
+        
+            <div class="changeInfobtn"><a href="http://www.google.com"><button>회원정보 변경</button></a></div>
+        </form>
+        
+
+    </div>
+            </div>
+    
+    
+            <div class="right">
+                <!-- 우측 컨텐츠 -->
+            </div>
+        </div>
+
+    <footer>
+        <div class="footer-container">
+
+            <div class="footer-logo">
+                <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
+            </div>
+    
+            <div class="footer">
+                <div class="footer-back"></div>
+                <div class="footer-left"></div>
+                <div class=footer-group>
+                    <div class=footer-group-design><span class="footer-down">
+                            일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
+                            해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
+                        <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
+                                유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
+                                사업자 등록번호 1234-56-7890
+                                서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>
