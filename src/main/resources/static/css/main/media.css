@@ -110,11 +110,12 @@
 /* 첫 번째 정사각형 아이콘 */
 @media screen and (max-width: 1000px) {
     .first-square-icon-wrapper p {
-        font-size: 1.5vh; 
+        font-size: 1.5vh;
     }
-
+}
 /* 두 번째 정사각형 아이콘 */
 @media screen and (max-width: 600px) {
     .second-square-icon-wrapper p {
         font-size: 1.5vh;
     }
+}
