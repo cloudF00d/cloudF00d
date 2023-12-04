@@ -70,7 +70,7 @@
     font-family: Poppins;
     text-align: center;
     font-size: 14px;
-    letter-spacing: 1;
+    /*letter-spacing: 1;*/
 }
 
 .sideBar-adver-button {
@@ -105,5 +105,9 @@
     font-family: Poppins;
     text-align: center;
     font-size: 14px;
-    letter-spacing: 1;
+    /*letter-spacing: 1;*/
+}
+
+.flex{
+    display: flex;
 }

@@ -10,11 +10,13 @@
 </head>
 
     <header th:replace="fragments/header :: headerFragment"></header>
+<div class="flex">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
     <div layout:fragment="content"></div>
 
-     <footer th:replace="fragments/footer :: footerFragment"></footer>
+</div>
+    <footer th:replace="fragments/footer :: footerFragment"></footer>
 
 
-<!--     <footer th:replace="fragments/footer :: footerFragment"></footer>-->
 
 </html>
