@@ -37,6 +37,7 @@ dependencies {
 	implementation 'net.coobird:thumbnailator:0.4.8'
 	implementation 'commons-io:commons-io:2.11.0'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 }
 
 tasks.named('test') {

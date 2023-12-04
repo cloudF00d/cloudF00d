@@ -10,6 +10,6 @@ public class MainController {
 
     @GetMapping("main")
     public String defaultLocation(){
-        return "content/main/main";
+        return "content/main/main.html";
     }
 }
