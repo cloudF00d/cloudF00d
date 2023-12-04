@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info</title>
-    <link rel="stylesheet" href="/resources/css/login/changeInfo.css">
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 폰트패밀리: Poppins -->
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/header-main/css.css">
-    <link rel="stylesheet" href="/resources/css/sideBar/css.css">
-    <link rel="stylesheet" href="/resources/css/footer/css.css">
+    <link th:href="@{/static/css/login/changeInfo.css}" rel="stylesheet">
+
 
 </head>
 <body>
@@ -42,7 +41,7 @@
                 <li><a href="#">장바구니</a>
                     <ul class="sub">
                         <li><a th:href="/view/cart/cart.html">나의 펀딩 리스트</a>
-                        <li><a th:href="#">관심 펀딩 리스트</a>
+                        <li><a th:href="">관심 펀딩 리스트</a>
                     </ul>
                 </li>
             </ul>
@@ -123,12 +122,12 @@
 
                 <div>
                     
-                    <label for="">주소</label><br>
-                    <textarea name="" class="box4" id="" cols="30" rows="10"></textarea>
+                    <label >주소</label><br>
+                    <textarea name="" class="box4"  cols="30" rows="10"></textarea>
                 </div>
                 <div>
-                    <label for="">상세주소</label><br>
-                    <textarea name="" class="box4" id="" cols="30" rows="10"></textarea>
+                    <label >상세주소</label><br>
+                    <textarea name="" class="box4"  cols="30" rows="10"></textarea>
                 </div>
             
         

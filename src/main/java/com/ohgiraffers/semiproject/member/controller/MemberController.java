@@ -5,13 +5,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/member/login/*")
+@RequestMapping("member")
 public class MemberController {
 
 
-    @GetMapping("changeInfo")
-    public String changeInfo(){
 
-        return "/login/changeInfo.html";
+
+    @GetMapping("login")
+    public String login(){
+
+
+        return "/content/member/login/login.html";
+
+    }
+
+    @GetMapping("join")
+    public String join(){
+
+
+        return "/content/member/login/join.html";
+
     }
 }
