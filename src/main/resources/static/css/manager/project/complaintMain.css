@@ -312,8 +312,7 @@ td a{
 }
 
 .right {
-    width: 280px;
-    /* 오른쪽 영역의 너비를 20%로 설정 */
+    width: 280px;    /* 오른쪽 영역의 너비를 20%로 설정 */
 }
 
 .searchcontainer {
@@ -350,34 +349,7 @@ td a{
     margin-top: 40px;
 }
 
-/* 좌측 영역 시작*/
 
-.sidebarName{
-    font-size: 25px;
-    padding: 30px;
-    
-    font-weight: bold;
-    
-}
-
-.move {
-
-    float: right;
-    padding-right: 20px;
-}
-.sidebar a, 
-.sidebar a:visited{
-    color: rgb(134, 132, 132);
-    padding-left: 20px;
-    
-    
-}
-
-
-.sidebar li{
-    color: rgb(134, 132, 132);
-    padding: 25px;
-}
 
 
 .close{

@@ -171,8 +171,7 @@ td a{
 }
 
 .right {
-    flex-basis: 192px; /* 오른쪽 영역의 너비를 20%로 설정 */
-}
+    width: 280px;}
 .searchDetail{
     font-size: 16px;
 }
@@ -286,16 +285,7 @@ td a{
         /* 배경 이미지 반복 없음 */
     }
 
-    /* header */
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-    }
+
 
     /* logo - margin  */
     .logo-image {
