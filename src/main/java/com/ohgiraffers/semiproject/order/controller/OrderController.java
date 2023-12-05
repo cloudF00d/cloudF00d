@@ -11,21 +11,21 @@ public class OrderController {
 
   @GetMapping("buypage")
     public String buypage(){
-      return "/content/order/buypage.html";
+      return "/content/order/buypage";
   }
 
     @GetMapping("buyok")
     public String buyok(){
-        return "/content/order/buyok.html";
+        return "/content/order/buyok";
     }
 
     @GetMapping("cart")
     public String cart(){
-        return "/content/order/cart.html";
+        return "/content/order/cart";
     }
 
     @GetMapping("watchlist")
     public String watchlist(){
-        return "/content/order/watchlist.html";
+        return "/content/order/watchlist";
     }
 }

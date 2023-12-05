@@ -4,6 +4,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <th:block th:fragment="headerFragment">
+
 <header >
     <img src="/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
 
@@ -42,7 +43,7 @@
             <ul>
                 <li><a th:href="@{/member/login}">로그인</a></li>
                 <li><a th:href="@{/member/join}">회원가입</a></li>
-<!--                <li><a th:href="@{/member/join}">로그아웃</a></li>-->
+                <li><a th:href="@{/member/myInfo}">마이페이지</a></li>
             </ul>
         </nav>
     </div>

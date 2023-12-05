@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<th:block  layout:fragment="content">
+
+        <link rel="stylesheet" th:href="@{/css/login/myInfo.css}">
+
+
+
+
+    <div class="container">
+        <th:block th:replace="/fragments/usersidebar.html"></th:block>
+        <div class="middle">
+            <!-- 가운데 컨텐츠 -->
+            <div class="changeinfotitle">내정보 관리</div>
+            <div class="ligoimg"><img src="/images/textlogonone_2.png" alt=""></div>
+
+
+
+            <!-- 회원정보 변경 폼-->
+            <div class="changeInfo">
+
+                <div class="profileimg">
+
+                    <div><img class="profileimg1" src="/images/lcon/avatar-profile-icon_188544-4755.avif" alt="">프로필 사진</div>
+                </div>
+
+                <div class="myInfo1">
+                    <div class="myInfo1">이름 : 이준희</div>
+                    <div class="myInfo1">이메일 : lees8485@gameil.com </div>
+                    <div class="myInfo1">주소 : 서울시 성북구 길음로13길 39</div>
+                    <div class="myInfo1">상세주소 : 푸르지오3단지</div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+        <div class="right">
+            <!-- 우측 컨텐츠 -->
+        </div>
+    </div>
+
+</th:block>
+</html>

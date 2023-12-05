@@ -17,18 +17,18 @@
 
                 <div id="navSide">
                     <ul class="sideBar-toggle">
-                        <li><a href="#">내정보관리</a><br>
+                        <li><a th:href="@{#}">내정보관리</a><br>
                             <ul class="sub">
-                                <li><a th:href="@{#}">개인정보 변경</a>
-                                <li><a th:href="@{#}">회원탈퇴 </a>
+                                <li><a th:href="@{/member/changeInfo}">개인정보 변경</a>
+                                <li><a th:href="@{/member/userWithdrawal}">회원탈퇴 </a>
                             </ul>
                         </li>
                     </ul>
                     <ul class="sideBar-toggle">
                         <li><a href="#">장바구니</a>
                             <ul class="sub">
-                                <li><a th:href="@{#}">나의 펀딩 리스트</a>
-                                <li><a th:href="@{#}">관심 펀딩 리스트</a>
+                                <li><a th:href="@{/order/watchlist}">나의 펀딩 리스트</a>
+                                <li><a th:href="@{/order/cart}">관심 펀딩 리스트</a>
                             </ul>
                         </li>
                     </ul>
