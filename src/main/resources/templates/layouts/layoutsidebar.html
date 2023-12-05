@@ -11,7 +11,8 @@
 
     <header th:replace="fragments/header :: headerFragment"></header>
     <div class="flex">
-        <div th:replace="fragments/sidebar :: sidebar"></div>
+        <div th:replace="fragments/usersidebar :: sidebar"></div>
+
         <div layout:fragment="content"></div>
     </div>
     <footer th:replace="fragments/footer :: footerFragment"></footer>
