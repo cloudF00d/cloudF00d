@@ -530,9 +530,9 @@
 					color:rgba(181.09426975250244, 183.07396352291107, 192.31249898672104, 1);
 					width:100px;
 					height:18px;
-					position: relative;
+					position:absolute;
 					left:410px;
-					top:23px;
+					top:190px;
 					font-family:Poppins;					
 					font-size:20px;	
 				}

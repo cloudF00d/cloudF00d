@@ -5,14 +5,15 @@
       layout:decorate="~{layouts/layout}">
 
 <th:block  layout:fragment="content">
-<head>
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
+<!--<head>-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sellerUserSearch</title>
     <link rel="stylesheet" href="/css/sellerManage/sellerUserManage.css">
-<!--    <link rel="stylesheet" href="/resources/css/background, header, footer.css">-->
-</head>
-<body>
+
+<!--</head>-->
+<!--<body>-->
 
 <!--    <header>-->
 
@@ -81,69 +82,69 @@
 
 
             <!-- 사이드바 배경wn -->
-<div class="sideBar">
+<!--<div class="sideBar">-->
 
-	<!-- 사이드바 메뉴 -->
+<!--	&lt;!&ndash; 사이드바 메뉴 &ndash;&gt;-->
 
-	
-    <div class="sideBar-menu">
-        <strong><div class="title">마이페이지</div></strong>
-        
-        <div id="navSide">
-            <ul class="sideBar-toggle">
-                <li><a href="#">내정보관리</a><br>
-                    <ul class="sub">
-                            <li><a href="#">개인정보 변경</a>
-                            <li><a href="#">회원탈퇴 </a>
-                            <li><a href="/view/changePage/userChange.html">구매자 전환</a>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="sideBar-toggle">
-                <li><a href="#">장바구니</a>
-                    <ul class="sub">
-                        <li><a href="#">나의 펀딩 리스트</a>
-                        <li><a href="#">관심 펀딩 리스트</a>
-                    </ul>
-                </li>
-            </ul>
-            <li><a href="/view/sellerQnA/sellerMainPage/sellerQnAmainpage.html">QnA</a></li>
-            <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>
-            <li><a href="#">게시판</a></li>
-            <ul class="sideBar-toggle">
-                <strong><li><a href="#">판매자기능</a></strong>
-                    <ul class="sub">
-                        <strong><li><a href="/view/seller Manage/seller-buyerManage/sellerUserManage.html">구매자 조회</a></strong>
-                        <li><a href="/view/seller Manage/seller-project/sellerProjectSeach.html">프로젝트 조회</a>
-                        <li><a href="/view/seller Manage/seller-QnAmanage/sellerQnAmanage.html">프로젝트 QnA</a>
-                    </ul>
-                </li>
-            </ul>
+<!--	-->
+<!--    <div class="sideBar-menu">-->
+<!--        <strong><div class="title">마이페이지</div></strong>-->
+<!--        -->
+<!--        <div id="navSide">-->
+<!--            <ul class="sideBar-toggle">-->
+<!--                <li><a href="#">내정보관리</a><br>-->
+<!--                    <ul class="sub">-->
+<!--                            <li><a href="#">개인정보 변경</a>-->
+<!--                            <li><a href="#">회원탈퇴 </a>-->
+<!--                            <li><a href="/view/changePage/userChange.html">구매자 전환</a>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <ul class="sideBar-toggle">-->
+<!--                <li><a href="#">장바구니</a>-->
+<!--                    <ul class="sub">-->
+<!--                        <li><a href="#">나의 펀딩 리스트</a>-->
+<!--                        <li><a href="#">관심 펀딩 리스트</a>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <li><a href="/view/sellerQnA/sellerMainPage/sellerQnAmainpage.html">QnA</a></li>-->
+<!--            <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>-->
+<!--            <li><a href="#">게시판</a></li>-->
+<!--            <ul class="sideBar-toggle">-->
+<!--                <strong><li><a href="#">판매자기능</a></strong>-->
+<!--                    <ul class="sub">-->
+<!--                        <strong><li><a href="/view/seller Manage/seller-buyerManage/sellerUserManage.html">구매자 조회</a></strong>-->
+<!--                        <li><a href="/view/seller Manage/seller-project/sellerProjectSeach.html">프로젝트 조회</a>-->
+<!--                        <li><a href="/view/seller Manage/seller-QnAmanage/sellerQnAmanage.html">프로젝트 QnA</a>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
 
 
-        </div>
-            <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $("#navSide ul.sub").hide();
-                    $("#navSide ul.sideBar-toggle li").click(function () {
-                        $("ul", this).slideToggle("normal");
-                    });
-                });
-            </script>
+<!--        </div>-->
+<!--            <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>-->
+<!--            <script type="text/javascript">-->
+<!--                $(document).ready(function () {-->
+<!--                    $("#navSide ul.sub").hide();-->
+<!--                    $("#navSide ul.sideBar-toggle li").click(function () {-->
+<!--                        $("ul", this).slideToggle("normal");-->
+<!--                    });-->
+<!--                });-->
+<!--            </script>-->
 
-                <div class="sideBar-adver">
-                    <div class="sideBar-adver-back"></div>
-                    <span class="sideBar-adver-text">요금제를 업그레이드하고
-                        더 많은 광고기회를 얻으세요</span>
-                    <div class="sideBar-adver-button">
-                        <div class="sideBar-adver-button-back"></div>
-                        <span class="sideBar-adver-button-text">지금 업그레이드!</span>
-                    </div>
-                </div>
-    </div>       
+<!--                <div class="sideBar-adver">-->
+<!--                    <div class="sideBar-adver-back"></div>-->
+<!--                    <span class="sideBar-adver-text">요금제를 업그레이드하고-->
+<!--                        더 많은 광고기회를 얻으세요</span>-->
+<!--                    <div class="sideBar-adver-button">-->
+<!--                        <div class="sideBar-adver-button-back"></div>-->
+<!--                        <span class="sideBar-adver-button-text">지금 업그레이드!</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--    </div>       -->
 
-</div>                 
+<!--</div>                 -->
                 
         
 
@@ -167,7 +168,7 @@
                         
                         <select name="nation2">
                             <option value="search"selected>검색설정</option>
-                            <option value="ch">프로젝트명</option>
+                            <option value="pr">프로젝트명</option>
                             <option value="jp" >구성상품</option>
                             <option value="us" >구매자</option>
                             <option value="etc">연락처</option>
@@ -328,6 +329,6 @@
     
 
 
-    </body>
+<!--    </body>-->
     </th:block>
     </html>

@@ -5,7 +5,6 @@
     width: 280px;
     flex: 0 0 auto;
     margin-bottom: 0;
-    margin-right: 300px;
 }
 
 .sideBar-menu {
@@ -40,7 +39,7 @@
 }
 
 .sub li a {
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
 .sideBar-adver {
@@ -112,4 +111,3 @@
 .flex{
     display: flex;
 }
-
