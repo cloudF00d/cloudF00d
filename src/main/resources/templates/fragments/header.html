@@ -10,10 +10,10 @@
     <!-- 상단 메뉴 -->
     <nav>
         <ul>
-            <li><a th:href="">홈</a></li>
-            <li><a th:href="">프로젝트</a></li>
-            <li><a th:href="">펀딩</a></li>
-            <li><a th:href="">도움말</a></li>
+            <li><a th:href="@{/}">홈</a></li>
+            <li><a th:href="@{#}">프로젝트</a></li>
+            <li><a th:href="@{#}">펀딩</a></li>
+            <li><a th:href="@{#}">도움말</a></li>
         </ul>
     </nav>
 
@@ -22,9 +22,9 @@
         <label class="toggle-label" id="toggle-label">더보기</label>
         <div class="menu-content" id="menu-content">
             <ul>
-                <li><a th:href="">공지사항</a></li>
-                <li><a th:href="">고객센터</a></li>
-                <li><a th:href="">Q&A</a></li>
+                <li><a th:href="@{#}">공지사항</a></li>
+                <li><a th:href="@{#}">고객센터</a></li>
+                <li><a th:href="@{#}">Q&A</a></li>
             </ul>
         </div>
     </div>
@@ -48,7 +48,7 @@
 
     <!-- 프로젝트 시작하기 -->
     <div class="project-button">
-        <a th:href="">프로젝트 시작하기</a>
+        <a th:href="@{#}">프로젝트 시작하기</a>
     </div>
 </header>
 </th:block>
