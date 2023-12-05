@@ -61,7 +61,7 @@ public class QnAController {
 
 
 
-    @GetMapping("usermain")
+    @GetMapping("usermain")  
     public String userMain(){
 
         return "content/board/userQnA/userMainPage/userQnAmainpage";
