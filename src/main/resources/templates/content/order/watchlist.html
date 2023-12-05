@@ -14,12 +14,12 @@
 </head>
 
 
-<body>
-    
+<!--<body>-->
+<!--    -->
 <!-- 헤더시작 -->
-<header>
+<!--<header>-->
 
-</header>
+<!--</header>-->
 
 <!-- 헤더끝 -->
 <div class="bodyking">
@@ -28,60 +28,7 @@
         <!-- ... (사이드바 내용은 여기에 추가) ... -->
         <!-- 사이드바 배경 -->
         
-        <div class="sideBar">
-        
-            <!-- 사이드바 메뉴 -->
-        
-            
-            <div class="sideBar-menu">
-                <strong><div class="title">마이페이지</div></strong>
-                
-                <div id="navSide">
-                    <ul class="sideBar-toggle">
-                        <strong><li><a href="#">내정보관리</a><br></strong>
-                            <ul class="sub">
-                                    <li><a href="#">개인정보 변경</a>
-                                    <strong><li><a href="#">회원탈퇴 </a></strong>
-                                    <li><a href="/view/changePage/userChange.html">퍈매자 전환</a>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="sideBar-toggle">
-                        <li><a href="#">장바구니</a>
-                            <ul class="sub">
-                                <li><a href="/view/list/watchlist.html">나의 펀딩 리스트</a>
-                                    <li><a href="/view/cart/cart.html">관심 펀딩 리스트</a>
-                            </ul>
-                        </li>
-                    </ul>
-                    <li><a href="/view/sellerQnA/sellerMainPage/sellerQnAmainpage.html">QnA</a></li>
-                    <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>
-                    <li><a href="#">게시판</a></li>
-                    </ul>
-                    
-                </div>
-                    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $("#navSide ul.sub").hide();
-                            $("#navSide ul.sideBar-toggle li").click(function () {
-                                $("ul", this).slideToggle("normal");
-                            });
-                        });
-                    </script>
-        
-                        <div class="sideBar-adver">
-                            <div class="sideBar-adver-back"></div>
-                            <span class="sideBar-adver-text">요금제를 업그레이드하고
-                                더 많은 광고기회를 얻으세요</span>
-                            <div class="sideBar-adver-button">
-                                <div class="sideBar-adver-button-back"></div>
-                                <span class="sideBar-adver-button-text">지금 업그레이드!</span>
-                            </div>
-                        </div>
-            </div>       
-        
-        </div>
+
 
 <!--    사이드바 끝-->
 
@@ -91,7 +38,7 @@
         <div class="mid">
             <div class="midmenu">
                 <div class="logo">
-                    <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
+                    <a th:href="@{/main}"><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                 </div>
                 <div class="cancel-con">
                     <button class="cancel">펀딩취소</button>
@@ -269,6 +216,6 @@
     }
 </script>
 
-</body>
+<!--</body>-->
 </th:block>
 </html>
