@@ -2,40 +2,37 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      layout:decorate="~{layouts/layoutsidebar}">
 
+<th:block layout:fragment="content">
+<!--    <head>-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>공지사항 게시판</title>
+        <link rel="stylesheet" href="/css/manager/board/noticeMain.css">
+<!--    </head>-->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 게시판</title>
-    <link rel="stylesheet" href="/css/manager/board/noticeMain.css">
-</head>
+<!--    <body>-->
 
-<body>
-<th:block  layout:fragment="content">
 
     <div class="container">
-
-
-
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
                 <span><a class="black-link" href="./BNM.html">공지사항</a></span>
-            
+
             </div>
-        
+
             <div>
-				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
-			  </div>
-        
-        
+                <a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
+            </div>
+
+
             <div class="searchcontainer">
                 <div class="searchleft1">
                     <form action="search" method="post">
-                        <select name="nation2"  >
-                            <option value="search"selected>정렬컬럼</option>
+                        <select name="nation2">
+                            <option value="search" selected>정렬컬럼</option>
                             <option value="ch">코드(기본)</option>
                             <option value="etc">제목</option>
                             <option value="etc">작성일자</option>
@@ -45,10 +42,10 @@
 
                 <div class="searchleft2">
                     <form action="search" method="post">
-                        <select name="nation2"  >
-                            <option value="search"selected>정렬방식</option>
+                        <select name="nation2">
+                            <option value="search" selected>정렬방식</option>
                             <option value="ch">오름차순</option>
-                            <option value="jp" >내림차순(기본)</option>
+                            <option value="jp">내림차순(기본)</option>
                         </select>
                     </form>
                 </div>
@@ -62,23 +59,23 @@
                         /* center center / cover no-repeat;*/
                         padding: 0;"></button>
                         <input type="text" name="search" required>
-                        <select name="nation2"  >
-                            <option value="search"selected>검색설정</option>
+                        <select name="nation2">
+                            <option value="search" selected>검색설정</option>
                             <option value="ch">코드</option>
-                            <option value="jp" >제목</option>
+                            <option value="jp">제목</option>
                             <option value="etc">작성일자</option>
                         </select>
                     </form>
                 </div>
-                
+
             </div>
-        
-        
+
+
             <div>
-                <table >
-                    
+                <table>
+
                     <tr>
-                        
+
                         <th id="newcolumn">새 글</th>
                         <th>코드</th>
                         <th>제목</th>
@@ -117,7 +114,7 @@
                         <a href="#" class="page-link">1</a>
                         <a href="#" class="page-link">2</a>
                         <a href="#" class="page-link">3</a>
-                        
+
                     </div>
                     <a href="#" class="next">＞</a>
                 </div>
@@ -130,7 +127,7 @@
         </div>
     </div>
 
-</th:block>
-</body>
 
+<!--    </body>-->
+</th:block>
 </html>
