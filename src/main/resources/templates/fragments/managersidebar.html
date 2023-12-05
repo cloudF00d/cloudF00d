@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<link rel="stylesheet" href="/css/sideBar/css.css">
+<!-- 사이드바 배경 -->
+<div class="sideBar">
+
+    <!-- 사이드바 메뉴 -->
+    <div class="sideBar-menu">
+
+        <div id="navSide">
+            <ul class="sideBar-toggle">
+                <li><a href="#">회원 조회</a><br>
+                    <ul class="sub">
+                        <li><a href="../search/userMain.html">사용자 조회</a></li>
+                        <li><a href="../search/sellerMain.html">판매자 조회</a></li>
+                        <li><a href="../search/complaintMain.html">경고 회원 조회</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- <ul class="sideBar-toggle">
+				<li><a href="#">신고 내역</a><br>
+					<ul class="sub">
+						<li><a href="../../../../../manager/manageComplaint/complaintUser/complaintUserMain/view/CUM.html">사용자 신고</a></li>
+						<li><a href="../../../../../manager/manageComplaint/complaintProducer/complaintProducerMain/view/CPM.html">판매자 신고</a></li>
+					</ul>
+				</li>
+			</ul> -->
+            <ul class="sideBar-toggle">
+                <li><a href="#">프로젝트 관리</a><br>
+                    <ul class="sub">
+                        <li><a href="../project/newMain.html">신규 신청</a></li>
+                        <li><a href="../project/reMain.html">재신청</a></li>
+                        <li><a href="../project/declineMain.html">반려 프로젝트</a></li>
+                        <li><a href="../project/complaintMain.html">신고 프로젝트</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="sideBar-toggle">
+                <li><a href="#">수익관리</a><br>
+                    <ul class="sub">
+                        <li><a href="../revenue/main.html">프로젝트 목록</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="sideBar-toggle">
+                <li><a href="#">게시판 관리</a><br>
+                    <ul class="sub">
+                        <li><a href="../board/noticeMain.html">공지사항</a></li>
+                        <li><a href="../board/inquiryMain.html">고객센터</a></li>
+                        <li><a href="../board/complaintMain.html">신고 게시판</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#navSide ul.sub").hide();
+                $("#navSide ul.sideBar-toggle li").click(function () {
+                    $("ul", this).slideToggle("normal");
+                });
+            });
+        </script>
+
+        <div class="sideBar-adver">
+            <div class="sideBar-adver-back"></div>
+            <span class="sideBar-adver-text">요금제를 업그레이드하고
+				더 많은 광고기회를 얻으세요</span>
+            <div class="sideBar-adver-button">
+                <div class="sideBar-adver-button-back"></div>
+                <span class="sideBar-adver-button-text">지금 업그레이드!</span>
+            </div>
+        </div>
+    </div>
+
+</div>
