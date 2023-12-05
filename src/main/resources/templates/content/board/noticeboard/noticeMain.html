@@ -5,21 +5,17 @@
       layout:decorate="~{layouts/layoutsidebar}">
 
 <th:block layout:fragment="content">
-<!--    <head>-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>공지사항 게시판</title>
+
         <link rel="stylesheet" href="/css/manager/board/noticeMain.css">
-<!--    </head>-->
-
-<!--    <body>-->
-
 
     <div class="container">
+
+        <th:block th:replace="/fragments/managersidebar.html"></th:block>
+
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" href="./BNM.html">공지사항</a></span>
+                <span><a class="black-link" th:href="@{/board/noticeboard/noticeMain}">공지사항</a></span>
 
             </div>
 
@@ -49,7 +45,7 @@
                         </select>
                     </form>
                 </div>
-                <div id="link" class="newWriting" onclick="location.href='noticeWriting.html'">
+                <div id="link" class="newWriting" onclick="location.href='noticeWriting'">
                     글쓰기
                 </div>
                 <div class="searchright">
@@ -81,7 +77,7 @@
                         <th>제목</th>
                         <th id="right">작성일자</th>
                     </tr>
-                    <tr>
+                    <tr id="link" onclick="location='noticeWrited'">
                         <td id="new">new</td>
                         <td>8</td>
                         <td>최근 논란에 대해 안내드립니다.</td>
@@ -125,9 +121,10 @@
         <div class="right">
             <!-- 우측 컨텐츠 -->
         </div>
+
+
     </div>
 
 
-<!--    </body>-->
 </th:block>
 </html>

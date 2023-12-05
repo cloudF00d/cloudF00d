@@ -10,9 +10,9 @@
             <ul class="sideBar-toggle">
                 <li><a href="#">회원 조회</a><br>
                     <ul class="sub">
-                        <li><a th:href="@{/content/manager/search/userMain}">사용자 조회</a></li>
-                        <li><a href="../search/sellerMain.html">판매자 조회</a></li>
-                        <li><a href="../search/complaintMain.html">경고 회원 조회</a></li>
+                        <li><a th:href="@{/manager/search/userMain}">사용자 조회</a></li>
+                        <li><a th:href="@{/manager/search/sellerMain}">판매자 조회</a></li>
+                        <li><a th:href="@{/manager/search/complaintMain}">경고 회원 조회</a></li>
                     </ul>
                 </li>
             </ul>
@@ -27,26 +27,26 @@
             <ul class="sideBar-toggle">
                 <li><a href="#">프로젝트 관리</a><br>
                     <ul class="sub">
-                        <li><a href="../project/newMain.html">신규 신청</a></li>
-                        <li><a href="../project/reMain.html">재신청</a></li>
-                        <li><a href="../project/declineMain.html">반려 프로젝트</a></li>
-                        <li><a href="../project/complaintMain.html">신고 프로젝트</a></li>
+                        <li><a th:href="@{/manager/project/newMain}">신규 신청</a></li>
+                        <li><a th:href="@{/manager/project/reMain}">재신청</a></li>
+                        <li><a th:href="@{/manager/project/declineMain}">반려 프로젝트</a></li>
+                        <li><a th:href="@{/manager/project/complaintMain}">신고 프로젝트</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="sideBar-toggle">
                 <li><a href="#">수익관리</a><br>
                     <ul class="sub">
-                        <li><a href="../revenue/main.html">프로젝트 목록</a></li>
+                        <li><a th:href="@{/manager/revenue/main}">프로젝트 목록</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="sideBar-toggle">
                 <li><a href="#">게시판 관리</a><br>
                     <ul class="sub">
-                        <li><a href="../board/noticeMain.html">공지사항</a></li>
-                        <li><a href="../board/inquiryMain.html">고객센터</a></li>
-                        <li><a href="../board/complaintMain.html">신고 게시판</a></li>
+                        <li><a th:href="@{/board/noticeMain}">공지사항</a></li>
+                        <li><a th:href="@{/board/inquiryMain}">고객센터</a></li>
+                        <li><a th:href="@{/board/complaintMain}">신고 게시판</a></li>
                     </ul>
                 </li>
             </ul>

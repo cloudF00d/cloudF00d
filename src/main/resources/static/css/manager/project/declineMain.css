@@ -310,8 +310,7 @@ td a{
 }
 
 .right {
-    flex-basis: 192px; /* 오른쪽 영역의 너비를 20%로 설정 */
-}
+    width: 280px;}
 
 .searchcontainer {
     display: flex;
