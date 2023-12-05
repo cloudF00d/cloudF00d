@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
 
-
-
     @GetMapping("login")
-    public String login(){
+    public String login() {
 
 
         return "/content/member/login/login";
@@ -20,7 +18,7 @@ public class MemberController {
     }
 
     @GetMapping("join")
-    public String join(){
+    public String join() {
 
 
         return "/content/member/login/join";
@@ -28,7 +26,7 @@ public class MemberController {
     }
 
     @GetMapping("findId")
-    public String findId(){
+    public String findId() {
 
 
         return "/content/member/login/findId";
@@ -37,7 +35,7 @@ public class MemberController {
 
 
     @GetMapping("findPwd")
-    public String findPwd(){
+    public String findPwd() {
 
 
         return "/content/member/login/findPwd";
@@ -46,36 +44,36 @@ public class MemberController {
 
 
     @GetMapping("changeInfo")
-    public String changeInfo(){
+    public String changeInfo() {
 
 
         return "/content/member/login/changeInfo";
 
     }
 
-    @GetMapping("changeseller")
-    public String changeseller(){
-
-
-        return "/content/member/changeseller/changeseller";
-
-    }
 
     @GetMapping("sellerWithdrawal")
-    public String sellerWithdrawal(){
+    public String sellerWithdrawal() {
 
 
-        return "/content/member/memberWithdrawal/sellerWithdrawal";
+        return "/content/member/memberWithdrawal/seller/sellerWithdrawal";
 
     }
 
     @GetMapping("userWithdrawal")
-    public String userWithdrawal(){
+    public String userWithdrawal() {
 
 
-        return "/content/member/login/userWithdrawal";
+        return "/content/member/memberWithdrawal/user/userWithdrawal";
 
     }
 
+    @GetMapping("myInfo")
+    public String myInfo() {
 
+
+        return "/content/member/login/myInfo";
+
+
+    }
 }

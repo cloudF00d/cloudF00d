@@ -5,22 +5,15 @@
       layout:decorate="~{layouts/layout}">
 <th:block  layout:fragment="content">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+
+
+
     <link rel="stylesheet" th:href="@{/css/project/projectMake/projectApply.css}">
 
 
-<body>
-
-<!-- 헤더시작 -->
-<header>
-
-</header>
-
-<!-- 헤더끝 -->
-
 <div class="buyok">
+        <th:block th:replace="/fragments/sellersidebar.html"></th:block>
     <div class="buyokay">
 
     
@@ -60,14 +53,7 @@
 
 
 
-
-        <!-- 푸터는 이아래에 붙여 -->
-
-<!-- 푸터 시작 -->
-
-
-
  
-</body>
+
 </th:block>
 </html>
