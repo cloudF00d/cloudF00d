@@ -31,4 +31,17 @@ public class MemberController {
     public String getChangeInfoLocation(){
         return "/content/member/login/changeInfo";
     }
+
+
+    @GetMapping("withdrawalseller")
+    public String sellerWithdrawal(){
+        return "content/member/memberWithdrawal/seller/sellerWithdrawal";
+    }
+
+
+    @GetMapping("withdrawaluser")
+    public String userWithdrawal(){
+        return "content/member/memberWithdrawal/user/userWithdrawal";
+    }
+
 }

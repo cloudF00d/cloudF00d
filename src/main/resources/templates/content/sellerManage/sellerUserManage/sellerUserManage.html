@@ -5,148 +5,13 @@
       layout:decorate="~{layouts/layout}">
 
 <th:block  layout:fragment="content">
-    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
-<!--<head>-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sellerUserSearch</title>
+
     <link rel="stylesheet" href="/css/sellerManage/sellerUserManage.css">
 
-<!--</head>-->
-<!--<body>-->
-
-<!--    <header>-->
-
-<!-- 로고 이미지 -->
-<!--	<img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">-->
+    <title>sellerUserSearch</title>
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
 
 
-	<!-- 상단 메뉴 -->
-<!--	<nav>-->
-<!--		<ul>-->
-<!--			<li><a href="#">홈</a></li>-->
-<!--			<li><a href="#">프로젝트</a></li>-->
-<!--			<li><a href="#">펀딩</a></li>-->
-<!--			<li><a href="#">도움말</a></li>-->
-<!--		</ul>-->
-<!--	</nav>-->
-
-	<!-- 상단 - 더보기 메뉴 -->
-<!--	<div class="menu-item">-->
-<!--		<label class="toggle-label" id="toggle-label">더보기</label>-->
-<!--		<div class="menu-content" id="menu-content">-->
-<!--			<ul>-->
-<!--				<li><a href="#">메뉴 항목 1</a></li>-->
-<!--				<li><a href="#">메뉴 항목 2</a></li>-->
-<!--				<li><a href="#">메뉴 항목 3</a></li>-->
-<!--			</ul>-->
-<!--		</div>-->
-<!--	</div>-->
-
-	<!-- 더보기 토글 제이쿼리 -->
-<!--	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-
-	<!-- 더보기 토글 함수 -->
-<!--	<script>-->
-<!--		$(document).ready(function () {-->
-<!--			$('#toggle-label').click(function () {-->
-<!--				$('#menu-content').slideToggle(500);-->
-<!--			});-->
-<!--		});-->
-<!--	</script>-->
-
-	<!-- 검색창 -->
-<!--	<div class="search-box">-->
-<!--		<input type="text" placeholder="검색어를 입력하세요">-->
-<!--		<i class="fas fa-search"></i>-->
-<!--	</div>-->
-
-	<!-- 로그인 회원가입 -->
-<!--	<div class="login-signup">-->
-<!--		<nav>-->
-<!--			<ul>-->
-<!--				<li><a href="#">로그아웃</a></li>-->
-<!--				&lt;!&ndash; <li><a href="#">회원가입</a></li> &ndash;&gt;-->
-<!--			</ul>-->
-<!--		</nav>-->
-<!--	</div>-->
-
-	<!-- 프로젝트 시작하기 -->
-<!--	<div class="project-button">-->
-<!--		<a href="#">프로젝트 시작하기</a>-->
-<!--	</div>     -->
-<!--    </header>-->
-
-
-    
-
-
-            <!-- 사이드바 배경wn -->
-<!--<div class="sideBar">-->
-
-<!--	&lt;!&ndash; 사이드바 메뉴 &ndash;&gt;-->
-
-<!--	-->
-<!--    <div class="sideBar-menu">-->
-<!--        <strong><div class="title">마이페이지</div></strong>-->
-<!--        -->
-<!--        <div id="navSide">-->
-<!--            <ul class="sideBar-toggle">-->
-<!--                <li><a href="#">내정보관리</a><br>-->
-<!--                    <ul class="sub">-->
-<!--                            <li><a href="#">개인정보 변경</a>-->
-<!--                            <li><a href="#">회원탈퇴 </a>-->
-<!--                            <li><a href="/view/changePage/userChange.html">구매자 전환</a>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <ul class="sideBar-toggle">-->
-<!--                <li><a href="#">장바구니</a>-->
-<!--                    <ul class="sub">-->
-<!--                        <li><a href="#">나의 펀딩 리스트</a>-->
-<!--                        <li><a href="#">관심 펀딩 리스트</a>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <li><a href="/view/sellerQnA/sellerMainPage/sellerQnAmainpage.html">QnA</a></li>-->
-<!--            <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>-->
-<!--            <li><a href="#">게시판</a></li>-->
-<!--            <ul class="sideBar-toggle">-->
-<!--                <strong><li><a href="#">판매자기능</a></strong>-->
-<!--                    <ul class="sub">-->
-<!--                        <strong><li><a href="/view/seller Manage/seller-buyerManage/sellerUserManage.html">구매자 조회</a></strong>-->
-<!--                        <li><a href="/view/seller Manage/seller-project/sellerProjectSeach.html">프로젝트 조회</a>-->
-<!--                        <li><a href="/view/seller Manage/seller-QnAmanage/sellerQnAmanage.html">프로젝트 QnA</a>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-
-
-<!--        </div>-->
-<!--            <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>-->
-<!--            <script type="text/javascript">-->
-<!--                $(document).ready(function () {-->
-<!--                    $("#navSide ul.sub").hide();-->
-<!--                    $("#navSide ul.sideBar-toggle li").click(function () {-->
-<!--                        $("ul", this).slideToggle("normal");-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
-
-<!--                <div class="sideBar-adver">-->
-<!--                    <div class="sideBar-adver-back"></div>-->
-<!--                    <span class="sideBar-adver-text">요금제를 업그레이드하고-->
-<!--                        더 많은 광고기회를 얻으세요</span>-->
-<!--                    <div class="sideBar-adver-button">-->
-<!--                        <div class="sideBar-adver-button-back"></div>-->
-<!--                        <span class="sideBar-adver-button-text">지금 업그레이드!</span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--    </div>       -->
-
-<!--</div>                 -->
-                
-        
 
 <div class="middle_box">
     <div class="middle">
@@ -163,7 +28,7 @@
                 <div class="search"></div>
                 <div class="searchright">
                     <form action="search" method="post">
-                        <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/resource/imege/searchicon.avif') center center / cover no-repeat; padding: 0;"></button>
+                        <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/images/04_etc/magnifying glass.png') center center / cover no-repeat; padding: 0;"></button>
                         <input type="text" name="search" required>
                         
                         <select name="nation2">
@@ -197,7 +62,7 @@
     
                         <tr>
                             <td>1</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>김민*</td>
                             <td>010-****-1234</td>
@@ -208,17 +73,17 @@
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>패밀리세트</td>
                             <td>서보*</td>
                             <td>010-****-1234</td>
                             <td>서울 강남구 ****</td>
-                            <td><a class="black-link" href="#" id="questionLink"><span class="ing">송신하기</span></a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink"><span class="ing">송신하기</span></a></td>
                             <td><span class="ing2">N</span></td>
                             <td><span class="ing2">N</span></td>
                         <tr>
                             <td>3</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>강다*</td>
                             <td>010-****-1234</td>
@@ -229,7 +94,7 @@
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>패밀리세트</td>
                             <td>이동*</td>
                             <td>010-****-1234</td>
@@ -240,7 +105,7 @@
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>이준*</td>
                             <td>010-****-1234</td>
@@ -251,7 +116,7 @@
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>김민*</td>
                             <td>010-****-1234</td>
@@ -262,7 +127,7 @@
                         </tr>
                         <tr>
                             <td>7</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>강다*</td>
                             <td>010-****-1234</td>
@@ -273,7 +138,7 @@
                         </tr>
                         <tr>
                             <td>8</td>
-                            <td><a class="black-link" href="#" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                            <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                             <td>프렌즈세트</td>
                             <td>서보*</td>
                             <td>010-****-1234</td>
@@ -294,7 +159,7 @@
                                 <a href="#" class="page-link">3</a>
     
                             </div>
-                            <a href="#" class="next">＞</a>
+                            <a th:href="@{#}" class="next">＞</a>
                         </div>
                     </div>
                 </div>
@@ -303,32 +168,6 @@
         </div>
 
     
-    
-        <!-- Footer -->
-    
-<!--        <div class=footer>-->
-<!--            <div class="footer-back"></div>-->
-<!--            <div class="footer-left"></div>-->
-<!--            <div class=footer-group>-->
-<!--                <div class=footer-group-design><span  class="footer-down">-->
-<!--                일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.-->
-<!--                해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>-->
-<!--            <div class=footer-up><span  class="footer-up-right">이메일 상담   abcdefg@gmail.com-->
-<!--                유선 상담 1234-5678</span>-->
-<!--                <span  class="footer-up-left">Cloud Fooding 클라우드 푸딩-->
-<!--                사업자 등록번호 1234-56-7890-->
-<!--                서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩-->
-<!--                </span>-->
-<!--            </div>-->
-<!--            <div class="footer-logo"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-    
-    
-    
 
-
-<!--    </body>-->
     </th:block>
     </html>

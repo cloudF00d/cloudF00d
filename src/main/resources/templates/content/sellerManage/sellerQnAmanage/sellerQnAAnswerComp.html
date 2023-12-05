@@ -7,9 +7,12 @@
 <th:block  layout:fragment="content">
         <link rel="stylesheet" th:href="@{/css/QnA/QnAanswer.css}">
 
-        <div class="middle_box">
+
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
+
+    <div class="middle_box">
         
-            <div class="middle">
+        <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
                 
@@ -21,15 +24,10 @@
             <div class="box">
                 <span class="box1">작성번호 : 1</span>
                 <span class="box1">작성자:김민*</span>
-                <span class="box2">작성일자                    
-                        <script>
-                            date = new Date().toLocaleDateString();
-                            document.write(date);
-                        </script>
-                </span>
+                <span class="box2">작성일: 23/ 11/ 21</span>
             </div>
 
-            <form action="" method="post">
+
                 <div class="wirte_title">제목 </div>
                 <div class="project_title">프로젝트명</div>
                 <div class="seller_name">판매자</div>
@@ -49,8 +47,11 @@
                         신선식품이기에 빠른 시내에 드시는 것을 추천 드립니다
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
+
+
+
 </th:block>
 </html>

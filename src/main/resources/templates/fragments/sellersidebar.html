@@ -1,5 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<div class="sideBar">
+<th:block th:fragment="sidebar">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/sideBar.js"></script>
+    <link rel="stylesheet" href="/css/sideBar/css.css">
+
     <!-- 사이드바 메뉴 -->
     <div class="sideBar-menu">
         <strong><div class="title">마이페이지</div></strong>
@@ -8,29 +16,30 @@
             <ul class="sideBar-toggle">
                 <li><a href="#">내정보관리</a><br>
                     <ul class="sub">
-                        <li><a href="#">개인정보 변경</a>
-                        <li><a href="#">회원탈퇴 </a>
-                        <li><a href="/view/changePage/userChange.html">구매자 전환</a>
+                        <li><a th:href="@{#}">개인정보 변경</a>
+                        <li><a th:href="@{#}">회원탈퇴 </a>
+                        <li><a th:href="@{#}">판매자 전환</a>
                     </ul>
                 </li>
             </ul>
             <ul class="sideBar-toggle">
                 <li><a href="#">장바구니</a>
                     <ul class="sub">
-                        <li><a href="#">나의 펀딩 리스트</a>
-                        <li><a href="#">관심 펀딩 리스트</a>
+                        <li><a th:href="@{#}">나의 펀딩 리스트</a>
+                        <li><a th:href="@{#}">관심 펀딩 리스트</a>
                     </ul>
                 </li>
             </ul>
-           <li><a href="/view/sellerQnA/userMainPage/userQnAmainpage.html">QnA</a></li>
-            <li><a href="/view/sellerDeliver/sellerMainPage/sellerDeliverMainPage.html">배송현황</a></li>
-            <li><a href="#">게시판</a></li>
+            <li><a th:href="@{#}">QnA</a></li>
+            <li><a th:href="@{#}">배송현황</a></li>
+            <li><a th:href="@{#}">공지사항</a></li>
+            <li><a th:href="@{#}">고객센터</a></li>
             <ul class="sideBar-toggle">
-                <li><a href="#">판매자기능</a>
+                <li><a th:href="@{#}">판매자기능</a>
                     <ul class="sub">
-                        <li><a href="/view/seller Manage/seller-buyerManage/sellerUserManage.html">구매자 조회</a>
-                        <li><a href="/view/seller Manage/seller-project/sellerProjectSeach.html">프로젝트 조회</a>
-                        <li><a href="/view/seller Manage/seller-QnAmanage/sellerQnAmanage.html">프로젝트 QnA</a>
+                        <li><a th:href="@{#}">구매자 조회</a>
+                        <li><a th:href="@{#}">프로젝트 조회</a>
+                        <li><a th:href="@{#}">프로젝트 QnA</a>
                     </ul>
                 </li>
             </ul>
@@ -57,4 +66,6 @@
         </div>
     </div>
 
-</div>    
+
+</th:block>
+</html>
