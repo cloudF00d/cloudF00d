@@ -20,4 +20,16 @@ public class DeliverController {
         return "content/deliver/userDeliver/userMainPage/userDeliverMainPage";
     }
 
+
+    @GetMapping("sellerdetail")
+    public String sellerdetail(){
+        return "content/deliver/sellerDeliver/sellerDeliverDetailPage/sellerDeliverDtail";
+    }
+
+
+    @GetMapping("sellermain")
+    public String sellermain(){
+        return "content/deliver/sellerDeliver/sellerMainPage/sellerDeliverMainPage";
+    }
+
 }
