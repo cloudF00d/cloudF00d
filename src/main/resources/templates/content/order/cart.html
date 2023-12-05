@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block  layout:fragment="content">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../resources/css/cart/cart.css">
+    <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
 
-    <link rel="stylesheet" href="/resources/css/header-project/css.css">
-    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
-    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
-    <link rel="stylesheet" href="/resources/css/footer/css.css">
+
 </head>
 
 
@@ -17,51 +18,8 @@
     
 <!-- 헤더시작 -->
 <header>
-    <img src="/resources/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
 
-    <!-- 상단 메뉴 -->
-    <nav>
-        <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="#">프로젝트</a></li>
-            <li><a href="#">펀딩</a></li>
-            <li><a href="#">도움말</a></li>
-        </ul>
-    </nav>
 
-    <!-- 메뉴 2: 토글 기능 있음 -->
-    <div class="menu-item">
-        <label class="toggle-label" id="toggle-label">더보기</label>
-        <div class="menu-content" id="menu-content">
-            <ul>
-                <li><a href="#">메뉴 항목 1</a></li>
-                <li><a href="#">메뉴 항목 2</a></li>
-                <li><a href="#">메뉴 항목 3</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- 검색창 -->
-    <div class="search-box">
-        <input type="text" placeholder="검색어를 입력하세요">
-        <img src="/resources/images/돋보기 아이콘.avif" alt="돋보기 이미지" class="search-icon" onclick="performSearch()">
-        </div>
-    </div>
-        
-    <!-- 로그인 회원가입 -->
-    <div class="login-signup">
-        <nav>
-            <ul>
-                <li><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- 프로젝트 시작하기 -->
-    <div class="project-button">
-        <a href="#">프로젝트 시작하기</a>
-    </div>
 </header>
 
 <!-- 헤더끝 -->
@@ -126,17 +84,19 @@
                         </div>
             </div>       
         
-        </div>      
+        </div>
+
+<!--    사이드바 끝-->
 
     <div class="mid-con">
         <h3>장바구니</h3>
         <div class="mid">
             <div class="midmenu">
                 <div class="logo">
-                    <a href=""><img src="/resources/images/minicon/로고2.png" width="150px" alt=""></a>                   
+                    <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                 </div>
                 <div class="mypage">
-                    <span><a href="/3조결제완료창/back.jpg"><img src="/resources/images/minicon/backicon.jpg" width="25px" alt=""></a> 마이페이지</span>
+                    <span><a th:href="@{/이전페이지}"><img src="/images/minicon/backicon.jpg" width="25px" alt=""></a> 마이페이지</span>
                 </div>
                 <div class="criteria">
                     <span class="criteria1">상품명</span>
@@ -148,7 +108,7 @@
                         <input type="checkbox" class="checkbox">
                     </div>
                     <div class="foodimg">
-                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                        <img src="/images/minicon/로고1.PNG" alt="">
                     </div>
                     <div class="nameAndCount">
                         <div class="name">음식이름</div>
@@ -163,7 +123,7 @@
                         <div class="price">30000원</div>
                     </div>
                     <div class="trash-con">
-                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
                     </div>
                 </div>
                 <div class="menucheck">
@@ -171,7 +131,7 @@
                         <input type="checkbox" class="checkbox">
                     </div>
                     <div class="foodimg">
-                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                        <img src="/images/minicon/로고1.PNG" alt="">
                     </div>
                     <div class="nameAndCount">
                         <div class="name">음식이름</div>
@@ -186,7 +146,7 @@
                         <div class="price">30000원</div>
                     </div>
                     <div class="trash-con">
-                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
                     </div>
                 </div>
                 <div class="menucheck">
@@ -194,7 +154,7 @@
                         <input type="checkbox" class="checkbox">
                     </div>
                     <div class="foodimg">
-                        <img src="/resources/images/minicon/로고1.PNG" alt="">
+                        <img src="/images/minicon/로고1.PNG" alt="">
                     </div>
                     <div class="nameAndCount">
                         <div class="name">음식이름</div>
@@ -209,7 +169,7 @@
                         <div class="price">30000원</div>
                     </div>
                     <div class="trash-con">
-                        <button class="trash-btn"><img src="/resources/images/minicon/trashicon.png" alt="" width="20px"></button>
+                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
                     </div>
                 </div>
                 <div class="bilge-con">
@@ -253,7 +213,8 @@
                 </div>
                 
             </div>
-            <a class="paybtn-con" href="/view/payment/buypage.html">
+<!--                결제하기 누르면 카카오 결제창 뜨는 것 예상-->
+            <a class="paybtn-con" th:href="@{/order/buypage}">
                 <button class="paybtn"> 결제하기 </button>
             </a>
             </div>
@@ -286,32 +247,7 @@
 <!-- 푸터는 이아래에 붙여 -->
 
 <!-- 푸터 시작 -->
-<body>
-    <!-- Footer -->
-<div class="footer-container">
-    
-    <div class="footer-logo">               
-        <img src="/resources/images/01_logoimg/logoNone.png" alt="footer-logo" class="footer-logo">
-    </div>
 
-    <div class="footer">
-        <div class="footer-back"></div>
-        <div class="footer-left"></div>
-        <div class=footer-group>
-            <div class=footer-group-design><span class="footer-down">
-                일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매 당사자가 아닙니다.
-                    해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다. </span>
-                <div class=footer-up><span class="footer-up-right">이메일 상담 abcdefg@gmail.com
-                        유선 상담 1234-5678</span><span class="footer-up-left">Cloud Fooding 클라우드 푸딩
-                        사업자 등록번호 1234-56-7890
-                        서울 종로구 인사동길 12 대일빌딩 7층 클라우드 푸딩
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
   <!-- 푸터끝 -->
     
 
@@ -340,4 +276,5 @@
 </script>
 
 </body>
+</th:block>
 </html>
