@@ -12,16 +12,18 @@
     <script src="/js/sideBar.js"></script>
     <link rel="stylesheet" href="/css/sideBar/css.css">
 </head>
+
 <body>
-<!-- 사이드바 배경 -->
+
+
 <div class="sideBar">
+
 
     <!-- 사이드바 메뉴 -->
     <div class="sideBar-menu">
 
         <div id="navSide">
             <ul class="sideBar-toggle">
-                <th:if>
                 <li><a href="#">프로젝트 관리</a><br>
                     <ul class="sub">
                         <li><a href="#">요금제 선택</a></li>
@@ -33,7 +35,6 @@
                         <li><a href="#">판매자 정보</a></li>
                     </ul>
                 </li>
-                </th:if>
                 <li><a href="#">프로젝트 현황</a><br>
                     <ul class="sub">
                         <li><a href="#">완료된 펀딩</a></li>
@@ -75,5 +76,6 @@
 </div>
 
 </body>
+    </th:if>
 </th:block>
 </html>
