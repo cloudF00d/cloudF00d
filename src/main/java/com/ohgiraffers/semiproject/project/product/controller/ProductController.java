@@ -11,13 +11,13 @@ public class ProductController {
     @GetMapping("productStory")
     public String productStory(){
 
-        return "/content/project/product/productStory.html";
+        return "/content/project/product/productStory";
     }
 
     @GetMapping("productPage")
     public String productPage(){
 
-        return "/content/project/product/productPage.html";
+        return "/content/project/product/productPage";
     }
 
 }
