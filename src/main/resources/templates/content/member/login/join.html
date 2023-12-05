@@ -6,22 +6,14 @@
 >
 
 <th:block  layout:fragment="content">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <title>join</title>
     <link rel="stylesheet" th:href="@{/css/login/join.css}" type="text/css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- 폰트패밀리: Poppins -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
-</head>
 
-    <body>
-        <header>
 
-        </header>
+
     
         <div class="container">
             <div class="left">
@@ -29,7 +21,7 @@
                 <div class="jointitle">회원가입</div>
                 <div>
                     <span>이미 계정이 있으신가요?</span> 
-                    <span class="gologin"><a href="/view/Member/login/login.html">로그인하기</a></span>
+                    <span class="gologin"><a th:href="@{/member/login}">로그인하기</a></span>
                 </div>
     
                 
@@ -73,7 +65,7 @@
                     </div>
                 
             
-                <div class="joinbtn"><a href="http://www.google.com"><button>회원가입</button></a></div>
+                <div class="joinbtn"><a href="#"><button>회원가입</button></a></div>
             </form>
             
     
@@ -83,7 +75,7 @@
         </div>
     
             <div class="right">
-                <div class="detailRight"><img class="kinglogo" src="/resources/images/01_logoimg/logoNone.png" alt=""> </div>
+                <div class="detailRight"><img class="kinglogo" src="/images/01_logoimg/logoNone.png" alt=""> </div>
             </div>
     
         </div>
@@ -103,9 +95,7 @@
     
     
     
-        <footer>
 
-        </footer>
-    </body>
+
     </th:block>
     </html>
