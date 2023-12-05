@@ -16,4 +16,10 @@ public class SellerProject {
     }
 
 
+
+    @GetMapping("sellerProjectDetail")
+    public String sellerDetailLocation(){
+        return "content/sellerManage/sellerProject/sellerProjectDetail";
+    }
+
 }

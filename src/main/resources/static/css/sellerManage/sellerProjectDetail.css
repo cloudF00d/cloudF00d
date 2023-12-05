@@ -75,7 +75,7 @@
 			width:1360px;
 			height:900px;
 			position:relative;
-			left:50px;
+			left:0px;
 			top:20px;
 			box-shadow: 0px 10px 60px rgba(225.83437621593475, 236.193745136261, 248.62500607967377, 0.5);
 			background-color: rgba(255, 255, 255, 1);
@@ -96,7 +96,7 @@
 				.seller_info{
 
 					position:absolute;
-					left:25px;
+					left:200px;
 					top:150px;
 					width:80px;
 					height:25px;
@@ -197,7 +197,7 @@
 				height: 30px;
 	
 				/* 배경색을 주황색으로 설정합니다. */
-				background-color: lightgray;
+				background-color: orange;
 			
 				/* 글자 색을 변경합니다. */
 				color: white;
@@ -221,6 +221,7 @@
 				width: 120px;
 				padding: 8px 7px ;
 				top: 190px;
+				left: 170px;
 			}
 
 			.ing_loca2{

@@ -11,6 +11,25 @@ public class DeliverController {
 
     @GetMapping("userdetail")
     public String userdetail(){
-        return "content/deliver/uerDeliver/userDeliverDetailPage/userDeliverDetail";
+        return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
     }
+
+
+    @GetMapping("usermain")
+    public String usermain(){
+        return "content/deliver/userDeliver/userMainPage/userDeliverMainPage";
+    }
+
+
+    @GetMapping("sellerdetail")
+    public String sellerdetail(){
+        return "content/deliver/sellerDeliver/sellerDeliverDetailPage/sellerDeliverDtail";
+    }
+
+
+    @GetMapping("sellermain")
+    public String sellermain(){
+        return "content/deliver/sellerDeliver/sellerMainPage/sellerDeliverMainPage";
+    }
+
 }
