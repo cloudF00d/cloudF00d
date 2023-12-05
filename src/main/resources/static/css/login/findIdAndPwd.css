@@ -149,7 +149,7 @@ form{
     display: flex;
     padding: 0;
     position: relative;
-    left: 210px;
+    left: 290px;
 
        
 }
@@ -162,7 +162,7 @@ form{
 .arrow{
     width: 25px;
     position: relative;
-
+    background-color: white;
     top: 7px;
 }
 .center{

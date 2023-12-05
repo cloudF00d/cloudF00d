@@ -4,20 +4,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <th:block  layout:fragment="content">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>findId</title>
-    <link rel="stylesheet" href="/resources/css/login/findIdAndPwd.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- 폰트패밀리: Poppins -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/header-main/css.css">
-    <link rel="stylesheet" href="/resources/css/sideBar/css.css">
-    <link rel="stylesheet" href="/resources/css/footer/css.css">
-</head>
-<body>
+
+
+
+    <link rel="stylesheet" th:href="@{/css/login/findIdAndPwd.css}">
+
+
 
 
     <div class="container">
@@ -26,10 +18,10 @@
 
             
             
-                <img class="moveall" id="logo1" src="/resources/images/textlogonone_2.png" alt="">
+                <img class="moveall" id="logo1" src="/images/01_logoimg/textLogoNone.png" alt="">
             
-            <div class="movetext2" class="moveall">
-                <span><a href=""><img class="arrow" src="/resources/images/left-arrow.png" alt=""></a></span> 
+            <div class="movetext2 moveall" >
+                <span><a th:href="@{/member/login}"><img class="arrow" src="/images/minicon/backicon.jpg" alt=""></a></span>
                 <span class="gologin">아이디 찾기</span>
             </div>
 
@@ -50,9 +42,8 @@
 
                 <div class="downpart">
                     <ul class="findid">
-                        <li><a href="/view/Member/login/findId.html">아이디 찾기</a></li>
-                        <li><a href="/view/Member/login/findPwd.html">비밀번호 찾기</a></li>
-                        <li><a href="/view/Member/login/join.html">회원가입</a></li>
+                        <li><a th:href="@{/member/findPwd}">비밀번호 찾기</a></li>
+                        <li><a th:href="@{/member/join}">회원가입</a></li>
                     </ul>
                 </div>
 
@@ -61,7 +52,7 @@
                 
             
         
-            <div  class="joinbtn" ><a href="http://www.google.com"><button type="submit">다음</button></a></div>
+            <div  class="joinbtn" ><a th:href="@{/member/login}"><button type="submit">다음</button></a></div>
         </form>
 
 
@@ -84,6 +75,6 @@
 
 
 
-</body>
+
 </th:block>
 </html>

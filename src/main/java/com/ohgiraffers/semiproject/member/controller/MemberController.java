@@ -15,7 +15,7 @@ public class MemberController {
     public String login(){
 
 
-        return "/content/member/login/login.html";
+        return "/content/member/login/login";
 
     }
 
@@ -23,7 +23,7 @@ public class MemberController {
     public String join(){
 
 
-        return "/content/member/login/join.html";
+        return "/content/member/login/join";
 
     }
 
@@ -31,7 +31,7 @@ public class MemberController {
     public String findId(){
 
 
-        return "/content/member/login/findId.html";
+        return "/content/member/login/findId";
 
     }
 
@@ -40,7 +40,7 @@ public class MemberController {
     public String findPwd(){
 
 
-        return "/content/member/login/findPwd.html";
+        return "/content/member/login/findPwd";
 
     }
 
@@ -49,7 +49,7 @@ public class MemberController {
     public String changeInfo(){
 
 
-        return "/content/member/login/changeInfo.html";
+        return "/content/member/login/changeInfo";
 
     }
 
@@ -57,7 +57,7 @@ public class MemberController {
     public String changeseller(){
 
 
-        return "/content/member/login/changeseller.html";
+        return "/content/member/changeseller/changeseller";
 
     }
 
@@ -65,7 +65,7 @@ public class MemberController {
     public String sellerWithdrawal(){
 
 
-        return "/content/member/login/sellerWithdrawal.html";
+        return "/content/member/memberWithdrawal/sellerWithdrawal";
 
     }
 
@@ -73,7 +73,7 @@ public class MemberController {
     public String userWithdrawal(){
 
 
-        return "/content/member/login/userWithdrawal.html";
+        return "/content/member/login/userWithdrawal";
 
     }
 
