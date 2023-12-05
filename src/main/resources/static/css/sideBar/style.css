@@ -39,7 +39,7 @@
 }
 
 .sub li a {
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
 .sideBar-adver {
@@ -110,4 +110,13 @@
 
 .flex{
     display: flex;
+}
+
+
+
+/* 마이페이지 */
+.title {
+    list-style-type: none;
+    padding: 23px;
+    font-size: 30px;
 }

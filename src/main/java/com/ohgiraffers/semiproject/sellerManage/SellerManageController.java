@@ -21,7 +21,15 @@ public class SellerManageController {
     }
 
 
+    @GetMapping("sellerProjectQnAing")
+    public String sellerProjectQnAWritingLocation(){
+        return "content/seller Manage/sellerQnAmanage/sellerQnAAnswering";
+    }
 
 
 
+    @GetMapping ("sellerProjectQnAComp")
+    public String sellerProjectQnAComp(){
+        return "content/seller Manage/sellerQnAmanage/sellerQnAAnswering";
+    }
 }
