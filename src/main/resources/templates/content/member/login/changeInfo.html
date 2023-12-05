@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info</title>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block  layout:fragment="content">
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 폰트패밀리: Poppins -->
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link th:href="@{/static/css/login/changeInfo.css}" rel="stylesheet">
-
-
-</head>
-<body>
-    <header>
-
-    </header>
 
         <div class="container">
             <div class="left">
@@ -144,8 +136,5 @@
             </div>
         </div>
 
-    <footer>
-
-    </footer>
-</body>
+</th:block>
 </html>
