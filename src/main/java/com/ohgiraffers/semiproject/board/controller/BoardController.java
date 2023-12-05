@@ -12,5 +12,10 @@ public class BoardController {
     public String defaultLocation(){
         return "content/board/noticeboard/noticeMain";
     }
+
+    @GetMapping("")
+    public String complaintBoard() {
+        return "content/board/noticeboard/complaintAnswered";
+    }
 }
 
