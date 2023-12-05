@@ -1,4 +1,4 @@
-package com.ohgiraffers.semiproject.sellerManage;
+package com.ohgiraffers.semiproject.sellerManage.sellerUserManage;
 
 
 import org.springframework.stereotype.Controller;
@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/*")
 public class SellerManageController {
 
+    @GetMapping("sample")
+    public String sellerLocation(){
+        return "content/board/sellerQnA/sellerMainPage/sellerQnAmainpage";
+    }
+
     @GetMapping("sellerUserManage")
     public String sellerUserLocation(){
-        return "content/board/sellerQnA/sellerMainPage/sellerQnAmainpage";
+        return "content/seller Manage/sellerUserManage/sellerUserManage";
     }
 
 

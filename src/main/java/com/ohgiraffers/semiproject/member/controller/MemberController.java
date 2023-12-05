@@ -15,7 +15,7 @@ public class MemberController {
     public String login(){
 
 
-        return "/content/member/login/login.html";
+        return "/content/member/login/login";
 
     }
 
@@ -23,7 +23,12 @@ public class MemberController {
     public String join(){
 
 
-        return "/content/member/login/join.html";
+        return "/content/member/login/join";
 
+    }
+
+    @GetMapping("changeInfo")
+    public String getChangeInfoLocation(){
+        return "/content/member/login/changeInfo";
     }
 }

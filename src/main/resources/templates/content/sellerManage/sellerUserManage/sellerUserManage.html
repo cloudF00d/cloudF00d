@@ -5,12 +5,13 @@
       layout:decorate="~{layouts/layout}">
 
 <th:block  layout:fragment="content">
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
 <!--<head>-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sellerUserSearch</title>
     <link rel="stylesheet" href="/css/sellerManage/sellerUserManage.css">
-<!--    <link rel="stylesheet" href="/resources/css/background, header, footer.css">-->
+
 <!--</head>-->
 <!--<body>-->
 
@@ -167,7 +168,7 @@
                         
                         <select name="nation2">
                             <option value="search"selected>검색설정</option>
-                            <option value="ch">프로젝트명</option>
+                            <option value="pr">프로젝트명</option>
                             <option value="jp" >구성상품</option>
                             <option value="us" >구매자</option>
                             <option value="etc">연락처</option>
