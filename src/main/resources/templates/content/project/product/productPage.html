@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block  layout:fragment="content">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../resources/css/productPage/productPage.css">
 
-    <link rel="stylesheet" href="/resources/css/header-project/css.css">
-    <!-- <link rel="stylesheet" href="/resources/css/sideBar/css.css"> -->
-    <!-- <link rel="stylesheet" href="/resources/css/memberWithdrawal/user.css"> -->
-    <link rel="stylesheet" href="/resources/css/footer/css.css">
+
 </head>
 
 
 <body>
     
 <!-- 헤더시작 -->
+<header>
 
-
-
-
+</header>
 
 <!-- 헤더끝 -->
 <div class="bodyking">
         <div class="main-box">
         <!-- 주석주석주석주석주석 -->
     <div class="story-con">
-        <a href="/view/productPage/productStory.html" class="story">스토리</a><br>
-        <a href="/view/productPage/productPage.html" class="review">구매후기</a>
+        <a th:href="@{/productStory.html}" class="story">스토리</a><br>
+        <a th:href="@{/productPage.html}" class="review">구매후기</a>
         
     </div>
     <div class="story-con2">
@@ -43,7 +43,7 @@
             
                 <div class="review-box">
                     <div class="img">
-                    <img src="/resources/images/minicon/foodbox.png" alt="">
+                    <img src="/images/minicon/foodbox.png" alt="">
                       <div class="img-right">김민하</div>
                     </div>
                     <div class="comment-box">
@@ -54,7 +54,7 @@
                 
                 <div class="review-box">
                     <div class="img">
-                    <img src="/resources/images/minicon/checkbtn.PNG" alt="">
+                    <img src="/images/minicon/checkbtn.PNG" alt="">
                       <div class="img-right">김인하</div>
                     </div>
                     <div class="comment-box">
@@ -65,7 +65,7 @@
 
                 <div class="review-box">
                     <div class="img">
-                    <img src="/resources/images/minicon/insta.png" alt="">
+                    <img src="/images/minicon/insta.png" alt="">
                       <div class="img-right">김이나</div>
                     </div>
                     <div class="comment-box">
@@ -80,7 +80,7 @@
                 <div class="seller-con">
                     <div class="seller">
                         <div class="img">
-                            <img src="/resources/images/minicon/good.png" alt="">
+                            <img src="/images/minicon/good.png" alt="">
                               <div class="img-right">주식회사 민하킴</div>
                             </div>
                             <div>
@@ -91,7 +91,7 @@
                 <div class="guide">
                     <div class="guide-top">
                         <div class="guide-img">
-                            <img src="../../resources/images/돋보기 아이콘.avif" alt="" style="width: 25px; height: 25px;" >
+                            <img src="/images/돋보기 아이콘.avif" alt="" style="width: 25px; height: 25px;" >
                               <div class="guide-title">커뮤니티가이드</div>
                             </div>
                             <div class="pre-con">
@@ -128,7 +128,8 @@
 
                 <div class="btns-con">
                     <button class="goodbtn"><div onclick="like('button1')" class="like-button" id="button1">&#10084;</div><span id="likeCount">0</span></button>
-                    <button class="buybtn">예약 구매하기</button>
+                    <!--이 프로젝트만 구매하는 페이지를 만들어야하는건가??-->
+                    <a th:href="@{/order/buypage}"><button class="buybtn">예약 구매하기</button></a>
                     <script>
                         let liked1 = false; // 첫 번째 좋아요 상태를 나타내는 변수
                         let liked2 = false; // 두 번째 좋아요 상태를 나타내는 변수
@@ -166,14 +167,14 @@
                 </div>
                 <div class="businesscard-con">
                     <div class="businesscard">
-                        <img src="/resources/images/minicon/good.png" alt="">
+                        <img src="/images/minicon/good.png" alt="">
                           <div class="businesscard-right">주식회사 민하킴</div>
                         </div>
                         <div class="businesscard-home">홈페이지<div class="addr">http://minha.com/minhaminha</div></div>
-                        <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
+                        <div class="business-sns">SNS <img src="/images/insta.png" alt=""></div>
                 </div>
                 <div class="report-con">
-                    <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a href="프로젝트신고">신고하러가기  ></a></span></span>
+                    <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a href="@{/}">신고하러가기  ></a></span></span>
                 </div>
                 <div class="pickkeyword-con">
                     <div class="pickkeyword">리워드 선택</div>
@@ -273,7 +274,8 @@
                 <div class="btns-con">
                     
                     <button class="goodbtn"><div onclick="like('button2')" class="like-button" id="button2">&#10084;</div></button>
-                    <button class="buybtn">예약 구매하기</button>
+                    <!--이 프로젝트만 구매하는 페이지를 만들어야하는건가??-->
+                    <a th:href="@{/order/buypage}"><button class="buybtn">예약 구매하기</button></a>
 
                 </div>
                 </div>
@@ -335,4 +337,5 @@
 </script>
 
 </body>
+</th:block>
 </html>
