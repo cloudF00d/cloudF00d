@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로젝트 QnA작성</title>
-    <link rel="stylesheet" href="/resources/css/productPage/productQnA.css">
-</head>
-<body>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="content">
 
-
+    <link rel="stylesheet" th:href="@{/css/project/productPage/productQnA.css}">
 
 
 <div class="container">
     <!-- 사이드바 배경 -->
+    <th:block th:replace="/fragments/usersidebar.html"></th:block>
 
     <div class="middle">
         <!-- 가운데 컨텐츠 -->
         <div class="first">
-            <span><a class="black-link" href="./noticeMain.html">QnA</a></span>
+            <span><a class="black-link">QnA</a></span>
             <span><strong>></strong></span>
             <span>글 쓰기</span>
         </div>
@@ -49,7 +47,7 @@
                         <textarea name="" id="answer" cols="30" rows="10"></textarea>
                     </div>
                 </div>
-                <div class="submitbtn"><button type="submit">글쓰기</button></div>
+                <a th:href="@{/product/productPage}" class="submitbtn"><button type="submit">글쓰기</button></a>
             </form>
         </div>
 
@@ -78,6 +76,5 @@
 </div>
 
 
-
-</body>
+</th:block>
 </html>
