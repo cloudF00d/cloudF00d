@@ -8,16 +8,17 @@ body {
     background-repeat: no-repeat;
     /* 배경 이미지 반복 없음 */
 }
+
 a {
-	text-decoration: none;
-	color: black;
+    text-decoration: none;
+    color: black;
 }
 
 body {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-		}
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
 
 /* 글쓰기 */
@@ -50,51 +51,42 @@ body {
 }
 
 
-
-
-
 /* 글쓰기 끝 */
 
 
-
-
-
-
-
-
-
-.bodyking{
+.bodyking {
     /* width: 100%;*/
-    height: 2800px; 
-	display: flex;
-	/* justify-content: space-between; */
+    height: 2800px;
+    display: flex;
+    /* justify-content: space-between; */
     justify-content: center;
-    
+
 }
-.bigPage{
+
+.bigPage {
     position: relative;
     width: 1750px;
     /* background-color: blue; */
     display: flex;
-	justify-content: space-between;
+    justify-content: space-between;
     /* margin-top: 100px; */
-    
-    
-    
-    
+
+
 }
 
-.left{
+.left {
     width: 1000px;
     height: 2500px;
     /* background-color: beige; */
 }
-.right{
+
+.right {
     width: 700px;
     height: 2500px;
     /* background-color: burlywood; */
 }
-.story-con{
+
+.story-con {
     height: 125px;
     /* background-color: red; */
     display: flex;
@@ -106,78 +98,88 @@ body {
 
 
 }
-.story-con2{
+
+.story-con2 {
     height: 125px;
     /* background-color: red; */
     display: flex;
     justify-content: center;
     /* margin-top: ; */
 }
-.story{
+
+.story {
     height: 50px;
     margin-top: 50px;
     margin-right: 30px;
     font-size: 30px;
 }
-.review{
+
+.review {
     height: 50px;
     margin-top: 50px;
     margin-left: 30px;
     font-size: 30px;
 }
-.writing{
+
+.writing {
     width: 150px;
     height: 50px;
     margin-left: 825px;
-    margin-top: 10px ;
+    margin-top: 10px;
     background-color: orange;
     border: none;
     border-radius: 10px; /* 5px의 둥근 테두리 */
     color: white;
 }
-.reviews-con{
+
+.reviews-con {
     height: 50px;
     margin-top: 50px;
     margin-left: 50px;
 }
-.reviews{
+
+.reviews {
     font-size: 30px;
     font-weight: bold;
 }
-.review-box{
+
+.review-box {
     height: 320px;
     background-color: white;
     border-top: 1px solid #ccc;
 }
 
-.img img{
+.img img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.img{
-        margin: 50px;
-        display: flex;
+.img {
+    margin: 50px;
+    display: flex;
     align-items: center; /* 세로 정렬을 중앙으로 설정 */
 
 }
-.img-right{
+
+.img-right {
     margin-left: 10px;
     margin-bottom: 2px;
     font-size: 20px;
 }
-.comment-box{
+
+.comment-box {
     height: 120px;
     width: 960px;
     margin-left: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-	font-size: 21px;
-	/* padding: 10px; */
+    font-size: 21px;
+    /* padding: 10px; */
 }
-.pro-box{
+
+.pro-box {
     display: flex;
     align-items: center; /* 수직 가운데 정렬을 위한 설정 */
     justify-content: space-between;
@@ -186,14 +188,16 @@ body {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: white;
-    
+
 }
-.pro-1{
-font-size: 34px;
-font-weight: bold;
-margin-left: 70px;
+
+.pro-1 {
+    font-size: 34px;
+    font-weight: bold;
+    margin-left: 70px;
 }
-.pro-2{
+
+.pro-2 {
     width: 450px;
     height: 100px;
     font-size: 34px;
@@ -204,7 +208,7 @@ margin-left: 70px;
     margin-right: 20px;
 }
 
-.seller-con{
+.seller-con {
     height: 280px;
     display: flex;
     align-items: center;
@@ -212,295 +216,325 @@ margin-left: 70px;
     margin-top: 30px;
     background-color: white;
 }
-.seller{
+
+.seller {
     height: 120px;
     width: 960px;
     border: 1px solid #ccc;
     border-radius: 10px;
     justify-content: space-between;
-        
-        display: flex;
+
+    display: flex;
     align-items: center; /* 세로 정렬을 중앙으로 설정 */
 
 
 }
-.seller-img img{
-    
+
+.seller-img img {
+
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
-.guide{
+
+.guide {
     width: 960px;
     height: 280px;
     background-color: #ccc;
     margin: 20px;
     border-radius: 10px;
 }
-.guide-top{
+
+.guide-top {
     /* margin-top: ; */
 }
 
-.guide-img{
-	/* margin: 50px; */
-	margin-top: 50px;
-	
-	display: flex;
-align-items: center;
+.guide-img {
+    /* margin: 50px; */
+    margin-top: 50px;
+
+    display: flex;
+    align-items: center;
 }
-.guide-img img{
+
+.guide-img img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-	margin-left: 50px;
-	margin-top: 30px;
-	
-}
-.guide-title{
-	margin-top: 30px;
-	margin-left: 10px;
-}
-.pre-con{
-	text-align: left;
+    margin-left: 50px;
+    margin-top: 30px;
+
 }
 
-.introduction-con{
-	border-bottom: 1px solid #ccc;
-	height: 420px;
+.guide-title {
+    margin-top: 30px;
+    margin-left: 10px;
 }
-.introduction{
-	font-size: 36px;
+
+.pre-con {
+    text-align: left;
 }
-.introduction-span{
-	background-color: orange;
-	height: 30px;
-	width: 100px;
-	font-size: 20px;
+
+.introduction-con {
+    border-bottom: 1px solid #ccc;
+    height: 420px;
 }
-.btns-con{
-	height: 200px;
-	width: auto;
-	/* background-color: antiquewhite; */
-	display: flex;
+
+.introduction {
+    font-size: 36px;
+}
+
+.introduction-span {
+    background-color: orange;
+    height: 30px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.btns-con {
+    height: 200px;
+    width: auto;
+    /* background-color: antiquewhite; */
+    display: flex;
     align-items: center; /* 수직 가운데 정렬을 위한 설정 */
     justify-content: space-between;
 
 }
-.goodbtn{
-	width: 85px;
-	height: 85px;
-	color: white;
-	border: none;
-	background-color: orange;
-	border-radius: 10px;
-	margin-top: 20px;
-}
 
+.goodbtn {
+    width: 85px;
+    height: 85px;
+    color: white;
+    border: none;
+    background-color: orange;
+    border-radius: 10px;
+    margin-top: 20px;
+}
 
 
 .like-button {
-	font-size: 2em;
-	cursor: pointer;
-	transition: color 0.5s;
+    font-size: 2em;
+    cursor: pointer;
+    transition: color 0.5s;
 }
 
 .liked {
-	color: red;
+    color: red;
 }
 
 
+.buybtn {
+    width: 570px;
+    height: 85px;
+    background-color: orange;
+    color: white;
+    border: none;
+    font-size: 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
 
-.buybtn{
-	width: 570px;
-	height: 85px;
-	background-color: orange;
-	color: white;
-	border: none;
-	font-size: 30px;
-	border-radius: 10px;
-	margin-top: 20px;
+.businesscard-con {
+    height: 210px;
+    border: 1px solid beige;
+    border-radius: 10px;
 }
-.businesscard-con{
-	height: 210px;
-	border: 1px solid beige;
-	border-radius: 10px;
-}
-.businesscard img{
+
+.businesscard img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.businesscard{
-        margin-left: 50px;
-		margin-top: 30px;
-        display: flex;
+.businesscard {
+    margin-left: 50px;
+    margin-top: 30px;
+    display: flex;
     align-items: center; /* 세로 정렬을 중앙으로 설정 */
 
 }
-.businesscard-right{
+
+.businesscard-right {
     margin-left: 10px;
     margin-bottom: 2px;
     font-size: 20px;
 }
-.businesscard-home{
-	display: flex;
+
+.businesscard-home {
+    display: flex;
     align-items: center; /* 세로 정렬을 중앙으로 설정 */
-	margin-left: 50px;
-	margin-top: 30px;
-	
-}
-.addr{
-	margin-left: 50px;
-	text-decoration: underline;
+    margin-left: 50px;
+    margin-top: 30px;
 
 }
-.business-sns{
-	margin-left: 50px;
-	margin-top: 30px;
+
+.addr {
+    margin-left: 50px;
+    text-decoration: underline;
+
 }
-.business-sns img{
-	margin-left: 75px;
-	width: 30px;
+
+.business-sns {
+    margin-left: 50px;
+    margin-top: 30px;
 }
-.report-con{
-	height: 50px;
-	background-color: #ccc;
-	margin-top: 40px;
-	border-radius: 10px;
-	display: flex;
-	align-items: center; /* 세로 정렬을 중앙으로 설정 */
-	
+
+.business-sns img {
+    margin-left: 75px;
+    width: 30px;
 }
-.pickkeyword-con{
-	
-	/* background-color: aquamarine; */
-	
+
+.report-con {
+    height: 50px;
+    background-color: #ccc;
+    margin-top: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; /* 세로 정렬을 중앙으로 설정 */
+
 }
-.pickkeyword{
-	height: 50px;
-	font-size: 35px;
-	font-weight: bold;
-	margin-top: 70px;
-	
+
+.pickkeyword-con {
+
+    /* background-color: aquamarine; */
+
+}
+
+.pickkeyword {
+    height: 50px;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 70px;
+
 }
 
 
-.select-a{
-	height: 380px;
-	width: 625px;
-	margin-top: 50px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	padding: 25px;
+.select-a {
+    height: 380px;
+    width: 625px;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 25px;
 }
-.select-b{
-	height: 380px;
-	width: 625px;
-	margin-top: 50px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	padding: 25px;
-	
+
+.select-b {
+    height: 380px;
+    width: 625px;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 25px;
+
 }
-.select-c{
-	
-		height: 380px;
-		width: 625px;
-		margin-top: 50px;
-		border: 1px solid #ccc;
-		border-radius: 10px;
-		padding: 25px;
-		
-	
+
+.select-c {
+
+    height: 380px;
+    width: 625px;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 25px;
+
+
 }
-.prouct-mid{
-	
+
+.prouct-mid {
+
     /* margin-bottom: 25px ; */
-    
-}
-.product-0{
-	/* height: 100px; */
-	/* background-color: burlywood; */
-}
-.product-1{
-height: 60px;
-align-items: center;
-display: flex;
 
 }
-.product-2{
-	height: 60px;
-	display: flex;
-	align-items: center;
-	/* justify-content: space-between; */
-}
-.product-3{
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.product-4{
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.product-5{
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.productprice-1{
-	font-size: 20px; 
-	font-weight: bold; 
-	/* margin-bottom: 20px; */
-	
+
+.product-0 {
+    /* height: 100px; */
+    /* background-color: burlywood; */
 }
 
-.product-bottom{
-	display: flex;
+.product-1 {
+    height: 60px;
     align-items: center;
-	 /* 수직 가운데 정렬을 위한 설정 */
+    display: flex;
+
+}
+
+.product-2 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.product-3 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-4 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-5 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.productprice-1 {
+    font-size: 20px;
+    font-weight: bold;
+    /* margin-bottom: 20px; */
+
+}
+
+.product-bottom {
+    display: flex;
+    align-items: center;
+    /* 수직 가운데 정렬을 위한 설정 */
     justify-content: space-between;
 }
 
 .scroll-container {
-	max-height: 900px; /* 스크롤이 나타날 최대 높이를 지정 */
-	overflow-y: auto;
-	border: none;
-  }
+    max-height: 900px; /* 스크롤이 나타날 최대 높이를 지정 */
+    overflow-y: auto;
+    border: none;
+}
 
-   /* 스크롤바 스타일 변경 */
-   .scroll-container::-webkit-scrollbar {
-	width: 12px; /* 스크롤바의 너비 */
-  }
+/* 스크롤바 스타일 변경 */
+.scroll-container::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
+}
 
-  /* 스크롤바 트랙 스타일 변경 */
-  .scroll-container::-webkit-scrollbar-track {
-	background-color: #f1f1f1; /* 스크롤바 트랙 배경색 */
-  }
+/* 스크롤바 트랙 스타일 변경 */
+.scroll-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* 스크롤바 트랙 배경색 */
+}
 
-  /* 스크롤바 버튼 스타일 변경 및 radius 추가 */
-  .scroll-container::-webkit-scrollbar-thumb {
-	background-color: #888;
-	 /* 스크롤바 버튼 배경색 */
-	border-radius: 6px; /* 버튼의 모서리 반경 */
-	/* border: 3px solid #555; */
-	 /* 버튼의 테두리 스타일 */
-  }
+/* 스크롤바 버튼 스타일 변경 및 radius 추가 */
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* 스크롤바 버튼 배경색 */
+    border-radius: 6px; /* 버튼의 모서리 반경 */
+    /* border: 3px solid #555; */
+    /* 버튼의 테두리 스타일 */
+}
 
-.qna-con{
+.qna-con {
     justify-content: center;
     display: flex;
     align-items: center;
 }
-.qnaPage{
+
+.qnaPage {
     width: 1400px;
     height: 1200px;
     border: 1px solid yellowgreen;
@@ -517,6 +551,7 @@ display: flex;
     height: auto; /* 높이는 자동으로 조정됩니다. */
     margin-top: 40px;
 }
+
 .black-link,
 .black-link:visited {
     color: black;
@@ -535,7 +570,6 @@ display: flex;
     align-items: center;
     margin-top: 20px;
 }
-
 
 
 .pagination-box {
@@ -581,7 +615,7 @@ th {
     border-bottom: 1px solid #ddd; /* 헤더 셀의 하단에만 회색 선 추가 */
 }
 
-td a{
+td a {
     color: black;
 }
 
@@ -616,7 +650,7 @@ td a{
 }
 
 
-#link{
+#link {
     cursor: pointer;
 }
 
@@ -637,21 +671,23 @@ td a{
     display: flex; /* 내부 요소들을 가로로 배치 */
     justify-content: flex-end;
     /* 내부 요소를 오른쪽으로 정렬 */
-    align-items : center;
+    align-items: center;
     /* 내부 요소를 세로 방향 가운데 정렬 */
     margin-left: auto; /* 오른쪽으로 이동시킴 */
 
 }
-.searchleft1{
+
+.searchleft1 {
     margin-left: 40px;
 }
-.searchleft2{
+
+.searchleft2 {
     margin-left: 15px;
 }
 
-.newWriting{
+.newWriting {
     margin-left: 300px;
-    border:solid;
+    border: solid;
 
     border-radius: 5px;
     border-width: 1px;
@@ -660,27 +696,21 @@ td a{
     /* padding-inline-end: 10px; */
 
 
-
-
 }
 
-#newcolumn{
+#newcolumn {
     visibility: hidden;
 }
 
-#new{
+#new {
     color: red;
 }
-.first{
+
+.first {
     font-size: 30px;
     font-weight: 1000;
     margin-top: 40px;
 }
-
-
-
-
-
 
 
 .pagination-box {
