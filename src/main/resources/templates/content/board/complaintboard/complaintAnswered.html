@@ -4,7 +4,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layouts/layout}">
 
-<th:block  layout:fragment="content"></th:block>
+<th:block  layout:fragment="content">
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/board/complaintboard/complaintMain}">신고 게시판</a></span>
+                <span><a class="black-link" th:href="@{/board/complaintMain}">신고 게시판</a></span>
                 <span><strong>></strong></span>
                 <span>세부내용</span>
             </div>
@@ -104,6 +104,6 @@
     </div>
 
 
-    
+</th:block>
 
 </html>

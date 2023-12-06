@@ -10,16 +10,16 @@ public class BoardController {
 
     @GetMapping("/complaintMain")
     public String complaintBoard() {
-        return "content/board/noticeboard/complaintMain";
+        return "content/board/complaintboard/complaintMain";
     }
 
-    @GetMapping("/complaintBoardAnswered")
+    @GetMapping("/complaintAnswered")
     public String complaintBoardAnswered() {
-        return "content/board/noticeboard/complaintAnswered";
+        return "content/board/complaintboard/complaintAnswered";
     }
-    @GetMapping("/complaintBoardBefore")
+    @GetMapping("/complaintBefore")
     public String complaintBoardBefore() {
-        return "content/board/noticeboard/complaintBefore";
+        return "content/board/complaintboard/complaintBefore";
     }
 
     @GetMapping("/inquiryAnswered")
