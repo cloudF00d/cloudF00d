@@ -14,7 +14,7 @@ public class SellerManageController {
         return "content/board/sellerQnA/sellerMainPage/sellerQnAmainpage";
     }
 
-    @GetMapping("sellerUserManage")
+    @GetMapping("UserManage")
     public String sellerUserLocation() {
         return "content/sellerManage/sellerUserManage/sellerUserManage";
     }
