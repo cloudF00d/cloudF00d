@@ -1,71 +1,69 @@
-<!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<th:block th:fragment="sidebar">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/sideBar.js"></script>
     <link rel="stylesheet" href="/css/sideBar/css.css">
 
-    <!-- 사이드바 메뉴 !!-->
-    <div class="sideBar-menu">
-        <strong><div class="title">마이페이지</div></strong>
+        <div class="sideBar">
 
-        <div id="navSide">
-            <ul class="sideBar-toggle">
-                <li><a href="#">내정보관리</a><br>
-                    <ul class="sub">
-                        <li><a th:href="@{/member/changeInfo}">개인정보 변경</a>
-                        <li><a th:href="@{/member/sellerWithdrawal}">회원탈퇴 </a>
+            <!-- 사이드바 메뉴 -->
+            <div class="sideBar-menu">
+                <strong><span class="title">마이페이지</span></strong>
 
+                <div id="navSide">
+                    <ul class="sideBar-toggle">
+                        <li><a th:href="@{#}">내정보관리</a><br>
+                            <ul class="sub">
+                                <li><a th:href="@{/member/changeInfo}">개인정보 변경</a>
+                                <li><a th:href="@{/member/sellerWithdrawal}">회원탈퇴 </a>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-            <ul class="sideBar-toggle">
-                <li><a href="#">장바구니</a>
-                    <ul class="sub">
-                        <li><a th:href="@{/order/watchlist}">나의 펀딩 리스트</a>
-                        <li><a th:href="@{/order/cart}">관심 펀딩 리스트</a>
+                    <ul class="sideBar-toggle">
+                        <li><a href="#">장바구니</a>
+                            <ul class="sub">
+                                <li><a th:href="@{/order/watchlist}">나의 펀딩 리스트</a>
+                                <li><a th:href="@{/order/cart}">관심 펀딩 리스트</a>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-            <li><a th:href="@{/QnA/sellermain}">프로젝트 QnA</a></li>
-            <li><a th:href="@{/deliver/sellermain}">배송현황</a></li>
-            <li><a th:href="@{#}">공지사항</a></li>
-            <li><a th:href="@{/support/sellermain}">고객센터</a></li>
-            <ul class="sideBar-toggle">
-                <li><a th:href="@{#}">판매자기능</a>
-                    <ul class="sub">
-                        <li><a th:href="@{/sellerManage/UserManage}">구매자 조회</a>
-                        <li><a th:href="@{/sellerManage/Project}">프로젝트 조회</a>
-                        <li><a th:href="@{/sellerManage/QnAmanage}">프로젝트 QnA 관리</a>
+                    <li><a th:href="@{/QnA/sellermain}">프로젝트 QnA</a></li>
+                    <li><a th:href="@{/deliver/sellermain}">배송현황</a></li>
+                    <li><a th:href="@{/board/sellerNotice}">공지사항</a></li>
+                    <li><a th:href="@{/support/sellermain}">고객센터</a></li>
+
+
+
+                    <ul class="sideBar-toggle">
+                        <li><a th:href="@{#}">판매자기능</a>
+                            <ul class="sub">
+                                <li><a th:href="@{/sellerManage/UserManage}">구매자 조회</a>
+                                <li><a th:href="@{/sellerManage/Project}">프로젝트 조회</a>
+                                <li><a th:href="@{/sellerManage/QnAmanage}">프로젝트 QnA 관리</a>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
 
-        </div>
-        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#navSide ul.sub").hide();
-                $("#navSide ul.sideBar-toggle li").click(function () {
-                    $("ul", this).slideToggle("normal");
-                });
-            });
-        </script>
 
-        <div class="sideBar-adver">
-            <div class="sideBar-adver-back"></div>
-            <span class="sideBar-adver-text">요금제를 업그레이드하고
-                        더 많은 광고기회를 얻으세요</span>
-            <div class="sideBar-adver-button">
-                <div class="sideBar-adver-button-back"></div>
-                <span class="sideBar-adver-button-text">지금 업그레이드!</span>
+                </div>
+
+                <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("#navSide ul.sub").hide();
+                        $("#navSide ul.sideBar-toggle li").click(function () {
+                            $("ul", this).slideToggle("normal");
+                        });
+                    });
+                </script>
+
+                <div class="sideBar-adver">
+                    <div class="sideBar-adver-back"></div>
+                    <span class="sideBar-adver-text">요금제를 업그레이드하고
+				더 많은 광고기회를 얻으세요</span>
+                    <div class="sideBar-adver-button">
+                        <div class="sideBar-adver-button-back"></div>
+                        <span class="sideBar-adver-button-text">지금 업그레이드!</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
 
-
-</th:block>
-</html>

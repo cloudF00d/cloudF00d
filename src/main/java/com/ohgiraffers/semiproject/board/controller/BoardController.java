@@ -37,6 +37,13 @@ public class BoardController {
         return "content/board/inquiryboard/inquiryMain";
     }
 
+
+    @GetMapping("/inquiryWrite")
+    public String inquiryWrite() {
+        return "content/board/memberInquiryWrite/MemberinquriryWrite";
+    }
+
+
     @GetMapping("/noticeMain")
     public String noticeMain(){
         return "content/board/noticeboard/noticeMain";
@@ -50,6 +57,15 @@ public class BoardController {
         return "content/board/noticeboard/noticeWriting";
     }
 
+    @GetMapping("/userNotice")
+    public String userNoticeMain(){
+        return "content/board/noticeboard/userNoticeMain";
+    }
+
+    @GetMapping("/sellerNotice")
+    public String sellerNoticeMain(){
+        return "content/board/noticeboard/sellerNoticeMain";
+    }
 
 
 }
