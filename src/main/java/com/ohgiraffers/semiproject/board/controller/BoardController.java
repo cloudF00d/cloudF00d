@@ -17,6 +17,7 @@ public class BoardController {
     public String complaintBoardAnswered() {
         return "content/board/complaintboard/complaintAnswered";
     }
+
     @GetMapping("/complaintBefore")
     public String complaintBoardBefore() {
         return "content/board/complaintboard/complaintBefore";
@@ -45,25 +46,27 @@ public class BoardController {
 
 
     @GetMapping("/noticeMain")
-    public String noticeMain(){
+    public String noticeMain() {
         return "content/board/noticeboard/noticeMain";
     }
+
     @GetMapping("/noticeWrited")
-    public String noticeWrited(){
+    public String noticeWrited() {
         return "content/board/noticeboard/noticeWrited";
     }
+
     @GetMapping("/noticeWriting")
-    public String noticeWriting(){
+    public String noticeWriting() {
         return "content/board/noticeboard/noticeWriting";
     }
 
     @GetMapping("/userNotice")
-    public String userNoticeMain(){
+    public String userNoticeMain() {
         return "content/board/noticeboard/userNoticeMain";
     }
 
     @GetMapping("/sellerNotice")
-    public String sellerNoticeMain(){
+    public String sellerNoticeMain() {
         return "content/board/noticeboard/sellerNoticeMain";
     }
 
