@@ -51,17 +51,14 @@ nav ul {
 
 /* 네비게이션 메뉴 항목 스타일 */
 nav ul li {
-    margin: 0 15px;
+    margin: 0 30px;
     min-width: 60px;
     min-height: 20px;
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    /* 가로고정 */
     flex-grow: 0;
-    /* 세로 고정 */
 }
-
 
 /* 네비게이션 메뉴 하이퍼링크 스타일 */
 nav ul li a {
@@ -83,7 +80,10 @@ nav ul li a {
     align-items: center;
     width: 200px;
     margin-right: auto;
+    margin-left: auto;
 }
+
+
 
 /* 검색어 - 자식 (입력 필드) */
 .search-box input {

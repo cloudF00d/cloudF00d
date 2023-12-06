@@ -12,23 +12,13 @@
     <nav>
         <ul>
             <li><a th:href="@{/}">홈</a></li>
-            <li><a th:href="@{#}">프로젝트</a></li>
             <li><a th:href="@{#}">펀딩</a></li>
-            <li><a th:href="@{#}">도움말</a></li>
+            <li><a th:href="@{/support/usermain}">고객센터</a></li>
+            <li><a th:href="@{/board/userNotice}">공지사항</a></li>
         </ul>
     </nav>
 
-    <!-- 메뉴 2: 토글 기능 있음 -->
-    <div class="menu-item">
-        <label class="toggle-label" id="toggle-label">더보기</label>
-        <div class="menu-content" id="menu-content">
-            <ul>
-                <li><a th:href="@{#}">공지사항</a></li>
-                <li><a th:href="@{#}">고객센터</a></li>
-                <li><a th:href="@{#}">Q&A</a></li>
-            </ul>
-        </div>
-    </div>
+
 
     <!-- 검색창 -->
     <div class="search-box">
