@@ -8,7 +8,8 @@
     margin-left: 0%;
 
     margin-top: 4%;
-
+    position: relative;
+    left: 600px;
     
     flex-basis: 900px; 
     /* 가운데 영역의 너비를 50%로 설정 */

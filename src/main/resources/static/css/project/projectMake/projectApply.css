@@ -12,11 +12,17 @@
 .buyokay{
    margin-left: 200px;
 }
+
+
+.payinfo{
+    position: relative;
+    left: 200px;
+}
 .maininfo {
     width: 1300px;
     height: 650px;
     /* border: 1px solid gray; */
-    background-color: rgb(245, 245, 245);
+
     /* border-radius: 10px; */
     margin-left: 200px;
     display: flex; /*Flexbox 사용*/
