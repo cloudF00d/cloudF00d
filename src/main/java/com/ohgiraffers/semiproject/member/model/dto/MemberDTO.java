@@ -146,7 +146,7 @@ public class MemberDTO {
         this.coupon = coupon;
     }
 
-
+//
     @Override
     public String toString() {
         return "MemberDTO{" +
