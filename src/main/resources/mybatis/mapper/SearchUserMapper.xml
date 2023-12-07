@@ -19,7 +19,7 @@
         <result property="couponStatus" column="COUPON_STATUS"/>
     </resultMap>
     
-    <resultMap id="userInfo" type=""
+<!--    <resultMap id="userInfo" type=""></resultMap>-->
 
     <select id="findAllUser" resultMap="generalResultMap">
         SELECT
@@ -40,7 +40,7 @@
 
     </select>
 
-    <select id="userDetail" resultMap="generalResultMap">
+<!--    <select id="userDetail" resultMap="generalResultMap">-->
 
-    </select>
+<!--    </select>-->
 </mapper>
