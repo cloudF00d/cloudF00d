@@ -26,8 +26,16 @@
 
             <div class="profileimg">
                 <img class="profileimg1" src="/images/lcon/avatar-profile-icon_188544-4755.avif" alt="">
-                <button class="profilebtn">프로필 사진 수정</button>
+                <div class="profilebtn" onclick="openPopup()">등록하기</div>
             </div>
+                <div id="popup-container">
+                    <div id="popup-content">
+                        <span id="popup-close" onclick="closePopup()">X</span>
+                        <input type="file" id="file-input" accept="image/jpeg, image/png" onchange="handleFileSelect(this)">
+                        <div id="image-preview"></div>
+                        <button onclick="confirmImage()">확인</button>
+                    </div>
+                </div>
 
             <div>
                     <li>이름</li>
@@ -69,7 +77,96 @@
         
             <div class="changeInfobtn"><button type="submit">회원정보 변경</button></div>
         </form>
-        
+
+                <script>
+                    function openPopup() {
+                        document.getElementById('popup-container').style.display = 'flex';
+                    }
+
+                    function closePopup() {
+                        document.getElementById('popup-container').style.display = 'none';
+                    }
+
+                    function handleFileSelect(input) {
+                        var files = input.files;
+                        var preview = document.getElementById('image-preview');
+
+                        // 이미지 파일이 맞는지, 용량 및 해상도 조건 충족 확인
+                        if (files.length === 1) {
+                            var file = files[0];
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                var image = new Image();
+                                image.src = e.target.result;
+
+                                image.onload = function () {
+                                    if (
+                                        (file.type === 'image/jpeg' || file.type === 'image/png') &&
+                                        file.size <= 3 * 1024 * 1024 && // 3MB 제한
+                                        image.width >= 300 && image.height >= 300
+                                    ) {
+                                        // 기존 이미지 제거
+                                        preview.innerHTML = '';
+
+                                        // 조건 충족 시 이미지 미리보기 추가
+                                        var imgElement = document.createElement('img');
+                                        imgElement.src = e.target.result;
+                                        imgElement.style.maxWidth = '80px';
+                                        imgElement.style.maxHeight = '80px';
+                                        imgElement.onclick = function () {
+                                            removeImage(this);
+                                        };
+                                        preview.appendChild(imgElement);
+                                    } else {
+                                        alert('이미지 형식 또는 크기가 제한에 맞지 않습니다.');
+                                    }
+                                };
+                            };
+
+                            reader.readAsDataURL(file);
+                        } else if (files.length > 1) {
+                            alert('이미지는 1개만 등록 가능합니다.');
+                        }
+                    }
+
+                    function removeImage(imgElement) {
+                        // 클릭된 이미지 제거
+                        imgElement.parentNode.removeChild(imgElement);
+                        // 미리보기에서도 이미지 제거
+                        var preview = document.getElementById('image-preview');
+                        preview.innerHTML = '';
+                    }
+
+                    function confirmImage() {
+                        var preview = document.getElementById('image-preview');
+                        var clonedImage = preview.firstElementChild;
+
+                        if (clonedImage) {
+                            // 기존 이미지 삭제
+                            removeImage(clonedImage);
+
+                            var newImage = document.createElement('img');
+                            newImage.src = clonedImage.src;
+                            newImage.style.maxWidth = '80px';
+                            newImage.style.maxHeight = '80px';
+                            newImage.onclick = function () {
+                                removeImage(this);
+                            };
+
+                            // 대체된 이미지를 .profile-image-container 아래 모든 이미지 대상으로 변경
+                            var profileImages = document.querySelectorAll('.profile-image-container img');
+                            profileImages.forEach(function (img) {
+                                img.parentNode.removeChild(img);
+                            });
+
+                            document.querySelector('.profile-image-container').appendChild(newImage);
+                            closePopup();
+                        } else {
+                            alert('이미지를 먼저 등록해주세요.');
+                        }
+                    }
+                </script>
 
     </div>
             </div>

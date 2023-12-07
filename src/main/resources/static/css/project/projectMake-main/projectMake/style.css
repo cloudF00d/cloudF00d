@@ -29,7 +29,10 @@
     /* 두 번째 아이템 */
 }
 
-
+.back-board-container {
+    position: relative;
+    left: 500px;
+}
 .greeting-text {
     top: 10px;
     font-size: 24px;
