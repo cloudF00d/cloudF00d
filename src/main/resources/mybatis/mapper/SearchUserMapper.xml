@@ -18,6 +18,8 @@
         <result property="reportCount" column="REPORT_COUNT"/>
         <result property="couponStatus" column="COUPON_STATUS"/>
     </resultMap>
+    
+    <resultMap id="userInfo" type=""
 
     <select id="findAllUser" resultMap="generalResultMap">
         SELECT
@@ -35,6 +37,10 @@
             A.COUPON_STATUS
         FROM
             TBL_USER A
+
+    </select>
+
+    <select id="userDetail" resultMap="generalResultMap">
 
     </select>
 </mapper>

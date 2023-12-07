@@ -11,9 +11,11 @@ import java.util.List;
 public class SearchUserService {
 
     @Autowired
-    private SearchUserMapper searchUserMapper;
+    private SearchUserMapper Mapper;
 
     public List<UserDTO> findAllUser() {
-        return searchUserMapper.findAllUser();
+        List<UserDTO> userDTOS = Mapper.findAllUser();
+
+        return userDTOS;
     }
 }
