@@ -1,0 +1,21 @@
+package com.ohgiraffers.semiproject.manager.search.model.dto;
+
+import lombok.*;
+import org.springframework.dao.support.PersistenceExceptionTranslationInterceptor;
+
+import java.sql.Date;
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
+public class PaymentDTO {
+
+    private int paymentCode;
+    private int totalAmount;
+    private String paymentMethod;
+    private Date paymentDateTime;
+    private int deliveryCode;
+    private char paymentStatus;
+
+}
