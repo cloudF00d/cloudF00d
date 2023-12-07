@@ -37,12 +37,13 @@ public class ManagerSearchController {
         return "/content/manager/search/userDetail";
     }
     @GetMapping("/userMain")
-    public ModelAndView userMain(){
+    public ModelAndView userMain(ModelAndView mv){
         List<UserDTO> userDTOS = searchUserService.findAllUser();
 
+        mv.addObject("searchUser", userDTOS);
+        mv.setViewName("/content/manager/search/userMain");
 
-        return new ModelAndView("searchUser").addObject
-                ("viewpage","/userMain.html").addObject("userDTOS",userDTOS);
+        return mv;
 //        "/content/manager/search/userMain";
     }
 }
