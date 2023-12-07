@@ -63,7 +63,7 @@
 		th, td {
 			border-top: 1px solid #ddd; /* 상단에만 회색 선 추가 */
 			border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
-			padding: 20px; /* 셀 안의 여백 설정 */
+			padding: 2px; /* 셀 안의 여백 설정 */
 			text-align: left; /* 셀 안의 텍스트를 왼쪽 정렬 */
 		}
 		
@@ -149,7 +149,7 @@
 					align-items: center;
 					width:72.1487808227539px;
 					height:40.396484375px;
-					margin-left: 890px;
+					margin-left: 1100px;
 					
 				}
 
@@ -163,7 +163,7 @@
 			/* 답변중 버튼 */
 			.ing{
 				/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-				width: 110px;
+				width: 65px;
 				padding: 7px 10px ;
 			
 				/* 배경색을 주황색으로 설정합니다. */
@@ -192,7 +192,7 @@
 			
 		.close{
 			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-			width: 110px;
+			width: 65px;
 			padding: 7px 10px ;
 		
 		

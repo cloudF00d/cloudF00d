@@ -5,10 +5,12 @@
 	  layout:decorate="~{layouts/layout}">
 
 <th:block  layout:fragment="content">
-    <th:block th:replace="/fragments/usersidebar.html"></th:block>
+    <link rel="stylesheet" href="/css/manager/board/memberinquriryWriting.css">
+
 
     <title>신고 글쓰기</title>
-    <link rel="stylesheet" href="/css/manager/board/noticeWriting.css">
+
+    <div class="container">
 
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
@@ -30,7 +32,7 @@
 							document.write(date);
                         </script>
 				</span>
-				<!-- <span class="box3">답변 전</span> -->
+
             </div>
             
             <div>
@@ -61,3 +63,8 @@
             <!-- 우측 컨텐츠 -->
         </div>
 
+    </div>
+
+
+</th:block>
+</html>

@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sellerManage/*")
 public class SellerManageController {
 
-    @GetMapping("sample")
-    public String sellerLocation() {
-        return "content/board/sellerQnA/sellerMainPage/sellerQnAmainpage";
-    }
 
-    @GetMapping("sellerUserManage")
+    @GetMapping("UserManage")
     public String sellerUserLocation() {
         return "content/sellerManage/sellerUserManage/sellerUserManage";
     }

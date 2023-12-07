@@ -27,7 +27,8 @@
                         <div class="searchQnA"></div>
                         <div class="searchright">
                             <form action="search" method="post">
-                                <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/resource/imege/searchicon.avif') center center / cover no-repeat; padding: 0;"></button>
+                                <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/images/04_etc/magnifying glass.png') center center / cover no-repeat; padding: 0;"></button>
+
                                 <input type="text" name="search" required>
 
                                 <select name="nation2"  >
@@ -57,72 +58,95 @@
 
 
                             <tr>
+                                <form action="" method="post">
+
                                 <td>1</td>
                                 <td>
                                     <img class="food" src= "/images/food/image_111.png">
 
-                                    <a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a>
+                                    <a class="black-link" th:href="@{/deliver/userdetail}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a>
                                 </td>
                                 <td>2023 / 11 / 20</td>
-                                <td><a class="black-link" href="#" id="questionLink">반품하기</a></td>
+                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
                                 <td><span class="close">구매확정완료</span></td>
                                 <td><p class="close">배송완료</p></td>
+                                </form>
+
                             </tr>
+
+
                             <tr>
+                                <form action="" method="post">
                                 <td>2</td>
                                 <td>
                                     <img class="food" src="/images/food/image_112.png">
                                     <a class="black-link" th:href="@{#}" id="questionLink">명품 토종 옥광밤</a>
                                 </td>
                                 <td>2023 / 11 / 16</td>
-                                <td>접수중</td>
-                                <td ><a class="black-link" href="#" id="questionLink"><span class="ing">구매확정하기</span></a></td>
+                                <td><p class="close">접수중</p></td>
+                                <td><p><button class="ing1" type="submit">구매확정하기</button></p></td>
                                 <td><p class="close" >배송중</p></td>
+                                </form>
 
                             </tr>
+
+
                             <tr>
+                                <form action="" method="post">
                                 <td>3</td>
                                 <td>
                                     <img class="food" src="/images/food/image_113.png">
                                     <a class="black-link" th:href="@{#}" id="questionLink">무설탕 초콜릿</a>
                                 </td>
                                 <td>2023 / 11 / 16</td>
-                                <td><a class="black-link" href="#" id="questionLink">반품하기</a></td>
+                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
                                 <td><span class="close">구매확정완료</span></td>
                                 <td><p class="close">배송완료</p></td>
+                                </form>
                             </tr>
+
+
                             <tr>
+                                <form action="" method="post">
                                 <td>4</td>
                                 <td>
                                     <img class="food" src="/images/food/image_114.png">
                                     <a class="black-link" th:href="@{#}" id="questionLink">야마야 모츠 나베</a>
                                 </td>
                                 <td>2023 / 11 / 16</td>
-                                <td><a class="black-link" href="#" id="questionLink">반품하기</a></td>
+                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
                                 <td><span class="close">구매확정완료</span></td>
                                 <td><p class="close">배송완료</p></td>
+                                </form>
                             </tr>
+
                             <tr>
+                                <form action="" method="post">
                                 <td>5</td>
                                 <td>
                                     <img class="food" src="/images/food/image_115.png">
                                     <a class="black-link" th:href="@{#}" id="questionLink">설향 딸기</a>
                                 </td>
                                 <td>2023 / 11 / 16</td>
-                                <td><a class="black-link" href="#" id="questionLink">반품하기</a></td>
+                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
                                 <td><span class="close">구매확정완료</span></td>
                                 <td><p class="close">배송완료</p></td>
+                                </form>
                             </tr>
+
+
                             <tr>
+                                <form action="" method="post">
                                 <td>6</td>
                                 <td>
                                     <img class="food" src="/images/food/image_116.png">
                                     <a class="black-link" th:href="@{#}" id="questionLink">돼지 왕뼈탕</a>
                                 </td>
                                 <td>2023 / 11 / 16</td>
-                                <td><a class="black-link" th:href="@{#}" id="questionLink">반품하기</a></td>
+                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
                                 <td><span class="close">구매확정완료</span></td>
                                 <td><p class="close">배송완료</p></td>
+                                </form>
                             </tr>
 
 
@@ -130,7 +154,7 @@
 
                         <div class="pagination">
                             <div class="pagination-box">
-                                <a href="#" class="prev">＜</a>
+                                <a th:href="@{#}" class="prev">＜</a>
                                 <div class="page-links">
                                     <a th:href="@{#}" class="page-link">1</a>
                                     <a th:href="@{#}" class="page-link">2</a>
@@ -146,6 +170,6 @@
                 </div>
             </div>
 
-
+<!---->
 </th:block>
 </html>

@@ -1,7 +1,7 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/samjo
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://mysql.coffit.today:3306/samjo
     username: samjo
     password: samjo
   servlet:
@@ -24,7 +24,15 @@ spring:
     cache: false
     check-template-location: true
 
+    logging:
+      level:
+        root: info
+
+
 mybatis:
+  # mapper.xml location Setting
+  mapper-locations: mybatis/mapper/*.xml
+  # alias Setting
+  type-aliases-package: com.ohgiraffers.semiproject
   configuration:
     map-underscore-to-camel-case: true
-

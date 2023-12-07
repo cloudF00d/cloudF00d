@@ -20,4 +20,9 @@ public class ProductController {
         return "/content/project/product/productPage";
     }
 
+    @GetMapping("productQnA")
+    public String productQnA(){
+
+        return "/content/project/product/productQnA";
+    }
 }

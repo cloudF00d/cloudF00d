@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SellerProject {
 
 
-    @GetMapping("sellerProject")
+    @GetMapping("Project")
     public String sellerProjectLocation(){
         return "content/sellerManage/sellerProject/sellerProjectSearch";
     }
 
 
 
-    @GetMapping("sellerProjectDetail")
+    @GetMapping("ProjectDetail")
     public String sellerDetailLocation(){
         return "content/sellerManage/sellerProject/sellerProjectDetail";
     }
