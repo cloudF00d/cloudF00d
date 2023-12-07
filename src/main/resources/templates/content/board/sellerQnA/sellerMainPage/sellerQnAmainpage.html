@@ -4,34 +4,35 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
-
 <th:block  layout:fragment="content">
-<th:block th:replace="/fragments/sellersidebar.html"></th:block>
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
 
     <link rel="stylesheet" href="/css/QnA/QnAmain.css">
-    <link rel="stylesheet" href="/css/footer/css.css">
 
 
-            <!-- 사이드바 배경 -->
 
 
+
+
+ 
 <div class="middle_box">
         <div class="middle">
                 <div class="first">
-                    <span>QnA</span>
+                    <span>프로젝트 QnA</span>
                 </div>
 
                 <div>
-                    <img class="logo1" src="/resources/images/01_logoimg/textLogoNone.png"  width="150px" height="150px" >
+                    <img class="logo1" src="/images/01_logoimg/textLogoNone.png"  width="150px" height="150px" >
                 </div>
 
                 
-                <div class="writepo"><div class="write"><a class="black-link" href="/view/sellerQnA/sellerWritePage/sellerQnAwrite.html" >작성</a></div></div>
+                <div class="writepo"><div class="write"><a class="black-link" th:href="@{/QnA/sellerwrite}">작성</a></div></div>
             
                 <div class="searchQnA"></div>
                 <div class="searchright">
                     <form action="search" method="post">
-                        <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/resource/imege/searchicon.avif') center center / cover no-repeat; padding: 0;"></button>
+                        <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/images/04_etc/magnifying glass.png') center center / cover no-repeat; padding: 0;"></button>
+
                         <input type="text" name="search" required>
                         
                         <select name="nation2"  >
@@ -61,73 +62,73 @@
 
                     <tr>
                         <td>1</td>
-                        <td><a class="black-link" href="/view/sellerQnA/sellerQnAanswer/sellerQnAAnswerClose.html" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
                         <td>김민*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><a class="black-link" href="/view/sellerQnA/sellerQnAanswer/sellerQnAnswerRE.html" id="questionLink">명품 토종 옥광밤</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">명품 토종 옥광밤</a></td>
                         <td>강다*</td>
                         <td>2023 / 11 / 16</td>
-                        <td ><span class="ing">답변중</span></td>
+                        <td ><p class="ing">답변중</p></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><a class="black-link" href="#" id="questionLink">무설탕 초콜릿</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">무설탕 초콜릿</a></td>
                         <td>서보*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><a class="black-link" href="#" id="questionLink">야마야 모츠 나베</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">야마야 모츠 나베</a></td>
                         <td>이준*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td><a class="black-link" href="#" id="questionLink">설향 딸기</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">설향 딸기</a></td>
                         <td>이동*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td><a class="black-link" href="#" id="questionLink">돼지 왕뼈탕</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">돼지 왕뼈탕</a></td>
                         <td>이준*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td><a class="black-link" href="#" id="questionLink">한우 투뿔 등심</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">한우 투뿔 등심</a></td>
                         <td>김민*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
                     <tr>
                         <td>8</td>
-                        <td><a class="black-link" href="#" id="questionLink">뜨끈한 밀푀유 나베</a></td>
+                        <td><a class="black-link" th:href="@{#}" id="questionLink">뜨끈한 밀푀유 나베</a></td>
                         <td>서보*</td>
                         <td>2023 / 11 / 16</td>
-                        <td><span class="close">답변완료</span></td>
+                        <td><p class="close">답변완료</p></td>
                     </tr>
 
                 </table>
 
                 <div class="pagination">
                     <div class="pagination-box">
-                        <a href="#" class="prev">＜</a>
+                        <a th:href="@{#}" class="prev">＜</a>
                         <div class="page-links">
-                            <a href="#" class="page-link">1</a>
-                            <a href="#" class="page-link">2</a>
-                            <a href="#" class="page-link">3</a>
+                            <a th:href="@{#}" class="page-link">1</a>
+                            <a th:href="@{#}" class="page-link">2</a>
+                            <a th:href="@{#}" class="page-link">3</a>
 
                         </div>
-                        <a href="#" class="next">＞</a>
+                        <a th:href="@{#}" class="next">＞</a>
                     </div>
                 </div>
             </div>

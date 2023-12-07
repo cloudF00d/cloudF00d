@@ -4,6 +4,8 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <th:block th:fragment="sidebar">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/sideBar.js"></script>
     <link rel="stylesheet" href="/css/sideBar/css.css">
 
     <div class="left">
@@ -30,10 +32,10 @@
                             </ul>
                         </li>
                     </ul>
-                    <li><a th:href="@{#}">QnA</a></li>
-                    <li><a th:href="@{#}">배송현황</a></li>
-                    <li><a th:href="@{#}">공지사항</a></li>
-                    <li><a th:href="@{#}">고객센터</a></li>
+                    <li><a th:href="@{/QnA/usermain}">프로젝트 QnA</a></li>
+                    <li><a th:href="@{/deliver/usermain}">배송현황</a></li>
+                    <li><a th:href="@{/board/userNotice}">공지사항</a></li>
+                    <li><a th:href="@{/support/usermain}">고객센터</a></li>
 
 
 

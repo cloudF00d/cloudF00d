@@ -62,7 +62,7 @@
 		th, td {
 			border-top: 1px solid #ddd; /* 상단에만 회색 선 추가 */
 			border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
-			padding: 20px; /* 셀 안의 여백 설정 */
+			padding: 10px; /* 셀 안의 여백 설정 */
 			text-align: left; /* 셀 안의 텍스트를 왼쪽 정렬 */
 		}
 		
@@ -126,7 +126,7 @@
 			width:1420px;
 			height:1050px;
 			position:relative;
-			left:460px;
+			left:430px;
 			top:40px
 		}
 
@@ -170,7 +170,7 @@
 			/* 답변중 버튼 */
 			.ing{
 				/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-				width: 110px;
+				width: 65px;
 				padding: 7px 10px ;
 			
 				/* 배경색을 주황색으로 설정합니다. */
@@ -192,15 +192,71 @@
 				text-align: center;
 			}
 
-			
 
-			/* 답변완료 상태 버튼 */
+
+		/* 답변중 버튼 */
+		.ing1{
+			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
+			width: 100px;
+			padding: 7px 10px ;
+
+			/* 배경색을 주황색으로 설정합니다. */
+			background-color: lightgray;
+
+			/* 글자 색을 변경합니다. */
+			color: white;
+
+			/* 글자 크기를 크게 설정합니다. */
+
+
+			/* 모서리를 둥글게 만듭니다. */
+			border-radius: 5px;
+
+			/* 테두리를 없앱니다. */
+			border: none;
+
+			/* 버튼 안의 텍스트를 가운데 정렬합니다. */
+			text-align: center;
+		}
+
+
+
+
+		/* 답변중 버튼 */
+		.ing2{
+			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
+			width: 75px;
+			padding: 7px 10px ;
+
+			/* 배경색을 주황색으로 설정합니다. */
+			background-color: lightgray;
+
+			/* 글자 색을 변경합니다. */
+			color: white;
+
+			/* 글자 크기를 크게 설정합니다. */
+
+
+			/* 모서리를 둥글게 만듭니다. */
+			border-radius: 5px;
+
+			/* 테두리를 없앱니다. */
+			border: none;
+
+			/* 버튼 안의 텍스트를 가운데 정렬합니다. */
+			text-align: center;
+		}
+
+
+
+
+		/* 답변완료 상태 버튼 */
 
 			
 		.close{
 			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-			width: 110px;
-			padding: 7px 10px ;
+			width: 65px;
+			padding: 7px 10px;
 		
 		
 			/* 배경색을 주황색으로 설정합니다. */
@@ -227,7 +283,6 @@
 
 		/* 음식이미지  */
 		.food{
-		
 				width:44px;
 				height:35px;
 				position:relative;

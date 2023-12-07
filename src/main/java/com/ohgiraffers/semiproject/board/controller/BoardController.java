@@ -10,16 +10,17 @@ public class BoardController {
 
     @GetMapping("/complaintMain")
     public String complaintBoard() {
-        return "content/board/noticeboard/complaintMain";
+        return "content/board/complaintboard/complaintMain";
     }
 
-    @GetMapping("/complaintBoardAnswered")
+    @GetMapping("/complaintAnswered")
     public String complaintBoardAnswered() {
-        return "content/board/noticeboard/complaintAnswered";
+        return "content/board/complaintboard/complaintAnswered";
     }
-    @GetMapping("/complaintBoardBefore")
+
+    @GetMapping("/complaintBefore")
     public String complaintBoardBefore() {
-        return "content/board/noticeboard/complaintBefore";
+        return "content/board/complaintboard/complaintBefore";
     }
 
     @GetMapping("/inquiryAnswered")
@@ -37,19 +38,37 @@ public class BoardController {
         return "content/board/inquiryboard/inquiryMain";
     }
 
+
+    @GetMapping("/inquiryWrite")
+    public String inquiryWrite() {
+        return "content/board/memberInquiryWrite/MemberinquriryWrite";
+    }
+
+
     @GetMapping("/noticeMain")
-    public String noticeMain(){
+    public String noticeMain() {
         return "content/board/noticeboard/noticeMain";
     }
+
     @GetMapping("/noticeWrited")
-    public String noticeWrited(){
+    public String noticeWrited() {
         return "content/board/noticeboard/noticeWrited";
     }
+
     @GetMapping("/noticeWriting")
-    public String noticeWriting(){
+    public String noticeWriting() {
         return "content/board/noticeboard/noticeWriting";
     }
 
+    @GetMapping("/userNotice")
+    public String userNoticeMain() {
+        return "content/board/noticeboard/userNoticeMain";
+    }
+
+    @GetMapping("/sellerNotice")
+    public String sellerNoticeMain() {
+        return "content/board/noticeboard/sellerNoticeMain";
+    }
 
 
 }
