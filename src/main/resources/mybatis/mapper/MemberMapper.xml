@@ -56,6 +56,8 @@
              , A.REPORT_COUNT
              , A.COUPON_STATUS
             , C.AUTHORITY_NAME
+            , C.AUTHORITY_CODE
+            , C.AUTHORITY_DESCRIPTION
 
         FROM tbl_user A
         JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)

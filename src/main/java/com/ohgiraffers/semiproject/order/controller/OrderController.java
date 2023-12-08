@@ -1,14 +1,19 @@
 package com.ohgiraffers.semiproject.order.controller;
 
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentDTO;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
 import com.ohgiraffers.semiproject.order.model.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.nio.file.attribute.UserPrincipal;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("order")
@@ -30,19 +35,23 @@ public class OrderController {
 
   @GetMapping("buypage")
   public String paymentPage(
-//                                  @ModelAttribute PaymentHistoryDTO paymentHistory
-                                   Model model
+          Model model,
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
 
 
-                                    ) throws PaymentPageException {
+          ) throws PaymentPageException {
 
 
     log.info("[OrderController] paymentPage ================================== start");
-
+    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
+//    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO.getUsername());
+//    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO.getAuthorityDTO().getAuthorityName());
 
 
     PaymentHistoryDTO paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
+
+
 
 
     return "redirect:/content/order/buypage";
