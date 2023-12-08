@@ -153,13 +153,10 @@
                     <tr th:each="buy : ${userBuy}">
                     <td th:text="${buy.cartCode}"></td>
                     <td th:text="${buy.projectCode.projectTitle}"></td>
-                    <td th:text="${buy.projectCode.sellerInfo}"></td>
-                    <td th:text="|${buy.projectCode.projectStartDate}${buy.projectCode.projectEndDate}|"></td>
+                    <td th:text="${buy.projectCode.sellerInfo.userName}"></td>
+                    <td th:text="|${buy.projectCode.projectStartDate} ~ ${buy.projectCode.projectEndDate}|"></td>
                     <td th:text="${buy.projectCode.achievementStatus}"><span class="ing"></span></td>
                     </tr>
-
-
-
 
                 </table>
             </div>
