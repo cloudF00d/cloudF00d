@@ -24,10 +24,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 
-    public PaymentHistoryDTO paymentPage(int no) throws PaymentPageException {
+    public PaymentHistoryDTO paymentPage() throws PaymentPageException {
         PaymentHistoryDTO paymentPage = mapper.paymentPage();
 
-        if(!(paymentPage == null)){
+        if((paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");
         }
         return paymentPage;

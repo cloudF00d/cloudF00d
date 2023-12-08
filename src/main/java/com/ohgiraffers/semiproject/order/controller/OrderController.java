@@ -31,37 +31,24 @@ public class OrderController {
   @GetMapping("buypage")
   public String paymentPage(
 //                                  @ModelAttribute PaymentHistoryDTO paymentHistory
-                                   Model model,
-                                    @RequestParam int no
-//                                  @RequestParam int totalPrice, //쿠폰 적용 금액
-//                                  @RequestParam int cost, //택배비
-//                                  @RequestParam String firstname, //성
-//                                  @RequestParam String lastname, //이름
-//                                  @RequestParam String adrs, //주소
-//                                  @RequestParam String detailedAdrs //상세주소
+                                   Model model
+
+
                                     ) throws PaymentPageException {
 
-    log.info("");
-    log.info("");
+
     log.info("[OrderController] paymentPage ================================== start");
 
-//    int amount = totalPrice + cost;
-//   paymentHistory.getPayment().setAmount(amount);
-//
-//    String name = firstname + lastname;
-//    paymentHistory.getCart().getMemberCode().setName(name);
-//
-//    String address = adrs + "$" + detailedAdrs;
-//    paymentHistory.getCart().getMemberCode().setName(address);
 
-    PaymentHistoryDTO paymentHistory = paymentService.paymentPage(no);
+
+    PaymentHistoryDTO paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
 
 
     return "redirect:/content/order/buypage";
 
 
-//    return "/content/order/buypage";
+
   }
 
 

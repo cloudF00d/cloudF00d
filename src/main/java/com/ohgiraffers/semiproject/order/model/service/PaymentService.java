@@ -8,7 +8,7 @@ public interface PaymentService {
 
 
 //    결제 페이지
-    public PaymentHistoryDTO paymentPage(int no) throws PaymentPageException;
+    public PaymentHistoryDTO paymentPage() throws PaymentPageException;
 
 
 
