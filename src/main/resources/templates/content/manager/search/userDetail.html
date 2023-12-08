@@ -106,12 +106,13 @@
                         <th>활동상태</th>
                     </tr>
                     <tr>
-                        <td th:text="${userDetail.}">홍길*</td>
-                        <td>123qwe</td>
-                        <td>$$sdfw55</td>
-                        <td>010-0000-0000</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="ing">활동</span></td>
+                        <td th:text="${userDetail.sellerInfo.userName}"></td>
+                        <td th:text="${userDetail.seller}"></td>
+                        <td th:text="${userDetail.sellerInfo.password}"></td>
+                        <td th:text="${userDetail.sellerInfo.phone}"></td>
+                        <td th:text="${userDetail.sellerInfo.dateBirth}"></td>
+                        <td th:text="${userDetail.sellerInfo.activityStatus}"></td>
+<!--                        <td><span class="ing">활동</span></td>-->
                     </tr>
                     
                 </table>

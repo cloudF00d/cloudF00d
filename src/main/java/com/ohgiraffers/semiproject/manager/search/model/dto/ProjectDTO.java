@@ -13,9 +13,9 @@ public class ProjectDTO {
 
     private int projectCode;
     private String projectTitle;
-    private ProjectCategoryDTO projectCategory;
+    private int projectCategory;
     private String projectType;
-    private PlanDTO projectPlan;
+    private int projectPlan;
     private UserDTO sellerInfo;
     private int targetAmount;
     private Date projectEndDate;
