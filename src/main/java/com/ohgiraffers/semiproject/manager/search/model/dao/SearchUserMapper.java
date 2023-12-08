@@ -1,9 +1,6 @@
 package com.ohgiraffers.semiproject.manager.search.model.dao;
 
-import com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDetailDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,4 +19,15 @@ public interface SearchUserMapper {
     List<UserDTO> findAllUser();
 
     List<PaymentHistoryDTO> userDetail();
+
+    List<CartDTO> userBuy();
+
+    List<UserReportHistoryDTO> userReport();
+
+    List<ProjectDTO> userFundingProject();
+
+    UserDTO findOneUser();
+
+
+
 }

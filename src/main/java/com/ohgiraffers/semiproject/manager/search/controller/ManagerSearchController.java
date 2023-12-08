@@ -1,9 +1,6 @@
 package com.ohgiraffers.semiproject.manager.search.controller;
 
-import com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDetailDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.*;
 import com.ohgiraffers.semiproject.manager.search.model.service.SearchUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
@@ -42,12 +39,22 @@ public class ManagerSearchController {
     @GetMapping("/userDetail")
     public String userDetail(Model mv){
 
-        List<PaymentHistoryDTO> userDetailDTOS = searchUserService.userDetail();
+        log.info("controller userDetail start===========================");
 
-        mv.addAttribute("userDetail", userDetailDTOS);
+        List<CartDTO> cartDTOS = searchUserService.userBuy();
+        List<UserReportHistoryDTO> userReportHistoryDTOS = searchUserService.userReport();
+        List<ProjectDTO> projectDTOS = searchUserService.userFundingProject();
+        UserDTO userDTOS = searchUserService.findOneUser();
+
+        mv.addAttribute("userInfo", userDTOS);
+        mv.addAttribute("userBuy", cartDTOS);
+        mv.addAttribute("userReport", userReportHistoryDTOS);
+        mv.addAttribute("userFunding", projectDTOS);
 
 
-        return "content/manager/search/userDetail";
+        log.info("controller userDetail end ===============================");
+
+        return "/content/manager/search/userDetail";
     }
     @GetMapping("/userMain")
     public ModelAndView userMain(ModelAndView mv){
