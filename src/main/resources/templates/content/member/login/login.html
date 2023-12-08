@@ -17,23 +17,25 @@
     <div id="wrap">
     <div id="login">
     <ul class="signin">
-        <a th:href="@{/#}"><img id="logo1" src="/resources/images/textlogonone_2.png" alt=""></a>
+        <a th:href="@{/#}"><img id="logo1" src="/images/textlogonone_2.png" alt=""></a>
         <li class="signin_text">Sign in</li>
+
+
+        <form id="loginForm" th:action="@{/member/login}" method="post">
         <li class="user_id">
             
             <label class="movetext1" >your id</label> <br>
-            <input type="text">
+            <input type="text" name="userId">
         </li>
         <li>
             <label class="movetext2" >your password</label>
             <br>
-            <input type="password"> 
-            <img src="#" alt="">
-            
+            <input type="password" name="userPwd">
         </li>
         <li class="btlogin">
-            <button>Log in</button>
+            <button  type="submit" value="로그인" id="loginSubmit">Log in</button>
         </li>
+        </form>
         <li>By continuing, you agree to the Terms of use and Privacy Policy.</li>
     </ul>
 
