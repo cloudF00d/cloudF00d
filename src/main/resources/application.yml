@@ -33,6 +33,5 @@ mybatis:
   # mapper.xml location Setting
   mapper-locations: mybatis/mapper/*.xml
   # alias Setting
-#  type-aliases-package: com.ohgiraffers.semiproject
   configuration:
     map-underscore-to-camel-case: true

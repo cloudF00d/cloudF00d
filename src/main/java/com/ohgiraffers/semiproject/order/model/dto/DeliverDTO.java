@@ -1,9 +1,6 @@
-package com.ohgiraffers.semiproject.deliver.model.dto;
-
-import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
+package com.ohgiraffers.semiproject.order.model.dto;
 
 import java.sql.Date;
-
 
 
 public class DeliverDTO {
@@ -14,7 +11,7 @@ public class DeliverDTO {
 
     private String status;
 
-    private MemberDTO member;
+    private MemberDTO memberCode;
     private String request;
 
 
@@ -22,53 +19,52 @@ public class DeliverDTO {
     }
 
 
-    public DeliverDTO(int code, Date day, String status, String request, MemberDTO member) {
+    public DeliverDTO(int code, Date day, String status, MemberDTO memberCode, String request) {
         this.code = code;
         this.day = day;
         this.status = status;
+        this.memberCode = memberCode;
         this.request = request;
-        this.member = member;
     }
-
 
     public int getCode() {
         return code;
-    }
-
-    public Date getDay() {
-        return day;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getRequest() {
-        return request;
-    }
-
-    public MemberDTO getMember() {
-        return member;
     }
 
     public void setCode(int code) {
         this.code = code;
     }
 
+    public Date getDay() {
+        return day;
+    }
+
     public void setDay(Date day) {
         this.day = day;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public void setRequest(String request) {
-        this.request = request;
+    public MemberDTO getMemberCode() {
+        return memberCode;
     }
 
-    public void setMemberList(MemberDTO member) {
-        this.member = member;
+    public void setMemberCode(MemberDTO memberCode) {
+        this.memberCode = memberCode;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
     }
 
     @Override
@@ -77,8 +73,8 @@ public class DeliverDTO {
                 "code=" + code +
                 ", day=" + day +
                 ", status='" + status + '\'' +
+                ", memberCode=" + memberCode +
                 ", request='" + request + '\'' +
-                ", member=" + member +
                 '}';
     }
 }

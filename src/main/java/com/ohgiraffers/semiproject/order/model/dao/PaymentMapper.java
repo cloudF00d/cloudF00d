@@ -6,9 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PaymentMapper {
+   PaymentHistoryDTO paymentPage();
 
 //    결제 페이지
-   public int paymentPage(PaymentHistoryDTO paymentHistory) throws PaymentPageException;
+   
 
 
 

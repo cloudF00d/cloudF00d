@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class PaymentServiceImpl implements PaymentService{
+public class PaymentServiceImpl implements PaymentService {
 
-    private final PaymentMapper mapper;
+
+    private  PaymentMapper mapper;
 
     public PaymentServiceImpl(PaymentMapper mapper) {
         this.mapper = mapper;
@@ -21,16 +22,16 @@ public class PaymentServiceImpl implements PaymentService{
 
 //    결제 페이지
 
-    public void paymentPage(PaymentHistoryDTO paymentHistory) throws PaymentPageException {
 
-        int result = mapper.paymentPage(paymentHistory);
 
-        if(!(result > 0)){
+    public PaymentHistoryDTO paymentPage(int no) throws PaymentPageException {
+        PaymentHistoryDTO paymentPage = mapper.paymentPage();
+
+        if(!(paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");
         }
-
+        return paymentPage;
     }
-
 
 
 //    결제 취소

@@ -1,6 +1,4 @@
-package com.ohgiraffers.semiproject.project.model.dto;
-
-import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
+package com.ohgiraffers.semiproject.order.model.dto;
 
 public class SellerInfoDTO {
 

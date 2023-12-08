@@ -3,35 +3,40 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semiproject.order.model.dao.PaymentMapper">
-    
-    <resultMap id="PaymentResultMap" type="PaymentDTO">
+
+    <resultMap id="PaymentHistoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO">
+        <association property="payment" resultMap="PaymentResultMap"/>
+        <association property="cart" resultMap="CartResultMap"/>
+    </resultMap>
+
+    <resultMap id="PaymentResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentDTO">
         <id property="code" column="PAYMENT_CODE"/>
         <result property="amount" column="TOTAL_AMOUNT"/>
         <result property="method" column="PAYMENT_METHOD"/>
         <result property="time" column="PAYMENT_DATE_TIME"/>
-        <result property="deliverCode" column="DELIVERY_CODE"/>
         <result property="status" column="PAYMENT_STATUS"/>
+        <association property="deliverCode" resultMap="DeliverResultMap"/>
     </resultMap>
 
 
-    <resultMap id="CartResultMap" type="CartDTO">
+    <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
         <id property="code" column="CART_CODE"/>
-        <result property="memberCode" column="USER_CODE"/>
-        <result property="projectCode" column="PROJECT_CODE"/>
-        <result property="projectOptionCode" column="OPTION_CODE"/>
         <result property="status" column="USAGE_STATUS"/>
+        <association property="memberCode" resultMap="MemberResultMap"/>
+        <association property="projectCode" resultMap="ProjectResultMap"/>
+        <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
     </resultMap>
 
-    <resultMap id="DeliverResult" type="DeliverDTO">
+    <resultMap id="DeliverResultMap" type="com.ohgiraffers.semiproject.order.model.dto.DeliverDTO">
         <id property="code" column="DELIVERY_CODE"/>
         <result property="day" column="DELIVERY_DATE"/>
         <result property="status" column="DELIVERY_STATUS"/>
-        <result property="member" column="USER_CODE"/>
         <result property="request" column="DELIVERY_REQUEST"/>
+        <association property="memberCode" resultMap="MemberResultMap"/>
     </resultMap>
 
 
-    <resultMap id="MemberResult" type="MemberDTO">
+    <resultMap id="MemberResultMap" type="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
         <id property="code" column="USER_CODE"/>
         <result property="id" column="USER_ID"/>
         <result property="paw" column="PASSWORD"/>
@@ -49,13 +54,10 @@
 
 
 
-    <resultMap id="ProjectResult" type="ProjectDTO">
+    <resultMap id="ProjectResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectDTO">
         <id property="code" column="PROJECT_CODE"/>
         <result property="title" column="PROJECT_TITLE"/>
-        <result property="category" column="PROJECT_CATEGORY"/>
         <result property="type" column="PROJECT_TYPE"/>
-        <result property="plan" column="PROJECT_PLAN"/>
-        <result property="seller" column="SELLER_INFO"/>
         <result property="amount" column="TARGET_AMOUNT"/>
         <result property="end" column="PROJECT_END_DATE"/>
         <result property="summary" column="PROJECT_SUMMARY"/>
@@ -64,22 +66,65 @@
         <result property="status" column="ACHIEVEMENT_STATUS"/>
         <result property="start" column="PROJECT_START_DATE"/>
         <result property="progress" column="PROGRESS_STATUS"/>
+        <association property="plan" resultMap="PlanResultMap"/>
+        <association property="seller" resultMap="MemberResultMap"/>
+        <association property="category" resultMap="ProjectCategoryResultMap"/>
     </resultMap>
 
-    <resultMap id="ProjectCategoryResult" type="ProjectCategoryDTO">
+
+    <resultMap id="PlanResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PlanDTO">
+        <id property="code" column="PLAN_CODE"/>
+        <result property="name" column="PLAN_NAME"/>
+        <result property="price" column="PRICE"/>
+        <result property="detail" column="PLAN_DETAIL"/>
+    </resultMap>
+
+
+
+    <resultMap id="ProjectCategoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectCategoryDTO">
         <id property="code" column="CATEGORY_CODE"/>
         <result property="name" column="CATEGORY_NAME"/>
     </resultMap>
 
 
-    <resultMap id="ProjectOptionResult" type="ProjectOptionDTO">
+    <resultMap id="ProjectOptionResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectOptionDTO">
         <id property="code" column="OPTION_CODE"/>
         <result property="name" column="OPTION_NAME"/>
         <result property="type" column="OPTION_TYPE"/>
         <result property="price" column="PRICE"/>
         <result property="config" column="CONFIGURE"/>
-        <result property="projectCode" column="PROJECT_CODE"/>
+        <association property="projectCode" resultMap="ProjectResultMap"/>
     </resultMap>
+
+
+
+
+    <select id="paymentPage" resultMap="PaymentHistoryResultMap">
+        SELECT
+            B.TOTAL_AMOUNT,
+            D.USER_NAME,
+            D.EMAIL,
+            D.PHONE,
+            D.ADDRESS,
+
+            F.PROJECT_TITLE,
+            G.OPTION_NAME,
+            G.OPTION_TYPE,
+            G.PRICE,
+            G.CONFIGURE
+
+        FROM TBL_PAYMENT_HISTORY A
+        JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
+        JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
+        JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
+        JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
+        JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
+        JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
+
+    </select>
+
+
+
 
 
 

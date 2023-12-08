@@ -81,7 +81,7 @@
 
             <div class="bilge">
 
-                <form action="search" method="post">
+                <form action="search" th:action="@{order/buypage}" method="post">
                     <div class="coupon-action">
                         
                         <div>
@@ -97,7 +97,7 @@
                     </div>
 
 
-                </form>
+
 
                 <div class="total-product-amount">
                     <span class="total-amount">상품 전체금액</span>
@@ -115,6 +115,7 @@
                     <span class="gun-cost">총금액</span>
                     <span type="price" class="gun-won">26,000won</span>
                 </div>
+                </form>
 
             </div>
             <a th:href="@{/order/buyok}" class="payment-con">

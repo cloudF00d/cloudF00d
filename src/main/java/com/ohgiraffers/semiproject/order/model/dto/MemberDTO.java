@@ -1,4 +1,4 @@
-package com.ohgiraffers.semiproject.member.model.dto;
+package com.ohgiraffers.semiproject.order.model.dto;
 
 
 import java.sql.Date;
