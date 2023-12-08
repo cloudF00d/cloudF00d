@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.project.product.model.dao.projectDetailMapper">
+
+<!--    <resultMap id="profile" type=""-->
+
+    <select id="productPage" resultMap="projectResultMap">
+      select
+          A.PROJECT_CODE,
+          A.PROJECT_TITLE,
+          A.PROJECT_END_DATE,
+          A.PROJECT_SUMMARY,
+          A.PROGRESS_STATUS,
+          A.SELLER_INFO
+
+          FROM
+              TBL_PROJECT A
+      JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+      where A.PROJECT_CODE = 1
+
+  </select>
+
+
+
+</mapper>
