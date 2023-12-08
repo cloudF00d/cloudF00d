@@ -30,7 +30,7 @@ public class OrderController {
 
   @GetMapping("buypage")
   public String paymentPage(
-//                                  @ModelAttribute PaymentHistoryDTO paymentHistory
+//                                  @ModelAttribute PaymentHistoryDTO paymentHistory//
                                    Model model,
                                     @RequestParam int no
 //                                  @RequestParam int totalPrice, //쿠폰 적용 금액
