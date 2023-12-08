@@ -5,9 +5,14 @@ import com.ohgiraffers.semiproject.common.exception.member.MemberModifyException
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface MemberService {
-    public void joinMember(MemberAndAuthorityDTO member) throws MemberJoinException;
+
+
+
+
+    public void joinMember(MemberDTO member) throws MemberJoinException;
 
     public boolean selectMemberById(String userId);
 
