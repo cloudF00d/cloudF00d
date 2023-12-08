@@ -5,6 +5,7 @@ import com.ohgiraffers.semiproject.common.exception.member.MemberModifyException
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.util.SessionUtil;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
 import com.ohgiraffers.semiproject.member.model.service.MemberServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,7 +44,7 @@ public class MemberController {
 
     }
     @PostMapping("join")
-    public String joinMember(@ModelAttribute MemberAndAuthorityDTO member,
+    public String joinMember(@ModelAttribute MemberDTO member,
                                @RequestParam String zipCode,
                                @RequestParam String address1,
                                @RequestParam String address2,
@@ -54,9 +55,9 @@ public class MemberController {
 
 
         String address = zipCode + "$" + address1 + "$" + address2;
-        member.getMemberDTO().setPhone(member.getMemberDTO().getPhone().replace("-",""));
-        member.getMemberDTO().setAddress(address);
-        member.getMemberDTO().setUserPwd(passwordEncoder.encode(member.getMemberDTO().getUserPwd()));
+        member.setPhone(member.getPhone().replace("-",""));
+        member.setAddress(address);
+        member.setUserPwd(passwordEncoder.encode(member.getUserPwd()));
 
         log.info("[MemberController] joinMember request Member : " + member);
 
@@ -70,19 +71,19 @@ public class MemberController {
     }
 
     @PostMapping("idDupCheck")
-    public ResponseEntity<String> checkDuplication(@RequestBody MemberAndAuthorityDTO member) {
+    public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member) {
 
         log.info("");
         log.info("");
         log.info("[MemberController] checkDuplication ========================================================== start");
 
         String result = "사용 가능한 아이디 입니다.";
-        log.info("[MemberController] Request Check ID : " + member.getMemberDTO().getUserId());
+        log.info("[MemberController] Request Check ID : " + member.getUserId());
 
-        if("".equals(member.getMemberDTO().getUserId())) {
-            log.info("[MemberController] No Input Member ID");
+        if("".equals(member.getUserId())) {
+            log.info("[MemberController] No Input User ID");
             result = "아이디를 입력해 주세요";
-        } else if(memberService.selectMemberById(member.getMemberDTO().getUserId())) {
+        } else if(memberService.selectMemberById(member.getUserId())) {
             log.info("[MemberController] Already Exist");
             result = "중복된 아이디가 존재합니다.";
         }
