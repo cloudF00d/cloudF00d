@@ -1,8 +1,11 @@
 package com.ohgiraffers.semiproject.manager.search.controller;
 
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.*;
 import com.ohgiraffers.semiproject.manager.search.model.service.SearchUserService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/manager/search")
 public class ManagerSearchController {
     private final SearchUserService searchUserService;
@@ -33,7 +37,23 @@ public class ManagerSearchController {
         return "/content/manager/search/sellerMain";
     }
     @GetMapping("/userDetail")
-    public String userDetail(){
+    public String userDetail(Model mv){
+
+        log.info("controller userDetail start===========================");
+
+        List<CartDTO> cartDTOS = searchUserService.userBuy();
+        List<UserReportHistoryDTO> userReportHistoryDTOS = searchUserService.userReport();
+        List<ProjectDTO> projectDTOS = searchUserService.userFundingProject();
+        UserDTO userDTOS = searchUserService.findOneUser();
+
+        mv.addAttribute("userInfo", userDTOS);
+        mv.addAttribute("userBuy", cartDTOS);
+        mv.addAttribute("userReport", userReportHistoryDTOS);
+        mv.addAttribute("userFunding", projectDTOS);
+
+
+        log.info("controller userDetail end ===============================");
+
         return "/content/manager/search/userDetail";
     }
     @GetMapping("/userMain")
@@ -44,6 +64,8 @@ public class ManagerSearchController {
         mv.setViewName("/content/manager/search/userMain");
 
         return mv;
+
+
 //        "/content/manager/search/userMain";
     }
 }

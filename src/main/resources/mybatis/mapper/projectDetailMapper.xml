@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.project.product.model.dao.projectDetailMapper">
+
+<!--    <resultMap id="profile" type=""-->
+
+    <select id="productPage" resultMap="projectResultMap">
+        select
+
+         A.PROJECT_TITLE,
+            A.PROJECT_SUMMARY,
+            B.CHANGED_FILE_NAME,
+            C.OPTION_NAME,
+            A.ACHIEVEMENT_STATUS,
+            A.PROJECT_END_DATE,
+            A.TARGET_AMOUNT,
+            A.SELLER_INFO,
+                C.OPTION_TYPE,
+            C.PRICE,
+            C.CONFIGURE,
+            E.BUSINESS_NAME,
+            E.BUSINESS_EMAIL,
+            D.CHANGED_FILE_NAME
+
+        FROM TBL_PROJECT A
+                 JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+                 JOIN TBL_PROJECT_OPTION C ON (A.PROJECT_CODE = C.PROJECT_CODE)
+                 JOIN tbl_profile_image D ON (B.FILE_CODE = D.FILE_CODE)
+                 JOIN tbl_private_business E ON (D.USER_CODE = E.USER_CODE)
+        where A.PROJECT_CODE = 1;
+
+  </select>
+
+
+
+</mapper>
