@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -37,14 +38,14 @@ public class ManagerSearchController {
         return "/content/manager/search/sellerMain";
     }
     @GetMapping("/userDetail")
-    public String userDetail(Model mv){
+    public String userDetail(@RequestParam("userName") int no, Model mv){
 
         log.info("controller userDetail start===========================");
 
-        List<CartDTO> cartDTOS = searchUserService.userBuy();
-        List<UserReportHistoryDTO> userReportHistoryDTOS = searchUserService.userReport();
-        List<ProjectDTO> projectDTOS = searchUserService.userFundingProject();
-        UserDTO userDTOS = searchUserService.findOneUser();
+        List<CartDTO> cartDTOS = searchUserService.userBuy(no);
+        List<UserReportHistoryDTO> userReportHistoryDTOS = searchUserService.userReport(no);
+        List<ProjectDTO> projectDTOS = searchUserService.userFundingProject(no);
+        UserDTO userDTOS = searchUserService.findOneUser(no);
 
         mv.addAttribute("userInfo", userDTOS);
         mv.addAttribute("userBuy", cartDTOS);

@@ -43,6 +43,7 @@
             <result property="projectStartDate" column="PROJECT_START_DATE"/>
             <result property="projectEndDate" column="PROJECT_END_DATE"/>
             <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>
+            <association property="sellerInfo" resultMap="userResultMap"/>
         </resultMap>
 
         <resultMap id="paymentHistoryResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO">
@@ -71,28 +72,27 @@
 
     </select>
 
-        <select id="userBuy" resultMap="cartResultMap">
-            select
-                A.CART_CODE,
-                A.PROJECT_CODE,
-                A.OPTION_CODE,
-                B.PROJECT_TITLE
-            from
-                tbl_cart A
-                    join tbl_project B ON (A.PROJECT_CODE = B.PROJECT_CODE)
-            where
-                USER_CODE = 1
-              and
-                exists(
-                    select B.*
-                    from
-                        tbl_payment_history B
-                    where
-                        B.CART_CODE = A.CART_CODE
-                )
+        <select id="userBuy" parameterType="long" resultMap="cartResultMap">
+            select A.CART_CODE,
+                   A.PROJECT_CODE,
+                   A.OPTION_CODE,
+                   B.PROJECT_TITLE,
+                   B.SELLER_INFO,
+                   C.USER_NAME,
+                   B.PROJECT_END_DATE,
+                   B.PROJECT_START_DATE,
+                   B.ACHIEVEMENT_STATUS
+
+            from tbl_cart A
+                     join tbl_project B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+                     join tbl_user C ON (B.SELLER_INFO = C.USER_CODE)
+            where A.USER_CODE = #{no}
+              and exists(select B.*
+                         from tbl_payment_history B
+                         where B.CART_CODE = A.CART_CODE)
         </select>
 
-        <select id="userReport" resultMap="userReportHistoryResultMap">
+        <select id="userReport" parameterType="long" resultMap="userReportHistoryResultMap">
             select
                 TITLE,
                 CONTENT,
@@ -100,10 +100,10 @@
             from
                 TBL_USER_REPORT_HISTORY
             where
-                REPORTED_PERSON = 1
+                REPORTED_PERSON = #{no}
         </select>
 
-        <select id="userFundingProject" resultMap="projectResultMap">
+        <select id="userFundingProject" parameterType="long" resultMap="projectResultMap">
             select
                 PROJECT_CODE,
                 PROJECT_TITLE,
@@ -111,10 +111,10 @@
                 PROJECT_START_DATE,
                 ACHIEVEMENT_STATUS
             from TBL_PROJECT
-            where SELLER_INFO = 1
+            where SELLER_INFO = #{no}
         </select>
 
-    <select id="findOneUser" resultMap="userResultMap">
+    <select id="findOneUser" parameterType="long" resultMap="userResultMap">
         SELECT
             A.USER_CODE,
             A.USER_ID,
@@ -131,7 +131,7 @@
         FROM
             TBL_USER A
         where
-            A.USER_CODE = 1
+            A.USER_CODE = #{no}
 
     </select>
 

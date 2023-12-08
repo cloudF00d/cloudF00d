@@ -25,25 +25,25 @@ public class SearchUserService {
     }
 
 
-    public List<CartDTO> userBuy() {
-        List<CartDTO> cartDTOS = Mapper.userBuy();
+    public List<CartDTO> userBuy(int no) {
+        List<CartDTO> cartDTOS = Mapper.userBuy(no);
         return cartDTOS;
     }
 
-    public List<UserReportHistoryDTO> userReport() {
-        List<UserReportHistoryDTO> userReportHistoryDTOS = Mapper.userReport();
+    public List<UserReportHistoryDTO> userReport(int no) {
+        List<UserReportHistoryDTO> userReportHistoryDTOS = Mapper.userReport(no);
 
         return userReportHistoryDTOS;
     }
 
-    public List<ProjectDTO> userFundingProject() {
-        List<ProjectDTO> projectDTOS = Mapper.userFundingProject();
+    public List<ProjectDTO> userFundingProject(int no) {
+        List<ProjectDTO> projectDTOS = Mapper.userFundingProject(no);
 
         return projectDTOS;
     }
 
-    public UserDTO findOneUser() {
-        UserDTO userDTO = Mapper.findOneUser();
+    public UserDTO findOneUser(int no) {
+        UserDTO userDTO = Mapper.findOneUser(no);
 
         return userDTO;
     }

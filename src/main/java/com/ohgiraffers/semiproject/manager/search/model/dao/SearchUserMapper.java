@@ -20,13 +20,13 @@ public interface SearchUserMapper {
 
     List<PaymentHistoryDTO> userDetail();
 
-    List<CartDTO> userBuy();
+    List<CartDTO> userBuy(int no);
 
-    List<UserReportHistoryDTO> userReport();
+    List<UserReportHistoryDTO> userReport(int no);
 
-    List<ProjectDTO> userFundingProject();
+    List<ProjectDTO> userFundingProject(int no);
 
-    UserDTO findOneUser();
+    UserDTO findOneUser(int no);
 
 
 
