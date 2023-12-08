@@ -4,14 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semiproject.order.model.dao.PaymentMapper">
 
-    <resultMap id="PaymentHistoryResultMap" type="PaymentHistoryDTO">
+    <resultMap id="PaymentHistoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO">
         <association property="payment" resultMap="PaymentResultMap"/>
         <association property="cart" resultMap="CartResultMap"/>
-
     </resultMap>
 
-
-    <resultMap id="PaymentResultMap" type="PaymentDTO">
+    <resultMap id="PaymentResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentDTO">
         <id property="code" column="PAYMENT_CODE"/>
         <result property="amount" column="TOTAL_AMOUNT"/>
         <result property="method" column="PAYMENT_METHOD"/>
@@ -21,7 +19,7 @@
     </resultMap>
 
 
-    <resultMap id="CartResultMap" type="CartDTO">
+    <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
         <id property="code" column="CART_CODE"/>
         <result property="status" column="USAGE_STATUS"/>
         <association property="memberCode" resultMap="MemberResultMap"/>
@@ -29,7 +27,7 @@
         <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
     </resultMap>
 
-    <resultMap id="DeliverResultMap" type="DeliverDTO">
+    <resultMap id="DeliverResultMap" type="com.ohgiraffers.semiproject.order.model.dto.DeliverDTO">
         <id property="code" column="DELIVERY_CODE"/>
         <result property="day" column="DELIVERY_DATE"/>
         <result property="status" column="DELIVERY_STATUS"/>
@@ -38,7 +36,7 @@
     </resultMap>
 
 
-    <resultMap id="MemberResultMap" type="MemberDTO">
+    <resultMap id="MemberResultMap" type="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
         <id property="code" column="USER_CODE"/>
         <result property="id" column="USER_ID"/>
         <result property="paw" column="PASSWORD"/>
@@ -56,7 +54,7 @@
 
 
 
-    <resultMap id="ProjectResultMap" type="ProjectDTO">
+    <resultMap id="ProjectResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectDTO">
         <id property="code" column="PROJECT_CODE"/>
         <result property="title" column="PROJECT_TITLE"/>
         <result property="type" column="PROJECT_TYPE"/>
@@ -74,7 +72,7 @@
     </resultMap>
 
 
-    <resultMap id="PlanResultMap" type="PlanDTO">
+    <resultMap id="PlanResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PlanDTO">
         <id property="code" column="PLAN_CODE"/>
         <result property="name" column="PLAN_NAME"/>
         <result property="price" column="PRICE"/>
@@ -83,13 +81,13 @@
 
 
 
-    <resultMap id="ProjectCategoryResultMap" type="ProjectCategoryDTO">
+    <resultMap id="ProjectCategoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectCategoryDTO">
         <id property="code" column="CATEGORY_CODE"/>
         <result property="name" column="CATEGORY_NAME"/>
     </resultMap>
 
 
-    <resultMap id="ProjectOptionResultMap" type="ProjectOptionDTO">
+    <resultMap id="ProjectOptionResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectOptionDTO">
         <id property="code" column="OPTION_CODE"/>
         <result property="name" column="OPTION_NAME"/>
         <result property="type" column="OPTION_TYPE"/>
@@ -108,7 +106,7 @@
             D.EMAIL,
             D.PHONE,
             D.ADDRESS,
-            E.DELIVERY_REQUEST,
+
             F.PROJECT_TITLE,
             G.OPTION_NAME,
             G.OPTION_TYPE,
@@ -119,11 +117,13 @@
         JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
         JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
         JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-        JOIN TBL_DELIVERY E ON (A.DELIVERY_CODE = E.DELIVERY_CODE)
+        JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
         JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
         JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
 
     </select>
+
+
 
 
 
