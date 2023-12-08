@@ -1,9 +1,14 @@
 package com.ohgiraffers.semiproject.manager.search.controller;
 
+import com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.UserDetailDTO;
 import com.ohgiraffers.semiproject.manager.search.model.service.SearchUserService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/manager/search")
 public class ManagerSearchController {
     private final SearchUserService searchUserService;
@@ -34,15 +40,14 @@ public class ManagerSearchController {
         return "/content/manager/search/sellerMain";
     }
     @GetMapping("/userDetail")
-    public ModelAndView userDetail(ModelAndView mv){
+    public String userDetail(Model mv){
 
-        List<UserDetailDTO> userDetailDTOS = searchUserService.userDetail();
+        List<PaymentHistoryDTO> userDetailDTOS = searchUserService.userDetail();
 
-        mv.addObject("userDetail", userDetailDTOS);
-        mv.setViewName("/content/manager/search/userDetail");
+        mv.addAttribute("userDetail", userDetailDTOS);
 
 
-        return mv;
+        return "content/manager/search/userDetail";
     }
     @GetMapping("/userMain")
     public ModelAndView userMain(ModelAndView mv){
@@ -52,6 +57,8 @@ public class ManagerSearchController {
         mv.setViewName("/content/manager/search/userMain");
 
         return mv;
+
+
 //        "/content/manager/search/userMain";
     }
 }

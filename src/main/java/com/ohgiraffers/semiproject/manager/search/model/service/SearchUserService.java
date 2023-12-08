@@ -1,6 +1,8 @@
 package com.ohgiraffers.semiproject.manager.search.model.service;
 
 import com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper;
+import com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.UserDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,9 @@ public class SearchUserService {
         return userDTOS;
     }
 
-    public List<UserDetailDTO> userDetail() {
-        List<UserDetailDTO> userDetailDTOS = Mapper.userDetail();
+    public List<PaymentHistoryDTO> userDetail() {
+        List<PaymentHistoryDTO> userDetailDTOS = null;
+        userDetailDTOS = Mapper.userDetail();
 
         return userDetailDTOS;
     }

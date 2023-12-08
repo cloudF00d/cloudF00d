@@ -2,6 +2,9 @@ package com.ohgiraffers.semiproject.manager.search.model.dto;
 
 import lombok.*;
 import org.springframework.dao.support.PersistenceExceptionTranslationInterceptor;
+
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -11,7 +14,7 @@ public class CartDTO {
 
     private int cartCode;
     private UserDTO userCode;
-    private int projectCode;
+    private List<ProjectDTO> projectCode;
     private int optionCode;
     private char usageStatus;
 }
