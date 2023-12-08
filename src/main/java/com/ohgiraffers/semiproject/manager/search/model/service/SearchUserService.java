@@ -1,14 +1,16 @@
 package com.ohgiraffers.semiproject.manager.search.model.service;
 
 import com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper;
-import com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
 import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDetailDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.UserReportHistoryDTO;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchUserService {
@@ -22,11 +24,31 @@ public class SearchUserService {
         return userDTOS;
     }
 
-    public List<PaymentHistoryDTO> userDetail() {
-        List<PaymentHistoryDTO> userDetailDTOS = null;
-        userDetailDTOS = Mapper.userDetail();
 
-        return userDetailDTOS;
+    public List<CartDTO> userBuy(int no) {
+        List<CartDTO> cartDTOS = Mapper.userBuy(no);
+        return cartDTOS;
     }
+
+    public List<UserReportHistoryDTO> userReport(int no) {
+        List<UserReportHistoryDTO> userReportHistoryDTOS = Mapper.userReport(no);
+
+        return userReportHistoryDTOS;
+    }
+
+    public List<ProjectDTO> userFundingProject(int no) {
+        List<ProjectDTO> projectDTOS = Mapper.userFundingProject(no);
+
+        return projectDTOS;
+    }
+
+    public UserDTO findOneUser(int no) {
+        UserDTO userDTO = Mapper.findOneUser(no);
+
+        return userDTO;
+    }
+
+
+
 
 }

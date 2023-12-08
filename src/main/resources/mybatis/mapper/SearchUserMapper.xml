@@ -4,143 +4,136 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper">
 
-<!--    <resultMap id="userResultMap" type="UserDTO">-->
-<!--        <id property="userCode" column="USER_CODE"/>-->
-<!--        <result property="userId" column="USER_ID"/>-->
-<!--        <result property="password" column="PASSWORD"/>-->
-<!--        <result property="email" column="EMAIL"/>-->
-<!--        <result property="registrationDate" column="REGISTRATION_DATE"/>-->
-<!--        <result property="address" column="ADDRESS"/>-->
-<!--        <result property="userName" column="USER_NAME"/>-->
-<!--        <result property="dateBirth" column="DATE_BIRTH"/>-->
-<!--        <result property="phone" column="PHONE"/>-->
-<!--        <result property="activityStatus" column="ACTIVITY_STATUS"/>-->
-<!--        <result property="reportCount" column="REPORT_COUNT"/>-->
-<!--        <result property="couponStatus" column="COUPON_STATUS"/>-->
-<!--    </resultMap>-->
 
-<!--    <resultMap id="userDetail" type="UserDetailDTO">-->
-<!--        <association property="userCode" resultMap="userResultMap"/>-->
-<!--&lt;!&ndash;        userCode = sellerinfo : 판매내역 볼 수 있음&ndash;&gt;-->
+    <resultMap id="userResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="email" column="EMAIL"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="dateBirth" column="DATE_BIRTH"/>
+        <result property="phone" column="PHONE"/>
+        <result property="activityStatus" column="ACTIVITY_STATUS"/>
+        <result property="reportCount" column="REPORT_COUNT"/>
+        <result property="couponStatus" column="COUPON_STATUS"/>
+    </resultMap>
 
-<!--        <association property="projectCode" resultMap="projectResultMap"/>-->
-<!--        <collection property="cartCode" resultMap="cartResultMap"/>-->
-<!--        <collection property="paymentCode" resultMap="paymentResultMap"/>-->
+        <resultMap id="cartResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.CartDTO">
+            <id property="cartCode" column="CART_CODE"/>
+            <result property="userCode" column="USER_CODE"/>
+            <result property="optionCode" column="OPTION_CODE"/>
+            <result property="usageStatus" column="USAGE_STATUS"/>
+            <association property="projectCode" resultMap="projectResultMap"/>
+        </resultMap>
 
-<!--    </resultMap>-->
+        <resultMap id="userReportHistoryResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.UserReportHistoryDTO">
+            <id property="creationNumber" column="CREATION_NUMBER"/>
+            <result property="creationDate" column="CREATION_DATE"/>
+            <result property="reporter" column="REPORTER"/>
+            <result property="title" column="TITLE"/>
+            <result property="content" column="CONTENT"/>
+            <result property="reportedPerson" column="REPORTED_PERSON"/>
+        </resultMap>
 
-<!--    <resultMap id="projectResultMap" type="ProjectDTO">-->
-<!--        <id property="projectCode" column="PROJECT_CODE"/>-->
-<!--        <result property="projectTitle" column="PROJECT_TITLE"/>-->
-<!--        <result property="projectType" column="PROJECT_TYPE"/>-->
-<!--        <result property="targetAmount" column="TARGET_AMOUNT"/>-->
-<!--        <result property="projectEndDate" column="PROJECT_END_DATE"/>-->
-<!--        <result property="projectSummary" column="PROJECT_SUMMARY"/>-->
-<!--        <result property="policyAgreement" column="POLICY_AGREEMENT"/>-->
-<!--        <result property="sellerType" column="SELLER_TYPE"/>-->
-<!--        <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>-->
-<!--        <result property="projectStartDate" column="PROJECT_START_DATE"/>-->
-<!--        <result property="progressStatus" column="PROGRESS_STATUS"/>-->
-<!--        <result property="projectCategory" column="PROJECT_CATEGORY"/>-->
-<!--        <result property="projectPlan" column="PROJECT_PLAN"/>-->
-<!--        <association property="sellerInfo" resultMap="userResultMap"/>-->
-<!--    </resultMap>-->
+        <resultMap id="projectResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO">
+            <id property="projectCode" column="PROJECT_CODE"/>
+            <result property="projectTitle" column="PROJECT_TITLE"/>
+            <result property="projectStartDate" column="PROJECT_START_DATE"/>
+            <result property="projectEndDate" column="PROJECT_END_DATE"/>
+            <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>
+            <association property="sellerInfo" resultMap="userResultMap"/>
+        </resultMap>
 
-
-<!--    <resultMap id="projectCategoryResultMap" type="ProjectCategoryDTO">-->
-<!--        <id property="categoryCode" column="CATEGORY_CODE"/>-->
-<!--        <result property="categoryName" column="CATEGORY_NAME"/>-->
-<!--    </resultMap>-->
-
-<!--    <resultMap id="planResultMap" type="PlanDTO">-->
-<!--        <id property="planCode" column="PLAN_CODE"/>-->
-<!--        <result property="planName" column="PLAN_NAME"/>-->
-<!--        <result property="price" column="PRICE"/>-->
-<!--        <result property="planDetail" column="PLAN_DETAIL"/>-->
-<!--    </resultMap>-->
-
-<!--    <resultMap id="cartResultMap" type="CartDTO">-->
-<!--        <id property="cartCode" column="CART_CODE"/>-->
-<!--        <result property="projectCode" column="PROJECT_CODE"/>-->
-<!--        <result property="optionCode" column="OPTION_CODE"/>-->
-<!--        <result property="usageStatus" column="USAGE_STATUS"/>-->
-<!--        <association property="userCode" resultMap="userResultMap"/>-->
-<!--        <collection property="projectCode" resultMap="projectResultMap"/>-->
-<!--    </resultMap>-->
-
-<!--    <resultMap id="paymentResultMap" type="PaymentDTO">-->
-<!--        <id property="paymentCode" column="PAYMENT_CODE"/>-->
-<!--        <result property="totalAmount" column="TOTAL_AMOUNT"/>-->
-<!--        <result property="paymentMethod" column="PAYMENT_METHOD"/>-->
-<!--        <result property="paymentDateTime" column="PAYMENT_DATE_TIME"/>-->
-<!--        <result property="deliveryCode" column="DELIVERY_CODE"/>-->
-<!--        <result property="paymentStatus" column="PAYMENT_STATUS"/>-->
-<!--    </resultMap>-->
+        <resultMap id="paymentHistoryResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO">
+            <result property="paymentCode" column="PAYMENT_CODE"/>
+            <association property="cartCode" resultMap="cartResultMap"/>
+        </resultMap>
 
 
 
+    <select id="findAllUser" resultMap="userResultMap">
+        SELECT
+            A.USER_CODE,
+            A.USER_ID,
+            A.PASSWORD,
+            A.EMAIL,
+            A.REGISTRATION_DATE,
+            A.ADDRESS,
+            A.USER_NAME,
+            A.DATE_BIRTH,
+            A.PHONE,
+            A.ACTIVITY_STATUS,
+            A.REPORT_COUNT,
+            A.COUPON_STATUS
+        FROM
+            TBL_USER A
 
+    </select>
 
-<!--&lt;!&ndash;    <resultMap id="paymentHistoryResultMap" type="PaymentHistoryDTO">&ndash;&gt;-->
-<!--&lt;!&ndash;        <association property="paymentCode" resultMap="paymentResultMap"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        <association property="cartCode" resultMap="cartResultMap"/>&ndash;&gt;-->
-<!--&lt;!&ndash;    </resultMap>&ndash;&gt;-->
+        <select id="userBuy" parameterType="long" resultMap="cartResultMap">
+            select A.CART_CODE,
+                   A.PROJECT_CODE,
+                   A.OPTION_CODE,
+                   B.PROJECT_TITLE,
+                   B.SELLER_INFO,
+                   C.USER_NAME,
+                   B.PROJECT_END_DATE,
+                   B.PROJECT_START_DATE,
+                   B.ACHIEVEMENT_STATUS
 
+            from tbl_cart A
+                     join tbl_project B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+                     join tbl_user C ON (B.SELLER_INFO = C.USER_CODE)
+            where A.USER_CODE = #{no}
+              and exists(select B.*
+                         from tbl_payment_history B
+                         where B.CART_CODE = A.CART_CODE)
+        </select>
 
+        <select id="userReport" parameterType="long" resultMap="userReportHistoryResultMap">
+            select
+                TITLE,
+                CONTENT,
+                CREATION_DATE
+            from
+                TBL_USER_REPORT_HISTORY
+            where
+                REPORTED_PERSON = #{no}
+        </select>
 
-<!--    <select id="findAllUser" resultMap="userResultMap">-->
-<!--        SELECT-->
-<!--            A.USER_CODE,-->
-<!--            A.USER_ID,-->
-<!--            A.PASSWORD,-->
-<!--            A.EMAIL,-->
-<!--            A.REGISTRATION_DATE,-->
-<!--            A.ADDRESS,-->
-<!--            A.USER_NAME,-->
-<!--            A.DATE_BIRTH,-->
-<!--            A.PHONE,-->
-<!--            A.ACTIVITY_STATUS,-->
-<!--            A.REPORT_COUNT,-->
-<!--            A.COUPON_STATUS-->
-<!--        FROM-->
-<!--            TBL_USER A-->
+        <select id="userFundingProject" parameterType="long" resultMap="projectResultMap">
+            select
+                PROJECT_CODE,
+                PROJECT_TITLE,
+                PROJECT_END_DATE,
+                PROJECT_START_DATE,
+                ACHIEVEMENT_STATUS
+            from TBL_PROJECT
+            where SELLER_INFO = #{no}
+        </select>
 
-<!--    </select>-->
+    <select id="findOneUser" parameterType="long" resultMap="userResultMap">
+        SELECT
+            A.USER_CODE,
+            A.USER_ID,
+            A.PASSWORD,
+            A.EMAIL,
+            A.REGISTRATION_DATE,
+            A.ADDRESS,
+            A.USER_NAME,
+            A.DATE_BIRTH,
+            A.PHONE,
+            A.ACTIVITY_STATUS,
+            A.REPORT_COUNT,
+            A.COUPON_STATUS
+        FROM
+            TBL_USER A
+        where
+            A.USER_CODE = #{no}
 
-<!--    <select id="userDetail" resultMap="userDetail">-->
-<!--        SELECT-->
-<!--            D.USER_CODE,-->
-<!--            D.USER_ID,-->
-<!--            D.PASSWORD,-->
-<!--            D.EMAIL,-->
-<!--            D.REGISTRATION_DATE,-->
-<!--            D.ADDRESS,-->
-<!--            D.USER_NAME,-->
-<!--            D.DATE_BIRTH,-->
-<!--            D.PHONE,-->
-<!--            D.ACTIVITY_STATUS,-->
-<!--            D.REPORT_COUNT,-->
-<!--            D.COUPON_STATUS,-->
-<!--            E.PROJECT_TITLE,-->
-<!--            E.SELLER_INFO,-->
-<!--            E.PROJECT_START_DATE,-->
-<!--            E.PROJECT_END_DATE,-->
-<!--            E.ACHIEVEMENT_STATUS,-->
-<!--            F.CREATION_DATE AS '신고당한 날짜',-->
-<!--                B.PAYMENT_CODE AS '구매한 내역',-->
-<!--                E.PROJECT_TITLE AS '펀딩한 내역'-->
-
-
-<!--        FROM TBL_PAYMENT_HISTORY A-->
-<!--                 JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)-->
-<!--                 JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)-->
-<!--                 JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)-->
-<!--                 JOIN TBL_PROJECT E ON (D.USER_CODE = E.SELLER_INFO)-->
-<!--                 JOIN tbl_user_report_history F ON (D.USER_CODE = F.REPORTED_PERSON)-->
-<!--        WHERE D.USER_CODE = 1 AND E.SELLER_INFO = 1 AND C.USER_CODE= 1 AND F.REPORTED_PERSON= 1-->
-<!--        GROUP BY D.USER_CODE, E.PROJECT_TITLE, F.CREATION_DATE ,B.PAYMENT_CODE,E.PROJECT_TITLE-->
-<!--    </select>-->
-
+    </select>
 
 
 </mapper>

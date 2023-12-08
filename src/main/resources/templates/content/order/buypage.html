@@ -35,7 +35,7 @@
 
                     <div class="menu-item">
                         <span class="menu-name">결제할 음식 이름</span>
-                        <span class="menu-price">30,000won</span>
+                        <span type="price" class="menu-price">30,000won</span>
                     </div>
 
 
@@ -59,7 +59,7 @@
 
                     <div class="menu-item">
                         <span class="menu-name">결제할 음식 이름</span>
-                        <span class="menu-price">30,000won</span>
+                        <span type="price" class="menu-price">30,000won</span>
                     </div>
 
 
@@ -81,7 +81,7 @@
 
             <div class="bilge">
 
-                <form action="search" method="post">
+                <form action="search" th:action="@{order/buypage}" method="post">
                     <div class="coupon-action">
                         
                         <div>
@@ -97,24 +97,25 @@
                     </div>
 
 
-                </form>
+
 
                 <div class="total-product-amount">
                     <span class="total-amount">상품 전체금액</span>
-                    <span class="total-price">30,000won</span>
+                    <span type="price" class="total-price">30,000won</span>
                 </div>
                 <div class="apply-coupon">
                     <span class="total-amount">쿠폰 적용금액</span>
-                    <span class="total-price">23,000won</span>
+                    <span type="price" class="totalPrice">23,000won</span>
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
-                    <span class="cost">3,000won</span>
+                    <span type="price" class="cost">3,000won</span>
                 </div>
                 <div class="final-amount">
                     <span class="gun-cost">총금액</span>
-                    <span class="gun-won">26,000won</span>
+                    <span type="price" class="gun-won">26,000won</span>
                 </div>
+                </form>
 
             </div>
             <a th:href="@{/order/buyok}" class="payment-con">
@@ -176,7 +177,7 @@
                 </div>
                 <div class="detailed-address">
                     <div class="adrss2">상세주소</div>
-                    <input type="text" name="detailed-adrs" required>&nbsp;
+                    <input type="text" name="detailedAdrs" required>&nbsp;
                 </div>
                 <div class="requested">
                     <div class="req">요청사항</div>

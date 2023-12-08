@@ -1,7 +1,6 @@
 package com.ohgiraffers.semiproject.manager.search.model.dto;
 
 import lombok.*;
-import org.springframework.dao.support.PersistenceExceptionTranslationInterceptor;
 
 import java.sql.Date;
 @AllArgsConstructor
