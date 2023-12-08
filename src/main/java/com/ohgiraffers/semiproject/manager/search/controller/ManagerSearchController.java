@@ -38,7 +38,7 @@ public class ManagerSearchController {
         return "/content/manager/search/sellerMain";
     }
     @GetMapping("/userDetail")
-    public String userDetail(@RequestParam("userName") int no, Model mv){
+    public String userDetail(@RequestParam("userCode") int no, Model mv){
 
         log.info("controller userDetail start===========================");
 
