@@ -38,7 +38,10 @@ public class ManagerSearchController {
         return "/content/manager/search/sellerMain";
     }
     @GetMapping("/userDetail")
-    public String userDetail(@RequestParam("userCode") int no, Model mv){
+    public String userDetail(@RequestParam long no, Model mv){
+        // 궁금한 점 : js로 넘길때는 userCode를 쓰는 행이 있기에 가능했지만
+        // 만약 userCode를 쓰는 행이 없는 상태이고 tr 자체에 클릭 시 페이지 이동 + 파라미터 값 넘기기를 할 순 없나?
+        // jsp 에선 <a태그를 써서 하는게 되던데 html에선 tr사이에 a태그 못씀
 
         log.info("controller userDetail start===========================");
 
@@ -58,7 +61,13 @@ public class ManagerSearchController {
         return "/content/manager/search/userDetail";
     }
     @GetMapping("/userMain")
-    public ModelAndView userMain(ModelAndView mv){
+    public ModelAndView userMain(
+           // @RequestParam(value="currentPage", defaultValue = "1") int pageNo,
+
+                                     ModelAndView mv){
+
+        int limit = 3; // 한 페이지에 보여질 게시물 수
+        int buttonAmount = 5; // 한번에 보여질 페이징 버튼의 개수
         List<UserDTO> userDTOS = searchUserService.findAllUser();
 
         mv.addObject("searchUser", userDTOS);
