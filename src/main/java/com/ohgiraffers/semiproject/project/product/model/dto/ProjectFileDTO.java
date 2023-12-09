@@ -1,7 +1,13 @@
 package com.ohgiraffers.semiproject.project.product.model.dto;
 
-import java.util.Date;
+import lombok.*;
 
+import java.util.Date;
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class ProjectFileDTO {
     private int fileCode;
     private String originalFileName;

@@ -1,7 +1,13 @@
 package com.ohgiraffers.semiproject.project.product.model.dto;
 
-import java.sql.Date;
+import lombok.*;
 
+import java.sql.Date;
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
 public class ProjectUserDTO {
     private int userCode;
     private String userId;

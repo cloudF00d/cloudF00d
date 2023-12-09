@@ -1,8 +1,14 @@
 package com.ohgiraffers.semiproject.project.product.model.dto;
 
+import lombok.*;
+
 import java.io.PipedReader;
 import java.util.Date;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class PrivateBusinessDTO {//개인사업자
     private int businessCode;
     private String businessName;
