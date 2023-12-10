@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.semiproject.order.model.dao.PaymentMapper">
+<mapper namespace="com.ohgiraffers.semiproject.order.model.dao.CartMapper">
 
     <resultMap id="PaymentHistoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO">
         <association property="payment" resultMap="PaymentResultMap"/>
@@ -99,35 +99,23 @@
 
 
 
-    <select id="paymentPage" resultMap="PaymentHistoryResultMap">
+    <select id="cartPage" resultMap="CartResultMap">
         SELECT
-            B.TOTAL_AMOUNT,
-            D.USER_NAME,
-            D.EMAIL,
-            D.PHONE,
-            D.ADDRESS,
+            B.USER_ID,
+            C.PROJECT_TITLE,
+            D.OPTION_NAME,
+            D.OPTION_TYPE,
+            D.PRICE,
+            D.CONFIGURE
 
-            F.PROJECT_TITLE,
-            G.OPTION_NAME,
-            G.OPTION_TYPE,
-            G.PRICE,
-            G.CONFIGURE
+        FROM TBL_CART A
+        JOIN TBL_USER B ON (A.USER_CODE = B.USER_CODE)
+        JOIN TBL_PROJECT C ON (A.PROJECT_CODE = C.PROJECT_CODE)
+        JOIN TBL_PROJECT_OPTION D ON (A.OPTION_CODE = D.OPTION_CODE)
 
-        FROM TBL_PAYMENT_HISTORY A
-        JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
-        JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
-        JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-        JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
-        JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
-        JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
 
 
     </select>
-
-
-
-
-
 
 
 
