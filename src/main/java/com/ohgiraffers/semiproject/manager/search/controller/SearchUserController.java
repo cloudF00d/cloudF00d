@@ -127,7 +127,7 @@ public class SearchUserController {
 
         return "/content/manager/search/userDetail";
     }
-    @PostMapping("/userMain")
+    @GetMapping("/userMain")
     public ModelAndView userMain(
             @RequestParam(required = false, defaultValue = "name") String nation1, // 정렬 컬럼 선택
             @RequestParam(required = false, defaultValue = "acs") String nation2, // 정렬 방식 선택
