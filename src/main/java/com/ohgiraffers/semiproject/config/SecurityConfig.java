@@ -33,16 +33,16 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return web -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
-    //
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http// 페이지 권한 설정
                 .authorizeHttpRequests(auth ->{
 //                    auth.requestMatchers("/manager/*").hasAnyAuthority("AUTHORITY_NAME", "관리자");
 //                    auth.requestMatchers("/notice/regist").hasAnyAuthority("ROLE_ADMIN");
-                    auth.requestMatchers("/*","/member/*").permitAll();// 모든 리소스를 권한 없이 사용가능
+//                    auth.requestMatchers("/*", "/member/*").permitAll();// 모든 리소스를 권한 없이 사용가능
 //                    auth.anyRequest().authenticated();
-
+                    auth.requestMatchers("/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 // 로그인 설정
@@ -70,5 +70,4 @@ public class SecurityConfig {
         return http.build();
     }
 
-//                    .failureUrl("/member/loginfail")
 }

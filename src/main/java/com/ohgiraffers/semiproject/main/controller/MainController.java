@@ -12,6 +12,4 @@ public class MainController {
     public String defaultLocation(){
         return "index";
     }
-
-
 }

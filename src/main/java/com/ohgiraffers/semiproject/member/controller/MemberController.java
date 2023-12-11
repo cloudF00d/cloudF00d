@@ -70,6 +70,8 @@ public class MemberController {
         return "redirect:/";
     }
 
+
+
     @PostMapping("idDupCheck")
     public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member) {
 
