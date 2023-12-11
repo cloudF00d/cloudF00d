@@ -1,8 +1,10 @@
 package com.ohgiraffers.semiproject.project.product.controller;
 
 import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
+import com.ohgiraffers.semiproject.project.product.model.service.ProductService;
 import com.ohgiraffers.semiproject.project.product.model.service.ProductServiceimpl;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,14 +30,15 @@ public class ProductController {
     @Value("${spring.servlet.multipart.location}")
     private String ROOT_LOCATION;
 
-    @Getter
-    private final ProductServiceimpl productServiceimpl;
 
-    public ProductController(ProductServiceimpl productServiceimpl) {
-        this.productServiceimpl = productServiceimpl;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-
+//    @GetMapping("productStory")
+//    public
 
     @GetMapping("productStory")
     public ModelAndView productStory(ModelAndView mv) {
@@ -44,8 +47,8 @@ public class ProductController {
         log.info("");
         log.info("[ThumbnailController] ========================================================= start");
 
+        List<TotalStoryDTO> thumbnailList = productService.totalStoryList();
 
-        List<TotalStoryDTO> thumbnailList = ProductServiceimpl.totalStoryList();
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
 
         mv.addObject("thumbnailList", thumbnailList);
