@@ -4,41 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.semiproject.project.product.model.dao.ProjectDetailMapper">
 
-<!--            <resultMap id="projectResultMap" type="com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO">-->
-<!--                <id property="projectCode" column="PROJECT_CODE"/>-->
-<!--                <result property="projectTitle" column="PROJECT_TITLE"/>-->
-<!--                <result property="projectType" column="PROJECT_TYPE"/>-->
-<!--                <result property="targetAmount" column="TARGET_AMOUNT"/>-->
-<!--                <result property="projectEndDate" column="PROJECT_END_DATE"/>-->
-<!--                <result property="projectSummary" column="PROJECT_SUMMARY"/>-->
-<!--                <result property="policyAgreement" column="POLICY_AGREEMENT"/>-->
-<!--                <result property="sellerInfo" column="SELLER_INFO"/>-->
-<!--                <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>-->
-<!--                <result property="projectStartDate" column="PROJECT_START_DATE"/>-->
-<!--                <result property="progressStatus" column="PROGRESS_STATUS"/>-->
-<!--                <association property="changedFileName" resultMap="projectFileResult"/>-->
-<!--                <association property="optionName" resultMap="projectOptionResult"/>-->
-<!--                <association property="businessName" resultMap="businessResultMap"/>-->
-<!--                <association property="changedFileName" resultMap="profileImageResult"/>-->
-<!--            </resultMap>-->
+            <resultMap id="projectResultMap" type="com.ohgiraffers.semiproject.project.product.model.dto.ProjectDTO">
+                <id property="projectCode" column="PROJECT_CODE"/>
+                <result property="projectTitle" column="PROJECT_TITLE"/>
+                <result property="projectCategory" column="PROJECT_CATEGORY"/>
+                <result property="projectType" column="PROJECT_TYPE"/>
+                <result property="plan" column="PROJECT_PLAN"/>
+                <result property="sellerInfo" column="SELLER_INFO"/>
+                <result property="targetAmount" column="TARGET_AMOUNT"/>
+                <result property="projectEndDate" column="PROJECT_END_DATE"/>
+                <result property="projectSummary" column="PROJECT_SUMMARY"/>
+                <result property="policyAgreement" column="POLICY_AGREEMENT"/>
+                <result property="sellerType" column="SELLER_TYPE"/>
+                <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>
+                <result property="projectStartDate" column="PROJECT_START_DATE"/>
+                <result property="progressStatus" column="PROGRESS_STATUS"/>
+            </resultMap>
 
         <resultMap id="totalStoryList" type="com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO">
-            <id property="projectCode" column="PROJECT_CODE"/>
-            <result property="projectTitle" column="PROJECT_TITLE"/>
-            <result property="projectType" column="PROJECT_TYPE"/>
-            <result property="targetAmount" column="TARGET_AMOUNT"/>
-            <result property="projectEndDate" column="PROJECT_END_DATE"/>
-            <result property="projectSummary" column="PROJECT_SUMMARY"/>
-            <result property="policyAgreement" column="POLICY_AGREEMENT"/>
-            <result property="sellerInfo" column="SELLER_INFO"/>
-            <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>
-            <result property="projectStartDate" column="PROJECT_START_DATE"/>
-            <result property="progressStatus" column="PROGRESS_STATUS"/>
-            <collection property="projectFileDTO" resultMap="projectFileResult"/>
-            <collection property="projectOptionDTO" resultMap="projectOptionResult"/>
-            <collection property="privateBusinessDTO" resultMap="businessResultMap"/>
-            <collection property="profileImageDTO" resultMap="profileImageResult"/>
+            <association property="projectDTO" resultMap="projectResultMap"/>
+            <association property="projectFileDTO" resultMap="projectFileResult"/>
+            <association property="projectOptionDTO" resultMap="projectOptionResult"/>
+            <association property="privateBusinessDTO" resultMap="businessResultMap"/>
+            <association property="profileImageDTO" resultMap="profileImageResult"/>
+            <association property="projectUserDTO" resultMap="userResultMap"/>
         </resultMap>
+
 
 
 
@@ -74,7 +65,7 @@
                 <id property="fileCode" column="FILE_CODE"/>
                 <result property="originalFileName" column="ORIGINAL_FILE_NAME"/>
                 <result property="path" column="PATH"/>
-                <result property="changedFileName" column="CHANGED_FILE_NAME"/>
+                <result property="changedProFileName" column="CHANGEDPRO_FILE_NAME"/>
                 <result property="deleteStatus" column="DELETE_STATUS"/>
                 <result property="creationDate" column="CREATION_DATE"/>
                 <result property="userCode" column="USER_CODE"/>
@@ -101,7 +92,7 @@
 
     </resultMap>
 
-        <select id="totalStoryList" resultType="com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO">
+        <select id="totalStoryList" resultMap="totalStoryList">
             select
                 A.PROJECT_TITLE,
                 A.PROJECT_SUMMARY,
@@ -116,7 +107,7 @@
                 C.CONFIGURE,
                 E.BUSINESS_NAME,
                 E.BUSINESS_EMAIL,
-                D.CHANGED_FILE_NAME
+                D.CHANGEDPRO_FILE_NAME
             FROM TBL_PROJECT A
                      JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
                      JOIN TBL_PROJECT_OPTION C ON (A.PROJECT_CODE = C.PROJECT_CODE)

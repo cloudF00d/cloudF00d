@@ -24,11 +24,7 @@ import java.util.List;
 @Slf4j
 public class ProductController {
 
-    @Value("${image.image-dir}")
-    private String IMAGE_DIR;
 
-    @Value("${spring.servlet.multipart.location}")
-    private String ROOT_LOCATION;
 
 
     private final ProductService productService;
@@ -52,6 +48,7 @@ public class ProductController {
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
 
         mv.addObject("thumbnailList", thumbnailList);
+        log.info("[ThumbnailController] ========================================================= end"+thumbnailList);
 
         mv.setViewName("content/project/product/productStory");
 
@@ -71,5 +68,4 @@ public class ProductController {
 
         return "/content/project/product/productQnA";
     }
-
 }

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" th:href="@{/css/project/productPage/productStory.css}">
 
-    <div class="bodyking">
+    <div class="bodyking" th:each="story : ${thumbnailList}">
         <div class="main-box">
 
             <div class="story-con">
@@ -24,7 +24,8 @@
                 <div class="left">
                     <!--=============== 자두 사진 ============== -->
                     <div class="imgmove">
-                        <img src="/images/02_img/plumRiceCake.png" alt="">
+                        <img th:src="@{|/thumbPath${story.profileImageDTO[0]}|}" alt="">
+                        <!-- 이미지 불러오는 곳 -->
                     </div>
 
 
@@ -111,7 +112,7 @@
                     <div class="businesscard-con">
                         <div class="businesscard">
                             <img src="/resources/images/minicon/good.png" alt="">
-                            <div class="businesscard-right"><p th:text="${thumbnailList.p}"></p></div>
+<!--                            <div class="businesscard-right"><p th:text="${thumbnailList.p}"></p></div>-->
                         </div>
                         <div class="businesscard-home" >홈페이지
                             <div class="addr">http://minha.com/minhaminha</div>

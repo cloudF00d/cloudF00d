@@ -12,7 +12,7 @@ public class ProfileImageDTO {
     private int fileCode;
     private String originalFileName;
     private String path;
-    private String changedFileName;
+    private String changedProFileName;
     private char deleteStatus;
     private Date creationDate;
     private int userCode;
