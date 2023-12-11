@@ -67,7 +67,7 @@
           AND A.USER_ID = #{ userId }
     </select>
 
-    <insert id="insertMember" parameterType="MemberDTO">
+    <insert id="insertMember" parameterType="com.ohgiraffers.semiproject.member.model.dto.MemberDTO">
         INSERT
         INTO tbl_user       (
                                 USER_NAME
