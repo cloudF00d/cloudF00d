@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      layout:decorate="~{layouts/layout}" xmlns="http://www.w3.org/1999/html">
 <th:block  layout:fragment="content">
 
 
@@ -26,7 +26,11 @@
             </div>
 
             <div class="payment-area">
-                <div class="payment-product">
+
+
+
+                <div class="payment-product" th:each=" product: ${ buypage }">
+
                     <h4>결제상품</h4>
                     <div style="float: left;">
                         <a th:href="@{/product/productStory}"><img
@@ -34,13 +38,13 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name">결제할 음식 이름</span>
-                        <span type="price" class="menu-price">30,000won</span>
+                        <span class="menu-name" name="menu" th:text="${product.projectTitle }"></span>
+                        <span type="price" class="menu-price" name="price" th:text="|${product.price }won|"></span>
                     </div>
 
 
                     <div id="counter-container">
-                        <div id="counter-controls">
+                        <div id="counter-controls" name="count">
                             <button class="btn" onclick="decrease(1)">-</button>
                             <span id="counter-value1">1</span>
                             <button class="btn" onclick="increase(1)">+</button>
@@ -50,30 +54,7 @@
                     </div>
 
                 </div>
-                <div class="payment-product">
 
-                    <div style="float: left;">
-                        <a th:href="@{/product/productStory}"><img
-                                src="/images/minicon/good.png" width="60px" height="60px"></a>
-                    </div>
-
-                    <div class="menu-item">
-                        <span class="menu-name">결제할 음식 이름</span>
-                        <span type="price" class="menu-price">30,000won</span>
-                    </div>
-
-
-                    <div id="counter-container">
-                        <div id="counter-controls">
-                            <button class="btn" onclick="decrease(2)">-</button>
-                            <span id="counter-value2">1</span>
-                            <button class="btn" onclick="increase(2)">+</button>
-                        </div>
-                        <!-- 휴지통버튼 -->
-                        <button class="trash-btn"></button>
-                    </div>
-
-                </div>
             </div>
 
 
@@ -81,31 +62,41 @@
 
             <div class="bilge">
 
-                <form action="search" th:action="@{order/buypage}" method="post">
+
                     <div class="coupon-action">
                         
                         <div>
                             <div>할인쿠폰</div>
-                          <input type="text" name="적용하기" required>&nbsp; 
+                          <input type="text"  name="적용하기" required>&nbsp;
                             <!-- <input type="submit" value="적용하기">  -->
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <div class="coupon-btn">
-                            <button type="submit">적용하기</button>
-                        </div>
+                        <form action="search" th:action="@{#}" method="post">
+<!--                            <div class="coupon-btn">-->
+
+
+                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
+
+
+                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>
+<!--                            </div>-->
+                        </form>
 
                     </div>
 
 
 
 
-                <div class="total-product-amount">
+                <div class="total-product-amount" >
                     <span class="total-amount">상품 전체금액</span>
-                    <span type="price" class="total-price">30,000won</span>
+                    <span type="price" class="total-price" name="total">30000</span>
                 </div>
                 <div class="apply-coupon">
                     <span class="total-amount">쿠폰 적용금액</span>
-                    <span type="price" class="totalPrice">23,000won</span>
+                    <span type="text" class="totalPrice" th:if="${coupon == 'Y'}" >3000</span>
+                    <span type="text" class="totalPrice" th:unless="${coupon1 == 'Y'}" >0</span>
+
+<!--                    th:if="${buypage[0].coupon == 'Y'}"-->
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
@@ -115,12 +106,13 @@
                     <span class="gun-cost">총금액</span>
                     <span type="price" class="gun-won">26,000won</span>
                 </div>
-                </form>
 
             </div>
-            <a th:href="@{/order/buyok}" class="payment-con">
+
+            <a th:onclick="|location.href='@{/order/buyok}'|" class="payment-con">
                 <button class="payment" type="button">결제</button>
             </a>
+
         </div>
 
 
@@ -131,68 +123,96 @@
             <div id="progress">
                 <span><div class="pay">주문/결제</div></span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
             </div>
+
             <div class="orderer-info-con">
-                
+                <form class="phone" th:action="@{/order/buypage}"  method="post">
                 <div class="orderer-info">
                 <h4>주문자 정보</h4>
                 <div class="name">
                     <div class="firstname">
                         <div>성</div>
-                        <input type="text" name="firstname" required>&nbsp;
+                        <input type="text" name="firstname" id="firstname"  required>&nbsp;
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="lastname">
                         <div>이름</div>
-                        <input type="text" name="lastname" required>&nbsp;
+                        <input type="text" name="lastname" id="lastname" required>&nbsp;
                     </div>
                 </div>
                 <div class="email">
                     <div>이메일</div>
-                    <input type="email" name="email" required>&nbsp;
+                    <input type="email" name="email" id="email" required>&nbsp;
                 </div>
+
                 <div class="number">핸드폰 번호</div>
-                <form class="phone">
-                            
+
+
                     <select id="countryCode">
                         <option value="+82" selected>대한민국 (+82)</option>
                         <option value="+1">미국 (+1)</option>
                         <option value="+44">영국 (+44)</option>
                         <option value="+81">일본 (+81)</option>
                     </select>
-                    <input type="text" name="phone" required>&nbsp;
-                
+                    <input type="text" name="phone" id="phone" required>&nbsp;
+                </div>
+
                 </form>
-            </div>
         </div>
             <div class="void"></div>
 
         <div class="order-details-con">
 
-        
-            <div class="order-details">
-                <h4>주문 상세정보</h4>
 
-                <div class="adrs">
+            <form  th:action="@{/order/buypage}" method="post">
+            <div class="order-details" >
+                <h4>주문 상세정보</h4>
+                    <div class="adrs" >
+                    <input type="button" value="검색" class="btn" id="address">
                     <div class="adrss1">주소</div>
-                    <input type="text" name="adrs" required>&nbsp;
-                </div>
+                   <input type="text" name="adrs" id="adrs" required >
+                     </div>
+
                 <div class="detailed-address">
                     <div class="adrss2">상세주소</div>
-                    <input type="text" name="detailedAdrs" required>&nbsp;
+                    <input type="text" name="detailedAdrs" id="detailedAdrs" required >&nbsp;
                 </div>
+
                 <div class="requested">
                     <div class="req">요청사항</div>
-                    <input type="text" name="requested" required>&nbsp;
+                    <input type="text" name="requested" id="requested" required>&nbsp;
                 </div>
-                <div class="order-confirmation">
+
                     <input type="checkbox" id="confirmationCheckbox">
                     <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
-                </div>
+            </div>
+            </form>
+
             </div>
         </div>
         </div>
     </div>
 
     </div>
+
+<!--    주소 창 찾기-->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script th:inline="javascript">
+
+        const $address = document.getElementById("address");
+
+
+        $address.onclick = function() {
+
+            /* 다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다. */
+            new daum.Postcode({
+                oncomplete: function(data){
+                    /* 팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분 */
+                    document.getElementById("adrs").value = data.zonecode;
+                    document.getElementById("detailedAdrs").value = data.address;
+                }
+            }).open();
+        }
+    </script>
+
     <script>
         let counterValue1 = 1;
         let counterValue2 = 1;

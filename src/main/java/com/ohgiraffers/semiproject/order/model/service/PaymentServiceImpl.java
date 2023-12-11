@@ -1,11 +1,17 @@
 package com.ohgiraffers.semiproject.order.model.service;
 
 
+import com.ohgiraffers.semiproject.common.exception.payment.MemberOrderPageException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.order.model.dao.PaymentMapper;
-import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
+
+import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
+import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -24,17 +30,32 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 
-    public PaymentHistoryDTO paymentPage(int no) throws PaymentPageException {
-        PaymentHistoryDTO paymentPage = mapper.paymentPage();
+    public List<UserDTO>  paymentPage() throws PaymentPageException {
+        List<UserDTO> paymentPage = mapper.user();
 
-        if(!(paymentPage == null)){
+        if((paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");
         }
+        System.out.println("paymentPage = " + paymentPage);
+
         return paymentPage;
     }
 
+    @Override
+    public MemberDTO member() throws MemberOrderPageException {
+        MemberDTO member = mapper.member();
 
-//    결제 취소
+        if(member == null){
+            throw new MemberOrderPageException("잘못 입력 하셨습니다");
+        }
+
+        System.out.println("member = " + member);
+
+        return member;
+    }
+
+
+    //    결제 취소
 
 
 
