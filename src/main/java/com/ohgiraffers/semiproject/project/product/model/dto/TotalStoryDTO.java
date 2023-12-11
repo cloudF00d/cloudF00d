@@ -18,5 +18,4 @@ public class TotalStoryDTO {
     private ProjectUserDTO projectUserDTO;
 
 
-
 }
