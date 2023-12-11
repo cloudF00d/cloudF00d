@@ -33,7 +33,7 @@ public class OrderController {
 //                                  @ModelAttribute PaymentHistoryDTO paymentHistory//
                                    Model model,
                                     @RequestParam int no
-//                                  @RequestParam int totalPrice, //쿠폰 적용 금액
+//                                  @RequestParam int totalPrice, //쿠폰 적용 금액//
 //                                  @RequestParam int cost, //택배비
 //                                  @RequestParam String firstname, //성
 //                                  @RequestParam String lastname, //이름
