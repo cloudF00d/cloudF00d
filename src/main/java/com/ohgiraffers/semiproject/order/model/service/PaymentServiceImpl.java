@@ -4,8 +4,11 @@ package com.ohgiraffers.semiproject.order.model.service;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.order.model.dao.PaymentMapper;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
+import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -24,12 +27,14 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 
-    public PaymentHistoryDTO paymentPage() throws PaymentPageException {
-        PaymentHistoryDTO paymentPage = mapper.paymentPage();
+    public List<UserDTO>  paymentPage() throws PaymentPageException {
+        List<UserDTO> paymentPage = mapper.user();
 
         if((paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");
         }
+        System.out.println("paymentPage = " + paymentPage);
+
         return paymentPage;
     }
 

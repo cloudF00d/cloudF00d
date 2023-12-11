@@ -146,6 +146,7 @@
 #body {
     display: flex;
     justify-content: space-between;
+    height: 1000px;
     background-color: white;
 }
 

@@ -26,7 +26,11 @@
             </div>
 
             <div class="payment-area">
-                <div class="payment-product">
+
+
+
+                <div class="payment-product" th:each=" product: ${ buypage }">
+
                     <h4>결제상품</h4>
                     <div style="float: left;">
                         <a th:href="@{/product/productStory}"><img
@@ -34,13 +38,13 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name">결제할 음식 이름</span>
-                        <span type="price" class="menu-price">30,000won</span>
+                        <span class="menu-name" name="menu" th:text="${product.projectTitle }"></span>
+                        <span type="price" class="menu-price" name="price" th:text="|${product.price }won|"></span>
                     </div>
 
 
                     <div id="counter-container">
-                        <div id="counter-controls">
+                        <div id="counter-controls" name="count">
                             <button class="btn" onclick="decrease(1)">-</button>
                             <span id="counter-value1">1</span>
                             <button class="btn" onclick="increase(1)">+</button>
@@ -50,30 +54,7 @@
                     </div>
 
                 </div>
-                <div class="payment-product">
 
-                    <div style="float: left;">
-                        <a th:href="@{/product/productStory}"><img
-                                src="/images/minicon/good.png" width="60px" height="60px"></a>
-                    </div>
-
-                    <div class="menu-item">
-                        <span class="menu-name">결제할 음식 이름</span>
-                        <span type="price" class="menu-price">30,000won</span>
-                    </div>
-
-
-                    <div id="counter-container">
-                        <div id="counter-controls">
-                            <button class="btn" onclick="decrease(2)">-</button>
-                            <span id="counter-value2">1</span>
-                            <button class="btn" onclick="increase(2)">+</button>
-                        </div>
-                        <!-- 휴지통버튼 -->
-                        <button class="trash-btn"></button>
-                    </div>
-
-                </div>
             </div>
 
 
@@ -81,31 +62,41 @@
 
             <div class="bilge">
 
-                <form action="search" th:action="@{order/buypage}" method="post">
+
                     <div class="coupon-action">
                         
                         <div>
                             <div>할인쿠폰</div>
-                          <input type="text" name="적용하기" required>&nbsp; 
+                          <input type="text"  name="적용하기" required>&nbsp;
                             <!-- <input type="submit" value="적용하기">  -->
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <div class="coupon-btn">
-                            <button type="submit">적용하기</button>
-                        </div>
+                        <form action="search" th:action="@{#}" method="post">
+<!--                            <div class="coupon-btn">-->
+
+
+                                <button type="submit" name="coupon1" id="coupon" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
+
+
+                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>
+<!--                            </div>-->
+                        </form>
 
                     </div>
 
 
 
 
-                <div class="total-product-amount">
+                <div class="total-product-amount" >
                     <span class="total-amount">상품 전체금액</span>
-                    <span type="price" class="total-price">30,000won</span>
+                    <span type="price" class="total-price" name="total">30000</span>
                 </div>
                 <div class="apply-coupon">
                     <span class="total-amount">쿠폰 적용금액</span>
-                    <span type="price" class="totalPrice">23,000won</span>
+                    <span type="text" class="totalPrice" th:if="${coupon == 'Y'}" >3000</span>
+                    <span type="text" class="totalPrice" th:unless="${coupon1 == 'Y'}" >0</span>
+
+<!--                    th:if="${buypage[0].coupon == 'Y'}"-->
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
@@ -115,12 +106,13 @@
                     <span class="gun-cost">총금액</span>
                     <span type="price" class="gun-won">26,000won</span>
                 </div>
-                </form>
 
             </div>
-            <a th:href="@{/order/buyok}" class="payment-con">
+
+            <a th:onclick="|location.href='@{/order/buyok}'|" class="payment-con">
                 <button class="payment" type="button">결제</button>
             </a>
+
         </div>
 
 
@@ -166,7 +158,6 @@
             <div class="void"></div>
 
         <div class="order-details-con">
-
         
             <div class="order-details">
                 <h4>주문 상세정보</h4>
@@ -188,6 +179,7 @@
                     <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
                 </div>
             </div>
+
         </div>
         </div>
     </div>

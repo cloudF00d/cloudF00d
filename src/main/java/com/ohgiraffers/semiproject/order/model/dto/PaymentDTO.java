@@ -77,4 +77,16 @@ public class PaymentDTO {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentDTO{" +
+                "code=" + code +
+                ", amount=" + amount +
+                ", method='" + method + '\'' +
+                ", time=" + time +
+                ", deliverCode=" + deliverCode +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
