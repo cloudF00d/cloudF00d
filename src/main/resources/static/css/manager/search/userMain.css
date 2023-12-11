@@ -66,6 +66,8 @@ table {
     border-collapse: collapse; /* 테이블 셀 경계를 합침 */
     width: 100%; /* 테이블이 부모 요소에 가득 차도록 함 */
     border-spacing: 10px;
+    height: fit-content;
+
 }
 
 th, td {
@@ -371,6 +373,8 @@ td a{
     
         /* 음영 효과 설정 */
     /* box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1); */
+
+    /* 추가된 부분 */
 }
 
 .right {
