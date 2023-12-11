@@ -43,6 +43,7 @@ public class SecurityConfig {
 //                    auth.requestMatchers("/*", "/member/*").permitAll();// 모든 리소스를 권한 없이 사용가능
 //                    auth.anyRequest().authenticated();
                     auth.requestMatchers("/**").permitAll();
+                    auth.anyRequest().authenticated();
                 })
                 // 로그인 설정
                 .formLogin(login -> {

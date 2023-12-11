@@ -24,10 +24,9 @@ spring:
     cache: false
     check-template-location: true
 
-    logging:
-      level:
-        root: info
-
+logging:
+  level:
+    root: info
 
 mybatis:
   # mapper.xml location Setting
@@ -36,3 +35,6 @@ mybatis:
   type-aliases-package: com.ohgiraffers.semiproject
   configuration:
     map-underscore-to-camel-case: true
+
+
+
