@@ -36,4 +36,8 @@ public interface SearchUserMapper {
     List<UserDTO> findAllSeller(SelectCriteria selectCriteria);
 
     int selectTotalSellerCount(Map<String, String> searchMap);
+
+    PrivateBusinessDTO companyInfo(Long no);
+
+    List<UserReportHistoryDTO> findAllComplaint();
 }

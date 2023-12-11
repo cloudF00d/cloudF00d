@@ -22,6 +22,7 @@ public class SelectCriteria {
     private String nation1;
     private String nation2;
     private String nation3;
+    private String authority;
     private String searchValue;			//검색어
 
 
