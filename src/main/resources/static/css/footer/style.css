@@ -46,7 +46,7 @@
 .footer-down {
     color: rgba(185.00000417232513, 185.00000417232513, 185.00000417232513, 1);
     width: 500px;
-    height: 30px;
+    height:max-content;
     position: absolute;
     top: 130px;
     font-family: Poppins;

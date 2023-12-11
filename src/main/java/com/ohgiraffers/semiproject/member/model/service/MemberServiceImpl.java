@@ -22,9 +22,11 @@ public class MemberServiceImpl implements MemberService {
         this.mapper = mapper;
     }
 
+
+
     @Override
     @Transactional
-    public void joinMember(MemberAndAuthorityDTO member) throws MemberJoinException {
+    public void joinMember(MemberDTO member) throws MemberJoinException {
 
         log.info("[MemberService] Insert Member : " + member);
         int result = mapper.insertMember(member);

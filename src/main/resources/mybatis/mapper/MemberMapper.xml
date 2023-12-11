@@ -33,7 +33,7 @@
 
 
 
-    <select id="selectMemberById" resultMap="MemberAndAuthorityResultMap">
+    <select id="selectMemberById" resultType="string">
         SELECT
             A.USER_ID
         FROM tbl_user A
@@ -59,6 +59,7 @@
             , C.AUTHORITY_CODE
             , C.AUTHORITY_DESCRIPTION
 
+
         FROM tbl_user A
         JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         JOIN tbl_authority C ON (B.AUTHORITY_CODE = C.AUTHORITY_CODE)
@@ -66,28 +67,28 @@
           AND A.USER_ID = #{ userId }
     </select>
 
-<!--    <insert id="insertMember" parameterType="MemberDTO">-->
-<!--        INSERT-->
-<!--        INTO tbl_user       (-->
-<!--                                USER_NAME-->
-<!--                              , USER_ID-->
-<!--                              , PASSWORD-->
-<!--                              , EMAIL-->
-<!--                              , ADDRESS-->
-<!--                              , PHONE-->
-<!--                              , DATE_BIRTH-->
+    <insert id="insertMember" parameterType="com.ohgiraffers.semiproject.member.model.dto.MemberDTO">
+        INSERT
+        INTO tbl_user       (
+                                USER_NAME
+                              , USER_ID
+                              , EMAIL
+                              , PASSWORD
+                              , ADDRESS
+                              , PHONE
+                              , DATE_BIRTH
 
-<!--        )-->
-<!--        VALUES  (-->
-<!--                    #{userName}-->
-<!--                , #{userId}-->
-<!--                , #{userPwd}-->
-<!--                , #{email}-->
-<!--                , #{address}-->
-<!--                , #{phone}-->
-<!--                , #{dateBirth}-->
-<!--                )-->
-<!--    </insert>-->
+        )
+        VALUES  (
+                    #{userName}
+                , #{userId}
+                , #{email}
+                , #{userPwd}
+                , #{address}
+                , #{phone}
+                , #{dateBirth}
+                )
+    </insert>
 
 <!--    <select id="selectEncryptedPwd" resultType="string">-->
 <!--        SELECT-->
