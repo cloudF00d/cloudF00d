@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.order.controller;
 
+import com.ohgiraffers.semiproject.common.exception.payment.MemberOrderPageException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
@@ -62,7 +63,7 @@ public class OrderController {
 //    member.setAddress(address);
 
 
-//    return "/content/order/buypage";
+   return "/content/order/buypage";
   }
 
 
