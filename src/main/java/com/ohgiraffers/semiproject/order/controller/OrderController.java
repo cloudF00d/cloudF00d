@@ -38,11 +38,11 @@ public class OrderController {
   @GetMapping("buypage")
   public String paymentPage(
           Model model,
-          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
 //          @RequestParam String firstname,
 //          @RequestParam String lastname,
-          @RequestParam String adrs,
-          @RequestParam String detailedAdrs
+//          @RequestParam String adrs,
+//          @RequestParam String detailedAdrs
 
           ) throws PaymentPageException, MemberOrderPageException {
 
@@ -55,12 +55,12 @@ public class OrderController {
     model.addAttribute("buypage",paymentHistory);
 
 
-    MemberDTO member = paymentService.member();
+//    MemberDTO member = paymentService.member();
 //    model.addAttribute("buyepage",member);
 //    String name = firstname + "$" + lastname;
 //    member.setName(name);
-    String address = adrs + "$" + detailedAdrs;
-    member.setAddress(address);
+//    String address = adrs + "$" + detailedAdrs;
+//    member.setAddress(address);
 
 
 

@@ -75,7 +75,7 @@
 <!--                            <div class="coupon-btn">-->
 
 
-                                <button type="submit" name="coupon1" id="coupon" onclick="" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
+                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
 
 
                                 <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>

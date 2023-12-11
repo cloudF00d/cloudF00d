@@ -8,6 +8,19 @@ window.onload = function() {
         }
     }
 
+
+
+    if(document.getElementById("buypage")) {
+        const $buypage = document.getElementById("buypage");
+        $buypage.onclick = function() {
+            location.href = "/order/buypage";
+        }
+    }
+
+
+
+
+
     if(document.getElementById("duplicationCheck")) {
 
         const $duplication = document.getElementById("duplicationCheck");
