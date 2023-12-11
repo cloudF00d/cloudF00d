@@ -1,9 +1,11 @@
 package com.ohgiraffers.semiproject.manager.search.model.dao;
 
+import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.search.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface SearchUserMapper {
@@ -16,18 +18,18 @@ public interface SearchUserMapper {
     * 5. 정지할 수 있다?
     * */
 
-    List<UserDTO> findAllUser();
+    List<UserDTO> findAllUser(SelectCriteria selectCriteria);
 
     List<PaymentHistoryDTO> userDetail();
 
-    List<CartDTO> userBuy(int no);
+    List<CartDTO> userBuy(Long no);
 
-    List<UserReportHistoryDTO> userReport(int no);
+    List<UserReportHistoryDTO> userReport(Long no);
 
-    List<ProjectDTO> userFundingProject(int no);
+    List<ProjectDTO> userFundingProject(Long no);
 
-    UserDTO findOneUser(int no);
+    UserDTO findOneUser(Long no);
 
 
-
+    int selectTotalCount(Map<String, String> searchMap);
 }
