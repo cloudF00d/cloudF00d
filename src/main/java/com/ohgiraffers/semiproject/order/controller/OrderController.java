@@ -1,8 +1,10 @@
 package com.ohgiraffers.semiproject.order.controller;
 
+import com.ohgiraffers.semiproject.common.exception.payment.MemberOrderPageException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
+import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
 import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import com.ohgiraffers.semiproject.order.model.service.PaymentService;
@@ -36,19 +38,30 @@ public class OrderController {
   @GetMapping("buypage")
   public String paymentPage(
           Model model,
-          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+//          @RequestParam String firstname,
+//          @RequestParam String lastname,
+          @RequestParam String adrs,
+          @RequestParam String detailedAdrs
 
-          ) throws PaymentPageException {
+          ) throws PaymentPageException, MemberOrderPageException {
 
 
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
 
 //    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO.getAuthorityDTO().getAuthorityName());
-
-
     List<UserDTO> paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
+
+
+    MemberDTO member = paymentService.member();
+//    model.addAttribute("buyepage",member);
+//    String name = firstname + "$" + lastname;
+//    member.setName(name);
+    String address = adrs + "$" + detailedAdrs;
+    member.setAddress(address);
+
 
 
     return "/content/order/buypage";

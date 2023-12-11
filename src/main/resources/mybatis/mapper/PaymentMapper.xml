@@ -142,6 +142,27 @@
 
 
 
+    <insert id="member" parameterType="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
+        INSERT /* com.ohgiraffers.thymeleafspringboot.member.dao.MemberMapper#insertMember() */
+        INTO TBL_MEMBER       (
+                                USER_ID
+                              , PHONE
+                              , EMAIL
+                              , ADDRESS
+        )
+        VALUES  (
+                    #{ id }
+                , #{ phone }
+                , #{ email }
+                , #{address}
+                )
+    </insert>
+
+
+
+
+
+
     <select id="paymentPage" resultMap="PaymentHistoryResultMap">
         SELECT
             B.TOTAL_AMOUNT,
