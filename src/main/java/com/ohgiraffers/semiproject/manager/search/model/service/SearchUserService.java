@@ -56,4 +56,18 @@ public class SearchUserService implements SearchUserServiceInter{
 
         return result;
     }
+
+    public List<UserDTO> findAllSeller(SelectCriteria selectCriteria) {
+
+        List<UserDTO> userDTOS = Mapper.findAllSeller(selectCriteria);
+
+        return userDTOS;
+    }
+
+    public int selectTotalSellerCount(Map<String, String> searchMap) {
+
+        int result = Mapper.selectTotalSellerCount(searchMap);
+
+        return result;
+    }
 }

@@ -32,4 +32,8 @@ public interface SearchUserMapper {
 
 
     int selectTotalCount(Map<String, String> searchMap);
+
+    List<UserDTO> findAllSeller(SelectCriteria selectCriteria);
+
+    int selectTotalSellerCount(Map<String, String> searchMap);
 }

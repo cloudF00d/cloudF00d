@@ -137,6 +137,77 @@
                 </table>
             </div>
 
+            <div class="searchDetail1">
+                <strong><h4>회사정보</h4></strong>
+                <table>
+
+                    <tr>
+                        <th>상호/법인명</th>
+                        <th>업종</th>
+                        <th>기업형태</th>
+                        <th>설립일</th>
+                        <th>홈페이지 주소</th>
+                        <th>소재지</th>
+                        <th>대표 전화번호</th>
+                        <th>사업자 등록번호</th>
+                    </tr>
+
+                    <tr>
+                        <td>(주)감귤농장</td>
+                        <td>도소매</td>
+                        <td>개인기업</td>
+                        <td>2022.03.03</td>
+                        <td id="link" onclick="location.href='http://www.naver.com'">www.naver.com</td>
+                        <td>서울 성동구 행당동 00오피스텔 00동 00호</td>
+                        <td>010-1234-1234</td>
+                        <td>12344321123</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="buyList"> <strong><h4>판매내역</h4></strong>
+
+                <table>
+
+                    <tr>
+                        <th>순번</th>
+                        <th>프로젝트 명</th>
+                        <th>펀딩기간</th>
+                        <th>펀딩결과</th>
+                    </tr>
+
+                    <tr th:each="funding : ${userFunding}">
+                        <td th:text="${funding.projectCode}"></td>
+                        <td th:text="${funding.projectTitle}"></td>
+                        <td th:text="|${funding.projectStartDate} ~ ${funding.projectEndDate}|"></td>
+                        <td th:text="${funding.achievementStatus}"><span class="ing"></span></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="buyList">
+                <strong><h4>경고 내역</h4></strong>
+
+                <table>
+
+                    <tr>
+                        <th>순번</th>
+                        <th>제목</th>
+                        <th>신고 접수일</th>
+                        <th>상세 사유</th>
+                        <th>신고자</th>
+                    </tr>
+
+                    <tr th:each="report : ${userReport}">
+                        <td th:text="${report.creationNumber}"></td>
+                        <td th:text="${report.title}"></td>
+                        <td th:text="${report.creationDate}"></td>
+                        <td th:text="${report.content}"></td>
+                        <td th:text="${report.reporter}"></td>
+                    </tr>
+                </table>
+            </div>
 
 
             <div th:if="${userBuy != null}">
