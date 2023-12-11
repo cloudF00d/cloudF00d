@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("/member")
 @Slf4j
 public class MemberController {
 
@@ -69,6 +69,8 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+
 
     @PostMapping("idDupCheck")
     public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member) {

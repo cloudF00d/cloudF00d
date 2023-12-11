@@ -162,12 +162,18 @@ td a{
     margin-top: 4%;
 
     
-    flex-basis: 900px; 
+    flex-basis: 1200px;
     /* 가운데 영역의 너비를 50%로 설정 */
     flex-shrink: 0;
     
         /* 음영 효과 설정 */
     /* box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1); */
+    /* 추가된 부분 */
+    overflow-y: auto;
+    /* 내용이 middle 영역을 벗어나면 스크롤이 생기도록 함 */
+    overflow-x: hidden;
+    max-height: 900px;
+    /* 화면 높이에서 푸터와 여백을 제외한 크기로 제한 */
 }
 
 .right {

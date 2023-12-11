@@ -69,7 +69,54 @@
             A.COUPON_STATUS
         FROM
             TBL_USER A
+        <if test="nation3!=null and !nation3.equals('')">
+        <where>
 
+            <if test="nation3 == 'name'">
+                A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="nation3 == 'id'">
+                A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="nation3 == 'password'">
+                A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="nation3 == 'phone'">
+                A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="nation3 == 'birth'">
+                A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            <if test="nation3 == 'active'">
+                A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+
+        </where>
+        </if>
+
+        ORDER BY
+        <if test="nation1 == 'name' or nation1==null or nation1.equals('')">
+            A.USER_NAME
+        </if>
+        <if test="nation1 == 'id'">
+            A.USER_ID
+        </if>
+        <if test="nation1 == 'password'">
+            A.PASSWORD
+        </if>
+        <if test="nation1 == 'phone'">
+            A.PHONE
+        </if>
+        <if test="nation1 == 'birth'">
+            A.DATE_BIRTH
+        </if>
+        <if test="nation2 == 'acs' or nation2==null or nation2.equals('')">
+            ASC
+        </if>
+        <if test="nation2 == 'decs'">
+            DESC
+        </if>
+        LIMIT  #{ startRow }, #{limit}
     </select>
 
         <select id="userBuy" parameterType="long" resultMap="cartResultMap">
@@ -135,5 +182,128 @@
 
     </select>
 
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+            COUNT(*)
+--         (*) : 행의 수를 카운트한다.
+        FROM TBL_USER A
+        <if test="nation3!=null and !nation3.equals('')">
+        <where>
+        <if test="nation3 == 'name'">
+            A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        <if test="nation3 == 'id'">
+            A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        <if test="nation3 == 'password'">
+            A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        <if test="nation3 == 'phone'">
+            A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        <if test="nation3 == 'birth'">
+            A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        <if test="nation3 == 'active'">
+            A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+        </if>
+        </where>
+        </if>
+    </select>
+
+    <select id="findAllSeller" resultMap="userResultMap">
+        SELECT
+        A.USER_CODE,
+        A.USER_ID,
+        A.PASSWORD,
+        A.EMAIL,
+        A.REGISTRATION_DATE,
+        A.ADDRESS,
+        A.USER_NAME,
+        A.DATE_BIRTH,
+        A.PHONE,
+        A.ACTIVITY_STATUS,
+        A.REPORT_COUNT,
+        A.COUPON_STATUS
+        FROM
+        TBL_USER A
+        join TBL_AUTHORITY_LIST B ON (A.USER_CODE = B.USER_CODE)
+        WHERE
+            B.AUTHORITY_CODE = 3
+        <if test="nation3!=null and !nation3.equals('')">
+
+                <if test="nation3 == 'name'">
+                    AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'id'">
+                    AND A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'password'">
+                    AND A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'phone'">
+                    AND A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'birth'">
+                    AND A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'active'">
+                    AND A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+
+        </if>
+
+        ORDER BY
+        <if test="nation1 == 'name' or nation1==null or nation1.equals('')">
+            A.USER_NAME
+        </if>
+        <if test="nation1 == 'id'">
+            A.USER_ID
+        </if>
+        <if test="nation1 == 'password'">
+            A.PASSWORD
+        </if>
+        <if test="nation1 == 'phone'">
+            A.PHONE
+        </if>
+        <if test="nation1 == 'birth'">
+            A.DATE_BIRTH
+        </if>
+        <if test="nation2 == 'acs' or nation2==null or nation2.equals('')">
+            ASC
+        </if>
+        <if test="nation2 == 'decs'">
+            DESC
+        </if>
+        LIMIT  #{ startRow }, 3
+    </select>
+
+    <select id="selectTotalSellerCount"  resultType="_int" parameterType="hashmap">
+        SELECT
+        COUNT(*)
+        --         (*) : 행의 수를 카운트한다.
+        FROM TBL_USER A
+        join TBL_AUTHORITY_LIST B ON (A.USER_CODE = B.USER_CODE)
+        WHERE
+        B.AUTHORITY_CODE = 3
+                <if test="nation3 == 'name'">
+                    AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'id'">
+                    AND A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'password'">
+                    AND A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'phone'">
+                    AND A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'birth'">
+                    AND A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'active'">
+                    AND A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+    </select>
 
 </mapper>
