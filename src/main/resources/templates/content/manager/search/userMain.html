@@ -69,7 +69,24 @@
                         </select>
                     </div>
 
+                    <div class="searchleft2">
+                        <select name="authority" id="authority">
+<!--                            <th:block th:if="${selectCriteria.getNation2()} == 'acs'">-->
+<!--                                <option value="acs">오름차순(기본)</option>-->
+<!--                            </th:block>-->
+<!--                            <th:block th:if="${selectCriteria.getNation2()} == 'decs'">-->
+<!--                                <option value="decs">내림차순</option>-->
+<!--                            </th:block>-->
+                            <option value="all">전체</option>
+                            <option value="user">사용자</option>
+                            <option value="seller">판매자</option>
+                            <option value="complaint">신고자</option>
+                        </select>
+                    </div>
+
                     <button type="submit">설정</button>
+
+
 
                     <!--                오른쪽 박스-->
                     <div class="searchright">
@@ -167,9 +184,16 @@
                     <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
                         <button class="page-link"
                                 th:text="${ page }"
-                                th:onclick="'location.href=\'/manager/search/userMain?currentPage='+ @{${page}} + '\''"
+                                th:onclick="'location.href=\'/manager/search/userMain?currentPage='
+                                + @{${page}}
+                                + '\''"
                                 th:disabled="${ selectCriteria.pageNo eq page }">
                         </button>
+<!--                        url 쓰려다가 실패한거-->
+<!--                        ,'nation1='-->
+<!--                        + @{${selectCriteria.getNation1()}}-->
+<!--                        , 'nation2='-->
+<!--                        + @{${selectCriteria.getNation2()}}-->
                     </th:block>
 
                     <!-- 다음 페이지 버튼 -->

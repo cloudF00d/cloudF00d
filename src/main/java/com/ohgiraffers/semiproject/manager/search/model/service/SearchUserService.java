@@ -2,10 +2,7 @@ package com.ohgiraffers.semiproject.manager.search.model.service;
 
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper;
-import com.ohgiraffers.semiproject.manager.search.model.dto.CartDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserReportHistoryDTO;
+import com.ohgiraffers.semiproject.manager.search.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,5 +66,18 @@ public class SearchUserService implements SearchUserServiceInter{
         int result = Mapper.selectTotalSellerCount(searchMap);
 
         return result;
+    }
+
+    public PrivateBusinessDTO companyInfo(Long no) {
+
+        PrivateBusinessDTO userDTO = Mapper.companyInfo(no);
+
+        return userDTO;
+    }
+
+    public List<UserReportHistoryDTO> findAllComplaint() {
+        List<UserReportHistoryDTO> userReportHistoryDTOS = Mapper.findAllComplaint();
+
+        return userReportHistoryDTOS;
     }
 }

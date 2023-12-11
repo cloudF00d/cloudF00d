@@ -144,7 +144,6 @@
                     <tr>
                         <th>상호/법인명</th>
                         <th>업종</th>
-                        <th>기업형태</th>
                         <th>설립일</th>
                         <th>홈페이지 주소</th>
                         <th>소재지</th>
@@ -153,14 +152,13 @@
                     </tr>
 
                     <tr>
-                        <td>(주)감귤농장</td>
-                        <td>도소매</td>
-                        <td>개인기업</td>
-                        <td>2022.03.03</td>
-                        <td id="link" onclick="location.href='http://www.naver.com'">www.naver.com</td>
-                        <td>서울 성동구 행당동 00오피스텔 00동 00호</td>
-                        <td>010-1234-1234</td>
-                        <td>12344321123</td>
+                        <td th:text="${companyInfo.businessName}"></td>
+                        <td th:text="${companyInfo.industry}"></td>
+                        <td th:text="${companyInfo.establishmentDate}"></td>
+                        <td th:text="${companyInfo.homepage}"></td>
+                        <td th:text="${companyInfo.location}"></td>
+                        <td th:text="${companyInfo.businessPhone}"></td>
+                        <td th:text="${companyInfo.businessLicenseNumber}"></td>
                     </tr>
 
                 </table>
@@ -196,7 +194,7 @@
                         <th>제목</th>
                         <th>신고 접수일</th>
                         <th>상세 사유</th>
-                        <th>신고자</th>
+                        <th>신고자 코드</th>
                     </tr>
 
                     <tr th:each="report : ${userReport}">
