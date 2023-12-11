@@ -113,6 +113,7 @@ public class ManagerSearchController {
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
         mv.addObject("searchUser", userDTOS);
         mv.setViewName("/content/manager/search/userMain");
+        mv.setViewName("/content/manager/search/sellerMain");
 
         return mv;
 

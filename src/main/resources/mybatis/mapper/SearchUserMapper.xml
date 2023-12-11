@@ -18,6 +18,7 @@
         <result property="activityStatus" column="ACTIVITY_STATUS"/>
         <result property="reportCount" column="REPORT_COUNT"/>
         <result property="couponStatus" column="COUPON_STATUS"/>
+        <result property="authorityCode" column="AUTHORITY_CODE"/>
     </resultMap>
 
         <resultMap id="cartResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.CartDTO">
@@ -66,9 +67,11 @@
             A.PHONE,
             A.ACTIVITY_STATUS,
             A.REPORT_COUNT,
-            A.COUPON_STATUS
+            A.COUPON_STATUS,
+            B.AUTHORITY_CODE
         FROM
             TBL_USER A
+        join TBL_AUTHORITY_LIST B ON (A.USER_CODE = B.USER_CODE)
         <if test="nation3!=null and !nation3.equals('')">
         <where>
 

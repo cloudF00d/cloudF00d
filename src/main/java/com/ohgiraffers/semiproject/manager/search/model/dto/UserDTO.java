@@ -23,5 +23,6 @@ public class UserDTO {
     private char activityStatus;
     private int reportCount;
     private char couponStatus;
+    private int authorityCode;
 
 }

@@ -77,42 +77,21 @@
                         <th>생년월일</th>
                         <th>활동상태</th>
                     </tr>
-                    <tr id="link" onclick="location='sellerDetail'">
+                    <th:block
+                            th:each="search : ${searchUser}"
+                            th:if="${search.authorityCode} == 2">
+                    <tr id="link"
+                        th:onclick="'location.href=\'/manager/search/sellerDetail?no='+ @{${search.userCode}} + '\''"
+                    >
                         <td id="new">new</td>
-                        <td>홍길*</td>
-                        <td>123qwe</td>
-                        <td>$$sdfw55</td>
-                        <td>010-0000-0000</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="ing">활동</span></td>
+                        <td th:text="${search.userName}"></td>
+                        <td th:text="${search.userId}"></td>
+                        <td th:text="${search.password}"></td>
+                        <td th:text="${search.phone}"></td>
+                        <td th:text="${search.dateBirth}"></td>
+                        <td th:text="${search.activityStatus}"><span class="ing">활동</span></td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td id="link" onclick="location='./sellerDetail.html'">홍길*</td>
-                        <td>123qwe</td>
-                        <td>$$sdfw55</td>
-                        <td>010-0000-0000</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="ing">활동</span></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td id="link" onclick="location=''">홍길*</td>
-                        <td>123qwe</td>
-                        <td>$$sdfw55</td>
-                        <td>010-0000-0000</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="close">휴면</span></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td id="link" onclick="location=''">홍길*</td>
-                        <td>123qwe</td>
-                        <td>$$sdfw55</td>
-                        <td>010-0000-0000</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="ing">활동</span></td>
-                    </tr>
+                    </th:block>
                 </table>
             </div>
             <div class="pagination">
