@@ -1,5 +1,8 @@
 package com.ohgiraffers.semiproject.project.product.controller;
 
+import com.ohgiraffers.semiproject.common.exception.project.StoryRegistException;
+import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
+import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
 import com.ohgiraffers.semiproject.project.product.model.service.ProductService;
 import com.ohgiraffers.semiproject.project.product.model.service.ProductServiceimpl;
@@ -24,11 +27,7 @@ import java.util.List;
 @Slf4j
 public class ProductController {
 
-
-
-
     private final ProductService productService;
-
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -37,7 +36,7 @@ public class ProductController {
 //    public
 
     @GetMapping("productStory")
-    public ModelAndView productStory(ModelAndView mv) {
+    public ModelAndView productStory(ModelAndView mv)  {
 
         log.info("");
         log.info("");
@@ -45,10 +44,14 @@ public class ProductController {
 
         TotalStoryDTO thumbnailList = productService.totalStoryList();
 
-        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
+        List<ProjectOptionDTO> projectOption = productService.optionList();
+        ProjectFileDTO projectFile = productService.projectimage();
 
+        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
-        log.info("[ThumbnailController] ========================================================= end"+thumbnailList);
+        mv.addObject("projectOption", projectOption);
+        mv.addObject("projectFile",projectFile);
+        log.info("[ThumbnailController] ========================================================= end");
 
         mv.setViewName("content/project/product/productStory");
 

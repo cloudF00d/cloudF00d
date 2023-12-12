@@ -2,7 +2,6 @@ package com.ohgiraffers.semiproject.project.product.model.dto;
 
 import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -11,10 +10,10 @@ import java.util.List;
 @ToString
 public class TotalStoryDTO {
     private ProjectDTO projectDTO;
-    private List<ProjectFileDTO> projectFileDTO;
+    private ProjectFileDTO projectFileDTO;
     private ProjectOptionDTO projectOptionDTO;
     private PrivateBusinessDTO privateBusinessDTO;
-    private List<ProfileImageDTO> profileImageDTO;
+    private ProfileImageDTO profileImageDTO;
     private ProjectUserDTO projectUserDTO;
 
 
