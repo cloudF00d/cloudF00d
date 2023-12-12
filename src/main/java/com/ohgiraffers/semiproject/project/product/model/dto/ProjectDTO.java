@@ -1,6 +1,6 @@
 package com.ohgiraffers.semiproject.project.product.model.dto;
 
-import com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO;
+import com.ohgiraffers.semiproject.manager.model.dto.UserDTO;
 import lombok.*;
 
 import java.util.Date;
