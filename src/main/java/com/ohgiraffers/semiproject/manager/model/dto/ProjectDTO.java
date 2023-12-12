@@ -1,4 +1,4 @@
-package com.ohgiraffers.semiproject.manager.search.model.dto;
+package com.ohgiraffers.semiproject.manager.model.dto;
 
 import lombok.*;
 
@@ -25,4 +25,5 @@ public class ProjectDTO {
     private char achievementStatus;
     private Date projectStartDate;
     private String progressStatus;
+    private Date submissionDate;
 }

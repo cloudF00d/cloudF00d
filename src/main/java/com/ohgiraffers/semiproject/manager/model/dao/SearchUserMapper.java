@@ -1,7 +1,8 @@
-package com.ohgiraffers.semiproject.manager.search.model.dao;
+package com.ohgiraffers.semiproject.manager.model.dao;
 
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
-import com.ohgiraffers.semiproject.manager.search.model.dto.*;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

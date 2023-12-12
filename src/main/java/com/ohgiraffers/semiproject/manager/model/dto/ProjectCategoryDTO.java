@@ -1,4 +1,4 @@
-package com.ohgiraffers.semiproject.manager.search.model.dto;
+package com.ohgiraffers.semiproject.manager.model.dto;
 
 import lombok.*;
 

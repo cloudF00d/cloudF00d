@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper">
+<mapper namespace="com.ohgiraffers.semiproject.manager.model.dao.SearchUserMapper">
 
 
-    <resultMap id="userResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.UserDTO">
+    <resultMap id="userResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.UserDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
         <result property="password" column="PASSWORD"/>
@@ -20,7 +20,7 @@
         <result property="couponStatus" column="COUPON_STATUS"/>
     </resultMap>
 
-    <resultMap id="businessResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.PrivateBusinessDTO">
+    <resultMap id="businessResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO">
         <id property="businessCode" column="BUSINESS_CODE"/>
         <result property="businessName" column="BUSINESS_NAME"/>
         <result property="industry" column="INDUSTRY"/>
@@ -33,7 +33,7 @@
         <result property="businessEmail" column="BUSINESS_EMAIL"/>
     </resultMap>
 
-    <resultMap id="cartResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.CartDTO">
+    <resultMap id="cartResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.CartDTO">
         <id property="cartCode" column="CART_CODE"/>
         <result property="userCode" column="USER_CODE"/>
         <result property="optionCode" column="OPTION_CODE"/>
@@ -42,7 +42,7 @@
     </resultMap>
 
     <resultMap id="userReportHistoryResultMap"
-               type="com.ohgiraffers.semiproject.manager.search.model.dto.UserReportHistoryDTO">
+               type="com.ohgiraffers.semiproject.manager.model.dto.UserReportHistoryDTO">
         <id property="creationNumber" column="CREATION_NUMBER"/>
         <result property="creationDate" column="CREATION_DATE"/>
         <result property="reporter" column="REPORTER"/>
@@ -51,7 +51,7 @@
         <result property="reportedPerson" column="REPORTED_PERSON"/>
     </resultMap>
 
-    <resultMap id="projectResultMap" type="com.ohgiraffers.semiproject.manager.search.model.dto.ProjectDTO">
+    <resultMap id="projectResultMap" type="com.ohgiraffers.semiproject.manager.model.dto.ProjectDTO">
         <id property="projectCode" column="PROJECT_CODE"/>
         <result property="projectTitle" column="PROJECT_TITLE"/>
         <result property="projectStartDate" column="PROJECT_START_DATE"/>
@@ -61,7 +61,7 @@
     </resultMap>
 
     <resultMap id="paymentHistoryResultMap"
-               type="com.ohgiraffers.semiproject.manager.search.model.dto.PaymentHistoryDTO">
+               type="com.ohgiraffers.semiproject.manager.model.dto.PaymentHistoryDTO">
         <result property="paymentCode" column="PAYMENT_CODE"/>
         <association property="cartCode" resultMap="cartResultMap"/>
     </resultMap>
@@ -141,10 +141,10 @@
         <if test="nation1 == 'birth'">
             A.DATE_BIRTH
         </if>
-        <if test="nation2 == 'acs' or nation2==null or nation2.equals('')">
+        <if test="nation2 == 'asc' or nation2==null or nation2.equals('')">
             ASC
         </if>
-        <if test="nation2 == 'decs'">
+        <if test="nation2 == 'desc'">
             DESC
         </if>
 

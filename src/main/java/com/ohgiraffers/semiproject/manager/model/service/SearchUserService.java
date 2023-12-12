@@ -1,8 +1,9 @@
-package com.ohgiraffers.semiproject.manager.search.model.service;
+package com.ohgiraffers.semiproject.manager.model.service;
 
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
-import com.ohgiraffers.semiproject.manager.search.model.dao.SearchUserMapper;
-import com.ohgiraffers.semiproject.manager.search.model.dto.*;
+import com.ohgiraffers.semiproject.manager.model.dao.SearchUserMapper;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,11 @@ import java.util.Map;
 @Service
 public class SearchUserService implements SearchUserServiceInter{
 
-    @Autowired
     private SearchUserMapper Mapper;
+
+    public SearchUserService(SearchUserMapper mapper) {
+        Mapper = mapper;
+    }
 
     @Override
     public List<UserDTO> findAllUser(SelectCriteria selectCriteria) {
