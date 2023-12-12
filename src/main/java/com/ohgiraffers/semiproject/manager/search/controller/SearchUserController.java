@@ -131,7 +131,7 @@ public class SearchUserController {
     public ModelAndView userMain(
             @RequestParam(required = false, defaultValue = "name") String nation1, // 정렬 컬럼 선택
             @RequestParam(required = false, defaultValue = "acs") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false) String nation3, // 활동인지 휴면인지 선택
+            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
             @RequestParam(required = false, defaultValue = "all") String authority, // 전체, 사용자, 판매자, 신고자 선택
             @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
@@ -142,6 +142,7 @@ public class SearchUserController {
         System.out.println("nation 1 ==============="+nation1);
         System.out.println("nation 2 ==============="+nation2);
         System.out.println("nation 3 ==============="+nation3);
+        System.out.println("authority ============== " + authority);
         System.out.println("검색어searchValue ================" + searchValue);
 
 
@@ -174,6 +175,8 @@ public class SearchUserController {
             selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount , nation1, nation2, authority );
             // 아니면 선택지가 없는 생성자에 넣어라
         }
+
+        System.out.println("selectCriteria = " + selectCriteria);
 
 
         List<UserDTO> userDTOS = searchUserService.findAllUser(selectCriteria);

@@ -69,14 +69,17 @@
                         </select>
                     </div>
 
-                    <div class="searchleft2">
+                    <div class="searchleft3">
                         <select name="authority" id="authority">
-<!--                            <th:block th:if="${selectCriteria.getNation2()} == 'acs'">-->
-<!--                                <option value="acs">오름차순(기본)</option>-->
-<!--                            </th:block>-->
-<!--                            <th:block th:if="${selectCriteria.getNation2()} == 'decs'">-->
-<!--                                <option value="decs">내림차순</option>-->
-<!--                            </th:block>-->
+                            <th:block th:if="${selectCriteria.getAuthority()} == 'user'">
+                                <option value="user">사용자</option>
+                            </th:block>
+                            <th:block th:if="${selectCriteria.getAuthority()} == 'seller'">
+                                <option value="user">판매자</option>
+                            </th:block>
+                            <th:block th:if="${selectCriteria.getAuthority()} == 'complaint'">
+                                <option value="user">신고자</option>
+                            </th:block>
                             <option value="all">전체</option>
                             <option value="user">사용자</option>
                             <option value="seller">판매자</option>
@@ -96,7 +99,8 @@
                         <!--                        검색어 제출 button-->
                         <select name="nation3" id="nation3">
 
-                            <option value="name">이름(기본)</option>
+                            <option selected>검색컬럼</option>
+                            <option value="name">이름</option>
                             <option value="id">아이디</option>
                             <option value="password">비밀번호</option>
                             <option value="phone">전화번호</option>
@@ -169,12 +173,14 @@
                     <!-- 이전 페이지 버튼 -->
                     <button class="prev"
                             th:onclick="'location.href=\'/manager/search/userMain?currentPage='
-                            + @{${selectCriteria.pageNo - 1}}+ '\''"
+                            + @{${selectCriteria.pageNo - 1}}
+                            +'&nation1='+ @{${selectCriteria.nation1}}
+                            +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority=' + @{${selectCriteria.authority}}
+                            +'&searchValue='+ @{${selectCriteria.searchValue}}
+                            +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == 1}">
-                        <!--                            +'&nation1'+ @{${selectCriteria.getNation1()}}-->
-                        <!--                            +'&nation2'+ @{${selectCriteria.getNation2()}}-->
-                        <!--                            +'&searchValue'+ @{${selectCriteria.searchValue()}}-->
-                        <!--                            +'&nation3'+ @{${selectCriteria.getNation3()}}-->
+
 
 
                         <
@@ -185,8 +191,12 @@
                         <button class="page-link"
                                 th:text="${ page }"
                                 th:onclick="'location.href=\'/manager/search/userMain?currentPage='
-                                + @{${page}}
-                                + '\''"
+                            + @{${page}}
+                            +'&nation1='+ @{${selectCriteria.nation1}}
+                            +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority=' + @{${selectCriteria.authority}}
+                            +'&searchValue='+ @{${selectCriteria.searchValue}}
+                            +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                                 th:disabled="${ selectCriteria.pageNo eq page }">
                         </button>
 <!--                        url 쓰려다가 실패한거-->
@@ -198,7 +208,13 @@
 
                     <!-- 다음 페이지 버튼 -->
                     <button class="prev"
-                            th:onclick="'location.href=\'/manager/search/userMain?currentPage='+ @{${selectCriteria.pageNo + 1}} + '\''"
+                            th:onclick="'location.href=\'/manager/search/userMain?currentPage='
+                            + @{${selectCriteria.pageNo + 1}}
+                            +'&nation1='+ @{${selectCriteria.nation1}}
+                            +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority=' + @{${selectCriteria.authority}}
+                            +'&searchValue='+ @{${selectCriteria.searchValue}}
+                            +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
                     >
                         >

@@ -20,7 +20,11 @@ public class ManagerProjectController {
     @GetMapping("/newDetail")
     public String newDetail(){return "content/manager/project/newDetail";}
     @GetMapping("/newMain")
-    public String newMain(){return "content/manager/project/newMain";}
+    public String newMain(){
+
+
+
+        return "content/manager/project/newMain";}
     @GetMapping("/reDetail")
     public String reDetail(){return "content/manager/project/reDetail";}
     @GetMapping("/reMain")
