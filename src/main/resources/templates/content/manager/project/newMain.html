@@ -73,7 +73,7 @@
                     <div class="searchleft3">
                         <select name="authority" id="authority">
                             <th:block th:if="${selectCriteria.getAuthority()} == 'all'">
-                                <option value="new">전체</option>
+                                <option value="all">전체</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getAuthority()} == 'new'">
                                 <option value="new">신규</option>
@@ -87,7 +87,7 @@
                             <th:block th:if="${selectCriteria.getAuthority()} == 're'">
                                 <option value="re">리펀딩</option>
                             </th:block>
-                            <option value="all">전체</option>
+                            <option value="all" selected>전체</option>
                             <option value="new">신규</option>
                             <option value="decline">반려</option>
                             <option value="complaint">신고</option>
@@ -134,7 +134,7 @@
                     </tr>
                     <tr id="link"
                         th:each="project : ${projectlist}"
-                        th:onclick="'location.href=\'/manager/project/newMain?no='+ ${project.projectCode} + '\''"
+                        th:onclick="'location.href=\'/manager/project/newDetail?no='+ @{${project.projectCode}} + '\''"
                     >
                         <td id="new">new</td>
                         <td th:text="${project.projectCode}"></td>

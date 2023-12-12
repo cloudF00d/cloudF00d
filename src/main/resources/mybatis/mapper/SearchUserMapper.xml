@@ -86,7 +86,7 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
-            <if test="searchValue != null and searchValue.equals('')">
+            <if test="searchValue != null and !searchValue.equals('')">
                 <if test="nation3 == 'name'">
                     A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
@@ -107,26 +107,26 @@
                 </if>
             </if>
             <if test="authority == 'user'">
-                <if test="searchValue != null and searchValue.equals('')">
+                <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 B.AUTHORITY_CODE = 1
             </if>
             <if test="authority == 'seller'">
-                <if test="searchValue != null and searchValue.equals('')">
+                <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 B.AUTHORITY_CODE = 2
             </if>
             <if test="authority == 'complaint'">
-                <if test="searchValue != null and searchValue.equals('')">
+                <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 A.REPORT_COUNT > 0
             </if>
         </where>
         ORDER BY
-        <if test="nation1 == 'name' or nation1==null and nation1.equals('')">
+        <if test="nation1 == 'name' or nation1==null or nation1.equals('')">
             A.USER_NAME
         </if>
         <if test="nation1 == 'id'">
@@ -217,7 +217,7 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
-            <if test="searchValue != null and searchValue.equals('')">
+            <if test="searchValue != null and !searchValue.equals('')">
             <if test="nation3 == 'name'">
                 A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
@@ -238,19 +238,19 @@
             </if>
             </if>
             <if test="authority == 'user'">
-            <if test="searchValue != null and searchValue.equals('')">
+            <if test="searchValue != null and !searchValue.equals('')">
                 AND
             </if>
                 B.AUTHORITY_CODE = 1
             </if>
             <if test="authority == 'seller'">
-                <if test="searchValue != null and searchValue.equals('')">
+                <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 B.AUTHORITY_CODE = 2
             </if>
             <if test="authority == 'complaint'">
-                <if test="searchValue != null and searchValue.equals('')">
+                <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 A.REPORT_COUNT > 0
@@ -266,6 +266,52 @@
             A.USER_CODE = #{no}
     </select>
 
+    <update id="userUpdate" parameterType="com.ohgiraffers.semiproject.manager.model.dto.UserDTO">
+        UPDATE
+            TBL_USER A
+        SET
+            A.USER_NAME = #{userName},
+            A.USER_ID = #{userId},
+            A.PASSWORD = #{password},
+            A.PHONE = #{phone},
+            A.DATE_BIRTH = #{dateBirth},
+            A.ACTIVITY_STATUS = #{activityStatus},
+            A.EMAIL = #{email},
+            A.REGISTRATION_DATE = #{registrationDate},
+            A.REPORT_COUNT = #{reportCount},
+            A.ADDRESS = #{address}
+        WHERE
+            A.USER_CODE = #{no}
+
+    </update>
+
+    <update id="cartUpdate">
+
+    </update>
+
+    <update id="reportUpdate">
+
+    </update>
+
+    <update id="projectUpdate">
+
+    </update>
+
+    <update id="businessUpdate" parameterType="com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO">
+        UPDATE
+            tbl_private_business A
+            join tbl_user B ON (A.USER_CODE = B.USER_CODE)
+            set
+                A.BUSINESS_NAME = #{businessName},
+                A.INDUSTRY = #{industry},
+                A.ESTABLISHMENT_DATE = #{establishmentDate},
+                A.HOMEPAGE = #{homepage},
+                A.LOCATION = #{location},
+                A.BUSINESS_PHONE = #{businessPhone},
+                A.BUSINESS_LICENSE_NUMBER = #{businessLicenseNumber}
+        where
+            B.USER_CODE = #{no}
+    </update>
 
 
 </mapper>

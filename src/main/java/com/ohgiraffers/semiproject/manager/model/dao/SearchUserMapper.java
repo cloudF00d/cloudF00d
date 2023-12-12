@@ -41,4 +41,15 @@ public interface SearchUserMapper {
     PrivateBusinessDTO companyInfo(Long no);
 
     List<UserReportHistoryDTO> findAllComplaint();
+
+
+    int cartUpdate(CartDTO cartDTOS);
+
+    int reportUpdate(UserReportHistoryDTO userReportHistoryDTOS);
+
+    int projectUpdate(ProjectDTO projectDTOS);
+
+    int businessUpdate(PrivateBusinessDTO privateBusinessDTO);
+
+    int userUpdate(UserDTO userDTO);
 }

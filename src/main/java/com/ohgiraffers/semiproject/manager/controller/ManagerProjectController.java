@@ -2,11 +2,11 @@ package com.ohgiraffers.semiproject.manager.controller;
 
 import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
-import com.ohgiraffers.semiproject.manager.model.dto.ProjectDTO;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
 import com.ohgiraffers.semiproject.manager.model.service.ManageProjectService;
-import com.ohgiraffers.semiproject.manager.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,17 +27,31 @@ public class ManagerProjectController {
     public ManagerProjectController(ManageProjectService manageProjectService) {
         this.manageProjectService = manageProjectService;
     }
+//
+//    @GetMapping("/complaintDetail")
+//    public String complaintDetail(){return "content/manager/project/complaintDetail";}
+//    @GetMapping("/complaintMain")
+//    public String complaintMain(){return "content/manager/project/complaintMain";}
+//    @GetMapping("/declineDetail")
+//    public String declineDetail(){return "content/manager/project/declineDetail";}
+//    @GetMapping("/declineMain")
+//    public String declineMain(){return "content/manager/project/declineMain";}
 
-    @GetMapping("/complaintDetail")
-    public String complaintDetail(){return "content/manager/project/complaintDetail";}
-    @GetMapping("/complaintMain")
-    public String complaintMain(){return "content/manager/project/complaintMain";}
-    @GetMapping("/declineDetail")
-    public String declineDetail(){return "content/manager/project/declineDetail";}
-    @GetMapping("/declineMain")
-    public String declineMain(){return "content/manager/project/declineMain";}
     @GetMapping("/newDetail")
-    public String newDetail(){return "content/manager/project/newDetail";}
+    public String newDetail(@RequestParam Long no, Model mv){
+
+            log.info("controller projectDetail start===========================");
+
+        ProjectDTO projectDTO = manageProjectService.findOneProject(no);
+        String status = manageProjectService.findStatus(no);
+
+        mv.addAttribute("project",projectDTO);
+        mv.addAttribute("status", status);
+            log.info("controller projectDetail end ===============================");
+
+            return "/content/manager/project/newDetail";
+        }
+
     @GetMapping("/newMain")
     public ModelAndView newMain(@RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택
                           @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
@@ -99,11 +113,11 @@ public class ManagerProjectController {
         return mv;
     }
 
-
-    @GetMapping("/reDetail")
-    public String reDetail(){return "content/manager/project/reDetail";}
-    @GetMapping("/reMain")
-    public String reMain(){return "content/manager/project/reMain";}
+//
+//    @GetMapping("/reDetail")
+//    public String reDetail(){return "content/manager/project/reDetail";}
+//    @GetMapping("/reMain")
+//    public String reMain(){return "content/manager/project/reMain";}
 
 
 

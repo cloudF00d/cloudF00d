@@ -7,10 +7,9 @@ import com.ohgiraffers.semiproject.manager.model.service.SearchUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +26,7 @@ public class SearchUserController {
     }
 
     @GetMapping("/userDetail")
-    public String userDetail(@RequestParam Long no, Model mv){
+    public String userDetail(@RequestParam Long no, Model mv) {
 
         log.info("controller userDetail start===========================");
 
@@ -48,6 +47,7 @@ public class SearchUserController {
 
         return "/content/manager/search/userDetail";
     }
+
     @GetMapping("/userMain")
     public ModelAndView userMain(
             @RequestParam(required = false, defaultValue = "name") String nation1, // 정렬 컬럼 선택
@@ -58,15 +58,13 @@ public class SearchUserController {
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
 
 
-            ModelAndView mv){
+            ModelAndView mv) {
 
-        System.out.println("nation 1 ==============="+nation1);
-        System.out.println("nation 2 ==============="+nation2);
-        System.out.println("nation 3 ==============="+nation3);
+        System.out.println("nation 1 ===============" + nation1);
+        System.out.println("nation 2 ===============" + nation2);
+        System.out.println("nation 3 ===============" + nation3);
         System.out.println("authority ============== " + authority);
         System.out.println("검색어searchValue ================" + searchValue);
-
-
 
 
         Map<String, String> searchMap = new HashMap<>();
@@ -81,19 +79,19 @@ public class SearchUserController {
         // 전체 게시물 수?
 
         /* 한 페이지에 보여 줄 게시물 수 */
-        int limit = 3;		//얘도 파라미터로 전달받아도 된다.
+        int limit = 3;        //얘도 파라미터로 전달받아도 된다.
 
         /* 한 번에 보여질 페이징 버튼의 갯수 */
         int buttonAmount = 5;
 
         SelectCriteria selectCriteria = null;
 
-        if(nation3 != null && !"".equals(nation3)) {
+        if (nation3 != null && !"".equals(nation3)) {
             // 선택지가 null 이 아니고 공백이 아니라면
             selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount, nation1, nation2, authority, nation3, searchValue);
             // 선택지도 있는 생성자에 넣어라
         } else {
-            selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount , nation1, nation2, authority );
+            selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount, nation1, nation2, authority);
             // 아니면 선택지가 없는 생성자에 넣어라
         }
 
@@ -112,6 +110,42 @@ public class SearchUserController {
 
 
 //        "/content/manager/search/userMain";
+    }
+
+    @GetMapping("/userUpdate")
+    public String userUpdate(@RequestParam Long no, Model mv) {
+
+
+        List<CartDTO> cartDTOS = searchUserService.userBuy(no);
+        List<UserReportHistoryDTO> userReportHistoryDTOS = searchUserService.userReport(no);
+        List<ProjectDTO> projectDTOS = searchUserService.userFundingProject(no);
+        UserDTO userDTOS = searchUserService.findOneUser(no);
+        PrivateBusinessDTO privateBusinessDTO = searchUserService.companyInfo(no);
+
+        mv.addAttribute("userInfo", userDTOS);
+        mv.addAttribute("companyInfo", privateBusinessDTO);
+        mv.addAttribute("userBuy", cartDTOS);
+        mv.addAttribute("userReport", userReportHistoryDTOS);
+        mv.addAttribute("userFunding", projectDTOS);
+
+
+        return "/content/manager/search/userUpdate";
+    }
+
+    @PostMapping("/userUpdate")
+    public String userUpdateQuery(@ModelAttribute List<CartDTO> cartDTOS,
+                                  @ModelAttribute List<UserReportHistoryDTO> userReportHistoryDTOS,
+                                  @ModelAttribute List<ProjectDTO> projectDTOS,
+                                  @ModelAttribute UserDTO userDTO,
+                                  @ModelAttribute PrivateBusinessDTO privateBusinessDTO,
+                                  RedirectAttributes attributes) {
+
+        searchUserService.userUpdate(cartDTOS, userReportHistoryDTOS,
+                projectDTOS, userDTO, privateBusinessDTO);
+
+        attributes.addFlashAttribute("message", "수정에 성공했습니다");
+
+        return "redirect:/manager/search/userUpdate";
     }
 }
 

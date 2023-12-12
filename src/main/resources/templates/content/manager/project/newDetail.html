@@ -114,11 +114,11 @@
                         <th>처리 현황</th>
                     </tr>
                     <tr>
-                        <td>Csfda3</td>
-                        <td>풍미가 좋은 드라이에이징 삼겹살</td>
-                        <td>홍길*</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="close">처리중</span></td>
+                        <td th:text="${project.projectCode}"></td>
+                        <td th:text="${project.projectTitle}"></td>
+                        <td th:text="${project.sellerInfo.userName}"></td>
+                        <td th:text="${project.submissionDate}"></td>
+                        <td><span class="close" th:text="${status}"></span></td>
                     </tr>
                     
                 </table>
@@ -134,7 +134,9 @@
 
                     <tr>
                     <td>(구매자에게 보여지는 똑같은 디자인의 프로젝트 창으로 이동)</td>
-                    <td>베이직</td>
+                    <td th:if="${project.projectPlan} == 1">베이직</td>
+                    <td th:if="${project.projectPlan} == 2">프로</td>
+                    <td th:if="${project.projectPlan} == 3">프리미엄</td>
                     </tr>
 
                 </table>

@@ -31,26 +31,26 @@
 
                 <div class="CRUD">
 
-                    <div class="stop">
-                        <form action="search" method="post">
-                            <select name="nation2">
-                                <option value="search" selected>정지</option>
-                                <option value="stopWeek">일주일 정지</option>
-                                <option value="stopMonth">한달 정지</option>
-                                <option value="stopThreeMonth">3달 정지</option>
+<!--                    <div class="stop">-->
+<!--                        <form action="search" method="post">-->
+<!--                            <select name="nation2">-->
+<!--                                <option value="search" selected>정지</option>-->
+<!--                                <option value="stopWeek">일주일 정지</option>-->
+<!--                                <option value="stopMonth">한달 정지</option>-->
+<!--                                <option value="stopThreeMonth">3달 정지</option>-->
 
-                            </select>
-                        </form>
-                    </div>
+<!--                            </select>-->
+<!--                        </form>-->
+<!--                    </div>-->
 
 
                     <div class="update">
-                        수정
+                        입력
                     </div>
 
-                    <div class="delete">
-                        삭제
-                    </div>
+<!--                    <div class="delete">-->
+<!--                        삭제-->
+<!--                    </div>-->
                 </div>
             </div>
 
@@ -105,12 +105,12 @@
                         <th>활동상태</th>
                     </tr>
                     <tr>
-                        <td th:text="${userInfo.userName}"></td>
-                        <td th:text="${userInfo.userId}"></td>
-                        <td th:text="${userInfo.password}"></td>
-                        <td th:text="${userInfo.phone}"></td>
-                        <td th:text="${userInfo.dateBirth}"></td>
-                        <td th:text="${userInfo.activityStatus}"></td>
+                        <td><input type="text" th:value="${userInfo.userName}"></td>
+                        <td><input th:value="${userInfo.userId}"></td>
+                        <td><input th:value="${userInfo.password}"></td>
+                        <td><input th:value="${userInfo.phone}"></td>
+                        <td><input th:value="${userInfo.dateBirth}"></td>
+                        <td><input th:value="${userInfo.activityStatus}"></td>
                         <!--                        <td><span class="ing">활동</span></td>-->
                     </tr>
 
@@ -128,10 +128,10 @@
                     </tr>
 
                     <tr>
-                        <td th:text="${userInfo.email}"></td>
-                        <td th:text="${userInfo.registrationDate}"></td>
-                        <td th:text="${userInfo.reportCount}"></td>
-                        <td th:text="${userInfo.address}"></td>
+                        <td><input th:value="${userInfo.email}"></td>
+                        <td><input th:value="${userInfo.registrationDate}"></td>
+                        <td><input th:value="${userInfo.reportCount}"></td>
+                        <td><input th:value="${userInfo.address}"></td>
                     </tr>
                 </table>
             </div>
@@ -152,13 +152,13 @@
                         </tr>
 
                         <tr>
-                            <td th:text="${companyInfo.businessName}"></td>
-                            <td th:text="${companyInfo.industry}"></td>
-                            <td th:text="${companyInfo.establishmentDate}"></td>
-                            <td th:text="${companyInfo.homepage}"></td>
-                            <td th:text="${companyInfo.location}"></td>
-                            <td th:text="${companyInfo.businessPhone}"></td>
-                            <td th:text="${companyInfo.businessLicenseNumber}"></td>
+                            <td><input th:value="${companyInfo.businessName}"></td>
+                            <td><input th:value="${companyInfo.industry}"></td>
+                            <td><input th:value="${companyInfo.establishmentDate}"></td>
+                            <td><input th:value="${companyInfo.homepage}"></td>
+                            <td><input th:value="${companyInfo.location}"></td>
+                            <td><input th:value="${companyInfo.businessPhone}"></td>
+                            <td><input th:value="${companyInfo.businessLicenseNumber}"></td>
                         </tr>
 
                     </table>
@@ -179,10 +179,10 @@
                         </tr>
 
                         <tr th:each="funding : ${userFunding}">
-                            <td th:text="${funding.projectCode}"></td>
-                            <td th:text="${funding.projectTitle}"></td>
-                            <td th:text="|${funding.projectStartDate} ~ ${funding.projectEndDate}|"></td>
-                            <td th:text="${funding.achievementStatus}"><span class="ing"></span></td>
+                            <td><input th:value="${funding.projectCode}"></td>
+                            <td><input th:value="${funding.projectTitle}"></td>
+                            <td><input th:value="|${funding.projectStartDate} ~ ${funding.projectEndDate}|"></td>
+                            <td><input th:value="${funding.achievementStatus}"><span class="ing"></span></td>
                         </tr>
 
                     </table>
@@ -204,11 +204,11 @@
                         </tr>
 
                         <tr th:each="report : ${userReport}">
-                            <td th:text="${report.creationNumber}"></td>
-                            <td th:text="${report.title}"></td>
-                            <td th:text="${report.creationDate}"></td>
-                            <td th:text="${report.content}"></td>
-                            <td th:text="${report.reporter}"></td>
+                            <td><input th:value="${report.creationNumber}"></td>
+                            <td><input th:value="${report.title}"></td>
+                            <td><input th:value="${report.creationDate}"></td>
+                            <td><input th:value="${report.content}"></td>
+                            <td><input th:value="${report.reporter}"></td>
                         </tr>
                     </table>
                 </div>
@@ -229,11 +229,11 @@
                         </tr>
 
                         <tr th:each="buy : ${userBuy}">
-                            <td th:text="${buy.cartCode}"></td>
-                            <td th:text="${buy.projectCode.projectTitle}"></td>
-                            <td th:text="${buy.projectCode.sellerInfo.userName}"></td>
-                            <td th:text="|${buy.projectCode.projectStartDate} ~ ${buy.projectCode.projectEndDate}|"></td>
-                            <td th:text="${buy.projectCode.achievementStatus}"><span class="ing"></span></td>
+                            <td><input th:value="${buy.cartCode}"></td>
+                            <td><input th:value="${buy.projectCode.projectTitle}"></td>
+                            <td><input th:value="${buy.projectCode.sellerInfo.userName}"></td>
+                            <td><input th:value="|${buy.projectCode.projectStartDate} ~ ${buy.projectCode.projectEndDate}|"></td>
+                            <td><input th:value="${buy.projectCode.achievementStatus}"><span class="ing"></span></td>
                         </tr>
 
                     </table>

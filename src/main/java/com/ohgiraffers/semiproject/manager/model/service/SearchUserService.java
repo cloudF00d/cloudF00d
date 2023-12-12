@@ -6,6 +6,7 @@ import com.ohgiraffers.semiproject.manager.model.dto.*;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,23 @@ public class SearchUserService implements SearchUserServiceInter{
         int result = Mapper.selectTotalCount(searchMap);
 
         return result;
+    }
+
+
+
+
+    public void userUpdate(List<CartDTO> cartDTOS,
+                           List<UserReportHistoryDTO> userReportHistoryDTOS,
+                           List<ProjectDTO> projectDTOS,
+                           UserDTO userDTO,
+                           PrivateBusinessDTO privateBusinessDTO) {
+//        int cartUpdate = Mapper.cartUpdate(cartDTOS);
+//        int reportHistory = Mapper.reportUpdate(userReportHistoryDTOS);
+//        int project = Mapper.projectUpdate(projectDTOS);
+        int userUpdate = Mapper.userUpdate(userDTO);
+        int businessUpdate = Mapper.businessUpdate(privateBusinessDTO);
+
+
     }
 
     public List<UserDTO> findAllSeller(SelectCriteria selectCriteria) {

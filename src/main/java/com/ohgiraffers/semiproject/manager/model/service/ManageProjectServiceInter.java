@@ -12,4 +12,8 @@ public interface ManageProjectServiceInter {
     int selectTotalCount(Map<String, String> searchMap);
 
     List<ProjectDTO> findAllProject(SelectCriteria selectCriteria);
+
+    ProjectDTO findOneProject(Long no);
+
+    String findStatus(Long no);
 }
