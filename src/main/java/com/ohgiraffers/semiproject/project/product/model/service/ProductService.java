@@ -5,7 +5,7 @@ import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
 import java.util.List;
 
 public interface ProductService {
-    List<TotalStoryDTO> totalStoryList();
+    TotalStoryDTO totalStoryList();
 
 //    static List<ProDTO> selectAllproductStoryList() { 왜 스테틱?
 }

@@ -53,7 +53,7 @@
                 <result property="businessName" column="BUSINESS_NAME"/>
                 <result property="industry" column="INDUSTRY"/>
                 <result property="establishmentDate" column="ESTABLISHMENT_DATE"/>
-                <result property="homePage" column="HOMEPAGE"/>
+                <result property="homepage" column="HOMEPAGE"/>
                 <result property="location" column="LOCATION"/>
                 <result property="businessPhone" column="BUSINESS_PHONE"/>
                 <result property="businessLicenseNumber" column="BUSINESS_LICENSE-NUMBER"/>
@@ -107,6 +107,7 @@
                 C.CONFIGURE,
                 E.BUSINESS_NAME,
                 E.BUSINESS_EMAIL,
+                E.HOMEPAGE,
                 D.CHANGEDPRO_FILE_NAME
             FROM TBL_PROJECT A
                      JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)

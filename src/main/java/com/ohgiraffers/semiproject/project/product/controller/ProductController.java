@@ -43,7 +43,7 @@ public class ProductController {
         log.info("");
         log.info("[ThumbnailController] ========================================================= start");
 
-        List<TotalStoryDTO> thumbnailList = productService.totalStoryList();
+        TotalStoryDTO thumbnailList = productService.totalStoryList();
 
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
 

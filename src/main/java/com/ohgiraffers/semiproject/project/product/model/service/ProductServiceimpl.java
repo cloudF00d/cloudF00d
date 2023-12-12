@@ -19,8 +19,8 @@ public class ProductServiceimpl implements ProductService {
 
 
     @Override
-    public List<TotalStoryDTO> totalStoryList() {
-        List<TotalStoryDTO> thumbnailList = mapper.totalStoryList();
+    public TotalStoryDTO totalStoryList() {
+        TotalStoryDTO thumbnailList = mapper.totalStoryList();
 
         log.info("");
         log.info("");
