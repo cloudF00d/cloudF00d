@@ -21,8 +21,8 @@ public class SelectCriteria {
 //    private String searchCondition;		//검색 조건
     private String nation1;
     private String nation2;
-    private String nation3;
     private String authority;
+    private String nation3;
     private String searchValue;			//검색어
 
 
