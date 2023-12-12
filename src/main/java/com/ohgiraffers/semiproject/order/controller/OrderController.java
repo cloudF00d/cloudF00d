@@ -59,7 +59,7 @@ public class OrderController {
 //    model.addAttribute("buyepage",member);
 //    String name = firstname + "$" + lastname;
 //    member.setName(name);
-//    String address = adrs + "$" + detailedAdrs;
+//    String address = adrs + "$" + detailedAdrs;//
 //    member.setAddress(address);
 
 
@@ -76,10 +76,7 @@ public class OrderController {
         return "/content/order/buyok";
     }
 
-    @GetMapping("cart")
-    public String cart(){
-        return "/content/order/cart";
-    }
+
 
     @GetMapping("watchlist")
     public String watchlist(){

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" th:href="@{/css/project/productPage/productStory.css}">
 
-    <div class="bodyking">
+    <div class="bodyking" >
         <div class="main-box">
 
             <div class="story-con">
@@ -24,14 +24,17 @@
                 <div class="left">
                     <!--=============== 자두 사진 ============== -->
                     <div class="imgmove">
-                        <img src="/images/02_img/plumRiceCake.png" alt="">
+<!--                        <img th:src="@{/thumbPath${story.profileImageDTO[0].getPath()}}" alt="">-->
+                            <!--       왼쪽위 사진        -->
+                        <!-- 이미지 불러오는 곳 -->
                     </div>
 
 
                     <div>
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
-                            <img src="/images/02_img/자두.png" alt="">
+<!--                            <img th:src="@{/thumbPath${story.profileImageDTO[0].getPath()}}" alt="">-->
+                                    <!-- 메인사진 위치 -->
                         </div>
                     </div>
 
@@ -49,17 +52,17 @@
 
                     <div class="introduction-con">
                         <div>
-                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;">자두의 무한변신!! 철 없는 자두떡! 철
-                                없는
-                                자두청!
+                            <!-- 프로젝트 타이틀 자리 입니다.-->
+                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" >
                             </div>
-                            <div style="font-size: 23px; margin-bottom: 50px;">김천 자두의 색다른 변신~! 사시사철 즐기는 철 없는 자두떡! 철 없는
-                                자두청! 건강하고 맛있는 간식!
+                                <!-- 타이틀 아래 소개글자리 입니다.-->
+                            <div style="font-size: 23px; margin-bottom: 50px;" >
                             </div>
                             <div style="margin-bottom: 50px;"><span
                                     style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span
                                     class="introduction-span" style="margin-left: 20px;">10일 남음</span></span></div>
                         </div>
+                                            <!--남은 시간 자리입니다. -->
 
                         <div style="margin-bottom: 50px;"><span
                                 style="font-size: 40px; font-weight: bold;">1,056,000</span><span>원 달성<span
@@ -111,11 +114,14 @@
                     <div class="businesscard-con">
                         <div class="businesscard">
                             <img src="/resources/images/minicon/good.png" alt="">
-                            <div class="businesscard-right">주식회사 민하킴</div>
+<!--                                    여기가 판매자 이름-->
+                            <div class="businesscard-right" ></div>
                         </div>
-                        <div class="businesscard-home">홈페이지
-                            <div class="addr">http://minha.com/minhaminha</div>
+                        <div class="businesscard-home" >홈페이지
+<!--                                 홈페이지 주소 넣는 곳-->
+                            <div class="addr"></div>
                         </div>
+<!--                            여기엔 링크로 인스타 걸어 둬야 할듯-->
                         <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
                     </div>
                     <div class="report-con">
@@ -132,17 +138,19 @@
 
                             <div class="select-a">
                                 <div class="product-0">
-
-                                    <div class="productprice-1">47.000원</div>
+<!--                                        가격-->
+                                    <div class="productprice-1" ></div>
                                     <div class="product-1">
-                                        <div>[ A set 온 가족이 즐겨요 ] (자두떡ver.)</div>
+<!--                                            옵션 이름-->
+                                        <div ></div>
                                     </div>
                                 </div>
 
                                 <hr>
 
                                 <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 32개)</div>
+<!--                                    상품 구성-->
+                                    <div ></div>
 
                                 </div>
                                 <hr>
@@ -169,9 +177,10 @@
 
                             <div class="select-b">
                                 <div class="product-0">
-
-                                    <div class="productprice-1">38.000원</div>
+                                        <!--    B세트 상품 가격 자리-->
+                                    <div class="productprice-1"></div>
                                     <div class="product-1">
+<!--                                            B세트 상품이름 자리-->
                                         <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
                                     </div>
                                 </div>
