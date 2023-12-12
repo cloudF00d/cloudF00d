@@ -30,19 +30,20 @@ public class OrderController {
   }
 
 
-//  @GetMapping("buypage")
-//    public String buypage(){
-//      return "/content/order/buypage";
-//  }
-
   @GetMapping("buypage")
+    public String buypage(){
+      return "/content/order/buypage";
+  }
+
+  @PostMapping("buypage")
   public String paymentPage(
           Model model,
-          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
-//          @RequestParam String firstname,
-//          @RequestParam String lastname,
-//          @RequestParam String adrs,
-//          @RequestParam String detailedAdrs
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+//          @ModelAttribute MemberDTO member,
+          @RequestParam String firstname,
+          @RequestParam String lastname,
+          @RequestParam String adrs,
+          @RequestParam String detailedAdrs
 
           ) throws PaymentPageException, MemberOrderPageException {
 
@@ -54,15 +55,18 @@ public class OrderController {
     List<UserDTO> paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
 
+    String name = firstname + "$" + lastname;
+    String address = adrs + "$" + detailedAdrs;
+    memberAndAuthorityDTO.getMemberDTO().setUserName(name);
+    memberAndAuthorityDTO.getMemberDTO().setAddress(address);
 
-//    MemberDTO member = paymentService.member();
+//    paymentService.member(member);
 //    model.addAttribute("buyepage",member);
 //    String name = firstname + "$" + lastname;
 //    member.setName(name);
 //    String address = adrs + "$" + detailedAdrs;
 //    member.setAddress(address);
-
-
+//
 
     return "/content/order/buypage";
 

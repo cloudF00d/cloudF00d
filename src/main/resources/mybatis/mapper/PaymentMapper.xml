@@ -136,27 +136,29 @@
                  JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
                  JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
 
-        WHERE D.USER_ID = 'user01'
+        WHERE D.USER_ID = #{ id }
 
     </select>
 
 
 
-    <insert id="member" parameterType="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
-        INSERT /* com.ohgiraffers.thymeleafspringboot.member.dao.MemberMapper#insertMember() */
-        INTO TBL_MEMBER       (
-                                USER_ID
-                              , PHONE
-                              , EMAIL
-                              , ADDRESS
-        )
-        VALUES  (
-                    #{ id }
-                , #{ phone }
-                , #{ email }
-                , #{address}
-                )
-    </insert>
+<!--    <insert id="member" parameterType="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">-->
+<!--        INSERT tbl_user-->
+<!--        INTO    (-->
+<!--                               A.USER_NAME-->
+<!--                              , A.USER_ID-->
+<!--                              , A.PHONE-->
+<!--                              , A.EMAIL-->
+<!--                              , A.ADDRESS-->
+<!--        )-->
+<!--        VALUES  (-->
+<!--                  #{ name }-->
+<!--                , #{ phone }-->
+<!--                , #{ email }-->
+<!--                , #{address}-->
+<!--                )-->
+
+<!--    </insert>-->
 
 
 
