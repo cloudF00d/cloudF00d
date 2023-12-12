@@ -76,10 +76,7 @@ public class OrderController {
         return "/content/order/buyok";
     }
 
-    @GetMapping("cart")
-    public String cart(){
-        return "/content/order/cart";
-    }
+
 
     @GetMapping("watchlist")
     public String watchlist(){
