@@ -13,12 +13,12 @@ public class WebConfig implements WebMvcConfigurer {
 
         // 이미지 불러올 수 있도록 세팅
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///C:\\uploadfile");
+                .addResourceLocations("file:///C:/uploadfile/test");
 
         registry.addResourceHandler("/thumbPath/**")
-                .addResourceLocations("file:///C:\\uploadfile");
+                .addResourceLocations("file:///C:/uploadfile/test");
         registry.addResourceHandler("/imagePath/**")
-                .addResourceLocations("file:///C:\\uploadfile");
+                .addResourceLocations("file:///C:/uploadfile/test");
 
     }
 }

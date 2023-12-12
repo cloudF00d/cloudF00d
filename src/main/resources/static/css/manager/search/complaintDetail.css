@@ -394,11 +394,7 @@ td a{
         display: flex;
     }
 		/* 미디어 쿼리: 화면이 작아질 때 */
-		/* @media screen and (max-width: 1200px) {
-			.project-button {
-				display: none;
-			}
-		} */
+
     /* 프로젝트 버튼 디자인 */
     .project-button a {
         background-color: #f90;

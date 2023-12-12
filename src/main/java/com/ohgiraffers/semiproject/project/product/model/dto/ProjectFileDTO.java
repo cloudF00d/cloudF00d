@@ -8,13 +8,13 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class ProfileImageDTO {
+public class ProjectFileDTO {
     private int fileCode;
     private String originalFileName;
+    private String changedFileName;
     private String path;
-    private String changedProFileName;
-    private char deleteStatus;
     private Date creationDate;
-    private int userCode;
-
+    private char deleteStatus;
+    private String fileType;
+    private int projectCode;
 }

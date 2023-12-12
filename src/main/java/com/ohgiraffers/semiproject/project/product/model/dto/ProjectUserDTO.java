@@ -3,14 +3,12 @@ package com.ohgiraffers.semiproject.project.product.model.dto;
 import lombok.*;
 
 import java.sql.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class UserDTO {
-
+public class ProjectUserDTO {
     private int userCode;
     private String userId;
     private String password;
@@ -23,5 +21,4 @@ public class UserDTO {
     private char activityStatus;
     private int reportCount;
     private char couponStatus;
-
 }
