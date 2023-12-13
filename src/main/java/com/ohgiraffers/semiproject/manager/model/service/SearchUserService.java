@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.manager.model.service;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dao.SearchUserMapper;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
@@ -60,46 +62,56 @@ public class SearchUserService implements SearchUserServiceInter{
     }
 
 
-
-
-    public void userUpdate(List<CartDTO> cartDTOS,
-                           List<UserReportHistoryDTO> userReportHistoryDTOS,
-                           List<ProjectDTO> projectDTOS,
-                           UserDTO userDTO,
-                           PrivateBusinessDTO privateBusinessDTO) {
-//        int cartUpdate = Mapper.cartUpdate(cartDTOS);
-//        int reportHistory = Mapper.reportUpdate(userReportHistoryDTOS);
-//        int project = Mapper.projectUpdate(projectDTOS);
-        int userUpdate = Mapper.userUpdate(userDTO);
-        int businessUpdate = Mapper.businessUpdate(privateBusinessDTO);
-
-
-    }
-
-    public List<UserDTO> findAllSeller(SelectCriteria selectCriteria) {
-
-        List<UserDTO> userDTOS = Mapper.findAllSeller(selectCriteria);
-
-        return userDTOS;
-    }
-
-    public int selectTotalSellerCount(Map<String, String> searchMap) {
-
-        int result = Mapper.selectTotalSellerCount(searchMap);
-
-        return result;
-    }
-
+    @Override
     public PrivateBusinessDTO companyInfo(Long no) {
+        PrivateBusinessDTO privateBusinessDTO = Mapper.companyInfo(no);
 
-        PrivateBusinessDTO userDTO = Mapper.companyInfo(no);
-
-        return userDTO;
+        return  privateBusinessDTO;
     }
 
-    public List<UserReportHistoryDTO> findAllComplaint() {
-        List<UserReportHistoryDTO> userReportHistoryDTOS = Mapper.findAllComplaint();
+    @Override
+    @Transactional
+    public void businessUpdate(PrivateBusinessDTO privateBusinessDTO)
+    throws NoticeModifyException{
 
-        return userReportHistoryDTOS;
+
+        int userUpdate = Mapper.businessUpdate(privateBusinessDTO);
+
+
+
+        if(!(userUpdate > 0)) {
+            throw new NoticeModifyException("회사 정보 수정에 실패하셨습니다.");
+        }
     }
+
+    @Override
+    public void deleteUser(Long no) throws NoticeRemoveException {
+
+        int result = Mapper.deleteUser(no);
+
+        if(!(result > 0)) {
+            throw new NoticeRemoveException("공지사항 삭제에 실패하셨습니다.");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void userUpdate(UserDTO userDTO)
+    throws NoticeModifyException {
+
+
+        int userUpdate = Mapper.userUpdate(userDTO);
+
+
+
+        if(!(userUpdate > 0)) {
+            throw new NoticeModifyException("회원 정보 수정에 실패하셨습니다.");
+        }
+
+
+    }
+
+
+
+
 }

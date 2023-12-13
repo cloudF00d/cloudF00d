@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.manager.model.service;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
 
@@ -22,4 +24,13 @@ public interface SearchUserServiceInter {
 
      int selectTotalCount(Map<String, String> searchMap);
 
+    void userUpdate(UserDTO userDTO)
+            throws NoticeModifyException;
+
+    PrivateBusinessDTO companyInfo(Long no);
+
+    void businessUpdate(PrivateBusinessDTO privateBusinessDTO)
+            throws NoticeModifyException;
+
+    void deleteUser(Long no) throws NoticeRemoveException;
 }

@@ -11,6 +11,7 @@
     <title>사용자 회원 조회 세부사항</title>
     <link rel="stylesheet" href="/css/manager/search/userDetail.css">
 
+    <form id="userUpdate" th:action="@{/manager/search/userUpdate}" method="post">
 
     <div class="container">
         <th:block th:replace="/fragments/managersidebar.html"></th:block>
@@ -45,7 +46,7 @@
 
 
                     <div class="update">
-                        입력
+                        <button type="submit">입력</button>
                     </div>
 
 <!--                    <div class="delete">-->
@@ -54,46 +55,24 @@
                 </div>
             </div>
 
-            <!-- <div class="searchcontainer">
-                <div class="searchleft1">
-                    <form action="search" method="post">
-                        <select name="nation2"  >
-                            <option value="search"selected>정렬컬럼</option>
-                            <option value="ch">이름(기본)</option>
-                            <option value="etc">아이디</option>
-                            <option value="etc">비밀번호</option>
-                            <option value="etc">전화번호</option>
-                            <option value="etc">생년월일</option>
-                        </select>
-                    </form>
-                </div>
-
-                <div class="searchleft2">
-                    <form action="search" method="post">
-                        <select name="nation2"  >
-                            <option value="search"selected>정렬방식</option>
-                            <option value="ch">오름차순(기본)</option>
-                            <option value="jp" >내림차순</option>
-                        </select>
-                    </form>
-                </div>
-                <div class="searchright">
-                    <form action="search" method="post">
-                        <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/resources/images/돋보기\ 아이콘.avif') center center / cover no-repeat; padding: 0;"></button>
-                        <input type="text" name="search" required>
-                        <select name="nation2"  >
-                            <option value="search"selected>검색설정</option>
-                            <option value="ch">활동</option>
-                            <option value="jp" >휴면</option>
-                            <option value="etc">기타</option>
-                        </select>
-                    </form>
-                </div>
-            </div> -->
-
 
             <div class="main">
                 <table>
+                    <input
+                            type="hidden"
+                            name="userCode"
+                            th:value="${ userInfo.userCode }"
+                    >
+                    <input
+                            type="hidden"
+                            name="userCode"
+                            th:value="${ userInfo.authorityCode }"
+                    >
+                    <input
+                            type="hidden"
+                            name="userCode"
+                            th:value="${ userInfo.couponStatus }"
+                    >
 
                     <tr>
 
@@ -105,12 +84,12 @@
                         <th>활동상태</th>
                     </tr>
                     <tr>
-                        <td><input type="text" th:value="${userInfo.userName}"></td>
-                        <td><input th:value="${userInfo.userId}"></td>
-                        <td><input th:value="${userInfo.password}"></td>
-                        <td><input th:value="${userInfo.phone}"></td>
-                        <td><input th:value="${userInfo.dateBirth}"></td>
-                        <td><input th:value="${userInfo.activityStatus}"></td>
+                        <td><input type="text" name="userName" th:value="${userInfo.userName}"></td>
+                        <td><input type="text" name="userId" th:value="${userInfo.userId}"></td>
+                        <td><input type="text" name="password" th:value="${userInfo.password}"></td>
+                        <td><input type="text" name="phone" th:value="${userInfo.phone}"></td>
+                        <td><input type="text" name="dateBirth" th:value="${userInfo.dateBirth}"></td>
+                        <td><input type="text" name="activityStatus" th:value="${userInfo.activityStatus}"></td>
                         <!--                        <td><span class="ing">활동</span></td>-->
                     </tr>
 
@@ -128,18 +107,24 @@
                     </tr>
 
                     <tr>
-                        <td><input th:value="${userInfo.email}"></td>
-                        <td><input th:value="${userInfo.registrationDate}"></td>
-                        <td><input th:value="${userInfo.reportCount}"></td>
-                        <td><input th:value="${userInfo.address}"></td>
+                        <td><input type="text" name="email" th:value="${userInfo.email}"></td>
+                        <td><input type="text" name="registrationDate" th:value="${userInfo.registrationDate}"></td>
+                        <td><input type="text" name="reportCount" th:value="${userInfo.reportCount}"></td>
+                        <td><input type="text" name="address" th:value="${userInfo.address}"></td>
                     </tr>
                 </table>
             </div>
+
 
             <th:block th:if="${#objects.nullSafe(companyInfo,default)}">
                 <div class="searchDetail1">
                     <strong><h4>회사정보</h4></strong>
                     <table>
+                        <input
+                                type="hidden"
+                                name="businessCode"
+                                th:value="${ companyInfo.businessCode }"
+                        >
 
                         <tr>
                             <th>상호/법인명</th>
@@ -149,16 +134,18 @@
                             <th>소재지</th>
                             <th>대표 전화번호</th>
                             <th>사업자 등록번호</th>
+                            <th>회사 이메일</th>
                         </tr>
 
                         <tr>
-                            <td><input th:value="${companyInfo.businessName}"></td>
-                            <td><input th:value="${companyInfo.industry}"></td>
-                            <td><input th:value="${companyInfo.establishmentDate}"></td>
-                            <td><input th:value="${companyInfo.homepage}"></td>
-                            <td><input th:value="${companyInfo.location}"></td>
-                            <td><input th:value="${companyInfo.businessPhone}"></td>
-                            <td><input th:value="${companyInfo.businessLicenseNumber}"></td>
+                            <td><input type="text" name="businessName" th:value="${companyInfo.businessName}"></td>
+                            <td><input type="text" name="industry" th:value="${companyInfo.industry}"></td>
+                            <td><input type="text" name="establishmentDate" th:value="${companyInfo.establishmentDate}"></td>
+                            <td><input type="text" name="homepage" th:value="${companyInfo.homepage}"></td>
+                            <td><input type="text" name="location" th:value="${companyInfo.location}"></td>
+                            <td><input type="text" name="businessPhone" th:value="${companyInfo.businessPhone}"></td>
+                            <td><input type="text" name="businessLicenseNumber" th:value="${companyInfo.businessLicenseNumber}"></td>
+                            <td><input type="text" name="businessEmail" th:value="${companyInfo.businessEmail}"></td>
                         </tr>
 
                     </table>
@@ -179,10 +166,10 @@
                         </tr>
 
                         <tr th:each="funding : ${userFunding}">
-                            <td><input th:value="${funding.projectCode}"></td>
-                            <td><input th:value="${funding.projectTitle}"></td>
-                            <td><input th:value="|${funding.projectStartDate} ~ ${funding.projectEndDate}|"></td>
-                            <td><input th:value="${funding.achievementStatus}"><span class="ing"></span></td>
+                            <td th:text="${funding.projectCode}"></td>
+                            <td th:text="${funding.projectTitle}"></td>
+                            <td th:text="|${funding.projectStartDate} ~ ${funding.projectEndDate}|"></td>
+                            <td th:text="${funding.achievementStatus}"><span class="ing"></span></td>
                         </tr>
 
                     </table>
@@ -204,11 +191,11 @@
                         </tr>
 
                         <tr th:each="report : ${userReport}">
-                            <td><input th:value="${report.creationNumber}"></td>
-                            <td><input th:value="${report.title}"></td>
-                            <td><input th:value="${report.creationDate}"></td>
-                            <td><input th:value="${report.content}"></td>
-                            <td><input th:value="${report.reporter}"></td>
+                            <td th:text="${report.creationNumber}"></td>
+                            <td th:text="${report.title}"></td>
+                            <td th:text="${report.creationDate}"></td>
+                            <td th:text="${report.content}"></td>
+                            <td th:text="${report.reporter}"></td>
                         </tr>
                     </table>
                 </div>
@@ -229,11 +216,11 @@
                         </tr>
 
                         <tr th:each="buy : ${userBuy}">
-                            <td><input th:value="${buy.cartCode}"></td>
-                            <td><input th:value="${buy.projectCode.projectTitle}"></td>
-                            <td><input th:value="${buy.projectCode.sellerInfo.userName}"></td>
-                            <td><input th:value="|${buy.projectCode.projectStartDate} ~ ${buy.projectCode.projectEndDate}|"></td>
-                            <td><input th:value="${buy.projectCode.achievementStatus}"><span class="ing"></span></td>
+                            <td th:text="${buy.cartCode}"></td>
+                            <td th:text="${buy.projectCode.projectTitle}"></td>
+                            <td th:text="${buy.projectCode.sellerInfo.userName}"></td>
+                            <td th:text="|${buy.projectCode.projectStartDate} ~ ${buy.projectCode.projectEndDate}|"></td>
+                            <td th:text="${buy.projectCode.achievementStatus}"><span class="ing"></span></td>
                         </tr>
 
                     </table>
@@ -249,6 +236,8 @@
         <!-- 우측 컨텐츠 -->
     </div>
     </div>
+    </form>
+
 </th:block>
 
 

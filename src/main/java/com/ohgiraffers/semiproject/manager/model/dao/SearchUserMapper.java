@@ -43,13 +43,15 @@ public interface SearchUserMapper {
     List<UserReportHistoryDTO> findAllComplaint();
 
 
-    int cartUpdate(CartDTO cartDTOS);
-
-    int reportUpdate(UserReportHistoryDTO userReportHistoryDTOS);
-
-    int projectUpdate(ProjectDTO projectDTOS);
+//    int cartUpdate(CartDTO cartDTOS);
+//
+//    int reportUpdate(UserReportHistoryDTO userReportHistoryDTOS);
+//
+//    int projectUpdate(ProjectDTO projectDTOS);
 
     int businessUpdate(PrivateBusinessDTO privateBusinessDTO);
 
     int userUpdate(UserDTO userDTO);
+
+    int deleteUser(Long no);
 }

@@ -281,19 +281,7 @@
             A.REPORT_COUNT = #{reportCount},
             A.ADDRESS = #{address}
         WHERE
-            A.USER_CODE = #{no}
-
-    </update>
-
-    <update id="cartUpdate">
-
-    </update>
-
-    <update id="reportUpdate">
-
-    </update>
-
-    <update id="projectUpdate">
+            A.USER_CODE = #{userCode}
 
     </update>
 
@@ -310,8 +298,16 @@
                 A.BUSINESS_PHONE = #{businessPhone},
                 A.BUSINESS_LICENSE_NUMBER = #{businessLicenseNumber}
         where
-            B.USER_CODE = #{no}
+            B.USER_CODE = #{businessCode}
     </update>
+
+    <delete id="deleteUser">
+        DELETE
+        FROM
+            TBL_USER A
+        WHERE
+            A.USER_CODE = #{no}
+    </delete>
 
 
 </mapper>

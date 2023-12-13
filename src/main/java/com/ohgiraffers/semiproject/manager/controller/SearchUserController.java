@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.manager.controller;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
@@ -133,19 +135,36 @@ public class SearchUserController {
     }
 
     @PostMapping("/userUpdate")
-    public String userUpdateQuery(@ModelAttribute List<CartDTO> cartDTOS,
-                                  @ModelAttribute List<UserReportHistoryDTO> userReportHistoryDTOS,
-                                  @ModelAttribute List<ProjectDTO> projectDTOS,
-                                  @ModelAttribute UserDTO userDTO,
+    public String userUpdateQuery(@ModelAttribute UserDTO userDTO,
                                   @ModelAttribute PrivateBusinessDTO privateBusinessDTO,
-                                  RedirectAttributes attributes) {
+                                  RedirectAttributes attributes)
+            throws NoticeModifyException {
+        System.out.println("userDTO ========================== " + userDTO);
+        System.out.println("privateBusinessDTO =========================== " + privateBusinessDTO);
 
-        searchUserService.userUpdate(cartDTOS, userReportHistoryDTOS,
-                projectDTOS, userDTO, privateBusinessDTO);
+        if (userDTO.getUserCode() != 0) {
+            searchUserService.userUpdate(userDTO);
+        }
+        if (privateBusinessDTO.getBusinessCode() != 0) {
+            searchUserService.businessUpdate(privateBusinessDTO);
+
+        }
 
         attributes.addFlashAttribute("message", "수정에 성공했습니다");
 
-        return "redirect:/manager/search/userUpdate";
+        int no = userDTO.getUserCode();
+        return "redirect:/manager/search/userDetail?no=" + no;
+    }
+
+    @GetMapping("/delete")
+    public String userDelete(@RequestParam Long no, RedirectAttributes rttr)
+    throws NoticeRemoveException {
+
+        searchUserService.deleteUser(no);
+
+        rttr.addFlashAttribute("message", "회원 삭제에 성공했습니다");
+
+        return "redirect:/manager/search/userMain";
     }
 }
 
