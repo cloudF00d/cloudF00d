@@ -4,17 +4,22 @@ import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
 import com.ohgiraffers.semiproject.common.exception.member.MemberModifyException;
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.util.SessionUtil;
+import com.ohgiraffers.semiproject.member.emailsender.EmailSender;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
+import com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO;
 import com.ohgiraffers.semiproject.member.model.service.MemberServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -23,6 +28,8 @@ public class MemberController {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberServiceImpl memberService;
+
+
 
     public MemberController(PasswordEncoder passwordEncoder, MemberServiceImpl memberService) {
         this.passwordEncoder = passwordEncoder;
@@ -203,5 +210,36 @@ public class MemberController {
         return "/content/member/login/myInfo";
 
 
+    }
+    @PostMapping(value = "sendEmail", produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public int sendEmail(@RequestBody String email){
+
+
+        System.out.println("=========email:"+email);
+        int result = memberService.sendEmail(email);
+
+        return result;
+    }
+
+    @PostMapping(value = "checkMail", produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public boolean checkMail(@RequestBody Map<String, String> requestBody) {
+        String checkMail = requestBody.get("emailCode");
+
+        if (checkMail == null || checkMail.isEmpty()) {
+            // 예외 처리: 이메일 코드가 없는 경우
+            return false;
+        }
+
+        boolean isMatch = memberService.checkMail(checkMail);
+
+        if (isMatch) {
+            System.out.println("입력한 값과 데이터베이스 값이 일치합니다.");
+        } else {
+            System.out.println("입력한 값과 데이터베이스 값이 일치하지 않습니다.");
+        }
+
+        return isMatch;
     }
 }

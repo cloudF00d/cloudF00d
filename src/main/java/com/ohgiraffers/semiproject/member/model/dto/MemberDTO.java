@@ -28,7 +28,7 @@ public class MemberDTO {
 
     private String userName;
 
-    private Date dateBirth;
+    private String dateBirth;
 
     private String phone;
 

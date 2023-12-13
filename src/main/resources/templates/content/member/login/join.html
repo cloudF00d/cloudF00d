@@ -38,44 +38,111 @@
 
 
                     </div>
-    
                     <div>
                         <li>이메일 주소</li>
-                        <span><input type="text" class="box2"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" >인증번호 받기</button></span>
+                        <span><input type="text" class="box2" name="email" id="email"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" id="send">인증번호 받기</button></span>
+                        <input type="hidden" name="hdValue" id="hdValue">
                         <li>이메일 코드입력</li>
-                        <span><input type="text" class="box2"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" >인증번호 확인</button></span>
+                        <span><input type="text" class="box2" id="emailCode"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" id="checkMail">인증번호 확인</button></span>
+                        <script>
+                            const sendButton = document.querySelector("#send");
+                            sendButton.addEventListener('click', function () {
+                                const email = document.getElementById("email").value;
+                                fetch('/member/sendEmail', {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'text/plain'
+                                    },
+                                    body: email
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data) {
+                                            alert(email + "메일을 보냈습니다. 확인하세요!");
+                                            // 이메일 코드를 숨은 입력 필드에 저장
+                                            document.getElementById("hdValue").value = data.emailCode;
+                                        } else {
+                                            alert("전송 실패 하였습니다. 재시도 하세요!")
+                                        }
+                                    });
+                            });
+
+                            const checkMailButton = document.querySelector("#checkMail");
+                            checkMailButton.addEventListener('click', function () {
+                                const emailCode = document.getElementById("emailCode").value;
+
+                                fetch('/member/checkMail', {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ emailCode: emailCode })
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data) {
+                                            alert("인증성공");
+                                        } else {
+                                            alert("인증실패");
+                                        }
+                                    });
+                            });
+                        </script>
                     </div>
-    
+
                     <div>
-                        
-                            <li><span>비밀번호</span><span class="movetext2">비밀번호 확인</span></li>
-                            <li><span><input placeholder="8자 이상의 영어, 숫자 입력" class="box3" type="password" maxlength="13" name="userPwd" required></span>&nbsp;&nbsp;<span><input class="box3" type="password" maxlength="13" name="memberPwd2"></span></li>
-                            
-                            
-                            
-                            
-                            <input type="checkbox" id="showPassword" onchange="togglePassword()">
-                            <label for="showPassword">비밀번호 보이기</label>
-                            
-                            
-                        
+                        <li>
+                            <span>비밀번호</span>
+                            <span class="movetext2">비밀번호 확인</span>
+                        </li>
+                        <li>
+        <span>
+            <input placeholder="8자 이상의 영어, 숫자 입력" class="box3" type="password" maxlength="13" name="userPwd" id="userPwd" required>
+        </span>
+                            &nbsp;&nbsp;
+                            <span>
+            <input class="box3" type="password" maxlength="13" name="memberPwd2">
+        </span>
+                        </li>
+                        <input type="checkbox" id="showPassword" onchange="togglePassword()">
+                        <label for="showPassword">비밀번호 보이기</label>
                     </div>
+
+                    <script>
+                        function togglePassword() {
+                            const userPwd = document.getElementById("userPwd");
+                            const showPasswordCheckbox = document.getElementById("showPassword");
+
+                            if (showPasswordCheckbox.checked) {
+                                userPwd.type = "text";
+                            } else {
+                                userPwd.type = "password";
+                            }
+                        }
+                    </script>
     
                     <div>
                         
                         <label >우편번호</label><br>
-                        <input type="text" name="zipCode" id="zipCode" readonly>
-                        <input type="button" value="검색" class="btn btn-yg" id="searchZipCode">
+                        <input type="text" name="zipCode" id="zipCode" class="box2" readonly> &nbsp;
+                        <input type="button" value="검색" class="searchZipCode1" id="searchZipCode">
                     </div>
                     <div>
                         <label >주소</label><br>
-                        <input type="text" name="address1" id="address1" readonly>
+                        <input type="text" name="address1" id="address1" class="box1" readonly>
                     </div>
                     <div>
                         <label >상세주소</label><br>
-                        <input type="text" name="address2" id="address2">
+                        <input type="text" name="address2" id="address2" class="box1">
                     </div>
-                
+                    <div>
+                        <label >핸드폰번호</label><br>
+                        <input type="text" name="phone" id="phone" class="box1">
+                    </div>
+                    <div>
+                        <label >생년월일</label><br>
+                        <input type="text" name="dateBirth" id="dateBirth" class="box1">
+                    </div>
             
                 <div class="joinbtn"><a th:href="@{/member/login}"><button type="submit" >회원가입</button></a></div>
             </form>
@@ -122,9 +189,6 @@
             }).open();
         }
 
-        $goMain.onclick = function() {
-            location.href = "/";
-        }
 
 
     </script>
