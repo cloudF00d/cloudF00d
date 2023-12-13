@@ -15,10 +15,10 @@ public class ProjectMakeController {
 
     }
 
-    @GetMapping("projectMake")
-    public String projectMake(){
+    @GetMapping("projectStart")
+    public String projectStart(){
 
-        return "/content/project/projectMake/projectMake";
+        return "/content/project/projectMake/projectStart";
 
     }
 
