@@ -32,3 +32,18 @@ mybatis:
   # alias Setting
   configuration:
     map-underscore-to-camel-case: true
+
+
+
+#  mail:
+#    host: smtp.gmail.com # 1
+#    port: 587 # 2
+#    username: lees8485@gmail.com # 3
+#    password: penqoytsdahudarz  # 4
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true # 5
+#          timeout: 5000 # 6
+#          starttls:
+#            enable: true # 7

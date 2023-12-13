@@ -87,7 +87,7 @@ li{
     width: 360px;
     height: 60px;
     border: 1px solid rgb(184, 184, 184);
-    
+
 }
 
 .movetext1{
@@ -95,7 +95,8 @@ li{
 }
 
 .movetext2{
-    margin-left: 123px;
+    position: relative;
+    left: 128px;
 }
 
 .joinbtn button {
@@ -155,10 +156,7 @@ li{
    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
    text-align: center;
 
-   /* 버튼 안의 텍스트의 여백을 조정합니다. */
-   
 
-   /* 마우스 호버 시 색상 변경 효과를 추가합니다. */
 }
 
 .mailbtn button:hover {
@@ -166,6 +164,63 @@ li{
     background-color: darkorange;
 }
 
+#duplicationCheck:hover {
+    /* 마우스 호버 시 배경색 변경 */
+    background-color: darkorange;
+}
+
+#duplicationCheck{
+    /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
+        width: 85px;
+    height: 31px;
+
+    /* 배경색을 색으로 설정합니다. */
+    background-color: lightgrey;
+
+    /* 글자 색을 변경합니다. */
+    color: white;
+
+    padding: 3px;
+
+
+    /* 모서리를 둥글게 만듭니다. */
+    border-radius: 5px;
+
+    /* 테두리를 없앱니다. */
+    border: none;
+
+    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
+    text-align: center;
+
+}
+
+.searchZipCode1{
+    /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
+    width: 85px;
+    height: 31px;
+
+    /* 배경색을 색으로 설정합니다. */
+    background-color: lightgrey;
+
+    /* 글자 색을 변경합니다. */
+    color: white;
+
+    padding: 3px;
+
+
+    /* 모서리를 둥글게 만듭니다. */
+    border-radius: 5px;
+
+    /* 테두리를 없앱니다. */
+    border: none;
+
+    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
+    text-align: center;
+
+}
+.searchZipCode1:hover{
+    background-color: darkorange;
+}
 
 
 
@@ -222,11 +277,4 @@ li{
 
 
 
-/* 헤더부분 */
-
-
-
-
-
-/* 푸터 */
 

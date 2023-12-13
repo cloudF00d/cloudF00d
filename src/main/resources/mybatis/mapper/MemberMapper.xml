@@ -30,6 +30,28 @@
 
     </resultMap>
 
+    <resultMap id="UserAndEmailResultMap" type="com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO">
+        <id property="emailCode" column="EMAIL_CODE"/>
+        <result property="emailCerti" column="EMAIL_CERTIFICATION"/>
+    </resultMap>
+
+
+    <insert id="sendEmail" >
+
+    INSERT INTO tbl_email(EMAIL_CERTIFICATION)
+    VALUES      (
+
+                #{ emailCerti }
+                )
+    <selectKey resultType="int" keyProperty="emailCode" keyColumn="EMAIL_CODE" order="AFTER">
+        SELECT LAST_INSERT_ID() AS EMAIL_CODE
+    </selectKey>
+    </insert>
+
+    <select id="checkMail"  resultMap="UserAndEmailResultMap">
+        SELECT * FROM tbl_email WHERE EMAIL_CERTIFICATION = #{emailCerti}
+    </select>
+
 
 
 
@@ -69,26 +91,47 @@
 
     <insert id="insertMember" parameterType="com.ohgiraffers.semiproject.member.model.dto.MemberDTO">
         INSERT
-        INTO tbl_user       (
-                                USER_NAME
+        INTO tbl_user       (   USER_CODE
                               , USER_ID
-                              , EMAIL
                               , PASSWORD
+                              , EMAIL
                               , ADDRESS
-                              , PHONE
+                              , USER_NAME
                               , DATE_BIRTH
+                              , PHONE
+                              , ACTIVITY_STATUS
+                              , REPORT_COUNT
+                              , COUPON_STATUS
 
         )
         VALUES  (
-                    #{userName}
+                    null
                 , #{userId}
-                , #{email}
                 , #{userPwd}
+                , #{email}
                 , #{address}
-                , #{phone}
+                , #{userName}
                 , #{dateBirth}
+                , #{phone}
+                , default
+                , default
+                , default
                 )
     </insert>
+
+    <select id="selectLastInsertUserCode">
+        SELECT last_insert_id() FROM tbl_user LIMIT 1;
+    </select>
+
+    <insert id="insertAuthor" >
+        INSERT INTO tbl_authority_list
+        VALUES (
+                #{userCode},
+                3
+                )
+
+    </insert>
+
 
 <!--    <select id="selectEncryptedPwd" resultType="string">-->
 <!--        SELECT-->
