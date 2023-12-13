@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+      layout:decorate="~{layouts/layout}">
 <th:block  layout:fragment="content">
 
 
@@ -64,18 +64,14 @@
 
 
                     <div class="coupon-action">
-                        
+
                         <div>
-                            <div>할인쿠폰</div>
-                          <input type="text"  name="적용하기" required>&nbsp;
+<!--                            <div>할인쿠폰</div>-->
+<!--                          <input type="text"  name="적용하기" required>&nbsp;-->
                             <!-- <input type="submit" value="적용하기">  -->
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
-
-
-                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>
-
+<!--                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>-->
+<!--                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>-->
                     </div>
 
 
@@ -110,7 +106,7 @@
         </div>
 
 
-            <form class="phone" th:action="@{/order/buypage}"  method="post">
+        <form class="info" th:action="@{/order/buypage}"  method="post">
         <div class="right">
 
         <div id="right">
@@ -138,15 +134,16 @@
                 </div>
 
 
-                <div class="number">핸드폰 번호</div>
-                    <select id="countryCode">
-                        <option value="+82" selected>대한민국 (+82)</option>
-                        <option value="+1">미국 (+1)</option>
-                        <option value="+44">영국 (+44)</option>
-                        <option value="+81">일본 (+81)</option>
-                    </select>
-                    <input type="text" name="phone" id="phone" required>&nbsp;
-
+                <div class="phone">
+                    <div class="number">핸드폰 번호</div>
+                        <select id="countryCode">
+                            <option value="+82" selected>대한민국 (+82)</option>
+                            <option value="+1">미국 (+1)</option>
+                            <option value="+44">영국 (+44)</option>
+                            <option value="+81">일본 (+81)</option>
+                        </select>
+                        <input type="text" name="phone" id="phone" required>&nbsp;
+                    </div>
                 </div>
         </div>
 

@@ -6,7 +6,7 @@ public class CartInsertDTO {
 
     private int cartCode;
 
-    private int userId;
+    private String userId;
 
     private String projectTitle;
 
@@ -29,7 +29,8 @@ public class CartInsertDTO {
     public CartInsertDTO() {
     }
 
-    public CartInsertDTO(int cartCode, int userId, String projectTitle, String optionName, int price, String configure, String optionType, int amount, String coupon, Date end, Date start) {
+
+    public CartInsertDTO(int cartCode, String userId, String projectTitle, String optionName, int price, String configure, String optionType, int amount, String coupon, Date end, Date start) {
         this.cartCode = cartCode;
         this.userId = userId;
         this.projectTitle = projectTitle;
@@ -51,11 +52,11 @@ public class CartInsertDTO {
         this.cartCode = cartCode;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -135,7 +136,7 @@ public class CartInsertDTO {
     public String toString() {
         return "CartInsertDTO{" +
                 "cartCode=" + cartCode +
-                ", userId=" + userId +
+                ", userId='" + userId + '\'' +
                 ", projectTitle='" + projectTitle + '\'' +
                 ", optionName='" + optionName + '\'' +
                 ", price=" + price +

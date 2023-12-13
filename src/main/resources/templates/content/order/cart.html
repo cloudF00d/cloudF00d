@@ -13,7 +13,9 @@
 
 
 
-<!-- 헤더끝 -->
+
+
+    <!-- 헤더끝 -->
 
 <!-- 헤더끝 -->
 <div class="bodyking">
@@ -29,189 +31,102 @@
     <div class="mid-con">
         <h3>장바구니</h3>
         <div class="mid">
-            <div class="midmenu">
-                <div class="logo">
-                    <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
-                </div>
-                <div class="mypage">
-                    <span><a th:href="@{/이전페이지}"><img src="/images/minicon/backicon.jpg" width="25px" alt=""></a> 마이페이지</span>
-                </div>
-                <div class="criteria">
-                    <span class="criteria1">상품명</span>
-                    <span class="criteria2">주문수량</span>
-                    <span class="criteria3">가격</span>
-                </div>
-                <div class="menucheck">
-                    <div class="checkbox-con">
-                        <input type="checkbox" class="checkbox">
+            <div class="midmenu" >
+                <form  th:action="@{/order/buypage}" method="get">
+                    <div class="logo">
+                        <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                     </div>
-                    <div class="foodimg">
-                        <img src="/images/minicon/로고1.PNG" alt="">
+                    <div class="mypage">
+                        <span><a th:href="@{/이전페이지}"><img src="/images/minicon/backicon.jpg" width="25px" alt=""></a> 마이페이지</span>
                     </div>
-                    <div class="nameAndCount">
-                        <div class="name">음식이름</div>
-                        <div class="count">남은시간</div>
+                    <div class="criteria">
+                        <span class="criteria1">상품명</span>
+                        <span class="criteria2">주문수량</span>
+                        <span class="criteria3">가격</span>
                     </div>
-                    <div class="btn-con">
-                            <button class="btn" onclick="decrease()">-</button>
-                            <span id="counter-value">1</span>
-                            <button class="btn" onclick="increase()">+</button>                        
-                    </div>
-                    <div class="price-con">
-                        <div class="price">30000원</div>
-                    </div>
-                    <div class="trash-con">
-                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
-                    </div>
-                </div>
-                <div class="menucheck">
-                    <div class="checkbox-con">
-                        <input type="checkbox" class="checkbox">
-                    </div>
-                    <div class="foodimg">
-                        <img src="/images/minicon/로고1.PNG" alt="">
-                    </div>
-                    <div class="nameAndCount">
-                        <div class="name">음식이름</div>
-                        <div class="count">남은시간</div>
-                    </div>
-                    <div class="btn-con">
-                            <button class="btn" onclick="decrease()">-</button>
-                            <span id="counter-value">1</span>
-                            <button class="btn" onclick="increase()">+</button>                        
-                    </div>
-                    <div class="price-con">
-                        <div class="price">30000원</div>
-                    </div>
-                    <div class="trash-con">
-                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
-                    </div>
-                </div>
-                <div class="menucheck">
-                    <div class="checkbox-con">
-                        <input type="checkbox" class="checkbox">
-                    </div>
-                    <div class="foodimg">
-                        <img src="/images/minicon/로고1.PNG" alt="">
-                    </div>
-                    <div class="nameAndCount">
-                        <div class="name">음식이름</div>
-                        <div class="count">남은시간</div>
-                    </div>
-                    <div class="btn-con">
-                            <button class="btn" onclick="decrease()">-</button>
-                            <span id="counter-value">1</span>
-                            <button class="btn" onclick="increase()">+</button>                        
-                    </div>
-                    <div class="price-con">
-                        <div class="price">30000원</div>
-                    </div>
-                    <div class="trash-con">
-                        <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
-                    </div>
-                </div>
-                <div class="bilge-con">
-                <div class="bilge">
 
-                    <form action="search" method="post">
-                        <div class="coupon-action">
-                            
-                            <div>
-                                <div>할인쿠폰</div>
-                              <input class="applybutton1" type="text" name="적용하기"  required>&nbsp; 
-                                <!-- <input type="submit" value="적용하기">  -->
-                            </div>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-                            <div class="coupon-btn">
-                                <button type="submit" class="applybutton">적용하기</button>
-                            </div>
-    
+                    <div class="menucheck" id="cartList" th:each=" cart: ${ cart }">
+                        <div class="checkbox-con">
+                            <input type="checkbox" class="checkbox">
                         </div>
-    
-    
-                    </form>
-    
-                    <div class="total-product-amount">
-                        <span class="total-amount">상품 전체금액</span>
-                        <span class="total-price">30,000won</span>
+                        <div class="foodimg">
+                            <img src="/images/minicon/로고1.PNG" alt="">
+                        </div>
+                        <div class="nameAndCount">
+                            <div class="name" th:text="${cart.projectTitle}"></div>
+                            <button class="count remain" th:onclick="remain" id="remain"></button>
+                            <input type="hidden" class="count end" th:value="${#dates.format(cart.end, 'yyyy-MM-dd HH:mm:ss')}"></input>
+                        </div>
+                        <div class="btn-con">
+                            <button class="btn decrease" th:onclick="decrease">-</button>
+                            <span id="counter-value">1</span>
+                            <button class="btn increase" th:onclick="increase">+</button>
+                        </div>
+                        <div class="price-con" >
+                            <button class="total product" th:onclick="total" id="total"></button>
+                            <input type="hidden" class="price" id="price" th:value="${cart.price}"></input>
+                        </div>
+                        <div class="trash-con">
+                            <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
+                        </div>
                     </div>
-                    <div class="apply-coupon">
-                        <span class="total-amount">쿠폰 적용금액</span>
-                        <span class="total-price">23,000won</span>
+
+
+                    <div class="bilge-con">
+                    <div class="bilge">
+
+                            <div class="coupon-action">
+
+                                <div>
+                                    <div>할인쿠폰</div>
+                                  <input class="applybutton1" type="text" name="적용하기"  required>&nbsp;
+                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <div class="coupon-btn">
+                                    <button type="submit" class="applybutton">적용하기</button>
+                                </div>
+
+                            </div>
+
+
+
+                        <div class="total-product-amount">
+                            <span class="total-amount">상품 전체금액</span>
+                            <span class="total-price">30,000won</span>
+                        </div>
+                        <div class="apply-coupon">
+                            <span class="total-amount">쿠폰 적용금액</span>
+                            <span class="total-price">23,000won</span>
+                        </div>
+                        <div class="delivery-fee">
+                            <span class="shipping-cost">배송비</span>
+                            <span class="cost">3,000won</span>
+                        </div>
+                        <div class="final-amount">
+                            <span class="gun-cost">총금액</span>
+                            <span class="gun-won">26,000won</span>
+                        </div>
+
                     </div>
-                    <div class="delivery-fee">
-                        <span class="shipping-cost">배송비</span>
-                        <span class="cost">3,000won</span>
+
                     </div>
-                    <div class="final-amount">
-                        <span class="gun-cost">총금액</span>
-                        <span class="gun-won">26,000won</span>
-                    </div>
-    
-                </div>
-                
-            </div>
+                </form>
 <!--                결제하기 누르면 카카오 결제창 뜨는 것 예상-->
             <a class="paybtn-con" th:href="@{/order/buypage}">
                 <button class="paybtn"> 결제하기 </button>
             </a>
             </div>
         </div>
-        <div class="pagination">
-            <div class="pagination-box">
-                <a href="#" class="prev">＜</a>
-                <div class="page-links">
-                    <a href="#" class="page-link">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    
-                </div>
-                <a href="#" class="next">＞</a>
-            </div>
-        </div>
+
     </div>
-
-    
-    <!-- 사이드바 끝 -->
-
-    
-        
-
-    
-        
-
     
 </div>
-<!-- 푸터는 이아래에 붙여 -->
 
-<!-- 푸터 시작 -->
 
-  <!-- 푸터끝 -->
-    
+    <script src="/js/cart.js"></script>
 
 
 
-
-  <script>
-    let counterValue = 1;
-
-    // 증가 함수
-    function increase() {
-        counterValue++;
-        updateCounter();
-    }
-
-    // 감소 함수
-    function decrease() {
-        if (counterValue > 0) {
-            counterValue--;
-            updateCounter();
-        }
-    }
-    function updateCounter() {
-        document.getElementById('counter-value').innerText = counterValue;
-    }
-</script>
 
 </th:block>
 </html>

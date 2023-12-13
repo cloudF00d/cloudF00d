@@ -116,7 +116,7 @@
 
     <select id="cartPage" resultMap="cartInsertResultMap">
         SELECT
-
+            A.CART_CODE,
             B.COUPON_STATUS,
             C.PROJECT_TITLE,
             C.PROJECT_END_DATE,
@@ -130,7 +130,6 @@
                  JOIN tbl_user B ON (A.USER_CODE = B.USER_CODE)
                  JOIN tbl_project C ON (A.PROJECT_CODE = C.PROJECT_CODE)
                  JOIN tbl_project_option D ON (A.OPTION_CODE = D.OPTION_CODE)
-
 
         WHERE B.USER_ID = 'user01'
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface PaymentMapper {
-   List<UserDTO> user();
+   List<UserDTO> user1();
 
    int member(MemberDTO member);
 

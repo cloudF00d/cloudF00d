@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     public List<UserDTO>  paymentPage() throws PaymentPageException {
-        List<UserDTO> paymentPage = mapper.user();
+        List<UserDTO> paymentPage = mapper.user1();
 
         if((paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");

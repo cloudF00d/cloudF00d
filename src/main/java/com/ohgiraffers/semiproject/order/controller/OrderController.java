@@ -31,7 +31,10 @@ public class OrderController {
 
 
   @GetMapping("buypage")
-    public String buypage(){
+    public String buypage(Model model, @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) throws PaymentPageException {
+
+      List<UserDTO> paymentHistory = paymentService.paymentPage();
+      model.addAttribute("buypage",paymentHistory);
       return "/content/order/buypage";
   }
 

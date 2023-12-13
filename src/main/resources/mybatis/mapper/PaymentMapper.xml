@@ -114,7 +114,7 @@
     </resultMap>
 
 
-    <select id="user" resultMap="userResultMap">
+    <select id="user1" resultMap="userResultMap">
         SELECT
             B.TOTAL_AMOUNT,
             D.USER_NAME,
@@ -135,8 +135,7 @@
                  JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
                  JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
                  JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
-
-        WHERE D.USER_ID = #{ id }
+        WHERE D.USER_ID = 'user01'
 
     </select>
 
