@@ -42,31 +42,33 @@
             
 
             <div class="box">
-                <span class="box1">작성번호 : 1</span>
-                <span class="box1">작성자:김민*</span>
-                <span class="box2">작성일자:2023/11/15</span>
-                <span class="box3">답변완료</span>
+                <span class="box1" th:text="|작성번호 : ${detail.creationNumber.creationNumber}|"></span>
+                <span class="box1" th:text="|작성자 : ${detail.userCode.userName}|"></span>
+                <span class="box2" th:text="|작성일자 : ${detail.creationDate}|"></span>
+                <span class="box3" th:if="${detail.creationNumber.answerCode == null or detail.creationNumber.answerCode == 0}"
+                    th:text="답변대기"></span>
+                <span class="box3" th:if="${detail.creationNumber.answerCode} > 0">답변완료</span>
             </div>
             
             <div>
                 <form action="">
                     <div class="title">
                         <span id="details">제목</span>
-                        <span id="details2">욕설을 했습니다</span>
+                        <span id="details2" th:text="${detail.title}"></span>
                     </div>
                     <div class="detail">
-                        <div id="details">내용</div>
+                        <div id="details" >내용</div>
 
-                        <div id="details2">이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁</div>
+                        <div id="details2" th:text="${detail.content}">
+                        </div>
                     </div>
                     <div class="detail">
                         <div id="details">답변</div>
 
-                        <div id="details2">
-							안녕하십니까 이용에 불편을 드려 굉장히 죄송합니다. 빠른 시일 내에 조치를 취하도록 하겠습니다.
+                        <div id="details2" th:text="${detail.creationNumber.answerContent}">
                         </div>
                     </div>
-                    <div class="submitbtn"><button type="submit">글쓰기</button></div>
+<!--                    <div class="submitbtn"><button type="submit">글쓰기</button></div>-->
                 </form>
             </div>
 

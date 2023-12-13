@@ -18,7 +18,7 @@ public class UserDTO {
     private Date registrationDate;
     private String address;
     private String userName;
-    private Date dateBirth;
+    private String dateBirth;
     private String phone;
     private char activityStatus;
     private int reportCount;
