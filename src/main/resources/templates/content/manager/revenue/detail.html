@@ -29,7 +29,7 @@
             <div class="CRUDcontainer">
         
                 <div>
-                    <a href="#"><img class="logo1" src="../../../resources/images/01_logoimg/textLogoNone.png" alt=""></a>            </div>
+                    <a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>            </div>
 
                 <div class="CRUD">
 
@@ -114,12 +114,12 @@
                         <th>결과</th>
                     </tr>
                     <tr>
-                        <td>Csfda3</td>
-                        <td>풍미가 좋은 드라이에이징 삼겹살</td>
-                        <td>홍길*</td>
-                        <td>1,000,000(120%)</td>
-                        <td>2003/11/16~2003/11/16</td>
-                        <td ><span class="ing">성공</span></td>
+                        <td th:text="${project.projectCode}"></td>
+                        <td th:text="${project.projectTitle}"></td>
+                        <td th:text="${project.sellerInfo.userName}"></td>
+                        <td th:text="${project.targetAmount}"></td>
+                        <td th:text="|${project.projectStartDate} ~ ${project.projectEndDate}|"></td>
+                        <td><span class="fail" th:text="${project.achievementStatus}"></span></td>
                     </tr>
                     
                 </table>
@@ -137,7 +137,9 @@
 
                     <tr>
                     <td>(구매자에게 보여지는 똑같은 디자인의 프로젝트 창으로 이동)</td>
-                    <td>베이직(5%)</td>
+                        <td th:if="${project.projectPlan} == 1">베이직</td>
+                        <td th:if="${project.projectPlan} == 2">프로</td>
+                        <td th:if="${project.projectPlan} == 3">프리미엄</td>
                     <td>1,200,000</td>
                     <td>60,000</td>
                     </tr>

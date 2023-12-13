@@ -27,25 +27,28 @@
             <div>
 				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
             </div>
-            
+
 
             <div class="box">
-                <span class="box1">작성번호 : 1</span>
-                <span class="box1">작성자:김민*</span>
-                <span class="box2">작성일자:2023/11/15</span>
-				<span class="box3">답변 전</span>
+                <span class="box1" th:text="|작성번호 : ${detail.creationNumber.creationNumber}|"></span>
+                <span class="box1" th:text="|작성자 : ${detail.userCode.userName}|"></span>
+                <span class="box2" th:text="|작성일자 : ${detail.creationDate}|"></span>
+                <span class="box3" th:if="${detail.creationNumber.answerCode == null or detail.creationNumber.answerCode == 0}"
+                      th:text="답변대기"></span>
+                <span class="box3" th:if="${detail.creationNumber.answerCode} > 0">답변완료</span>
             </div>
             
             <div>
                 <form action="">
                     <div class="title">
                         <span id="details">제목</span>
-                        <span id="details2">욕설을 했습니다</span>
+                        <span id="details2" th:text="${detail.title}"></span>
                     </div>
                     <div class="detail">
                         <div id="details">내용</div>
 
-                        <div id="details2">이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁이러쿵저러쿵욕설을이렇게저렇게궁시렁절시렁</div>
+                        <div id="details2" th:text="${detail.content}">
+                        </div>
                     </div>
                     <div class="detail">
                         <div id="details">답변</div>
@@ -62,18 +65,18 @@
             
         
             
-            <div class="pagination">
-                <div class="pagination-box">
-                    <a href="#" class="prev">＜</a>
-                    <div class="page-links">
-                        <a href="#" class="page-link">1</a>
-                        <a href="#" class="page-link">2</a>
-                        <a href="#" class="page-link">3</a>
-                        
-                    </div>
-                    <a href="#" class="next">＞</a>
-                </div>
-            </div>
+<!--            <div class="pagination">-->
+<!--                <div class="pagination-box">-->
+<!--                    <a href="#" class="prev">＜</a>-->
+<!--                    <div class="page-links">-->
+<!--                        <a href="#" class="page-link">1</a>-->
+<!--                        <a href="#" class="page-link">2</a>-->
+<!--                        <a href="#" class="page-link">3</a>-->
+<!--                        -->
+<!--                    </div>-->
+<!--                    <a href="#" class="next">＞</a>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
 
