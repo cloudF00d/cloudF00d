@@ -92,7 +92,9 @@
 
     <select id="totalStoryList" resultMap="totalStoryList">
         select A.PROJECT_TITLE,
+               A.PROJECT_CODE,
                A.PROJECT_SUMMARY,
+               B.PATH,
                B.CHANGED_FILE_NAME,
                A.ACHIEVEMENT_STATUS,
                A.PROJECT_END_DATE,
@@ -124,12 +126,27 @@
 
     <select id="projectimage" resultMap="projectFileResult">
         select
-            D.PATH
+            A.PROJECT_CODE,
+            D.PATH,
+            D.CHANGED_FILE_NAME
         FROM tbl_project A
             JOIN tbl_project_file D ON A.PROJECT_CODE = D.PROJECT_CODE
         WHERE
             A.PROJECT_CODE = 1;
     </select>
+
+<select id="profileimage" resultMap="profileImageResult">
+    select
+        A.PROJECT_CODE,
+        D.FILE_CODE,
+        D.PATH,
+        D.CHANGEDPRO_FILE_NAME
+    FROM tbl_project A
+             JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+             JOIN tbl_profile_image D ON (B.FILE_CODE = D.FILE_CODE)
+    WHERE
+        A.PROJECT_CODE = 1;
+</select>
 
 
 </mapper>

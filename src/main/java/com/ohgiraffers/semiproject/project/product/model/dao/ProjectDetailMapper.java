@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.project.product.model.dao;
 
+import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
@@ -13,5 +14,7 @@ public interface ProjectDetailMapper {
     List<ProjectOptionDTO> optionList();
 
     ProjectFileDTO projectimage();
+
+    ProfileImageDTO profileimage();
 }
 //

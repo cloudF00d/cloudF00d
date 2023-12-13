@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.project.product.controller;
 
 import com.ohgiraffers.semiproject.common.exception.project.StoryRegistException;
+import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
@@ -46,11 +47,14 @@ public class ProductController {
 
         List<ProjectOptionDTO> projectOption = productService.optionList();
         ProjectFileDTO projectFile = productService.projectimage();
+        ProfileImageDTO profileImage = productService.profileimage();
+
 
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
         mv.addObject("projectOption", projectOption);
         mv.addObject("projectFile",projectFile);
+        mv.addObject("profileImage",profileImage);
         log.info("[ThumbnailController] ========================================================= end");
 
         mv.setViewName("content/project/product/productStory");

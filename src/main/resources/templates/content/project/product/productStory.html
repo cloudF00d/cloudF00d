@@ -24,8 +24,10 @@
                 <div class="left">
                     <!--=============== 자두 사진 ============== -->
                     <div class="imgmove">
-<!--                        <img th:src="" alt="">-- 12월 13일 아침 여기부터 이미지 넣는거부터 시작하면 됨>
-<!--                        @{|/thumbPath${}|}-->
+                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}|}" alt="">-->
+<!--                    <img th:src="@{|/thumbPath${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                             <!--       왼쪽위 사진        -->
                         <!-- 이미지 불러오는 곳 -->
                     </div>
@@ -34,7 +36,7 @@
                     <div>
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
-<!--                            <img th:src="@{/thumbPath${story.profileImageDTO[0].getPath()}}" alt="">-->
+<!--                            <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                                     <!-- 메인사진 위치 -->
                         </div>
                     </div>
@@ -114,7 +116,7 @@
                     </div>
                     <div class="businesscard-con">
                         <div class="businesscard">
-                            <img src="/resources/images/minicon/good.png" alt="">
+                            <img th:src="@{|/imagePath/${thumbnailList.profileImageDTO[0].getChangedProFileName()}|}" alt="">
 <!--                                    여기가 판매자 이름-->
                             <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>

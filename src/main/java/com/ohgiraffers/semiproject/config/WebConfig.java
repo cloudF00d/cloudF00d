@@ -14,13 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
 
         // 이미지 불러올 수 있도록 세팅
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///C:/uploadfile/storyimg");
-
+                .addResourceLocations("file:///C:/uploadfile/storyimg/");
+        // 프로젝트 스토리 첫번째 들어갈 사진 경로
         registry.addResourceHandler("/thumbPath/**")
-                .addResourceLocations("file:///C:/uploadfile/Representative_image");
-
+                .addResourceLocations("file:///C:/uploadfile/Representative_image/");
+        // 이게 판매자 사진 경로
         registry.addResourceHandler("/imagePath/**")
-                .addResourceLocations("file:///C:/uploadfile/profileimg");
+                .addResourceLocations("file:///C:/uploadfile/profileimg/");
 
     }
 }

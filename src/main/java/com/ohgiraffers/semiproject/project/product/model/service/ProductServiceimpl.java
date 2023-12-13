@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.project.product.model.service;
 
 import com.ohgiraffers.semiproject.project.product.model.dao.ProjectDetailMapper;
+import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
@@ -40,5 +41,10 @@ public class ProductServiceimpl implements ProductService {
     @Override
     public ProjectFileDTO projectimage() {
         return mapper.projectimage();
+    }
+
+    @Override
+    public ProfileImageDTO profileimage() {
+        return mapper.profileimage();
     }
 }
