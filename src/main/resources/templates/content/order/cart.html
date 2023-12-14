@@ -63,7 +63,7 @@
                             <button class="btn increase" th:onclick="increase">+</button>
                         </div>
                         <div class="price-con" >
-                            <button class="total product" th:onclick="total" id="total"></button>
+                            <div class="total product"  id="total" th:text="${cart.price}"> </div>
                             <input type="hidden" class="price" id="price" th:value="${cart.price}"></input>
                         </div>
                         <div class="trash-con">
@@ -92,11 +92,11 @@
 
                         <div class="total-product-amount">
                             <span class="total-amount">상품 전체금액</span>
-                            <span class="total-price">30,000won</span>
+                            <span class="total-price" id="total-price"></span>
                         </div>
                         <div class="apply-coupon">
                             <span class="total-amount">쿠폰 적용금액</span>
-                            <span class="total-price">23,000won</span>
+                            <span class="coupon-price">23,000won</span>
                         </div>
                         <div class="delivery-fee">
                             <span class="shipping-cost">배송비</span>

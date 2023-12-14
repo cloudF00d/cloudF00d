@@ -1,23 +1,21 @@
 
-
-
-//증가 버튼
+// 증가 버튼 + 가격 합계 + 쿠폰 가격
 document.addEventListener("DOMContentLoaded", function () {
-
+    // 증가 버튼
     var increaseButtons = document.querySelectorAll('.increase');
 
     increaseButtons.forEach(function (button) {
         button.addEventListener('click', function (event) {
+            // 현재 수량을 가져오고 1 증가시킵니다
             var quantityElement = this.previousElementSibling;
             var currentQuantity = parseInt(quantityElement.innerText);
             var newQuantity = currentQuantity + 1;
             quantityElement.innerText = newQuantity;
 
-            //가격계산
+            // 상품 하나 가격 계산
             const totalButtons = document.querySelectorAll('.total');
 
             totalButtons.forEach(function (text) {
-
                 // 현재 버튼의 다음 형제 엘리먼트를 찾아 수량 엘리먼트로 설정합니다
                 var quantityElement = this.nextElementSibling;
 
@@ -33,20 +31,36 @@ document.addEventListener("DOMContentLoaded", function () {
                 const result = onePrice * parseInt(counterValueElement.textContent);
 
                 // 버튼 텍스트를 업데이트합니다
-                text.innerText = result + "원";
-                event.preventDefault();
+                text.innerText = result.toLocaleString() + "won";
             });
+
+            // 전체 총합계 계산 및 업데이트
+            const totalElements = document.querySelectorAll('.total');
+            let totalPrice = 0;
+            // 콤마 제거 후 합산
+            totalElements.forEach(function (text) {
+                totalPrice += parseInt(text.innerText.replace(/[^\d]/g, ''));
+            });
+
+            const totalPriceElement = document.querySelector('.total-price');
+            totalPriceElement.innerText =  totalPrice.toLocaleString() + "won";
+
+            //쿠폰 적용
+
+
+
+            event.preventDefault();
         });
     });
-
 });
 
 
 
-//감소 버튼
+
+
 document.addEventListener("DOMContentLoaded", function () {
     var decreaseButtons = document.querySelectorAll('.decrease');
-
+//감소 버튼
     decreaseButtons.forEach(function (button) {
         button.addEventListener('click', function (event) {
             var quantityElement = this.nextElementSibling;
@@ -55,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             quantityElement.innerText = newQuantity;
             event.preventDefault();
 
-            //가격계산
+            //상품 하나 가격계산
             const totalButtons = document.querySelectorAll('.total');
 
             totalButtons.forEach(function (text) {
@@ -75,15 +89,79 @@ document.addEventListener("DOMContentLoaded", function () {
                 const result = onePrice * parseInt(counterValueElement.textContent);
 
                 // 버튼 텍스트를 업데이트합니다
-                text.innerText = result + "원";
-
-
-                event.preventDefault();
+                text.innerText = result.toLocaleString() + "won";
             });
+
+            // 전체 총합계 계산 및 업데이트
+            const totalElements = document.querySelectorAll('.total');
+            let totalPrice = 0;
+            totalElements.forEach(function (text) {
+                totalPrice += parseInt(text.innerText.replace(/[^\d]/g, '')); // 콤마 제거 후 합산
+            });
+            const totalPriceElement = document.querySelector('.total-price');
+            totalPriceElement.innerText =  totalPrice.toLocaleString() + "won";
+
+            // //쿠폰 적용 금액
+            // const couponElements = document.querySelector('.coupon-price');
+            //
+            // couponElements.innerText = (totalPrice - 3000).toLocaleString() + "won";
+            //
+            // event.preventDefault();
+
         });
     });
 
 });
+
+
+
+
+//맨처음 가격 총합
+document.addEventListener("DOMContentLoaded", function () {
+    // 상품 하나 가격 계산
+    const totalButtons = document.querySelectorAll('.total');
+
+    totalButtons.forEach(function (text) {
+        // 현재 버튼의 다음 형제 엘리먼트를 찾아 수량 엘리먼트로 설정합니다
+        var quantityElement = text.previousElementSibling;
+        // 가격과 수량 엘리먼트를 가져옵니다
+        const menucheckElement = text.closest('.menucheck');
+        const onePriceElement = menucheckElement.querySelector(".price");
+        const counterValueElement = menucheckElement.querySelector('.btn-con #counter-value');
+        // 텍스트 내용을 숫자로 파싱합니다
+        const onePrice = parseInt(onePriceElement.value);
+        // 총 가격을 계산합니다
+        const result = onePrice * parseInt(counterValueElement.textContent);
+        // 버튼 텍스트를 업데이트합니다
+        text.innerText = result.toLocaleString() + "won";
+    });
+
+    // 전체 총합계 계산 및 업데이트
+    const totalElements = document.querySelectorAll('.total');
+    let totalPrice = 0;
+    totalElements.forEach(function (text) {
+        totalPrice += parseInt(text.innerText.replace(/[^\d]/g, '')); // 콤마 제거 후 합산
+    });
+
+    const totalPriceElement = document.querySelector('.total-price');
+    totalPriceElement.innerText = totalPrice.toLocaleString() + "won";
+
+    // //쿠폰 적용 금액
+    // const couponElements = document.querySelector('.coupon-price');
+    //
+    // couponElements.innerText = (totalPrice - 3000).toLocaleString() + "won";
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,8 +202,29 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener('click', function (event) {
             // 클릭 이벤트의 기본 동작을 막습니다.
             event.preventDefault();
-            // 클릭 시 수행할 추가적인 로직을 여기에 추가할 수 있습니다.
+
         });
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

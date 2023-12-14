@@ -29,7 +29,7 @@
 
 
 
-                <div class="payment-product" th:each=" product: ${ buypage }">
+                <div class="payment-product" >
 
                     <h4>결제상품</h4>
                     <div style="float: left;">
@@ -38,8 +38,8 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name" name="menu" th:text="${product.projectTitle }"></span>
-                        <span type="price" class="menu-price" name="price" th:text="|${product.price }won|"></span>
+                        <span class="menu-name" name="menu" ></span>
+                        <span type="price" class="menu-price" name="price" ></span>
                     </div>
 
 
@@ -83,10 +83,7 @@
                 </div>
                 <div class="apply-coupon">
                     <span class="total-amount">쿠폰 적용금액</span>
-                    <span type="text" class="totalPrice" th:if="${coupon == 'Y'}" >3000</span>
-                    <span type="text" class="totalPrice" th:unless="${coupon1 == 'Y'}" >0</span>
 
-<!--                    th:if="${buypage[0].coupon == 'Y'}"-->
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
