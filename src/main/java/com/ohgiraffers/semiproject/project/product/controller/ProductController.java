@@ -44,20 +44,20 @@ public class ProductController {
         log.info("[ThumbnailController] ========================================================= start");
 
         TotalStoryDTO thumbnailList = productService.totalStoryList();
+        ProfileImageDTO profileImage = productService.profileimage();
 
         List<ProjectOptionDTO> projectOption = productService.optionList();
         List<ProjectFileDTO> projectFile = productService.projectimage();
 
 
 
-        ProfileImageDTO profileImage = productService.profileimage();
-
 
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
+        mv.addObject("profileImage",profileImage);
+
         mv.addObject("projectOption", projectOption);
         mv.addObject("projectFile",projectFile);
-        mv.addObject("profileImage",profileImage);
         log.info("[ThumbnailController] ========================================================= end");
 
         mv.setViewName("content/project/product/productStory");
@@ -68,9 +68,33 @@ public class ProductController {
     }
 
     @GetMapping("productPage")
-    public String productPage(){
+    public ModelAndView productPage(ModelAndView mv){
+        log.info("");
+        log.info("");
+        log.info("[ThumbnailController] ========================================================= start");
 
-        return "/content/project/product/productPage";
+        TotalStoryDTO thumbnailList = productService.totalStoryList();
+        ProfileImageDTO profileImage = productService.profileimage();
+
+        List<ProjectOptionDTO> projectOption = productService.optionList();
+        List<ProjectFileDTO> projectFile = productService.projectimage();
+
+
+
+
+        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
+        mv.addObject("thumbnailList", thumbnailList);
+        mv.addObject("profileImage",profileImage);
+
+        mv.addObject("projectOption", projectOption);
+        mv.addObject("projectFile",projectFile);
+        log.info("[ThumbnailController] ========================================================= end");
+
+        mv.setViewName("content/project/product/productPage");
+
+        log.info("[ThumbnailController] ========================================================= end");
+
+        return mv;
     }
 
     @GetMapping("productQnA")

@@ -5,9 +5,14 @@
       layout:decorate="~{layouts/layout}">
 <th:block layout:fragment="content">
 
+
     <link rel="stylesheet" th:href="@{/css/project/productPage/productStory.css}">
 
+
+
+
     <div class="bodyking" >
+
         <div class="main-box">
 
             <div class="story-con">
@@ -77,10 +82,8 @@
                     </div>
 
                     <div class="btns-con">
-                        <button class="goodbtn">
-                            <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
-                            <span id="likeCount">0</span></button>
-                        <button class="buybtn">예약 구매하기</button>
+
+
                         <script>
                             let liked1 = false; // 첫 번째 좋아요 상태를 나타내는 변수
                             let liked2 = false; // 두 번째 좋아요 상태를 나타내는 변수
@@ -102,12 +105,12 @@
                                 if (liked1 || liked2) {
                                     // 하나 이상의 버튼이 좋아요 상태인 경우
                                     button1.classList.add('liked');
-                                    button2.classList.add('liked');
+
                                     likeCount++;
                                 } else {
                                     // 두 버튼이 모두 좋아요 상태가 아닌 경우
                                     button1.classList.remove('liked');
-                                    button2.classList.remove('liked');
+
                                     likeCount--;
                                 }
 
@@ -138,9 +141,10 @@
                     <!-- 스크롤바 -->
                     <div class="scroll-container">
                         <!-- 상품선택하는 곳 -->
+                        <form id="optionForm" action="@{/order/buypage}" method="get">
                         <div class="select-con">
 
-                            <div class="select-a" th:each="option : ${projectOption}">
+                            <div class="select-a" th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
                                 <div class="product-0">
 <!--                                        가격-->
                                     <div class="productprice-1">
@@ -179,18 +183,20 @@
                                     <div>제한 수량</div>
                                     <div style="font-weight: bold;">50개</div>
                                 </div>
+                                <input type="hidden" id="selectedOption" name="selectedOption" value="" />
                             </div>
 
 
                         </div>
+                        </form>
                         <br>
                     </div>
                     <div class="btns-con">
 
                         <button class="goodbtn">
-                            <div onclick="like('button2')" class="like-button" id="button2">&#10084;</div>
-                        </button>
-                        <button class="buybtn">예약 구매하기</button>
+                            <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
+                            <span id="likeCount">0</span></button>
+                        <a th:href="@{/order/buypage}"><button class="buybtn">예약 구매하기</button></a>
 
                     </div>
                 </div>
@@ -221,6 +227,28 @@
         function updateCounter() {
             document.getElementById('counter-value').innerText = counterValue;
         }
+    </script>
+
+    <script>
+        function selectOption(element, optionIndex) {
+            // 이전에 선택된 모든 옵션의 선택 상태 제거
+            document.querySelectorAll('.select-a').forEach(function(el) {
+                el.classList.remove('selected');
+            });
+
+            // 현재 선택된 옵션에 선택 클래스 추가
+            element.classList.add('selected');
+
+            // 숨겨진 필드에 선택된 옵션의 인덱스 설정
+            document.getElementById('selectedOption').value = optionIndex;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.select-a').forEach((element, index) => {
+                element.setAttribute('onclick', `selectOption(this, ${index})`);
+            });
+        });
     </script>
 
 </th:block>
