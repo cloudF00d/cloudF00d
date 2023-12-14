@@ -159,6 +159,7 @@ public class SearchUserController {
     @GetMapping("/delete")
     public String userDelete(@RequestParam Long no, RedirectAttributes rttr)
     throws NoticeRemoveException {
+        System.out.println("no =========================== " + no);
 
         searchUserService.deleteUser(no);
 

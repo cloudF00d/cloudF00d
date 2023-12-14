@@ -33,7 +33,7 @@
                     <div class="stop">
                         <form action="search" method="post">
                             <select name="nation2">
-                                <option value="search" selected>정지</option>
+                                <option value="search">사용자 정지</option>
                                 <option value="stopWeek">일주일 정지</option>
                                 <option value="stopMonth">한달 정지</option>
                                 <option value="stopThreeMonth">3달 정지</option>
@@ -59,19 +59,21 @@
                     <input type="hidden" name="number" id="number" th:value="${userInfo.userCode}">
 
 <!--                    <script th:inline="text/javascript">-->
+<!--                        var num = $(this).find('input[name="number"]').val();-->
 <!--                        var number=`${userInfo.userCode}`;-->
-<!--                        var number1=document.getElementById('number');-->
+<!--                        var number1= document.getElementById('number');-->
 <!--                        console.log(number)-->
 <!--                        console.log(number1)-->
 <!--                        $(function(){-->
 <!--                            $('#delete').click(function(){-->
+
 <!--                                if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까?')){-->
+
 <!--                                    function init() {-->
 <!--                                        $.ajax({-->
-<!--                                            type : "GET",-->
-<!--                                            url : `http://localhost:8080/manager/search/delete?no=${number}`,-->
-<!--                                            contentType: "application/json",-->
-<!--                                            dataType: "json",-->
+<!--                                            type : 'GET',-->
+<!--                                            url : '/manager/search/delete',-->
+<!--                                            data : { no : num },-->
 <!--                                            success : function (data, status) {-->
 <!--                                                alert(status);-->
 <!--                                            },-->
@@ -80,7 +82,8 @@
 <!--                                            }-->
 <!--                                        });-->
 <!--                                    }-->
-<!--                                } else {-->
+<!--                                }-->
+<!--                                else {-->
 <!--                                    return false;-->
 
 <!--                                }-->

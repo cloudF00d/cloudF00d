@@ -1,9 +1,7 @@
 package com.ohgiraffers.semiproject.manager.model.dao;
 
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
-import com.ohgiraffers.semiproject.manager.model.dto.InquiryDTO;
-import com.ohgiraffers.semiproject.manager.model.dto.NoticeDTO;
-import com.ohgiraffers.semiproject.manager.model.dto.UserReportDTO;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -28,4 +26,22 @@ public interface BoardMapper {
     int selectTotalUserComplaintCount(Map<String, String> searchMap);
 
     List<UserReportDTO> findAllUserComplaint(SelectCriteria selectCriteria);
+
+    int registNotice(NoticeDTO noticeDTO);
+
+    int updateNotice(NoticeDTO noticeDTO);
+
+    int deleteNotice(Long no);
+
+    int insertInquiryAnswer(InquiryAnswerDTO inquiryAnswerDTO);
+
+    int inquiryAnswerUpdate(InquiryAnswerDTO inquiryAnswerDTO);
+
+    int inquiryDelete(Long no);
+
+    int inquiryAnswerDelete(Long no);
+
+    int selectTotalProjectComplaintCount(Map<String, String> searchMap);
+
+    List<ProjectReportHistoryDTO> findAllProjectComplaint(SelectCriteria selectCriteria);
 }

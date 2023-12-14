@@ -11,10 +11,16 @@ a:link, a:visited{
 li{
 	list-style: none;
 }
-
+#CRUDcontainer{
+    width: 200px;
+    display: flex;
+    /* vertical-align: center; */
+    align-items: baseline;
+    justify-content:right;
+}
 
 #update{
-    margin-top: 40px;
+    margin-top: 100px;
     float: right;
     margin-right: 20px;
     border-radius: 7px;
@@ -26,8 +32,8 @@ li{
     padding-bottom: 3px;
 
 }
-/* #delete{
-    margin-top: 40px;
+#delete{
+    margin-top: 100px;
     float: right;
     margin-right: 20px;
     border-radius: 7px;
@@ -35,8 +41,10 @@ li{
     border-width: 1px;
     padding-left: 5px;
     padding-right: 5px;
+    align-items: center;
+    padding-bottom: 3px;
 
-} */
+}
 
 
 .logo1 {

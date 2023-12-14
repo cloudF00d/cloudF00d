@@ -4,13 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
-<th:block layout:fragment="content">
+<th:block  layout:fragment="content">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신고 게시판</title>
-    <link rel="stylesheet" href="/css/manager/board/complaintMain.css">
-
+    <link rel="stylesheet" href="/css/manager/project/complaintMain.css">
 
     <div class="container">
         <th:block th:replace="/fragments/managersidebar.html"></th:block>
@@ -18,16 +14,16 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/board/complaintMain}">신고 게시판</a></span>
-            
+                <span><a class="black-link" th:href="@{/board/complaintProjectMain}">프로젝트 신고 게시판</a></span>
+
             </div>
-        
+
             <div>
 				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
             </div>
 
 
-            <form th:action="@{/board/complaintMain}" id="search" method="get">
+            <form th:action="@{/board/complaintProjectMain}" id="search" method="get">
                 <div class="searchcontainer">
                     <!--                왼쪽 select 박스-->
 
@@ -35,25 +31,25 @@
                     <div class="searchleft1">
                         <input type="hidden" name="currentPage" value="1">
                         <select name="nation1" id="nation1">
-                            <th:block th:if="${selectCriteria.getNation1()} == 'number'">
-                                <option value="number">작성번호</option>
+                            <th:block th:if="${selectCriteria.getNation1()} == 'code'">
+                                <option value="code">신고 코드</option>
+                            </th:block>
+                            <th:block th:if="${selectCriteria.getNation1()} == 'title'">
+                                <option value="title">제목</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getNation1()} == 'reason'">
-                                <option value="reason">신고사유</option>
+                                <option value="reason">신고 사유</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getNation1()} == 'reported'">
-                                <option value="reported">신고자</option>
-                            </th:block>
-                            <th:block th:if="${selectCriteria.getNation1()} == 'reporter'">
-                                <option value="reporter">작성자</option>
+                                <option value="reported">판매자</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getNation1()} == 'date'">
                                 <option value="date">신고일자</option>
                             </th:block>
-                            <option value="number">작성번호</option>
-                            <option value="reason">신고사유</option>
-                            <option value="reported">신고자</option>
-                            <option value="reporter">작성자</option>
+                            <option value="code">신고 코드</option>
+                            <option value="title">제목</option>
+                            <option value="reason">신고 사유</option>
+                            <option value="reported">판매자</option>
                             <option value="date">신고일자</option>
                         </select>
                     </div>
@@ -100,10 +96,11 @@
                         <select name="nation3" id="nation3">
 
                             <option selected>검색컬럼</option>
-                            <option value="code">코드</option>
+                            <option value="code">신고 코드</option>
                             <option value="title">제목</option>
-                            <option value="writer">작성자</option>
-                            <option value="date">작성일자</option>
+                            <option value="reason">신고 사유</option>
+                            <option value="reported">판매자</option>
+                            <option value="date">신고일자</option>
                             <!--                            <option value="etc">기타</option>-->
                         </select>
 
@@ -111,56 +108,42 @@
 
                 </div>
             </form>
-        
-        
+
+
             <div>
                 <table >
-                    
+
                     <tr>
-                        
+
                         <th id="newcolumn">새 글</th>
-                        <th>작성번호</th>
-                        <th>신고사유</th>
-                        <th>신고자</th>
-                        <th>작성자</th>
+                        <th>코드</th>
+                        <th>제목</th>
+                        <th>신고 사유</th>
+                        <th>판매자</th>
                         <th>신고일자</th>
-                        <th>처리상태</th>
+                        <th>처리현황</th>
                     </tr>
-                    <tr id="link" onclick="location.href='complaintBefore'">
+                    <tr id="link"
+                        th:each=" list : ${project}"
+                        th:onclick="'location.href=\'/board/complaintProjectDetail?no='
+                        + @{${list.projectReportCode}}
+                        + '&status=' + @{${list.actionDetail}}
+                        + '\''"
+                    >
                         <td id="new">new</td>
-                        <td>1</td>
-                        <td>욕설</a></td>
-                        <td>김민*</td>
-                        <td>김민*</td>
-                        <td>2023/11/16</td>
-                        <td ><span class="ing">처리 중</span></td>
-                    </tr>
-                    <tr id="link" onclick="location.href='complaintAnswered'">
-                        <td></td>
-                        <td>2</td>
-                        <td><a href="#" id="questionLink">욕설</a></td>
-                        <td>김민*</td>
-                        <td>김민*</td>
-                        <td>2023/11/16</td>
-                        <td><span class="close">처리 완료</span></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>3</td>
-                        <td><a href="#" id="questionLink">욕설</a></td>
-                        <td>김민*</td>
-                        <td>김민*</td>
-                        <td>2023/11/16</td>
-                        <td ><span class="ing">처리 중</span></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>4</td>
-                        <td><a href="#" id="questionLink">욕설</a></td>
-                        <td>김민*</td>
-                        <td>김민*</td>
-                        <td>2023/11/16</td>
-                        <td ><span class="ing">처리 중</span></td>
+                        <td th:text="${list.projectReportCode}"></td>
+                        <td th:text="${list.reportProject.projectTitle}"></td>
+                        <td th:text="${list.reportType}"></td>
+                        <td th:text="${list.reporter.name}"></td>
+                        <td th:text="${list.reportDate}"></td>
+                        <td th:if="${#lists.isEmpty(list.actionDetail)}">처리 전</td>
+                        <td th:if="${!#lists.isEmpty(list.actionDetail)}">처리 완료</td>
+<!--                        <td th:if="${list.actionDetail != null or list.actionDetail != 0}"-->
+<!--                        th:text="${list.actionDetail}">-->
+<!--                        </td>-->
+<!--                        <td th:unless="${list.actionDetail != null or list.actionDetail != 0}"-->
+<!--                            ><p>처리 전</p>-->
+<!--                        </td>-->
                     </tr>
                 </table>
             </div>
@@ -176,10 +159,11 @@
                     <!--                    </button>-->
                     <!-- 이전 페이지 버튼 -->
                     <button class="prev"
-                            th:onclick="'location.href=\'/board/complaintMain?currentPage='
+                            th:onclick="'location.href=\'/board/complaintProjectMain?currentPage='
                             + @{${selectCriteria.pageNo - 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == 1}">
@@ -193,10 +177,11 @@
                     <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
                         <button class="page-link"
                                 th:text="${ page }"
-                                th:onclick="'location.href=\'/board/complaintMain?currentPage='
+                                th:onclick="'location.href=\'/board/complaintProjectMain?currentPage='
                             + @{${page}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                                 th:disabled="${ selectCriteria.pageNo eq page }">
@@ -210,10 +195,11 @@
 
                     <!-- 다음 페이지 버튼 -->
                     <button class="prev"
-                            th:onclick="'location.href=\'/board/complaintMain?currentPage='
+                            th:onclick="'location.href=\'/board/complaintProjectMain?currentPage='
                             + @{${selectCriteria.pageNo + 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
@@ -238,5 +224,6 @@
     </div>
 
 
-</th:block>
+    </th:block>
+
 </html>

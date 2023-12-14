@@ -1,10 +1,10 @@
 package com.ohgiraffers.semiproject.board.model.service;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRegistException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
-import com.ohgiraffers.semiproject.manager.model.dto.InquiryDTO;
-import com.ohgiraffers.semiproject.manager.model.dto.NoticeDTO;
-import com.ohgiraffers.semiproject.manager.model.dto.ProjectDTO;
-import com.ohgiraffers.semiproject.manager.model.dto.UserReportDTO;
+import com.ohgiraffers.semiproject.manager.model.dto.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +27,20 @@ public interface BoardServiceInter {
     int selectTotalUserComplaintCount(Map<String, String> searchMap);
 
     List<UserReportDTO> findAllUserComplaint(SelectCriteria selectCriteria);
+
+    void registNotice(NoticeDTO noticeDTO) throws NoticeRegistException;
+
+    void updateNotice(NoticeDTO noticeDTO) throws NoticeModifyException;
+
+    void deleteNotice(Long no)throws NoticeRemoveException;
+
+    void insertInquiryAnswer(InquiryAnswerDTO inquiryAnswerDTO) throws NoticeRegistException;
+
+    void inquiryUpdate(InquiryAnswerDTO inquiryAnswerDTO) throws NoticeModifyException;
+
+    void inquiryDelete(Long no) throws NoticeRemoveException;
+
+    int selectTotalProjectComplaintCount(Map<String, String> searchMap);
+
+    List<ProjectReportHistoryDTO> findAllProjectComplaint(SelectCriteria selectCriteria);
 }

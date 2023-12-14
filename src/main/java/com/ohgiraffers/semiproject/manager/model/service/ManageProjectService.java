@@ -1,11 +1,15 @@
 package com.ohgiraffers.semiproject.manager.model.service;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRegistException;
+import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dao.ManageProjectMapper;
 import com.ohgiraffers.semiproject.manager.model.dto.ApprovalHistoryDTO;
 import com.ohgiraffers.semiproject.manager.model.dto.ProjectDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -64,5 +68,25 @@ public class ManageProjectService implements ManageProjectServiceInter{
         }
 
         return status;
+    }
+
+    @Override
+    @Transactional
+    public void declineReason(ApprovalHistoryDTO approvalHistoryDTO) throws NoticeRegistException {
+
+        int declineReason = mapper.declineReason(approvalHistoryDTO);
+
+        if(!(declineReason > 0)) {
+            throw new NoticeRegistException("회원 정보 수정에 실패하셨습니다.");
+        }
+    }
+
+    @Override
+    public void approve(Long no) throws NoticeRegistException {
+        int result = mapper.approve(no);
+
+        if(!(result > 0)) {
+            throw new NoticeRegistException("회원 정보 수정에 실패하셨습니다.");
+        }
     }
 }

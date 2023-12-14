@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/css/manager/board/noticeWriting.css">
 
 
-    <form id="projectDecline" th:action="@{/board/noticeWriting}" method="post">
+    <form id="projectDecline" th:action="@{/board/noticeUpdate}" method="post">
 <div class="container">
 
 <th:block th:replace="/fragments/managersidebar.html"></th:block>
@@ -29,20 +29,29 @@
 				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
             </div>
 
+            <input
+                    type="hidden"
+                    name="creationNumber"
+                    th:value="${notice.creationNumber}"
+            >
 
-<!--            <div class="box">-->
-<!--                <span class="box1">작성번호 : 1</span>-->
+
+            <div class="box">
+                <span class="box1" th:text="${notice.creationNumber}"></span>
 <!--                &lt;!&ndash; <span class="box1">작성자:김민*</span> &ndash;&gt;-->
-<!--                <span class="box2">작성일자:2023/11/15</span>-->
+                <span class="box2" th:text="|작성일자: ${notice.creationDate}|"></span>
 <!--				&lt;!&ndash; <span class="box3">답변 전</span> &ndash;&gt;-->
-<!--            </div>-->
+            </div>
 
             <div>
                     <div class="detail_title">
                         <div id="details">제목</div>
 
                         <div id="details3">
-                        <textarea id="writeTitle" name="title" cols="30" rows="10"></textarea>
+                        <textarea id="writeTitle" name="title" cols="30" rows="10"
+                        th:text="${notice.title}"
+                        >
+                        </textarea>
                         </div>
                     </div>
 
@@ -50,7 +59,9 @@
                         <div id="details">내용</div>
 
                         <div id="details2">
-                        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                        <textarea name="content" id="content" cols="30" rows="10"
+                        th:text="${notice.content}"
+                        ></textarea>
                         </div>
                     </div>
                     <div class="submitbtn"><button type="submit">글쓰기</button></div>
@@ -59,20 +70,6 @@
 
 
 
-
-
-<!--                    <div class="pagination">-->
-<!--                        <div class="pagination-box">-->
-<!--                            <a href="#" class="prev">＜</a>-->
-<!--                            <div class="page-links">-->
-<!--                                <a href="#" class="page-link">1</a>-->
-<!--                                <a href="#" class="page-link">2</a>-->
-<!--                                <a href="#" class="page-link">3</a>-->
-
-<!--                            </div>-->
-<!--                            <a href="#" class="next">＞</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
         </div>
 
 

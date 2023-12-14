@@ -6,14 +6,14 @@
 
 <th:block layout:fragment="content">
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신고 게시판</title>
+    <title>사용자 신고 게시판</title>
     <link rel="stylesheet" href="/css/manager/board/complaintMain.css">
 
 
     <div class="container">
-        <th:block th:replace="/fragments/managersidebar.html"></th:block>
+    <th:block th:replace="/fragments/managersidebar.html"></th:block>
 
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
@@ -115,7 +115,7 @@
         
         
             <div>
-                <table >
+                <table>
                     
                     <tr>
                         
@@ -128,20 +128,22 @@
                         <th>처리상태</th>
                     </tr>
                     <tr id="link"
+                        th:each="list : ${user}"
                         th:onclick="'location.href=\'/board/complaintDetail?no='
-                        + @{${user.creationNumber.creationNumber}}
-                        + '&status=' + @{${user.creationNumber.answerCode}}
+                        + @{${list.creationNumber.creationNumber}}
+                        + '&status=' + @{${list.creationNumber.answerCode}}
                         + '\''"
                     >
                         <td id="new">new</td>
-                        <td th:text="${user.creationNumber}"></td>
-                        <td th:text="${user.title}"></a></td>
-                        <td th:text="${user.reportedPerson}"></td>
-                        <td th:text="${user.reporter}"></td>
-                        <td th:text="${user.creationDate}"></td>
-                        <td th:if="${user.creationNumber.answerCode == null or user.creationNumber.answerCode == 0}"
-                            th:text="처리 전"></td>
-                        <td th:if="${user.creationNumber.answerCode} > 0">처리 완료</td>
+                        <td th:text="${list.creationNumber.creationNumber}"></td>
+                        <td th:text="${list.title}"></a></td>
+                        <td th:text="${list.reportedPerson.name}"></td>
+                        <td th:text="${list.reporter.userName}"></td>
+                        <td th:text="${list.creationDate}"></td>
+                        <td th:if="${list.creationNumber.answerCode == null or list.creationNumber.answerCode == 0}"
+                        >처리 전
+                        </td>
+                        <td th:if="${list.creationNumber.answerCode} > 0">처리 완료</td>
                     </tr>
 
                 </table>
@@ -162,6 +164,7 @@
                             + @{${selectCriteria.pageNo - 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == 1}">
@@ -179,6 +182,7 @@
                             + @{${page}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                                 th:disabled="${ selectCriteria.pageNo eq page }">
@@ -196,6 +200,7 @@
                             + @{${selectCriteria.pageNo + 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"

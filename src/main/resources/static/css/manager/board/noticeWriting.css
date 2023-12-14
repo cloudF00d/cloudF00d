@@ -12,6 +12,19 @@ li{
 	list-style: none;
 }
 
+#delete{
+    margin-top: 100px;
+    float: right;
+    margin-right: 20px;
+    border-radius: 7px;
+    border : solid;
+    border-width: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    align-items: center;
+    padding-bottom: 3px;
+
+}
 
 .logo1 {
     width: 140px; /* 원하는 너비로 설정하세요. */

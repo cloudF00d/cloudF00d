@@ -68,6 +68,10 @@
 
                     <!--                오른쪽 박스-->
                     <div class="searchright">
+                        <button type="button"
+                        th:onclick="'location.href=\'/board/noticeWriting\''"
+
+                        >글쓰기</button>
                         <input type="text" name="searchValue" id="searchValue" th:value="${selectCriteria.searchValue}">
                         <!--                        검색어 입력 칸 input-->
                         <!--                        <button class="iconlogo" type="submit">입력하기</button>-->

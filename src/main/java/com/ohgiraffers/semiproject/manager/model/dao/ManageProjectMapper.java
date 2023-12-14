@@ -22,4 +22,8 @@ public interface ManageProjectMapper {
     int findStatus(Long no);
 
     char status(Long no);
+
+    int declineReason(ApprovalHistoryDTO approvalHistoryDTO);
+
+    int approve(Long no);
 }
