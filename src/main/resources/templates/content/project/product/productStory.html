@@ -23,8 +23,12 @@
 
                 <div class="left">
                     <!--=============== 자두 사진 ============== -->
-                    <div class="imgmove">
-<!--                        <img th:src="@{/thumbPath${story.profileImageDTO[0].getPath()}}" alt="">-->
+                    <div class="imgmove" >
+                        <img th:src="@{|/thumbPath/${projectFile[0].getChangedFileName()}|}" alt="">
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}|}" alt="">-->
+<!--                    <img th:src="@{|/thumbPath${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                             <!--       왼쪽위 사진        -->
                         <!-- 이미지 불러오는 곳 -->
                     </div>
@@ -33,7 +37,8 @@
                     <div>
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
-<!--                            <img th:src="@{/thumbPath${story.profileImageDTO[0].getPath()}}" alt="">-->
+                            <img th:src="@{|/thumbPath/${projectFile[1].getChangedFileName()}|}" alt="">
+<!--                            <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                                     <!-- 메인사진 위치 -->
                         </div>
                     </div>
@@ -53,10 +58,10 @@
                     <div class="introduction-con">
                         <div>
                             <!-- 프로젝트 타이틀 자리 입니다.-->
-                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" >
+                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" th:text="${thumbnailList.projectDTO.projectTitle}" >
                             </div>
                                 <!-- 타이틀 아래 소개글자리 입니다.-->
-                            <div style="font-size: 23px; margin-bottom: 50px;" >
+                            <div style="font-size: 23px; margin-bottom: 50px;" th:text="${thumbnailList.projectDTO.projectSummary}">
                             </div>
                             <div style="margin-bottom: 50px;"><span
                                     style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span
@@ -113,11 +118,11 @@
                     </div>
                     <div class="businesscard-con">
                         <div class="businesscard">
-                            <img src="/resources/images/minicon/good.png" alt="">
+                            <img th:src="@{|/imagePath/${profileImage.getChangedProFileName()}|}" alt="">
 <!--                                    여기가 판매자 이름-->
-                            <div class="businesscard-right" ></div>
+                            <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
-                        <div class="businesscard-home" >홈페이지
+                        <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
 <!--                                 홈페이지 주소 넣는 곳-->
                             <div class="addr"></div>
                         </div>
@@ -125,8 +130,7 @@
                         <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
                     </div>
                     <div class="report-con">
-                        <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a
-                                href="프로젝트신고">신고하러가기  ></a></span></span>
+                        <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a th:href="@{/board/inquiryWrite}">신고하러가기  ></a></span></span>
                     </div>
                     <div class="pickkeyword-con">
                         <div class="pickkeyword">리워드 선택</div>
@@ -136,13 +140,16 @@
                         <!-- 상품선택하는 곳 -->
                         <div class="select-con">
 
-                            <div class="select-a">
+                            <div class="select-a" th:each="option : ${projectOption}">
                                 <div class="product-0">
 <!--                                        가격-->
-                                    <div class="productprice-1" ></div>
+                                    <div class="productprice-1">
+                                        <div th:text="${option.price}"></div>
+                                    </div>
                                     <div class="product-1">
+                                        <div th:text="${option.optionName}"></div>
 <!--                                            옵션 이름-->
-                                        <div ></div>
+
                                     </div>
                                 </div>
 
@@ -150,8 +157,7 @@
 
                                 <div class="product-2">
 <!--                                    상품 구성-->
-                                    <div ></div>
-
+                                    <div th:text="${option.configure}"></div>
                                 </div>
                                 <hr>
 
@@ -175,80 +181,6 @@
                                 </div>
                             </div>
 
-                            <div class="select-b">
-                                <div class="product-0">
-                                        <!--    B세트 상품 가격 자리-->
-                                    <div class="productprice-1"></div>
-                                    <div class="product-1">
-<!--                                            B세트 상품이름 자리-->
-                                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
-                                    <div>자두청 350ml 1병</div>
-                                </div>
-                                <hr>
-
-                                <div class="product-3">
-                                    <div>배송비</div>
-                                    <div style="font-weight: bold;">6000원</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-4">
-                                    <div>발송 시작일</div>
-                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-5">
-                                    <div>제한 수량</div>
-                                    <div style="font-weight: bold;">50개</div>
-                                </div>
-                            </div>
-
-                            <div class="select-c">
-                                <div class="product-0">
-
-                                    <div class="productprice-1">38.000원</div>
-                                    <div class="product-1">
-                                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
-                                    <div>자두청 350ml 1병</div>
-                                </div>
-                                <hr>
-
-                                <div class="product-3">
-                                    <div>배송비</div>
-                                    <div style="font-weight: bold;">6000원</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-4">
-                                    <div>발송 시작일</div>
-                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-5">
-                                    <div>제한 수량</div>
-                                    <div style="font-weight: bold;">50개</div>
-                                </div>
-                            </div>
 
                         </div>
                         <br>
