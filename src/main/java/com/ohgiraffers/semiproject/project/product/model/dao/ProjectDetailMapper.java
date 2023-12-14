@@ -13,7 +13,7 @@ public interface ProjectDetailMapper {
     TotalStoryDTO totalStoryList();
     List<ProjectOptionDTO> optionList();
 
-    ProjectFileDTO projectimage();
+    List<ProjectFileDTO> projectimage();
 
     ProfileImageDTO profileimage();
 }

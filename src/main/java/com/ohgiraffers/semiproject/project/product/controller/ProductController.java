@@ -46,7 +46,10 @@ public class ProductController {
         TotalStoryDTO thumbnailList = productService.totalStoryList();
 
         List<ProjectOptionDTO> projectOption = productService.optionList();
-        ProjectFileDTO projectFile = productService.projectimage();
+        List<ProjectFileDTO> projectFile = productService.projectimage();
+
+
+
         ProfileImageDTO profileImage = productService.profileimage();
 
 

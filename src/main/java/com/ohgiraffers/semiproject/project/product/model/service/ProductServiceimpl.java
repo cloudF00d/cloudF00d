@@ -39,7 +39,7 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public ProjectFileDTO projectimage() {
+    public List<ProjectFileDTO> projectimage() {
         return mapper.projectimage();
     }
 

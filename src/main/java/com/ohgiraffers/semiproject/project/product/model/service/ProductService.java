@@ -12,7 +12,7 @@ public interface ProductService {
 
     List<ProjectOptionDTO> optionList();
 
-    ProjectFileDTO projectimage();
+    List<ProjectFileDTO> projectimage();
 
     ProfileImageDTO profileimage();
 

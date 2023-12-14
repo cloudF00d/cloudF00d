@@ -91,23 +91,24 @@
     </resultMap>
 
     <select id="totalStoryList" resultMap="totalStoryList">
-        select A.PROJECT_TITLE,
-               A.PROJECT_CODE,
-               A.PROJECT_SUMMARY,
-               B.PATH,
-               B.CHANGED_FILE_NAME,
-               A.ACHIEVEMENT_STATUS,
-               A.PROJECT_END_DATE,
-               A.TARGET_AMOUNT,
-               A.SELLER_INFO,
-               E.BUSINESS_NAME,
-               E.BUSINESS_EMAIL,
-               E.HOMEPAGE,
-               D.CHANGEDPRO_FILE_NAME
+        select
+            A.PROJECT_CODE,
+            A.PROJECT_TITLE,
+            A.PROJECT_SUMMARY,
+            A.PROJECT_END_DATE,
+
+
+            A.ACHIEVEMENT_STATUS,
+            A.TARGET_AMOUNT,
+            A.SELLER_INFO,
+            E.BUSINESS_NAME,
+            E.BUSINESS_EMAIL,
+            E.HOMEPAGE
+
         FROM TBL_PROJECT A
-                 JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
-                 JOIN tbl_profile_image D ON (B.FILE_CODE = D.FILE_CODE)
-                 JOIN tbl_private_business E ON (D.USER_CODE = E.USER_CODE)
+
+
+            JOIN tbl_private_business E ON (A.SELLER_INFO = E.USER_CODE)
         where A.PROJECT_CODE = 1;
     </select>
 
@@ -125,25 +126,22 @@
     </select>
 
     <select id="projectimage" resultMap="projectFileResult">
-        select
-            A.PROJECT_CODE,
-            D.PATH,
+        SELECT
+            D.FILE_CODE,
             D.CHANGED_FILE_NAME
         FROM tbl_project A
-            JOIN tbl_project_file D ON A.PROJECT_CODE = D.PROJECT_CODE
-        WHERE
-            A.PROJECT_CODE = 1;
+                 JOIN tbl_project_file D ON A.PROJECT_CODE = D.PROJECT_CODE
+        WHERE A.PROJECT_CODE = 1
+        ORDER BY D.FILE_CODE;
     </select>
 
 <select id="profileimage" resultMap="profileImageResult">
     select
-        A.PROJECT_CODE,
         D.FILE_CODE,
         D.PATH,
         D.CHANGEDPRO_FILE_NAME
     FROM tbl_project A
-             JOIN TBL_PROJECT_FILE B ON (A.PROJECT_CODE = B.PROJECT_CODE)
-             JOIN tbl_profile_image D ON (B.FILE_CODE = D.FILE_CODE)
+             JOIN tbl_profile_image D ON (A.SELLER_INFO = D.USER_CODE)
     WHERE
         A.PROJECT_CODE = 1;
 </select>

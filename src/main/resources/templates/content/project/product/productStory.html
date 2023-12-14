@@ -23,8 +23,9 @@
 
                 <div class="left">
                     <!--=============== 자두 사진 ============== -->
-                    <div class="imgmove">
-                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">
+                    <div class="imgmove" >
+                        <img th:src="@{|/thumbPath/${projectFile[0].getChangedFileName()}|}" alt="">
+<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
 <!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
 <!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}|}" alt="">-->
 <!--                    <img th:src="@{|/thumbPath${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
@@ -36,6 +37,7 @@
                     <div>
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
+                            <img th:src="@{|/thumbPath/${projectFile[1].getChangedFileName()}|}" alt="">
 <!--                            <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                                     <!-- 메인사진 위치 -->
                         </div>
@@ -56,7 +58,7 @@
                     <div class="introduction-con">
                         <div>
                             <!-- 프로젝트 타이틀 자리 입니다.-->
-                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" th:text="${thumbnailList.projectDTO.getProjectTitle()}" >
+                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" th:text="${thumbnailList.projectDTO.projectTitle}" >
                             </div>
                                 <!-- 타이틀 아래 소개글자리 입니다.-->
                             <div style="font-size: 23px; margin-bottom: 50px;" th:text="${thumbnailList.projectDTO.projectSummary}">
@@ -116,7 +118,7 @@
                     </div>
                     <div class="businesscard-con">
                         <div class="businesscard">
-                            <img th:src="@{|/imagePath/${thumbnailList.profileImageDTO[0].getChangedProFileName()}|}" alt="">
+                            <img th:src="@{|/imagePath/${profileImage.getChangedProFileName()}|}" alt="">
 <!--                                    여기가 판매자 이름-->
                             <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
@@ -128,8 +130,7 @@
                         <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
                     </div>
                     <div class="report-con">
-                        <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a
-                                href="프로젝트신고">신고하러가기  ></a></span></span>
+                        <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a th:href="@{/board/inquiryWrite}">신고하러가기  ></a></span></span>
                     </div>
                     <div class="pickkeyword-con">
                         <div class="pickkeyword">리워드 선택</div>
