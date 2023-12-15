@@ -43,4 +43,12 @@ public interface BoardServiceInter {
     int selectTotalProjectComplaintCount(Map<String, String> searchMap);
 
     List<ProjectReportHistoryDTO> findAllProjectComplaint(SelectCriteria selectCriteria);
+
+    ProjectReportHistoryDTO findOneComplaintProject(Long no);
+
+    UserReportDTO findOneComplaintUser(Long no);
+
+    void complaintUserDelete(long no) throws NoticeRemoveException;
+
+    void complaintProjectDelete(Long no) throws NoticeRemoveException;
 }

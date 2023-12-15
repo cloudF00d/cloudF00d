@@ -119,7 +119,9 @@
                     <tr>
                         <td th:text="${project.projectCode}"></td>
                         <td th:text="${project.projectTitle}"></td>
-                        <td th:text="${project.sellerInfo.userName}"></td>
+                        <td th:text="${project.sellerInfo.userName}"
+                        th:onclick="'location.href=\'/manager/search/userDetail?no='+ @{${project.sellerInfo.userCode}} + '\''"
+                        ></td>
                         <td th:text="${project.submissionDate}"></td>
                         <td><span class="close" th:text="${status}"></span></td>
                     </tr>

@@ -18,7 +18,7 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/board/complaintMain}">신고 게시판</a></span>
+                <span><a class="black-link" th:href="@{/board/complaintMain}">사용자 신고 게시판</a></span>
             
             </div>
         
@@ -127,7 +127,7 @@
                         <th>신고일자</th>
                         <th>처리상태</th>
                     </tr>
-                    <tr id="link"
+                    <tr class="link"
                         th:each="list : ${user}"
                         th:onclick="'location.href=\'/board/complaintDetail?no='
                         + @{${list.creationNumber.creationNumber}}
@@ -148,6 +148,16 @@
 
                 </table>
             </div>
+
+            <script>
+                Array.from(document.getElementsByClassName('link')).forEach(tr => {
+                    // 신고일자는 각 행의 여섯 번째 <td> 요소에 있습니다.
+                    const reportDateTd = tr.children[5];
+                    console.log(reportDateTd.innerText);
+                    // 신고일자 텍스트를 콘솔에 출력합니다.
+                });
+
+            </script>
             <!-- 페이지 처리 -->
             <div class="pagination" align="center">
                 <div class="pagination-box">

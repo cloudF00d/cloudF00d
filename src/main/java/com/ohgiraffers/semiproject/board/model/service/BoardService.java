@@ -109,6 +109,7 @@ public class BoardService implements BoardServiceInter {
     }
 
     @Override
+    @Transactional
     public void deleteNotice(Long no) throws NoticeRemoveException {
         int result = mapper.deleteNotice(no);
 
@@ -138,6 +139,7 @@ public class BoardService implements BoardServiceInter {
     }
 
     @Override
+    @Transactional
     public void inquiryDelete(Long no) throws NoticeRemoveException {
 
         int result2 = mapper.inquiryAnswerDelete(no); // 답변 기록 삭제하는거
@@ -162,6 +164,42 @@ public class BoardService implements BoardServiceInter {
         System.out.println("inquiryDTOS ============================ " + inquiryDTOS);
 
         return inquiryDTOS;
+    }
+
+    @Override
+    public ProjectReportHistoryDTO findOneComplaintProject(Long no) {
+        ProjectReportHistoryDTO projectReportHistoryDTO = mapper.findOneComplaintProject(no);
+
+        return projectReportHistoryDTO;
+    }
+
+    @Override
+    public UserReportDTO findOneComplaintUser(Long no) {
+        UserReportDTO userReportHistoryDTO = mapper.findOneComplaintUser(no);
+
+        return userReportHistoryDTO;
+    }
+
+    @Override
+    @Transactional
+    public void complaintUserDelete(long no) throws NoticeRemoveException {
+        int result2 = mapper.complaintUserAnswerDelete(no); // 답변 기록 삭제하는거
+
+        int result = mapper.complaintUserBoardDelete(no); // 문의 기록 삭제하는거
+
+        if(!(result > 0)) {
+            throw new NoticeRemoveException("삭제에 실패했습니다");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void complaintProjectDelete(Long no) throws NoticeRemoveException {
+        int result = mapper.complaintProjectDelete(no);
+
+        if(!(result > 0)) {
+            throw new NoticeRemoveException("삭제에 실패했습니다");
+        }
     }
 }
 
