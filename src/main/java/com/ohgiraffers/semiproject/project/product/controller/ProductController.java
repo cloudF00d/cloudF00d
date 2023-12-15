@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,6 +37,8 @@ public class ProductController {
 //    @GetMapping("productStory")
 //    public
 
+
+
     @GetMapping("productStory")
     public ModelAndView productStory(ModelAndView mv)  {
 
@@ -44,20 +47,20 @@ public class ProductController {
         log.info("[ThumbnailController] ========================================================= start");
 
         TotalStoryDTO thumbnailList = productService.totalStoryList();
+        ProfileImageDTO profileImage = productService.profileimage();
 
         List<ProjectOptionDTO> projectOption = productService.optionList();
         List<ProjectFileDTO> projectFile = productService.projectimage();
 
 
 
-        ProfileImageDTO profileImage = productService.profileimage();
-
 
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
+        mv.addObject("profileImage",profileImage);
+
         mv.addObject("projectOption", projectOption);
         mv.addObject("projectFile",projectFile);
-        mv.addObject("profileImage",profileImage);
         log.info("[ThumbnailController] ========================================================= end");
 
         mv.setViewName("content/project/product/productStory");
@@ -67,10 +70,36 @@ public class ProductController {
         return mv;
     }
 
-    @GetMapping("productPage")
-    public String productPage(){
 
-        return "/content/project/product/productPage";
+
+    @GetMapping("productPage")
+    public ModelAndView productPage(ModelAndView mv){
+        log.info("");
+        log.info("");
+        log.info("[ThumbnailController] ========================================================= start");
+
+        TotalStoryDTO thumbnailList = productService.totalStoryList();
+        ProfileImageDTO profileImage = productService.profileimage();
+
+        List<ProjectOptionDTO> projectOption = productService.optionList();
+        List<ProjectFileDTO> projectFile = productService.projectimage();
+
+
+
+
+        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
+        mv.addObject("thumbnailList", thumbnailList);
+        mv.addObject("profileImage",profileImage);
+
+        mv.addObject("projectOption", projectOption);
+        mv.addObject("projectFile",projectFile);
+        log.info("[ThumbnailController] ========================================================= end");
+
+        mv.setViewName("content/project/product/productPage");
+
+        log.info("[ThumbnailController] ========================================================= end");
+
+        return mv;
     }
 
     @GetMapping("productQnA")
