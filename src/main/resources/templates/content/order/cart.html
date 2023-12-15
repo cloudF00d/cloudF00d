@@ -32,7 +32,7 @@
         <h3>장바구니</h3>
         <div class="mid">
             <div class="midmenu" >
-                <form  th:action="@{/order/buypage}" method="get">
+<!--                <form  th:action="@{/order/buypage}" method="get" onsubmit="return false;">-->
                     <div class="logo">
                         <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                     </div>
@@ -54,20 +54,25 @@
                         </div>
                         <div class="nameAndCount">
                             <div class="name" th:text="${cart.projectTitle}"></div>
+                            <input type="hidden" class="name1" th:value="${cart.projectTitle[0]}"></input>
+                            <div class="name2" th:text="${cart.optionType}"></div>
+
                             <button class="count remain" th:onclick="remain" id="remain"></button>
                             <input type="hidden" class="count end" th:value="${#dates.format(cart.end, 'yyyy-MM-dd HH:mm:ss')}"></input>
                         </div>
                         <div class="btn-con">
-                            <button class="btn decrease" th:onclick="decrease">-</button>
+                            <button class="btn decrease" >-</button>
                             <span id="counter-value">1</span>
-                            <button class="btn increase" th:onclick="increase">+</button>
+                            <button class="btn increase" >+</button>
                         </div>
                         <div class="price-con" >
                             <div class="total product"  id="total" th:text="${cart.price}"> </div>
                             <input type="hidden" class="price" id="price" th:value="${cart.price}"></input>
                         </div>
                         <div class="trash-con">
-                            <button class="trash-btn"><img src="/images/minicon/trashicon.png" alt="" width="20px"></button>
+                            <button class="trash-btn" onclick="removeRow(this)">
+                                <img src="/images/minicon/trashicon.png" alt="" width="20px">
+                            </button>
                         </div>
                     </div>
 
@@ -75,7 +80,7 @@
                     <div class="bilge-con">
                     <div class="bilge">
 
-                            <div class="coupon-action">
+                            <div class="coupon-action" >
 
                                 <div>
                                     <div>할인쿠폰</div>
@@ -83,7 +88,9 @@
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <div class="coupon-btn">
-                                    <button type="submit" class="applybutton">적용하기</button>
+                                    <button class="applybutton" id="applybutton"  >적용하기</button>
+                                    <input type="hidden" class="coupon"  th:value="${cart[0].coupon}"></input>
+
                                 </div>
 
                             </div>
@@ -92,29 +99,31 @@
 
                         <div class="total-product-amount">
                             <span class="total-amount">상품 전체금액</span>
-                            <span class="total-price" id="total-price"></span>
+                            <span class="total-price" id="total-price">0won</span>
                         </div>
                         <div class="apply-coupon">
                             <span class="total-amount">쿠폰 적용금액</span>
-                            <span class="coupon-price">23,000won</span>
+                            <span class="coupon-price" id="coupon-price ">0won</span>
                         </div>
                         <div class="delivery-fee">
                             <span class="shipping-cost">배송비</span>
-                            <span class="cost">3,000won</span>
+                            <span class="cost" id="deliveryCost">0won</span>
                         </div>
                         <div class="final-amount">
                             <span class="gun-cost">총금액</span>
-                            <span class="gun-won">26,000won</span>
+                            <span class="gun-won" id="gun-won">0won</span>
                         </div>
 
                     </div>
 
                     </div>
-                </form>
-<!--                결제하기 누르면 카카오 결제창 뜨는 것 예상-->
-            <a class="paybtn-con" th:href="@{/order/buypage}">
-                <button class="paybtn"> 결제하기 </button>
-            </a>
+<!--                            결제하기 누르면 카카오 결제창 뜨는 것 예상-->
+                    <a class="paybtn-con" >
+                        <span class="paybtn"> 결제하기 </span>
+                    </a>
+
+<!--                </form>-->
+
             </div>
         </div>
 
