@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <th:block  layout:fragment="content">
 
@@ -109,9 +110,20 @@
                 </div>
             </form>
 
+<!--            <script th:inline="javascript">-->
+<!--                var test = document.getElementById('date').value;-->
 
+<!--                let message = '[[${list.reportDate}]]';-->
+
+<!--                console.log(message);-->
+<!--                console.log(test);-->
+
+<!--                /*]]>*/-->
+
+
+<!--            </script>-->
             <div>
-                <table >
+                <table>
 
                     <tr>
 
@@ -127,15 +139,14 @@
                         th:each=" list : ${project}"
                         th:onclick="'location.href=\'/board/complaintProjectDetail?no='
                         + @{${list.projectReportCode}}
-                        + '&status=' + @{${list.actionDetail}}
                         + '\''"
                     >
-                        <td id="new">new</td>
+                        <td th:if="${#temporals.format(#temporals.plusDays(#temporals.createToday(),-1),'yyyy-MM-dd')}"></td>
                         <td th:text="${list.projectReportCode}"></td>
                         <td th:text="${list.reportProject.projectTitle}"></td>
                         <td th:text="${list.reportType}"></td>
                         <td th:text="${list.reporter.name}"></td>
-                        <td th:text="${list.reportDate}"></td>
+                        <td id="date"th:text="${list.reportDate}"></td>
                         <td th:if="${#lists.isEmpty(list.actionDetail)}">처리 전</td>
                         <td th:if="${!#lists.isEmpty(list.actionDetail)}">처리 완료</td>
 <!--                        <td th:if="${list.actionDetail != null or list.actionDetail != 0}"-->
@@ -146,7 +157,11 @@
 <!--                        </td>-->
                     </tr>
                 </table>
+
+
             </div>
+
+
             <!-- 페이지 처리 -->
             <div class="pagination" align="center">
                 <div class="pagination-box">
@@ -225,5 +240,7 @@
 
 
     </th:block>
+
+
 
 </html>

@@ -90,7 +90,7 @@ public class ManagerProjectController {
         mv.addAttribute("status", status);
             log.info("controller projectDetail end ===============================");
 
-            return "/content/manager/project/newDetail";
+            return "content/manager/project/newDetail";
         }
 
     @GetMapping("/newMain")

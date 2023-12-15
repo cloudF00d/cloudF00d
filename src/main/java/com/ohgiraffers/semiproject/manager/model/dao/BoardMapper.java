@@ -44,4 +44,14 @@ public interface BoardMapper {
     int selectTotalProjectComplaintCount(Map<String, String> searchMap);
 
     List<ProjectReportHistoryDTO> findAllProjectComplaint(SelectCriteria selectCriteria);
+
+    ProjectReportHistoryDTO findOneComplaintProject(Long no);
+
+    UserReportDTO findOneComplaintUser(Long no);
+
+    int complaintUserAnswerDelete(long no);
+
+    int complaintUserBoardDelete(long no);
+
+    int complaintProjectDelete(Long no);
 }

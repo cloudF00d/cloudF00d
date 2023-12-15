@@ -656,4 +656,71 @@
         LIMIT #{ startRow }, #{limit}
     </select>
 
+    <select id="findOneComplaintProject" parameterType="long" resultMap="projectReportDTO">
+        select
+            A.PROJECT_REPORT_CODE,
+            A.REPORTER,
+            A.REPORT_PROJECT,
+            A.REPORT_DATE,
+            A.REPORT_TYPE,
+            A.REPORT_REASON,
+            A.ACTION_DETAIL,
+            B.USER_NAME AS REPORTED_PERSON,
+            C.PROJECT_TITLE,
+            C.PROJECT_CODE,
+            D.USER_NAME
+
+        from
+            tbl_project_report_history A
+                join tbl_user B ON (A.REPORTER = B.USER_CODE)
+                join tbl_project C ON (A.REPORT_PROJECT = C.PROJECT_CODE)
+                join tbl_user D ON (C.SELLER_INFO = D.USER_CODE)
+        where
+            A.PROJECT_REPORT_CODE = #{no}
+    </select>
+
+    <select id="findOneComplaintUser" parameterType="long" resultMap="userReportResultMap">
+        select
+            A.CREATION_NUMBER,
+            A.CREATION_DATE,
+            A.TITLE,
+            A.CONTENT,
+            B.USER_CODE,
+            B.USER_NAME,
+            C.USER_CODE,
+            C.USER_NAME AS REPORTED_PERSON,
+            D.*
+        from
+            tbl_user_report_history A
+                left join tbl_user_report_answer D ON (A.CREATION_NUMBER = D.CREATION_NUMBER)
+                join tbl_user B ON (A.REPORTER = B.USER_CODE)
+                join tbl_user C ON (A.REPORTED_PERSON = C.USER_CODE)
+        where
+            A.CREATION_NUMBER = #{no}
+    </select>
+
+    <delete id="complaintUserAnswerDelete" parameterType="long">
+        delete
+        from tbl_user_report_answer
+        where
+            CREATION_NUMBER = #{no}
+        ;
+    </delete>
+
+    <delete id="complaintUserBoardDelete" parameterType="long">
+        delete
+        from tbl_user_report_history
+        where
+            CREATION_NUMBER = #{no}
+        ;
+    </delete>
+
+    <delete id="complaintProjectDelete" parameterType="long">
+        delete
+        from tbl_project_report_history
+        where
+            PROJECT_REPORT_CODE = #{no}
+        ;
+    </delete>
+
 </mapper>

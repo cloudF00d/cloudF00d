@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class mainPundingController{
     @GetMapping("mainPunding")
     public String mainPunding() {
+
+
+
         return "content/project/pundingButton/mainPunding";
     }
 }

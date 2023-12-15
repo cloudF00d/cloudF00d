@@ -8,11 +8,13 @@ import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,16 +29,27 @@ public class BoardController {
         this.boardService = boardService;
     }
 
+    @GetMapping("/complaintProjectDelete")
+    public String complaintProjectDelete(@RequestParam Long no,
+                                         RedirectAttributes rttr) throws NoticeRemoveException{
+
+        boardService.complaintProjectDelete(no);
+
+        rttr.addFlashAttribute("message", "프로젝트 신고 게시판 글 삭제에 성공했습니다");
+
+
+        return "redirect:/board/complaintProjectMain";
+    }
     @GetMapping("/complaintDetail")
     public String complaintDetail(@RequestParam Long no,
                                   @RequestParam Long status,
                                   Model mv) {
             String path = null;
             System.out.println("status ============= " + status);
-
+        System.out.println("no ================= " + no);
             if (status == 0 || status == null) {
                 System.out.println("답변기록이 없으므로 작성페이지로 넘어갑니다");
-                InquiryDTO userDTOS = boardService.findOneInquiry(no);
+                UserReportDTO userDTOS = boardService.findOneComplaintUser(no);
 
                 mv.addAttribute("detail", userDTOS);
 
@@ -46,7 +59,7 @@ public class BoardController {
             } else if (status > 0 ) {
                 System.out.println("답변기록이 있으므로 조회 페이지로 넘어갑니다.");
 
-                InquiryDTO inquiryDTO = boardService.findOneInquiry(no);
+                UserReportDTO inquiryDTO = boardService.findOneComplaintUser(no);
 
                 mv.addAttribute("detail", inquiryDTO);
 
@@ -63,6 +76,18 @@ public class BoardController {
             return path;
 
 
+        }
+
+        @GetMapping("/complaintUserDelete")
+        public String complaintUserDelete(@RequestParam long no,
+                                          RedirectAttributes rttr) throws NoticeRemoveException{
+
+            boardService.complaintUserDelete(no);
+
+            rttr.addFlashAttribute("message", "사용자 신고 게시판 글 삭제에 성공했습니다");
+
+
+        return "redirect:/board/complaintMain";
         }
 
     @GetMapping("/complaintMain")
@@ -128,7 +153,18 @@ public class BoardController {
     }
 
     @GetMapping("/complaintProjectDetail")
-    public String complaintDetail(){return "content/board/complaintboard/complaintProjectDetail";}
+    public String complaintDetail(@RequestParam Long no,
+                                  @RequestParam(required = false, defaultValue = "0") int update,
+                                  Model mv){
+
+        ProjectReportHistoryDTO projectReportHistoryDTO = boardService.findOneComplaintProject(no);
+
+        mv.addAttribute("project", projectReportHistoryDTO);
+        mv.addAttribute("update", update);
+
+
+
+        return "content/board/complaintboard/complaintProjectDetail";}
     @GetMapping("/complaintProjectMain")
     public ModelAndView complaintMain(
         @RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택

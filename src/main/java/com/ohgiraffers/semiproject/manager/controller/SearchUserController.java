@@ -30,6 +30,7 @@ public class SearchUserController {
     @GetMapping("/userDetail")
     public String userDetail(@RequestParam Long no, Model mv) {
 
+
         log.info("controller userDetail start===========================");
 
         List<CartDTO> cartDTOS = searchUserService.userBuy(no);

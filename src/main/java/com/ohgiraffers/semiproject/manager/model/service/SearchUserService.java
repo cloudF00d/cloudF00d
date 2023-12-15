@@ -85,6 +85,7 @@ public class SearchUserService implements SearchUserServiceInter{
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long no) throws NoticeRemoveException {
 
         int result = Mapper.deleteUser(no);
