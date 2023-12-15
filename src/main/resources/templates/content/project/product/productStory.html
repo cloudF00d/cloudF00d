@@ -141,7 +141,8 @@
                     <!-- 스크롤바 -->
                     <div class="scroll-container">
                         <!-- 상품선택하는 곳 -->
-                        <form id="optionForm" action="@{/order/buypage}" method="get">
+
+                        <form id="optionForm" th:action="@{/order/cart}" method="post">
                         <div class="select-con">
 
                             <div class="select-a" th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
@@ -189,6 +190,7 @@
 
                         </div>
                         </form>
+
                         <br>
                     </div>
                     <div class="btns-con">
@@ -196,7 +198,7 @@
                         <button class="goodbtn">
                             <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
                             <span id="likeCount">0</span></button>
-                        <a th:href="@{/order/buypage}"><button class="buybtn">예약 구매하기</button></a>
+                        <button class="buybtn" onclick="submitForm()">예약 구매하기</button>
 
                     </div>
                 </div>
@@ -230,6 +232,13 @@
     </script>
 
     <script>
+        function submitForm() {
+            // 폼을 찾아서 제출합니다.
+            document.getElementById('optionForm').submit();
+        }
+    </script>
+
+    <script>
         function selectOption(element, optionIndex) {
             // 이전에 선택된 모든 옵션의 선택 상태 제거
             document.querySelectorAll('.select-a').forEach(function(el) {
@@ -239,16 +248,51 @@
             // 현재 선택된 옵션에 선택 클래스 추가
             element.classList.add('selected');
 
-            // 숨겨진 필드에 선택된 옵션의 인덱스 설정
-            document.getElementById('selectedOption').value = optionIndex;
+            // 선택된 옵션의 상세 정보를 JSON 객체로 생성
+            var selectedOptionDetail = {
+                price: element.querySelector(".productprice-1 div").innerText,
+                optionName: element.querySelector(".product-1 div").innerText,
+                configure: element.querySelector(".product-2 div").innerText,
+                // 생략: 기타 필요한 정보
+            };
+
+            // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
+            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetail);
         }
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('.select-a').forEach((element, index) => {
                 element.setAttribute('onclick', `selectOption(this, ${index})`);
             });
         });
+    </script>
+
+    <script>
+        function showMoreStories() {
+            // AJAX 요청을 사용하여 서버로부터 추가 이미지 경로를 받아옴
+            fetch('/path-to-server-endpoint') // 실제 요청할 서버의 엔드포인트로 변경
+                .then(response => response.json())
+                .then(data => {
+                    // 서버로부터 받은 이미지 경로 배열을 사용하여 각 이미지 태그를 생성
+                    data.imagePaths.forEach(imagePath => {
+                        const newImage = document.createElement('img');
+                        newImage.src = `/thumbPath/${KingTigerPlatter.png}`; // 각 이미지 경로
+                        newImage.alt = 'Additional Story Image';
+                        // 생성된 이미지 태그를 페이지에 추가
+                        const storyContainer = document.querySelector('.story-con2');
+                        storyContainer.appendChild(newImage);
+                    });
+
+                    // "스토리 더보기" 버튼 숨기기
+                    const storyButton = document.querySelector('.storybutton');
+                    storyButton.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error fetching additional stories:', error);
+                });
+        }
     </script>
 
 </th:block>
