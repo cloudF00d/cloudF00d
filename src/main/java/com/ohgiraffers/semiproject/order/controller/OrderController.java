@@ -60,7 +60,7 @@ public class OrderController {
 //    String name = firstname + "$" + lastname;
 //    member.setName(name);
 //    String address = adrs + "$" + detailedAdrs;
-//    member.setAddress(address);
+//    member.setAddress(address);//
 
 
    return "/content/order/buypage";
