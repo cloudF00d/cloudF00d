@@ -16,9 +16,6 @@ public interface PaymentService {
 //    결제 페이지
 List<UserDTO> paymentPage() throws PaymentPageException;
 
-//    MemberDTO member(MemberDTO member) throws MemberOrderPageException;
-
-
 
 
 //    결제 취소

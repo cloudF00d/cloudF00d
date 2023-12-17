@@ -11,7 +11,6 @@ import java.util.List;
 public interface PaymentMapper {
    List<UserDTO> user1();
 
-   int member(MemberDTO member);
 
 //    결제 페이지
    

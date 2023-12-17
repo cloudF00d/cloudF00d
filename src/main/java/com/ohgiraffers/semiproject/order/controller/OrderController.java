@@ -39,12 +39,9 @@ public class OrderController {
   public String paymentPage(
           Model model,
           @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
-//          @RequestParam String firstname,
-//          @RequestParam String lastname,
-//          @RequestParam String adrs,
-//          @RequestParam String detailedAdrs
 
-          ) throws PaymentPageException, MemberOrderPageException {
+
+          ) throws PaymentPageException{
 
 
     log.info("[OrderController] paymentPage ================================== start");
@@ -53,14 +50,6 @@ public class OrderController {
 //    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO.getAuthorityDTO().getAuthorityName());
     List<UserDTO> paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
-
-
-//    MemberDTO member = paymentService.member();
-//    model.addAttribute("buyepage",member);
-//    String name = firstname + "$" + lastname;
-//    member.setName(name);
-//    String address = adrs + "$" + detailedAdrs;
-//    member.setAddress(address);//
 
 
    return "/content/order/buypage";

@@ -32,7 +32,7 @@
         <h3>장바구니</h3>
         <div class="mid">
             <div class="midmenu" >
-<!--                <form  th:action="@{/order/buypage}" method="get" onsubmit="return false;">-->
+              <form  th:action="@{/order/buypage}" method="get" onsubmit="return false;">
                     <div class="logo">
                         <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                     </div>
@@ -57,7 +57,7 @@
                             <input type="hidden" class="name1" th:value="${cart.projectTitle[0]}"></input>
                             <div class="name2" th:text="${cart.optionType}"></div>
 
-                            <button class="count remain" th:onclick="remain" id="remain"></button>
+                            <button class="count remain" style="height: 30px" th:onclick="remain" id="remain"></button>
                             <input type="hidden" class="count end" th:value="${#dates.format(cart.end, 'yyyy-MM-dd HH:mm:ss')}"></input>
                         </div>
                         <div class="btn-con">
@@ -117,13 +117,14 @@
                     </div>
 
                     </div>
-<!--                            결제하기 누르면 카카오 결제창 뜨는 것 예상-->
-                    <a class="paybtn-con" >
-                        <span class="paybtn"> 결제하기 </span>
-                    </a>
 
-<!--                </form>-->
-<!---->
+                <a class="paybtn-con" onclick="payment">
+
+                    <button class="paybtn" th:href="@{/order/buypage}">결제하기</button>
+                </a>
+
+               </form>
+
             </div>
         </div>
 

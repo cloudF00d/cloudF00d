@@ -141,28 +141,6 @@
 
 
 
-<!--    <insert id="member" parameterType="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">-->
-<!--        INSERT tbl_user-->
-<!--        INTO    (-->
-<!--                               A.USER_NAME-->
-<!--                              , A.USER_ID-->
-<!--                              , A.PHONE-->
-<!--                              , A.EMAIL-->
-<!--                              , A.ADDRESS-->
-<!--        )-->
-<!--        VALUES  (-->
-<!--                  #{ name }-->
-<!--                , #{ phone }-->
-<!--                , #{ email }-->
-<!--                , #{address}-->
-<!--                )-->
-
-<!--    </insert>-->
-
-
-
-
-
 
     <select id="paymentPage" resultMap="PaymentHistoryResultMap">
         SELECT

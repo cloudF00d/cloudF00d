@@ -1,6 +1,4 @@
 package com.ohgiraffers.semiproject.order.model.dao;
-
-import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
 import org.apache.ibatis.annotations.Mapper;
 
