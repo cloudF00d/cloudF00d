@@ -145,7 +145,7 @@
                         <form id="optionForm" th:action="@{/order/cart}" method="post">
                         <div class="select-con">
 
-                            <div class="select-a" th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
+                            <div class="select-a"  th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
                                 <div class="product-0">
 <!--                                        가격-->
                                     <div class="productprice-1">
@@ -184,11 +184,17 @@
                                     <div>제한 수량</div>
                                     <div style="font-weight: bold;">50개</div>
                                 </div>
-                                <input type="hidden" id="selectedOption" name="selectedOption" value="" />
+<!--                                <input type="hidden" name="projectCode" />-->
+<!--                                <input type="hidden" name="rewardType" />-->
+
                             </div>
 
 
                         </div>
+                                <input type="hidden" id="selectedOptionIndex" name="selectedOptionIndex" value="" />
+                        <input type="hidden" id="projectCode" name="projectCode" value="option.projectCode" />
+                        <input type="hidden" id="optionType" name="optionType" value="option.projectType" />
+
                         </form>
 
                         <br>
@@ -198,7 +204,7 @@
                         <button class="goodbtn">
                             <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
                             <span id="likeCount">0</span></button>
-                        <button class="buybtn" onclick="submitForm()">예약 구매하기</button>
+                        <button class="buybtn" form="optionForm" type="submit"  onclick="submitForm()">예약 구매하기</button>
 
                     </div>
                 </div>
@@ -231,33 +237,51 @@
         }
     </script>
 
-    <script>
-        function submitForm() {
-            // 폼을 찾아서 제출합니다.
-            document.getElementById('optionForm').submit();
-        }
-    </script>
+
 
     <script>
-        function selectOption(element, optionIndex) {
-            // 이전에 선택된 모든 옵션의 선택 상태 제거
+        function selectOption(element, index) {
+            // 모든 'select-a' 요소의 'selected' 클래스 제거
             document.querySelectorAll('.select-a').forEach(function(el) {
                 el.classList.remove('selected');
             });
 
-            // 현재 선택된 옵션에 선택 클래스 추가
+            // 클릭된 요소에 'selected' 클래스 추가
             element.classList.add('selected');
 
-            // 선택된 옵션의 상세 정보를 JSON 객체로 생성
-            var selectedOptionDetail = {
+            // 선택된 옵션의 인덱스 설정
+            document.getElementById('selectedOptionIndex').value = index;
+
+            // 선택된 옵션의 프로젝트 코드와 옵션 타입을 설정
+            document.getElementById('projectCode').value = element.dataset.projectCode;
+            document.getElementById('optionType').value = element.dataset.optionType;
+
+
+            // 선택된 옵션 정보를 JSON 객체로 생성
+            var selectedOptionDetails = {
                 price: element.querySelector(".productprice-1 div").innerText,
                 optionName: element.querySelector(".product-1 div").innerText,
                 configure: element.querySelector(".product-2 div").innerText,
-                // 생략: 기타 필요한 정보
+                projectType: element.dataset.projectType,
+                optionType: element.dataset.optionType
             };
 
             // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
-            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetail);
+            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetails);
+        }
+    </script>
+
+    <script>
+        function submitForm() {
+            // 선택된 옵션이 있는지 확인
+            var selectedOptionValue = document.getElementById('selectedOption').value;
+            if (selectedOptionValue) {
+                // 선택된 옵션이 있으면 폼을 제출합니다.
+                document.getElementById('optionForm').submit();
+            } else {
+                // 선택된 옵션이 없으면 사용자에게 알림
+                alert('옵션을 선택해주세요.');
+            }
         }
     </script>
 

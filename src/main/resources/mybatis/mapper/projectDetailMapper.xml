@@ -117,7 +117,9 @@
             C.OPTION_NAME,
             C.OPTION_TYPE,
             C.PRICE,
-            C.CONFIGURE
+            C.CONFIGURE,
+            C.PROJECT_CODE,
+            C.OPTION_CODE
         FROM
             TBL_PROJECT A
                  JOIN TBL_PROJECT_OPTION C ON (A.PROJECT_CODE = C.PROJECT_CODE)
