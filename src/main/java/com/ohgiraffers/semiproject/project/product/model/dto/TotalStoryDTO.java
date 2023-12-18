@@ -16,6 +16,7 @@ public class TotalStoryDTO {
     private PrivateBusinessDTO privateBusinessDTO;
     private List<ProfileImageDTO> profileImageDTO;
     private ProjectUserDTO projectUserDTO;
+    private ProjectOptionDTO projectOptionDTO;
 
 
 }

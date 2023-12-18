@@ -38,9 +38,9 @@
         select
         A.PROJECT_TITLE,
         A.PROJECT_CODE,
-        C.CHANGED_FILE_NAME,
+        C.CHANGED_FILE_NAME
         <if test="nation2 == 'like'">
-            count(D.PROJECT_CODE) as count
+           , count(D.PROJECT_CODE) as count
         </if>
 
         from

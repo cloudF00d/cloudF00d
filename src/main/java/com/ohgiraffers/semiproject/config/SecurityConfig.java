@@ -31,7 +31,12 @@ public class SecurityConfig {
     // 정적 리소스 설정 제외 처리
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
-        return web -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+        return web ->
+                web.ignoring()
+                        .requestMatchers
+                                (PathRequest.
+                                        toStaticResources()
+                                        .atCommonLocations());
     }
 
     @Bean
@@ -42,8 +47,14 @@ public class SecurityConfig {
 //                    auth.requestMatchers("/notice/regist").hasAnyAuthority("ROLE_ADMIN");
 //                    auth.requestMatchers("/*", "/member/*").permitAll();// 모든 리소스를 권한 없이 사용가능
 //                    auth.anyRequest().authenticated();
+//                    auth.requestMatchers("/manager/**").hasRole("ROLE_1");
                     auth.requestMatchers("/**").permitAll();
                     auth.anyRequest().authenticated();
+
+
+//                    auth.requestMatchers("/notice/*", "/board/*", "/thumbnail/**")
+//                            .hasAnyAuthority("ROLE_MEMBER", "ROLE_ADMIN");
+//                    auth.requestMatchers("/notice/regist").hasAnyAuthority("ROLE_ADMIN");
                 })
                 // 로그인 설정
                 .formLogin(login -> {
