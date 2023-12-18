@@ -22,8 +22,6 @@ public class MainController {
     @GetMapping("/")
     public ModelAndView defaultLocation(ModelAndView mv){
 
-
-
         List<ProjectDTO> projectDTO = mainService.firstNewProject(); // 신규펀딩 첫번째 행
         List<ProjectDTO> projectDTOS = mainService.secondNewProject(); // 신규펀딩 두번째 행 불러오는걸 목표로
 

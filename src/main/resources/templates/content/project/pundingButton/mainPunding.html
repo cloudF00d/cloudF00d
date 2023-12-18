@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
-<th:block  layout:fragment="content">
+<th:block layout:fragment="content">
 
 
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
@@ -16,76 +16,100 @@
         <div class="first-container-title">
             <h2>펀딩</h2>
         </div>
-        <form th:action="@{/manager/search/userMain}" id="search" method="get">
+        <form th:action="@{/pundingButton/mainPunding}" id="search" method="get">
             <div class="searchcontainer">
                 <!--                왼쪽 select 박스-->
-
-
                 <div class="searchleft1">
                     <input type="hidden" name="currentPage" value="1">
                     <select name="nation1" id="nation1">
-                        <th:block th:if="${selectCriteria.getNation1()} == 'name'">
-                            <option value="name">이름(기본)</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'drink'">
+                            <option value="drink">음료</option>
                         </th:block>
-                        <th:block th:if="${selectCriteria.getNation1()} == 'id'">
-                            <option value="id">아이디</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'alcohol'">
+                            <option value="alcohol">주류</option>
                         </th:block>
-                        <th:block th:if="${selectCriteria.getNation1()} == 'password'">
-                            <option value="password">비밀번호</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'bake'">
+                            <option value="bake">베이커리</option>
                         </th:block>
-                        <th:block th:if="${selectCriteria.getNation1()} == 'phone'">
-                            <option value="phone">전화번호</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'oversea'">
+                            <option value="oversea">해외음식</option>
                         </th:block>
-                        <th:block th:if="${selectCriteria.getNation1()} == 'birth'">
-                            <option value="birth">생년월일</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'vegetable'">
+                            <option value="vegetable">채소</option>
                         </th:block>
-                        <option>카테고리 선택</option>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'seafood'">
+                            <option value="seafood">해산물</option>
+                        </th:block>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'fruit'">
+                            <option value="fruit">과일</option>
+                        </th:block>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'frozen'">
+                            <option value="frozen">냉동식품</option>
+                        </th:block>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'sauce'">
+                            <option value="sauce">소스</option>
+                        </th:block>
+                        <th:block th:if="${selectCriteria.getNation1()} == 'dessert'">
+                            <option value="dessert">디저트</option>
+                        </th:block>
+                        <option value="all">전체</option>
                         <option value="drink">음료</option>
-                        <option value="achohol">주류</option>
-                        <option value="phone">베이커리</option>
-                        <option value="birth">해외음식</option>
-                        <option value="birth">채소</option>
-                        <option value="birth">해산물</option>
-                        <option value="birth">과일</option>
-                        <option value="birth">냉동식품</option>
-                        <option value="birth">소스</option>
-                        <option value="birth">디저트</option>
+                        <option value="alcohol">주류</option>
+                        <option value="bake">베이커리</option>
+                        <option value="oversea">해외음식</option>
+                        <option value="vegetable">채소</option>
+                        <option value="seafood">해산물</option>
+                        <option value="fruit">과일</option>
+                        <option value="frozen">냉동식품</option>
+                        <option value="sauce">소스</option>
+                        <option value="dessert">디저트</option>
                     </select>
                 </div>
 
                 <div class="searchleft2">
                     <select name="nation2" id="nation2">
-                        <th:block th:if="${selectCriteria.getNation2()} == 'asc'">
-                            <option value="asc">오름차순(기본)</option>
+                        <th:block th:if="${selectCriteria.getNation2()} == 'priceAsc'">
+                            <option value="priceAsc">가격 낮은 순</option>
                         </th:block>
-                        <th:block th:if="${selectCriteria.getNation2()} == 'desc'">
-                            <option value="desc">내림차순</option>
+                        <th:block th:if="${selectCriteria.getNation2()} == 'priceDesc'">
+                            <option value="priceDesc">가격 높은 순</option>
                         </th:block>
-                        <option value="asc">오름차순(기본)</option>
-                        <option value="desc">내림차순</option>
+                        <th:block th:if="${selectCriteria.getNation2()} == 'like'">
+                            <option value="like">관심 등록 많은 순</option>
+                        </th:block>
+                        <th:block th:if="${selectCriteria.getNation2()} == 'recent'">
+                            <option value="recent">최신 등록 순</option>
+                        </th:block>
+                        <option value="all">필터 선택</option>
+                        <option value="priceAsc">가격 낮은 순</option>
+                        <option value="priceDesc">가격 높은 순</option>
+                        <option value="like">관심 등록 많은 순</option>
+                        <option value="recent">최신 등록 순</option>
                     </select>
                 </div>
 
-                <div class="searchleft3">
-                    <select name="authority" id="authority">
-                        <th:block th:if="${selectCriteria.getAuthority()} == 'user'">
-                            <option value="user">사용자</option>
-                        </th:block>
-                        <th:block th:if="${selectCriteria.getAuthority()} == 'seller'">
-                            <option value="user">판매자</option>
-                        </th:block>
-                        <th:block th:if="${selectCriteria.getAuthority()} == 'complaint'">
-                            <option value="user">신고자</option>
-                        </th:block>
-                        <option value="all">전체</option>
-                        <option value="user">사용자</option>
-                        <option value="seller">판매자</option>
-                        <option value="complaint">신고자</option>
-                    </select>
-                </div>
+
+                <!--                <div class="searchleft3">-->
+                <!--                    <select name="authority" id="authority">-->
+                <!--                        <th:block th:if="${selectCriteria.getAuthority()} == 'user'">-->
+                <!--                            <option value="user">사용자</option>-->
+                <!--                        </th:block>-->
+                <!--                        <th:block th:if="${selectCriteria.getAuthority()} == 'seller'">-->
+                <!--                            <option value="user">판매자</option>-->
+                <!--                        </th:block>-->
+                <!--                        <th:block th:if="${selectCriteria.getAuthority()} == 'complaint'">-->
+                <!--                            <option value="user">신고자</option>-->
+                <!--                        </th:block>-->
+                <!--                        <option value="all">필터 선택</option>-->
+                <!--                        <option value="user">가격 높은 순</option>-->
+                <!--                        <option value="user">가격 낮은 순</option>-->
+                <!--                        <option value="seller">관심 등록 많은 순</option>-->
+                <!--                        <option value="complaint">신고자</option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+
 
                 <button type="submit">설정</button>
-
 
 
                 <!--                오른쪽 박스-->
@@ -97,12 +121,8 @@
                     <select name="nation3" id="nation3">
 
                         <option selected>검색컬럼</option>
-                        <option value="name">이름</option>
-                        <option value="id">아이디</option>
-                        <option value="password">비밀번호</option>
-                        <option value="phone">전화번호</option>
-                        <option value="birth">생년월일</option>
-                        <option value="active">활동상태</option>
+                        <option value="name">제목</option>
+                        <option value="tag">태그</option>
                         <!--                            <option value="etc">기타</option>-->
                     </select>
 
@@ -112,131 +132,122 @@
         </form>
 
         <!-- 펀딩 아이콘 -1 -->
-        <div class="second-square-icon-container">
+        <div class="second-square-icon-container"
+             th:each="list : ${project}"
+        >
             <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/ssangwha.png" alt="아이콘 1">
+            <div class="second-square-icon-wrapper"
+                 th:each="list2 : ${list}"
+            >
+                <img class="second-square-icon"
+                     th:src="@{|/thumbPath/${list2.changedFileName}|}"
+                     alt="아이콘 1">
                 <i class="fas fa-heart"></i>
-                <p>[30년 전통] [30년 전통] 코리안 왕실 디저트, 올 겨울을 위한 뜨끈한 쌍화차</p>
+                <p th:text="${list2.projectTitle}"></p>
             </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/noSugarSmoothie.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[분말 X] 물 한 방울, 설탕 한 꼬집 안 들어간 액상용 스무디</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/tigerSeason.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[술빚는호랑이] 벌꿀로 만든 찐꿀술, 여름 야생화를 담은 '시즌'</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/Stollen.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[슈톨렌 맛집] 1년을 기다린 화이트 크리스마스 피카타임 슈톨렌</p>
-            </div>
+
         </div>
 
-        <!-- 펀딩 아이콘 -2 -->
-        <div class="second-square-icon-container">
-            <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/fondue.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[스위스직수입한정판] 오리지널 퐁듀치즈의 압도적 풍미 !퐁듀스페셜에디션!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/honeySweetPotato.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[클라우드 푸딩 1등 고구마]고구마계의 명품, 카스테라 식감의 이치하루카 꿀고구마</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/kingTigerShrimp.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[클라우드 푸딩 최초, 최대 사이즈] 팔뚝만한 왕특대 킹타이거새우를 소개합니다!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/KingTigerPlatter.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[후기꼭확인하세요]역대급크기,품종 I 새우즙이 팡팡터지는 킹타이거플래터</p>
-            </div>
-        </div>
+        <!--        &lt;!&ndash; 펀딩 아이콘 -2 &ndash;&gt;-->
+        <!--        <div class="second-square-icon-container">-->
+        <!--            &lt;!&ndash; 아이콘과 텍스트 중앙정렬 &ndash;&gt;-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/fondue.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[스위스직수입한정판] 오리지널 퐁듀치즈의 압도적 풍미 !퐁듀스페셜에디션!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/honeySweetPotato.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[클라우드 푸딩 1등 고구마]고구마계의 명품, 카스테라 식감의 이치하루카 꿀고구마</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/kingTigerShrimp.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[클라우드 푸딩 최초, 최대 사이즈] 팔뚝만한 왕특대 킹타이거새우를 소개합니다!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/KingTigerPlatter.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[후기꼭확인하세요]역대급크기,품종 I 새우즙이 팡팡터지는 킹타이거플래터</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-        <!-- 펀딩 아이콘 -3 -->
-        <div class="second-square-icon-container">
-            <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/kingsBerry.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[GAP인증] 올겨울 첫 수확, 와디즈 최고평점 프리미엄 킹스베리!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/fishFries.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>가자미살 생선까스</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/bunnyBakery.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>건강한 먹거리로 식사의 대안 프리미엄 수제 8종 쿠키 버니 베이커리</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/strawberry4Set.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>딸기4종세트ㅣ다양한 딸기를 한번에! 극찬의 보장된 달콤함, 신품종딸기4종</p>
-            </div>
-        </div>
+        <!--        &lt;!&ndash; 펀딩 아이콘 -3 &ndash;&gt;-->
+        <!--        <div class="second-square-icon-container">-->
+        <!--            &lt;!&ndash; 아이콘과 텍스트 중앙정렬 &ndash;&gt;-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/kingsBerry.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[GAP인증] 올겨울 첫 수확, 와디즈 최고평점 프리미엄 킹스베리!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/fishFries.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>가자미살 생선까스</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/bunnyBakery.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>건강한 먹거리로 식사의 대안 프리미엄 수제 8종 쿠키 버니 베이커리</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/strawberry4Set.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>딸기4종세트ㅣ다양한 딸기를 한번에! 극찬의 보장된 달콤함, 신품종딸기4종</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-        <!-- 펀딩 아이콘 -4 -->
-        <div class="second-square-icon-container">
-            <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/butterUdong.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>만족도 5.0 I 국내 첫 출시! 가마버터우동, 중독적인 고소한 맛!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/kingTigerShrimp.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>신선한 바질과 국산 잣으로 만든 맛과 풍미가 가득한 바질페스토!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/fatherDaughterCandy.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>아빠농부.딸농부의 국내산 프로폴리스와 숙성된 꿀로만든 라니 프로폴리스캔디</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/Nuloongji.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>유기농 현미 누룽지 포켓스낵으로, 간편한 한 끼부터 아이들 간식까지 해결</p>
-            </div>
-        </div>
+        <!--        &lt;!&ndash; 펀딩 아이콘 -4 &ndash;&gt;-->
+        <!--        <div class="second-square-icon-container">-->
+        <!--            &lt;!&ndash; 아이콘과 텍스트 중앙정렬 &ndash;&gt;-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/butterUdong.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>만족도 5.0 I 국내 첫 출시! 가마버터우동, 중독적인 고소한 맛!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/kingTigerShrimp.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>신선한 바질과 국산 잣으로 만든 맛과 풍미가 가득한 바질페스토!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/fatherDaughterCandy.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>아빠농부.딸농부의 국내산 프로폴리스와 숙성된 꿀로만든 라니 프로폴리스캔디</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/Nuloongji.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>유기농 현미 누룽지 포켓스낵으로, 간편한 한 끼부터 아이들 간식까지 해결</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <!-- 펀딩 아이콘 -5 -->
-        <div class="second-square-icon-container">
-            <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/riceAlcohol.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>임금님께 진상하던 쌀로 빚은 프리미엄 막걸리 '백년향'</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/plumRiceCake.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>자두의 무한 변신!! 철없는 자두떡! 철없는 자두청!</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/hambakStake.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>지금까지 함박은 잊으라! 3.5cm두께 프랑스식 진짜 함박스테이크</p>
-            </div>
-            <div class="second-square-icon-wrapper">
-                <img class="second-square-icon" src="/images/02_img/20hourBeef.png" alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p>[대만의 맛] 20시간 진하게 우려낸 사골육수, 대만식홍소우육면</p>
-            </div>
-        </div>
+        <!--        <div class="second-square-icon-container">-->
+        <!--            &lt;!&ndash; 아이콘과 텍스트 중앙정렬 &ndash;&gt;-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/riceAlcohol.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>임금님께 진상하던 쌀로 빚은 프리미엄 막걸리 '백년향'</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/plumRiceCake.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>자두의 무한 변신!! 철없는 자두떡! 철없는 자두청!</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/hambakStake.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>지금까지 함박은 잊으라! 3.5cm두께 프랑스식 진짜 함박스테이크</p>-->
+        <!--            </div>-->
+        <!--            <div class="second-square-icon-wrapper">-->
+        <!--                <img class="second-square-icon" src="/images/02_img/20hourBeef.png" alt="아이콘 1">-->
+        <!--                <i class="fas fa-heart"></i>-->
+        <!--                <p>[대만의 맛] 20시간 진하게 우려낸 사골육수, 대만식홍소우육면</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-        </div>
 
         <!-- 페이지 처리 -->
         <div class="pagination" align="center">
@@ -250,7 +261,7 @@
                 <!--                    </button>-->
                 <!-- 이전 페이지 버튼 -->
                 <button class="prev"
-                        th:onclick="'location.href=\'/manager/search/userMain?currentPage='
+                        th:onclick="'location.href=\'/pundingButton/mainPunding?currentPage='
                             + @{${selectCriteria.pageNo - 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
@@ -260,7 +271,6 @@
                         th:disabled="${selectCriteria.pageNo == 1}">
 
 
-
                     <
                 </button>
 
@@ -268,7 +278,7 @@
                 <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
                     <button class="page-link"
                             th:text="${ page }"
-                            th:onclick="'location.href=\'/manager/search/userMain?currentPage='
+                            th:onclick="'location.href=\'/pundingButton/mainPunding?currentPage='
                             + @{${page}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
@@ -277,16 +287,11 @@
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${ selectCriteria.pageNo eq page }">
                     </button>
-                    <!--                        url 쓰려다가 실패한거-->
-                    <!--                        ,'nation1='-->
-                    <!--                        + @{${selectCriteria.getNation1()}}-->
-                    <!--                        , 'nation2='-->
-                    <!--                        + @{${selectCriteria.getNation2()}}-->
                 </th:block>
 
                 <!-- 다음 페이지 버튼 -->
                 <button class="prev"
-                        th:onclick="'location.href=\'/manager/search/userMain?currentPage='
+                        th:onclick="'location.href=\'/pundingButton/mainPunding?currentPage='
                             + @{${selectCriteria.pageNo + 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}

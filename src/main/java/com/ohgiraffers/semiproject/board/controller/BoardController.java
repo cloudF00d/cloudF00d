@@ -346,7 +346,7 @@ public class BoardController {
 
     @GetMapping("/inquiryMain")
     public ModelAndView inquiryMain(
-            @RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "date") String nation1, // 정렬 컬럼 선택
             @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
             @RequestParam(required = false, defaultValue = "all") String authority,
             @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기

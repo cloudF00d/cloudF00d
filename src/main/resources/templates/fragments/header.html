@@ -6,7 +6,10 @@
 <th:block th:fragment="headerFragment">
 
 <header >
-    <img src="/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image">
+    <img src="/images/01_logoimg/textLogoNone.png" alt="로고" width="100" class="logo-image"
+         th:onclick="'location.href=\'/'
+                        + '\''"
+    >
 
     <!-- 상단 메뉴 !!-->
     <nav>
@@ -42,6 +45,8 @@
                     <li><a th:href="@{/member/logout}">로그아웃</a></li>
                     <li><a th:href="@{/member/myInfo}">마이페이지</a></li>
             </th:block>
+
+
             </ul>
         </nav>
     </div>

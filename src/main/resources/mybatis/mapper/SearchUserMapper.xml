@@ -86,24 +86,25 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
+            not A.ACTIVITY_STATUS = '삭제'
             <if test="searchValue != null and !searchValue.equals('')">
                 <if test="nation3 == 'name'">
-                    A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
                 <if test="nation3 == 'id'">
-                    A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
                 <if test="nation3 == 'password'">
-                    A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
                 <if test="nation3 == 'phone'">
-                    A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
                 <if test="nation3 == 'birth'">
-                    A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
                 <if test="nation3 == 'active'">
-                    A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+                    AND A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
             <if test="authority == 'user'">
@@ -217,24 +218,25 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
+            not A.ACTIVITY_STATUS = '삭제'
             <if test="searchValue != null and !searchValue.equals('')">
             <if test="nation3 == 'name'">
-                A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             <if test="nation3 == 'id'">
-                A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.USER_ID LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             <if test="nation3 == 'password'">
-                A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.PASSWORD LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             <if test="nation3 == 'phone'">
-                A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.PHONE LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             <if test="nation3 == 'birth'">
-                A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.DATE_BIRTH LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             <if test="nation3 == 'active'">
-                A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
+                AND A.ACTIVITY_STATUS LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
             </if>
             <if test="authority == 'user'">
@@ -302,12 +304,12 @@
     </update>
 
     <delete id="deleteUser">
-        DELETE
-        FROM
-            TBL_USER A
-        WHERE
-            A.USER_CODE = #{no}
+        update tbl_user
+        set ACTIVITY_STATUS = '삭제'
+        where USER_CODE = #{no};
     </delete>
+
+
 
 
 </mapper>
