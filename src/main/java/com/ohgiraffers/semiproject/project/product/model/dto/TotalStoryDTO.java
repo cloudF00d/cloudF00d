@@ -13,7 +13,6 @@ import java.util.List;
 public class TotalStoryDTO {
     private ProjectDTO projectDTO;
     private List<ProjectFileDTO> projectFileDTO;
-    private ProjectOptionDTO projectOptionDTO;
     private PrivateBusinessDTO privateBusinessDTO;
     private List<ProfileImageDTO> profileImageDTO;
     private ProjectUserDTO projectUserDTO;

@@ -9,7 +9,9 @@
     <link rel="stylesheet" th:href="@{/css/project/productPage/productStory.css}">
 
 
-    <div class="bodyking">
+
+
+    <div class="bodyking" >
 
         <div class="main-box">
 
@@ -25,15 +27,11 @@
 
 
                 <div class="left">
-                    <!--=============== 자두 사진 ============== -->
-                    <div class="imgmove">
+
+                    <div class="imgmove" >
                         <img th:src="@{|/thumbPath/${projectFile[0].getChangedFileName()}|}" alt="">
-                        <!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-                        <!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-                        <!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}|}" alt="">-->
-                        <!--                    <img th:src="@{|/thumbPath${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-                        <!--       왼쪽위 사진        -->
-                        <!-- 이미지 불러오는 곳 -->
+                            <!--       왼쪽위 사진        -->
+
                     </div>
 
 
@@ -41,8 +39,7 @@
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
                             <img th:src="@{|/thumbPath/${projectFile[1].getChangedFileName()}|}" alt="">
-                            <!--                            <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-                            <!-- 메인사진 위치 -->
+                                    <!-- 메인사진 위치 -->
                         </div>
                     </div>
 
@@ -61,33 +58,20 @@
                     <div class="introduction-con">
                         <div>
                             <!-- 프로젝트 타이틀 자리 입니다.-->
-                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;"
-                                 th:text="${thumbnailList.projectDTO.projectTitle}">
+                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" th:text="${thumbnailList.projectDTO.projectTitle}" >
                             </div>
-                            <!-- 타이틀 아래 소개글자리 입니다.-->
-                            <div style="font-size: 23px; margin-bottom: 50px;"
-                                 th:text="${thumbnailList.projectDTO.projectSummary}">
+                                <!-- 타이틀 아래 소개글자리 입니다.-->
+                            <div style="font-size: 23px; margin-bottom: 50px;" th:text="${thumbnailList.projectDTO.projectSummary}">
                             </div>
-
-                            <div style="margin-bottom: 50px;"><span
-                                    style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span
-                                    class="introduction-span" style="margin-left: 20px;">10일 남음</span></span>
-                            </div>
-
+                            <div style="margin-bottom: 50px;">
+                                <span style="font-size: 40px; font-weight: bold;"></span><span><span
+                                    class="introduction-span" style="margin-left: 20px;">10일 남음</span></span></div>
                         </div>
-                        <!--남은 시간 자리입니다. -->
+                                            <!--남은 시간 자리입니다. -->
 
-                        <div style="margin-bottom: 50px;">
-                            <span
-                                    style="font-size: 40px; font-weight: bold;">1,056,000
-                            </span>
-
-                            <span>원 달성
-                            <span
-                                    class="introduction-span" style="margin-left: 20px;">211% 달성
-                            </span>
-                            </span>
-                        </div>
+                        <div style="margin-bottom: 50px;"><span
+                                style="font-size: 40px; font-weight: bold;">얼마얼마</span><span>원 달성<span
+                                class="introduction-span" style="margin-left: 20px;">퍼센트% 달성</span></span></div>
 
 
                     </div>
@@ -133,15 +117,14 @@
                     <div class="businesscard-con">
                         <div class="businesscard">
                             <img th:src="@{|/imagePath/${profileImage.getChangedProFileName()}|}" alt="">
-                            <!--                                    여기가 판매자 이름-->
-                            <div class="businesscard-right"
-                                 th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
+<!--                                    여기가 판매자 이름-->
+                            <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
                         <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
-                            <!--                                 홈페이지 주소 넣는 곳-->
+<!--                                 홈페이지 주소 넣는 곳-->
                             <div class="addr"></div>
                         </div>
-                        <!--                            여기엔 링크로 인스타 걸어 둬야 할듯-->
+<!--                            여기엔 링크로 인스타 걸어 둬야 할듯-->
                         <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
                     </div>
                     <div class="report-con">
@@ -155,54 +138,57 @@
                         <!-- 상품선택하는 곳 -->
 
                         <form id="optionForm" th:action="@{/order/cart}" method="post">
-                            <div class="select-con">
+                        <div class="select-con">
 
-                                <div class="select-a" th:each="option, iterStat : ${projectOption}"
-                                     th:id="'option-' + ${iterStat.index}"
-                                     onclick="selectOption(this, ${iterStat.index})">
-                                    <div class="product-0">
-                                        <!--                                        가격-->
-                                        <div class="productprice-1">
-                                            <div th:text="${option.price}"></div>
-                                        </div>
-                                        <div class="product-1">
-                                            <div th:text="${option.optionName}"></div>
-                                            <!--                                            옵션 이름-->
-
-                                        </div>
+                            <div class="select-a"  th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
+                                <div class="product-0">
+<!--                                        가격-->
+                                    <div class="productprice-1">
+                                        <div th:text="${option.price}"></div>
                                     </div>
+                                    <div class="product-1">
+                                        <div th:text="${option.optionName}"></div>
+<!--                                            옵션 이름-->
 
-                                    <hr>
-
-                                    <div class="product-2">
-                                        <!--                                    상품 구성-->
-                                        <div th:text="${option.configure}"></div>
                                     </div>
-                                    <hr>
+                                </div>
 
-                                    <div class="product-3">
-                                        <div>배송비</div>
-                                        <div style="font-weight: bold;">6000원</div>
-                                    </div>
+                                <hr>
 
-                                    <hr>
+                                <div class="product-2">
+<!--                                    상품 구성-->
+                                    <div th:text="${option.configure}"></div>
+                                </div>
+                                <hr>
 
-                                    <div class="product-4">
-                                        <div>발송 시작일</div>
-                                        <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                    </div>
+                                <div class="product-3">
+                                    <div>배송비</div>
+                                    <div style="font-weight: bold;">6000원</div>
+                                </div>
 
-                                    <hr>
+                                <hr>
 
-                                    <div class="product-5">
-                                        <div>제한 수량</div>
-                                        <div style="font-weight: bold;">50개</div>
-                                    </div>
-                                    <input type="hidden" id="selectedOption" name="selectedOption" value=""/>
+                                <div class="product-4">
+                                    <div>발송 시작일</div>
+                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
+                                </div>
+
+                                <hr>
+
+                                <div class="product-5">
+                                    <div>제한 수량</div>
+                                    <div style="font-weight: bold;">50개</div>
                                 </div>
 
 
                             </div>
+
+
+                        </div>
+                                <input type="hidden" id="selectedOptionIndex" name="selectedOptionIndex" value="" />
+                        <input type="hidden" id="projectCode" name="projectCode" value="option.projectCode" />
+                        <input type="hidden" id="optionType" name="optionType" value="option.projectType" />
+
                         </form>
 
                         <br>
@@ -212,7 +198,7 @@
                         <button class="goodbtn">
                             <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
                             <span id="likeCount">0</span></button>
-                        <button class="buybtn" onclick="submitForm()">예약 구매하기</button>
+                        <button class="buybtn" form="optionForm" type="submit"  onclick="submitForm()">예약 구매하기</button>
 
                     </div>
                 </div>
@@ -245,33 +231,51 @@
         }
     </script>
 
+
+
     <script>
-        function submitForm() {
-            // 폼을 찾아서 제출합니다.
-            document.getElementById('optionForm').submit();
+        function selectOption(element, index) {
+            // 모든 'select-a' 요소의 'selected' 클래스 제거
+            document.querySelectorAll('.select-a').forEach(function(el) {
+                el.classList.remove('selected');
+            });
+
+            // 클릭된 요소에 'selected' 클래스 추가
+            element.classList.add('selected');
+
+            // 선택된 옵션의 인덱스 설정
+            document.getElementById('selectedOptionIndex').value = index;
+
+            // 선택된 옵션의 프로젝트 코드와 옵션 타입을 설정
+            document.getElementById('projectCode').value = element.dataset.projectCode;
+            document.getElementById('optionType').value = element.dataset.optionType;
+
+
+            // 선택된 옵션 정보를 JSON 객체로 생성
+            var selectedOptionDetails = {
+                price: element.querySelector(".productprice-1 div").innerText,
+                optionName: element.querySelector(".product-1 div").innerText,
+                configure: element.querySelector(".product-2 div").innerText,
+                projectType: element.dataset.projectType,
+                optionType: element.dataset.optionType
+            };
+
+            // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
+            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetails);
         }
     </script>
 
     <script>
-        function selectOption(element, optionIndex) {
-            // 이전에 선택된 모든 옵션의 선택 상태 제거
-            document.querySelectorAll('.select-a').forEach(function (el) {
-                el.classList.remove('selected');
-            });
-
-            // 현재 선택된 옵션에 선택 클래스 추가
-            element.classList.add('selected');
-
-            // 선택된 옵션의 상세 정보를 JSON 객체로 생성
-            var selectedOptionDetail = {
-                price: element.querySelector(".productprice-1 div").innerText,
-                optionName: element.querySelector(".product-1 div").innerText,
-                configure: element.querySelector(".product-2 div").innerText,
-                // 생략: 기타 필요한 정보
-            };
-
-            // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
-            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetail);
+        function submitForm() {
+            // 선택된 옵션이 있는지 확인
+            var selectedOptionValue = document.getElementById('selectedOption').value;
+            if (selectedOptionValue) {
+                // 선택된 옵션이 있으면 폼을 제출합니다.
+                document.getElementById('optionForm').submit();
+            } else {
+                // 선택된 옵션이 없으면 사용자에게 알림
+                alert('옵션을 선택해주세요.');
+            }
         }
     </script>
 
