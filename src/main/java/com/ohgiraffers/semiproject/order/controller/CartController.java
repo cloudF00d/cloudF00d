@@ -4,17 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
+import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
 import com.ohgiraffers.semiproject.order.model.service.CartService;
+import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,15 +49,26 @@ public class CartController {
         List<CartInsertDTO> cartPage = cartService.cart();
         model.addAttribute("cart", cartPage);
 
+
+
+
+
         return "/content/order/cart";
     }
 
 
 
-//    @PostMapping("cart")
-//    public String addToCart(@RequestParam("selectedOption") String selectedOption,
-//                            HttpSession session, Model model){
-//        log.info("Selected option: {}", selectedOption);
+    @PostMapping("cart")
+    public String addToCart(@RequestBody ProjectOptionDTO selectedOption, HttpSession session, Model model) {
+        // 이제 selectedOption 객체를 사용하여 필요한 작업을 수행합니다.
+        // 예:
+//        int projectCode = selectedOption.getProjectCode();
+//        int optionCode = selectedOption.getOptionCode();
+
+        // 로직 수행...
+
+        return "redirect:/order/cart";
+    }
 //        try {
 //            ObjectMapper objectMapper = new ObjectMapper();
 //
