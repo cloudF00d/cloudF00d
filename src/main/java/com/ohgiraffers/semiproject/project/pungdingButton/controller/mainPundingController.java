@@ -29,7 +29,7 @@ public class mainPundingController{
     @GetMapping("mainPunding")
     public ModelAndView mainPunding(@RequestParam(required = false, defaultValue = "all") String nation1, // 정렬 컬럼 선택
                               @RequestParam(required = false, defaultValue = "all") String nation2, // 정렬 방식 선택
-                              @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+                              @RequestParam(required = false, defaultValue = "all") String nation3, //검색할 컬럼 선택
 //                              @RequestParam(required = false, defaultValue = "all") String authority,
                               // 전체, 사용자, 판매자, 신고자 선택
                               @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
