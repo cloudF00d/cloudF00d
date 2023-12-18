@@ -27,15 +27,11 @@
 
 
                 <div class="left">
-                    <!--=============== 자두 사진 ============== -->
+
                     <div class="imgmove" >
                         <img th:src="@{|/thumbPath/${projectFile[0].getChangedFileName()}|}" alt="">
-<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
-<!--                        <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getPath()}|}" alt="">-->
-<!--                    <img th:src="@{|/thumbPath${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                             <!--       왼쪽위 사진        -->
-                        <!-- 이미지 불러오는 곳 -->
+
                     </div>
 
 
@@ -43,7 +39,6 @@
                         <div class="textfont">프로젝트 스토리</div>
                         <div class="imgmove">
                             <img th:src="@{|/thumbPath/${projectFile[1].getChangedFileName()}|}" alt="">
-<!--                            <img th:src="@{|/thumbPath/${thumbnailList.projectFileDTO[0].getChangedFileName()}|}" alt="">-->
                                     <!-- 메인사진 위치 -->
                         </div>
                     </div>
@@ -68,15 +63,15 @@
                                 <!-- 타이틀 아래 소개글자리 입니다.-->
                             <div style="font-size: 23px; margin-bottom: 50px;" th:text="${thumbnailList.projectDTO.projectSummary}">
                             </div>
-                            <div style="margin-bottom: 50px;"><span
-                                    style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span
+                            <div style="margin-bottom: 50px;">
+                                <span style="font-size: 40px; font-weight: bold;"></span><span><span
                                     class="introduction-span" style="margin-left: 20px;">10일 남음</span></span></div>
                         </div>
                                             <!--남은 시간 자리입니다. -->
 
                         <div style="margin-bottom: 50px;"><span
-                                style="font-size: 40px; font-weight: bold;">1,056,000</span><span>원 달성<span
-                                class="introduction-span" style="margin-left: 20px;">211% 달성</span></span></div>
+                                style="font-size: 40px; font-weight: bold;">얼마얼마</span><span>원 달성<span
+                                class="introduction-span" style="margin-left: 20px;">퍼센트% 달성</span></span></div>
 
 
                     </div>
@@ -184,8 +179,7 @@
                                     <div>제한 수량</div>
                                     <div style="font-weight: bold;">50개</div>
                                 </div>
-<!--                                <input type="hidden" name="projectCode" />-->
-<!--                                <input type="hidden" name="rewardType" />-->
+
 
                             </div>
 

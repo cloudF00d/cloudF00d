@@ -59,8 +59,8 @@ public class CartController {
     public String addToCart(@RequestBody ProjectOptionDTO selectedOption, HttpSession session, Model model) {
         // 이제 selectedOption 객체를 사용하여 필요한 작업을 수행합니다.
         // 예:
-        int projectCode = selectedOption.getProjectCode();
-        int optionCode = selectedOption.getOptionCode();
+//        int projectCode = selectedOption.getProjectCode();
+//        int optionCode = selectedOption.getOptionCode();
 
         // 로직 수행...
 
