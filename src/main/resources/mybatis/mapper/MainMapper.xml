@@ -113,6 +113,36 @@
             limit 4,4;
     </select>
 
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        select
+        COUNT(*)
+        from
+        tbl_project A
+        join tbl_approval_history B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+        join tbl_project_file C ON (A.PROJECT_CODE = C.PROJECT_CODE)
+        where
+           C.FILE_TYPE = 'Representative_image'
+        and B.APPROVAL_STATUS = 'Y'
+    </select>
+
+    <select id="findAllProject" resultMap="projectResultMap">
+        select
+            A.PROJECT_TITLE,
+            A.PROJECT_CODE,
+            C.CHANGED_FILE_NAME
+        from
+            tbl_project A
+                join tbl_approval_history B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+                join tbl_project_file C ON (A.PROJECT_CODE = C.PROJECT_CODE)
+        where
+              C.FILE_TYPE = 'Representative_image'
+          and  B.APPROVAL_STATUS = 'Y'
+        order by
+            A.SUBMISSION_DATE
+                ASC
+            LIMIT #{ startRow }, #{limit}
+    </select>
+
 
 
 

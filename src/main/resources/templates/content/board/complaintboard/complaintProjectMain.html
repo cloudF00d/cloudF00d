@@ -110,18 +110,6 @@
                 </div>
             </form>
 
-<!--            <script th:inline="javascript">-->
-<!--                var test = document.getElementById('date').value;-->
-
-<!--                let message = '[[${list.reportDate}]]';-->
-
-<!--                console.log(message);-->
-<!--                console.log(test);-->
-
-<!--                /*]]>*/-->
-
-
-<!--            </script>-->
             <div>
                 <table>
 
@@ -135,31 +123,57 @@
                         <th>신고일자</th>
                         <th>처리현황</th>
                     </tr>
-                    <tr id="link"
+                    <tr class="link"
                         th:each=" list : ${project}"
                         th:onclick="'location.href=\'/board/complaintProjectDetail?no='
                         + @{${list.projectReportCode}}
                         + '\''"
                     >
-                        <td th:if="${#temporals.format(#temporals.plusDays(#temporals.createToday(),-1),'yyyy-MM-dd')}"></td>
+                        <td id="new">new</td>
                         <td th:text="${list.projectReportCode}"></td>
                         <td th:text="${list.reportProject.projectTitle}"></td>
                         <td th:text="${list.reportType}"></td>
                         <td th:text="${list.reporter.name}"></td>
-                        <td id="date"th:text="${list.reportDate}"></td>
+                        <td th:text="${list.reportDate}"></td>
                         <td th:if="${#lists.isEmpty(list.actionDetail)}">처리 전</td>
                         <td th:if="${!#lists.isEmpty(list.actionDetail)}">처리 완료</td>
-<!--                        <td th:if="${list.actionDetail != null or list.actionDetail != 0}"-->
-<!--                        th:text="${list.actionDetail}">-->
-<!--                        </td>-->
-<!--                        <td th:unless="${list.actionDetail != null or list.actionDetail != 0}"-->
-<!--                            ><p>처리 전</p>-->
-<!--                        </td>-->
                     </tr>
                 </table>
 
 
             </div>
+
+
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var rows = document.querySelectorAll('.link');
+
+                    rows.forEach(function (row) {
+                        var dateCell = row.querySelector('td:nth-child(6)');
+                        var dateString = dateCell.textContent;
+
+                        // DB에서 DATE 타입으로 저장된 경우
+                        var parts = dateString.split('-');
+                        var reportDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+                        var currentDate = new Date();
+
+                        // 일자 차이 계산
+                        var timeDifference = currentDate - reportDate;
+                        var daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+                        // 신고일자가 7일 이내라면 해당 <td> 내의 내용을 비움
+                        if (daysDifference >= 7) {
+                            var newCell = row.querySelector('td#new');
+                            newCell.innerHTML = '';  // 내용 비우기
+                        }
+                    });
+                });
+
+                /*]]>*/
+            </script>
 
 
             <!-- 페이지 처리 -->
