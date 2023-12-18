@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     public List<UserDTO>  paymentPage() throws PaymentPageException {
-        List<UserDTO> paymentPage = mapper.user();
+        List<UserDTO> paymentPage = mapper.user1();
 
         if((paymentPage == null)){
             throw new PaymentPageException("결제 실패 하였습니다");
@@ -41,18 +41,18 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentPage;
     }
 
-    @Override
-    public MemberDTO member() throws MemberOrderPageException {
-        MemberDTO member = mapper.member();
-
-        if(member == null){
-            throw new MemberOrderPageException("잘못 입력 하셨습니다");
-        }
-
-        System.out.println("member = " + member);
-
-        return member;
-    }
+//    @Override
+//    public MemberDTO member(MemberDTO member) throws MemberOrderPageException {
+//       int result = mapper.member(member);
+//
+//        if(!(result > 0)){
+//            throw new MemberOrderPageException("잘못 입력 하셨습니다");
+//        }
+//
+//        System.out.println("member = " + member);
+//
+//        return member;
+//    }
 
 
     //    결제 취소

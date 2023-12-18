@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}" xmlns="http://www.w3.org/1999/html">
+      layout:decorate="~{layouts/layout}">
 <th:block  layout:fragment="content">
 
 
@@ -29,7 +29,7 @@
 
 
 
-                <div class="payment-product" th:each=" product: ${ buypage }">
+                <div class="payment-product" >
 
                     <h4>결제상품</h4>
                     <div style="float: left;">
@@ -38,8 +38,8 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name" name="menu" th:text="${product.projectTitle }"></span>
-                        <span type="price" class="menu-price" name="price" th:text="|${product.price }won|"></span>
+                        <span class="menu-name" name="menu" ></span>
+                        <span type="price" class="menu-price" name="price" ></span>
                     </div>
 
 
@@ -64,24 +64,14 @@
 
 
                     <div class="coupon-action">
-                        
+
                         <div>
-                            <div>할인쿠폰</div>
-                          <input type="text"  name="적용하기" required>&nbsp;
+<!--                            <div>할인쿠폰</div>-->
+<!--                          <input type="text"  name="적용하기" required>&nbsp;-->
                             <!-- <input type="submit" value="적용하기">  -->
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;
-
-                        <form action="search" th:action="@{#}" method="post">
-<!--                            <div class="coupon-btn">-->
-
-
-                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>
-
-
-                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>
-<!--                            </div>-->
-                        </form>
-
+<!--                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>-->
+<!--                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>-->
                     </div>
 
 
@@ -93,10 +83,7 @@
                 </div>
                 <div class="apply-coupon">
                     <span class="total-amount">쿠폰 적용금액</span>
-                    <span type="text" class="totalPrice" th:if="${coupon == 'Y'}" >3000</span>
-                    <span type="text" class="totalPrice" th:unless="${coupon1 == 'Y'}" >0</span>
 
-<!--                    th:if="${buypage[0].coupon == 'Y'}"-->
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
@@ -116,17 +103,17 @@
         </div>
 
 
+        <form class="info" th:action="@{/order/buypage}"  method="post">
         <div class="right">
 
-        
         <div id="right">
             <div id="progress">
                 <span><div class="pay">주문/결제</div></span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
             </div>
 
             <div class="orderer-info-con">
-                <form class="phone" th:action="@{/order/buypage}"  method="post">
                 <div class="orderer-info">
+
                 <h4>주문자 정보</h4>
                 <div class="name">
                     <div class="firstname">
@@ -143,26 +130,24 @@
                     <input type="email" name="email" id="email" required>&nbsp;
                 </div>
 
-                <div class="number">핸드폰 번호</div>
 
-
-                    <select id="countryCode">
-                        <option value="+82" selected>대한민국 (+82)</option>
-                        <option value="+1">미국 (+1)</option>
-                        <option value="+44">영국 (+44)</option>
-                        <option value="+81">일본 (+81)</option>
-                    </select>
-                    <input type="text" name="phone" id="phone" required>&nbsp;
+                <div class="phone">
+                    <div class="number">핸드폰 번호</div>
+                        <select id="countryCode">
+                            <option value="+82" selected>대한민국 (+82)</option>
+                            <option value="+1">미국 (+1)</option>
+                            <option value="+44">영국 (+44)</option>
+                            <option value="+81">일본 (+81)</option>
+                        </select>
+                        <input type="text" name="phone" id="phone" required>&nbsp;
+                    </div>
                 </div>
-
-                </form>
         </div>
+
             <div class="void"></div>
 
         <div class="order-details-con">
 
-
-            <form  th:action="@{/order/buypage}" method="post">
             <div class="order-details" >
                 <h4>주문 상세정보</h4>
                     <div class="adrs" >
@@ -182,16 +167,16 @@
                 </div>
 
                     <input type="checkbox" id="confirmationCheckbox">
-                    <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
+                    <label for="confirmationCheckbox">주문0정보를 모두 확인했습니다</label>
             </div>
+
+        </div>
+        </div>
+        </div>
+
             </form>
-
-            </div>
-        </div>
-        </div>
     </div>
 
-    </div>
 
 <!--    주소 창 찾기-->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

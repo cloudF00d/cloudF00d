@@ -21,7 +21,7 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/manager/project/newMain}">신청 프로젝트</a></span>
+                <span><a class="black-link" th:href="@{/manager/project/newMain}">신청한 프로젝트</a></span>
             
             </div>
         
@@ -72,22 +72,16 @@
 
                     <div class="searchleft3">
                         <select name="authority" id="authority">
-                            <th:block th:if="${selectCriteria.getAuthority()} == 'all'">
-                                <option value="all">전체</option>
-                            </th:block>
                             <th:block th:if="${selectCriteria.getAuthority()} == 'new'">
                                 <option value="new">신규</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getAuthority()} == 'decline'">
                                 <option value="decline">반려</option>
                             </th:block>
-                            <th:block th:if="${selectCriteria.getAuthority()} == 'complaint'">
-                                <option value="complaint">신고</option>
-                            </th:block>
                             <th:block th:if="${selectCriteria.getAuthority()} == 're'">
                                 <option value="re">리펀딩</option>
                             </th:block>
-                            <option value="all" selected>전체</option>
+                            <option value="all">전체</option>
                             <option value="new">신규</option>
                             <option value="decline">반려</option>
                             <option value="complaint">신고</option>

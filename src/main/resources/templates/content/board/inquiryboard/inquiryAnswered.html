@@ -31,13 +31,20 @@
             <div class="CRUDcontainer">
 				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
 
-				<span id="update">
-					수정
-				</span>
-				<span id="update">
+                <span id="delete"
+                      th:onclick="'location.href=\'/board/inquiryDelete?no='+ @{${detail.creationNumber.creationNumber}} + '\''"
+
+                >
 					삭제
 				</span>
-            
+
+                <span id="update"
+                      th:onclick="'location.href=\'/board/inquiryUpdate?no='+ @{${detail.creationNumber.creationNumber}} + '\''"
+
+                >
+					수정
+				</span>
+
 			</div>
             
 

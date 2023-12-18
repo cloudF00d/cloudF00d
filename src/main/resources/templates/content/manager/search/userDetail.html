@@ -33,7 +33,7 @@
                     <div class="stop">
                         <form action="search" method="post">
                             <select name="nation2">
-                                <option value="search" selected>정지</option>
+                                <option value="search">사용자 정지</option>
                                 <option value="stopWeek">일주일 정지</option>
                                 <option value="stopMonth">한달 정지</option>
                                 <option value="stopThreeMonth">3달 정지</option>
@@ -58,35 +58,27 @@
                     </div>
                     <input type="hidden" name="number" id="number" th:value="${userInfo.userCode}">
 
-<!--                    <script th:inline="text/javascript">-->
-<!--                        var number=`${userInfo.userCode}`;-->
-<!--                        var number1=document.getElementById('number');-->
-<!--                        console.log(number)-->
-<!--                        console.log(number1)-->
-<!--                        $(function(){-->
-<!--                            $('#delete').click(function(){-->
-<!--                                if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까?')){-->
-<!--                                    function init() {-->
-<!--                                        $.ajax({-->
-<!--                                            type : "GET",-->
-<!--                                            url : `http://localhost:8080/manager/search/delete?no=${number}`,-->
-<!--                                            contentType: "application/json",-->
-<!--                                            dataType: "json",-->
-<!--                                            success : function (data, status) {-->
-<!--                                                alert(status);-->
-<!--                                            },-->
-<!--                                            error : function (status) {-->
-<!--                                                alert(status + "error!");-->
-<!--                                            }-->
-<!--                                        });-->
-<!--                                    }-->
-<!--                                } else {-->
-<!--                                    return false;-->
+                    <script th:inline="javascript">
+                        /*<![CDATA[*/
 
-<!--                                }-->
-<!--                            });-->
-<!--                        })-->
-<!--                    </script>-->
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // 삭제 버튼 클릭 시 확인 창 표시
+                            var deleteButton = document.getElementById('delete');
+                            if (deleteButton) {
+                                deleteButton.addEventListener('click', function () {
+                                    var confirmed = confirm('삭제하시겠습니까?');
+                                    if (confirmed) {
+                                        // 확인을 누른 경우, 주어진 URL로 이동
+                                        var userCode = document.getElementById('number').value;
+                                        var deleteUrl = '/manager/search/delete?no=' + userCode;
+                                        window.location.href = deleteUrl;
+                                    }
+                                });
+                            }
+                        });
+
+                        /*]]>*/
+                    </script>
                 </div>
             </div>
 

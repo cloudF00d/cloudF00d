@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공지사항 세부사항</title>
 
-<link rel="stylesheet" href="/css/manager/board/complaintAnswered.css">
+<link rel="stylesheet" href="/css/manager/board/noticeWrited.css">
 
 
 
@@ -26,9 +26,22 @@
                 <span><strong>></strong></span>
                 <span th:text="|${notice.creationNumber}번째 글|"></span>
             </div>
-        
-            <div>
-				<a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
+
+            <div class="CRUDcontainer">
+            <a href="#"><img class="logo1" src="/images/01_logoimg/textLogoNone.png" alt=""></a>
+
+
+                <span id="delete"
+              th:onclick="'location.href=\'/board/noticeDelete?no='+ @{${notice.creationNumber}} + '\''"
+
+                >
+					삭제
+				</span>
+                <span id="update"
+              th:onclick="'location.href=\'/board/noticeUpdate?no='+ @{${notice.creationNumber}} + '\''"
+                >
+					수정
+				</span>
             </div>
             
 

@@ -25,6 +25,9 @@ logging:
   level:
     root: info
 
+# MAC용 url
+img:
+  macurl: /Users/kimminha/Desktop/JAVA/dev/07_cloudFooding(PJ)/uploadfile/Introductionimg/
 
 mybatis:
   # mapper.xml location Setting

@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.manager.controller;
 
+import com.ohgiraffers.semiproject.common.notice.NoticeRegistException;
 import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
@@ -7,10 +8,9 @@ import com.ohgiraffers.semiproject.manager.model.service.ManageProjectService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,15 +28,56 @@ public class ManagerProjectController {
         this.manageProjectService = manageProjectService;
     }
 //
-//    @GetMapping("/complaintDetail")
-//    public String complaintDetail(){return "content/manager/project/complaintDetail";}
-//    @GetMapping("/complaintMain")
-//    public String complaintMain(){return "content/manager/project/complaintMain";}
+
 //    @GetMapping("/declineDetail")
 //    public String declineDetail(){return "content/manager/project/declineDetail";}
 //    @GetMapping("/declineMain")
 //    public String declineMain(){return "content/manager/project/declineMain";}
 
+
+
+    @GetMapping("/approve")
+    public String approve(@RequestParam Long no,
+                          RedirectAttributes rttr) throws NoticeRegistException{
+
+        manageProjectService.approve(no);
+
+        rttr.addFlashAttribute("message", "승인에 성공했습니다");
+
+        return "redirect:/manager/project/newMain";
+
+
+
+    }
+
+    @GetMapping("/declineDetail")
+    public String declineDetail(@RequestParam Long no, Model mv) {
+
+
+        ProjectDTO projectDTO = manageProjectService.findOneProject(no);
+        String status = manageProjectService.findStatus(no);
+
+        mv.addAttribute("project",projectDTO);
+        mv.addAttribute("status", status);
+
+
+
+
+        return "/content/manager/project/declineReason";
+    }
+
+    @PostMapping("/declineDetail")
+    public String declineReason(@ModelAttribute ApprovalHistoryDTO approvalHistoryDTO,
+                                RedirectAttributes rttr) throws NoticeRegistException{
+
+
+        System.out.println("approvalHistoryDTO ========================== " + approvalHistoryDTO);
+
+        manageProjectService.declineReason(approvalHistoryDTO);
+        rttr.addFlashAttribute("message", "등록에 성공했습니다");
+
+        return "redirect:/manager/project/newMain";
+    }
     @GetMapping("/newDetail")
     public String newDetail(@RequestParam Long no, Model mv){
 
@@ -49,7 +90,7 @@ public class ManagerProjectController {
         mv.addAttribute("status", status);
             log.info("controller projectDetail end ===============================");
 
-            return "/content/manager/project/newDetail";
+            return "content/manager/project/newDetail";
         }
 
     @GetMapping("/newMain")

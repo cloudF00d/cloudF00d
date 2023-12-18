@@ -3,8 +3,11 @@ package com.ohgiraffers.semiproject.order.model.service;
 import com.ohgiraffers.semiproject.order.model.dao.CartMapper;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
+import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -17,9 +20,10 @@ public class CartService {
         Mapper = mapper;
     }
 
-    public CartDTO cart() {
+    public List<CartInsertDTO> cart() {
 
-        CartDTO cart = Mapper.cartPage();
+        List<CartInsertDTO> cart = Mapper.cartPage();
+        System.out.println("cart = " + cart);
 
         return cart;
     }

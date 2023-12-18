@@ -30,6 +30,7 @@ public class SearchUserController {
     @GetMapping("/userDetail")
     public String userDetail(@RequestParam Long no, Model mv) {
 
+
         log.info("controller userDetail start===========================");
 
         List<CartDTO> cartDTOS = searchUserService.userBuy(no);
@@ -159,6 +160,7 @@ public class SearchUserController {
     @GetMapping("/delete")
     public String userDelete(@RequestParam Long no, RedirectAttributes rttr)
     throws NoticeRemoveException {
+        System.out.println("no =========================== " + no);
 
         searchUserService.deleteUser(no);
 
