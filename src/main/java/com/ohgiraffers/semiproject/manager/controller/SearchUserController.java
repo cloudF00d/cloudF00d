@@ -1,11 +1,15 @@
 package com.ohgiraffers.semiproject.manager.controller;
 
+import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
 import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
+import com.ohgiraffers.semiproject.common.util.SessionUtil;
 import com.ohgiraffers.semiproject.manager.model.dto.*;
 import com.ohgiraffers.semiproject.manager.model.service.SearchUserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -158,11 +162,16 @@ public class SearchUserController {
     }
 
     @GetMapping("/delete")
-    public String userDelete(@RequestParam Long no, RedirectAttributes rttr)
-    throws NoticeRemoveException {
+    public String userDelete(@RequestParam Long no,
+                             HttpServletRequest request,
+                             HttpServletResponse response,
+                             RedirectAttributes rttr)
+    throws MemberRemoveException {
         System.out.println("no =========================== " + no);
 
         searchUserService.deleteUser(no);
+
+        SessionUtil.invalidateSession(request,response);
 
         rttr.addFlashAttribute("message", "회원 삭제에 성공했습니다");
 

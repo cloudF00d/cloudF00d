@@ -14,15 +14,17 @@
     <!-- 항상 변경 해야할 css 링크 -->
     <link rel="stylesheet" href="/css/project/projectMake-main/projectManage-main/basicInfo/css.css">
 
-
-
-
-
-
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
 
     <div class="back-side-container">
 
-        <th:block th:replace="/fragments/sellersidebar.html"></th:block>
+
+        <form th:action="@{/projectMake/basicInfo}" id="search" method="post">
+            <input
+                    type="hidden"
+                    id="memberId"
+                    name="sellerCode"
+                    th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }">
 
         <section class="back-board-container">
             <!-- 배경 시트 좌측 상단 텍스트 -->
@@ -40,9 +42,9 @@
 
                 <!-- 입력창에 입력이 발생할 때 남은 글자 수 계산 -->
                 <div class="putIn-title">
-                    <input type="text" id="putIn-title-text" name="putIn-title-text" placeholder="제목을 입력해 주세요."
+                    <input type="text" id="putIn-title-text" name="title" placeholder="제목을 입력해 주세요."
                         oninput="updateCharacterCount()">
-                    <p id="characterCount">40자 남음</p>
+                    <p id="characterCount">(?)자 남음</p>
                 </div>
 
                 <br><br>
@@ -67,13 +69,13 @@
                     <div class="category-text">프로젝트 종료일<span class="greeting-text-star"> *</span></div>
                     <br>
                         <div class="project-end-container">
-                            <input type="text" class="project-end-text" placeholder="예시: 2023/10/15" oninput="formatDateInput(this)">
+                            <input type="date" name="endDate" class="project-end-text" placeholder="예시: 2023/10/15" oninput="formatDateInput(this)">
                         </div>
 
                     <div class="category-text">검색용 태그(#)<span class="greeting-text-star"> *</span></div>
                     <br>
                         <div class="search-tag-container">
-                            <input type="text" class="search-tag-text" placeholder="엔터를 누르면 최대 10개까지 태그를 입력할 수 있어요." id="tagInput" onkeyup="addTag(event)">
+                            <input name="tag" type="text" class="search-tag-text" placeholder="콤마로 구분해 최대 10개까지" id="tagInput" onkeyup="addTag(event)">
                             <br><br>
                             <div class="search-tag-#text" id="outputTag"></div><br>
                             <p id="tagLimitMessage"></p>
@@ -164,11 +166,14 @@
                         
                         
                     <br><br><br><br><br><br>
-                <a class="project-start"  th:href="@{/projectMake/projectManage}">제출하기</a>
+                <button class="project-start">
+                    제출하기
+                    </button>
 
 
             </div> <!-- back-board -->
     </section>
+        </form>
     </div> <!-- greeting-text -->
 
 
