@@ -19,7 +19,7 @@
     <div class="back-side-container">
 
 
-        <form th:action="@{/projectMake/basicInfo}" id="search" method="post">
+        <form th:action="@{/projectMake/basicInfo}" id="search" method="post" enctype="multipart/form-data">
             <input
                     type="hidden"
                     id="memberId"
@@ -57,13 +57,16 @@
 
                 <div class="first-image-container">
                     <div class="first-image-box">
+
                         <div class="first-image-title">대표 이미지 등록 가이드</div><br><br>
                             <div class="first-image-sub-title">
                                 <li>10MB 이하의 JPG, JPEG, PNG 파일</li>
                                 <li>해상도 1200x675 픽셀 이상</li>
                                 <li>사진을 선택하면 이미지를 자르거나 회전할 수 있어요.</li>
                             </div>
+
                         </div>
+                    <input type="file" name="mainPicture" multiple accept="image/*">
                     </div>
 
                     <br><br>

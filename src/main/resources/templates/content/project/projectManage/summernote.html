@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>작성하기</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+</head>
+<body>
+<form id="projectDecline" th:action="@{/projectMake/summernote}" method="post">
+
+    <input type="text" id="uploadedImages" name="uploadedImages" value="">
+<textarea id="summernote" name="summernote"></textarea>
+<button type="submit">저장하기</button>
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 1000,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        callbacks: {
+            onImageUpload: function (files) {
+                uploadSummernoteImageFile(files[0], this);
+            },
+            onPaste: function (e) {
+                var clipboardData = e.originalEvent.clipboardData;
+                if (clipboardData && clipboardData.items && clipboardData.items.length) {
+                    var item = clipboardData.items[0];
+                    if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        }
+    });
+
+    function uploadSummernoteImageFile(file, editor) {
+        data = new FormData();
+        data.append("file", file);
+
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "/autoMailModify/uploadSummernoteImageFile",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                // 반환받는 data의 url 값은
+                // <img th:src="|/thumbPath${order.convertPath}|" th:alt="|${order.orderCode}번 제품이미지|">
+                // 여기서 /thumbPath를 포함한 값이다. 하지만 데이터베이스에 저장되는건 뒤의 $ 부분
+                addImageInfoToHiddenInput(data.convertPath, data.savePath, data.sourceName, data.convertName);
+                $(editor).summernote('insertImage', data.url);
+                console.log(data);
+            }
+        })
+    }
+
+    function addImageInfoToHiddenInput(convertPath, savePath, sourceName, convertName) {
+        var hiddenInputValue = $("#uploadedImages").val();
+        var newImageInfo = {
+            convertPath: convertPath,
+            savePath: savePath,
+            sourceName: sourceName,
+            convertName: convertName
+        };
+        try {
+            var updatedValue = hiddenInputValue ? JSON.parse(hiddenInputValue) : [];
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+            console.error('JSON String:', hiddenInputValue);
+        }
+        updatedValue.push(newImageInfo);
+
+        $("#uploadedImages").val(JSON.stringify(updatedValue));
+    };
+</script>
+</form>
+</body>
+</html>

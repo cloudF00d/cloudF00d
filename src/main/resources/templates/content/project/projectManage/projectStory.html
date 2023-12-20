@@ -19,8 +19,13 @@
 
 
 
-    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-    <div class="back-side-container">
+    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
+    <form th:action="@{/projectMake/projectStory}" id="search" method="post" enctype="multipart/form-data">
+        <input
+                type="hidden"
+                id="memberId"
+                name="sellerCode"
+                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }">
 
 
         <section class="back-board-container">
@@ -37,9 +42,10 @@
                 <div class="category-sub-text">프로젝트 상세페이지 최상단에 노출할 영상 또는 사진을 등록해 주세요. (영상 or 사진 중 택 1)</div><br><br>
 
                 <div class="introduce-container">
-                    <div class="introduce-image" onclick="openFileInput()">
-                        <p>소개 사진</p>
-                    </div>
+                    <!--                    <div class="introduce-image" onclick="openFileInput()">-->
+                    <!--                        <p>소개 사진</p>-->
+                    <!--                    </div>-->
+                    <input type="file" name="picture">
                 </div>
 
                 <br>
@@ -56,7 +62,7 @@
                     </div>
                 </div>
                 <input type="file" id="file-input" accept="image/gif, image/jpeg, image/png"
-                    onchange="handleFileSelect(this)">
+                       onchange="handleFileSelect(this)">
                 <div id="image-preview"></div>
 
 
@@ -121,7 +127,7 @@
                 <div class="project-summary-container">
                     <div class="project-summary-textBox">
                         <textarea id="project-summary-text" name="project-summary-text" placeholder="내용 입력"
-                            oninput="updateCharacterCount()"></textarea>
+                                  oninput="updateCharacterCount()"></textarea>
                     </div>
                     <br>
                     <p id="characterCount">100자 남음</p>
@@ -137,16 +143,21 @@
                     <div class="project-stroy--sub-text">구매자에게 꼭 알려주세요</div>
                     <li>이미지와 설명글 구성으로 스토리를 작성하면 내외부 포털 검색 결과에 상위 노출될 확률이 높아져요.</li>
 
-                    <br><br><br><br><br><br>
 
+                    <button type="button"
+                            th:onclick="'location.href=\'/projectMake/summernote\''"
+                    >스토리 작성하기
+                    </button>
+                    <br><br><br><br><br><br>
                     <a class="project-start" href="/view/projectMake/projectManage.html">제출하기</a>
                 </div>
 
 
             </div> <!-- back-board -->
-    </section>
-    </div> <!-- greeting-text -->
-
+        </section>
+    </form>
+        </div> <!-- greeting-text -->
+        <div class="back-side-container">
 
 
 </th:block>

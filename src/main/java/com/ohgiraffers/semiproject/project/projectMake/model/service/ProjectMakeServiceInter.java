@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.project.projectMake.model.service;
 
+import com.ohgiraffers.semiproject.common.exception.thumbnail.ThumbnailRegistException;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO;
 
@@ -27,4 +28,10 @@ public interface ProjectMakeServiceInter {
     void busiEmailUpdate(BusinessMakeDTO businessMakeDTO);
 
     BusinessMakeDTO selectBusiness(int code);
+
+    void planUpdate(ProjectMakeDTO projectMakeDTO);
+
+    void policyUpdate(int code);
+
+    void registThumbnail(ProjectMakeDTO projectMakeDTO) throws ThumbnailRegistException;
 }

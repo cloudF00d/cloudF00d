@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,5 +24,7 @@ public class ProjectMakeDTO {
     private String sellerType;
     private int sellerCode;
     private String tag;
+    private char policy;
+    private List<ProjectMakeFileDTO> attachmentList;
 
 }

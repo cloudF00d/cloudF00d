@@ -2,6 +2,7 @@ package com.ohgiraffers.semiproject.project.projectMake.model.dao;
 
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO;
+import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeFileDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
@@ -28,4 +29,10 @@ public interface ProjectMakeMapper {
 
 
     BusinessMakeDTO selectBusiness(int code);
+
+    int planUpdate(ProjectMakeDTO projectMakeDTO);
+
+    int policyUpdate(int code);
+
+    int insertAttachment(ProjectMakeFileDTO projectMakeFileDTO);
 }

@@ -16,6 +16,7 @@
         <result property="summary" column="SUMMARY"/>
         <result property="sellerType" column="SELLER_TYPE"/>
         <result property="tag" column="TAG"/>
+        <result property="policy" column="POLICY"/>
     </resultMap>
 
     <resultMap id="businessMake" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO">
@@ -163,6 +164,41 @@
         where
             SELL_CODE = #{sellCode}
     </select>
+
+    <update id="planUpdate" parameterType="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO">
+        update tbl_project_make
+        set PLAN = #{plan}
+        where
+            SELLER_CODE = #{sellerCode}
+        ;
+    </update>
+
+    <update id="policyUpdate" parameterType="_int">
+        update tbl_project_make
+        set POLICY = 'Y'
+        where
+            SELLER_CODE = #{code}
+        ;
+    </update>
+
+    <insert id="insertAttachment">
+        insert into tbl_project_make_file(ORIGIN_FILE_NAME,
+                                          F_CODE,
+                                          S_CODE,
+                                          CHANGE_FILE_NAME,
+                                          FILE_PATH,
+                                          CREATE_DATE,
+                                          TYPE)
+        values (
+                #{originFileName},
+                null,
+                #{sCode},
+                #{changeFileName},
+                #{filePath},
+                now(),
+                #{type}
+               );
+    </insert>
 
 
 </mapper>

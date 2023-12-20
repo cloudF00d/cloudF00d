@@ -22,7 +22,8 @@
 
 
     <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-    <form th:action="@{/projectMake/projectInfo}" id="yourForm" method="post">
+
+    <form th:action="@{/projectMake/payChoice}" id="yourForm" method="post">
         <input
                 type="hidden"
                 id="memberId"
@@ -42,13 +43,18 @@
 
                 <div class="radio-list">
                     <label>
-                        <input type="radio" name="type" value="funding">
-                        <strong>펀딩</strong>&nbsp;첫 출시예요.<br><br>
+                        <input type="radio" name="plan" value="basic">
+                        <strong>베이직 수수료 5%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br><br>
                     </label>
 
                     <label>
-                        <input type="radio" name="type" value="refunding">
-                        <strong>리펀딩</strong>&nbsp;클라우드푸딩에서 성공한 프로젝트를 다시 공개해요.<br><br>
+                        <input type="radio" name="plan" value="pro">
+                        <strong>프로 수수료 10%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br><br>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="plan" value="premium">
+                        <strong>프리미엄 수수료 15%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br>팝업 광고<br><br>
                     </label>
                 </div>
 
@@ -60,11 +66,14 @@
                 </script>
 
 
-         
+                <button type="submit">저장하기</button>
+
+
 <!--                <div class=pay-container>-->
+<!--                    <div class="radio-list">-->
 <!--                    <div class="pay-box1-back"></div>-->
-<!--                    <div class="pay-box2-back"></div>-->
-<!--                    <div class="pay-box3-back"></div>-->
+<!--                            <div class="pay-box2-back"></div>-->
+<!--                            <div class="pay-box3-back"></div>-->
 <!--                    <div class="pay-box1-in-back"></div>-->
 <!--                    <div class="pay-box2-in-back"></div>-->
 <!--                    <div class="pay-box3-in-back"></div>-->
@@ -96,15 +105,29 @@
 <!--                        <span  class="pay-notice-text">요금제 선택 전 확인해 주세요. 수수료(VAT)는 별도입니다.</span>-->
 <!--                  </div>-->
 
-                  <!-- 요금제 선택시 알림팝업 -->
-                  <script>
-                  function selectPlan() {
-                      alert("해당 요금제가 선택되었습니다.");
-                  }
-                  </script>
+<!--                  &lt;!&ndash; 요금제 선택시 알림팝업 &ndash;&gt;-->
+<!--                  <script>-->
+<!--                  function selectPlan() {-->
+<!--                      alert("해당 요금제가 선택되었습니다.");-->
+<!--                  }-->
+<!--                  </script>-->
+
+<!--                </div>-->
 
 
-                    <a class="project-start" th:href="@{/projectMake/projectManage}">제출하기</a>
+                <script th:inline="javascript">
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var businessType = /*[[${project.plan}]]*/ '';
+
+                        if (businessType === 'basic') {
+                            document.querySelector('input[name="plan"][value="basic"]').checked = true;
+                        } else if (businessType === 'pro') {
+                            document.querySelector('input[name="plan"][value="pro"]').checked = true;
+                        } else if (businessType === 'premium') {
+                            document.querySelector('input[name="plan"][value="premium"]').checked = true;
+                        }
+                    });
+                </script>
 
             </div> <!-- back-board -->
         </div> <!-- greeting-text -->
@@ -112,7 +135,6 @@
     </div>
     </div>
 </section>
-    </form>
 
     <!-- Footer -->
 
