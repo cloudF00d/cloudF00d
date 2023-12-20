@@ -33,8 +33,8 @@ public class EmailSender {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(subject);
             message.setText(text);
-            System.out.println("EmailSender 클래스 : "+to);
-            System.out.println("EmailSender 클래스 : "+text);
+            System.out.println("EmailSender 클래스 : " + to);
+            System.out.println("EmailSender 클래스 : " + text);
             // 메시지 전송
             Transport.send(message);
             System.out.println("Sent message successfully....");
@@ -48,13 +48,65 @@ public class EmailSender {
         String from = "lees8485@gmail.com"; // 발신자 이메일 주소
         String host = "smtp.gmail.com"; // SMTP 서버 주소
         String subject = "CloudFooding 이메일 인증 번호"; // 이메일 제목
-        try{
+        try {
             sendEmail(to, from, host, subject, pwdKey);
             return true;
-        } catch (Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
+    public boolean sendUserId(String to, String userId) {
+        String from = "lees8485@gmail.com"; // 발신자 이메일 주소
+        String host = "smtp.gmail.com"; // SMTP 서버 주소
+        String subject = "Your User ID"; // 이메일 제목
+        String text = "Your User ID is: " + userId; // 이메일 내용
+        try {
+            sendEmail(to, from, host, subject, text);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+
+
+
+    public boolean sendEmail(String to, String text1, String subject1) {
+        String from = "lees8485@gmail.com"; // 발신자 이메일 주소
+        String host = "smtp.gmail.com"; // SMTP 서버 주소
+        String subject = text1 ; // 이메일 제목
+        String text = subject1; // 이메일 내용
+
+        try {
+            sendEmail(to, from, host, subject, text); // 이미 구현된 메서드 호출
+            System.out.println("인증번호 발송 성공");
+            return true;
+        } catch (Exception e) {
+            System.out.println("인증번호 발송 실패");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean sendEmail1(String to, String tempPassword, String s) {
+
+        String from = "lees8485@gmail.com"; // 발신자 이메일 주소
+        String host = "smtp.gmail.com"; // SMTP 서버 주소
+        String subject = tempPassword; // 이메일 제목
+        String text = s; // 이메일 내용
+
+        try {
+            sendEmail(to, from, host, subject, text); // 이미 구현된 메서드 호출
+            System.out.println("임시 비밀번호 발송 성공");
+            return true;
+        } catch (Exception e) {
+            System.out.println("임시 비밀번호 발송 실패");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

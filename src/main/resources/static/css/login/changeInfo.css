@@ -15,6 +15,63 @@ li{
 	list-style: none;
 }
 
+#popup-container{
+    display: none;
+
+}
+#layer_bg{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    font-family:Noto Sans KR;
+    font-size:13px;
+}
+#popup > h2{
+    margin-bottom: 25px;
+}
+#popup > h2 > label{
+    float: right;
+}
+#layer_popup:checked + label + #layer_bg{
+    display: block;
+}
+#layer_popup:checked + #layer_bg{
+    display: block;
+}
+#popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 600px;
+    height: 550px;
+    overflow-y: auto;
+}
+.popup-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+#layer_popup{
+    display: none;
+}
+#layer_popup:checked + label + #layer_bg{
+    display: block;
+}
+#layer_popup:checked + #layer_bg{
+    display: block;
+}
+
 
 /*  asdasdasd*/
 
@@ -103,10 +160,13 @@ li{
     right: 86px;
 }
 
-.profilebtn{
+#profilebtn{
         /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-   
+   width: 100px;
    height: 31px;
+
+    position: relative;
+    left: 125px;
 
    /* 배경색을 색으로 설정합니다. */
    background-color: lightgrey;
@@ -128,12 +188,41 @@ li{
 }
 
 
-.profilebtn:hover{
+#profilebtn:hover{
     
         /* 마우스 호버 시 배경색 변경 */
         background-color: darkorange;
     
 }
+
+.searchZipCode1{
+    /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
+    width: 85px;
+    height: 31px;
+
+    /* 배경색을 색으로 설정합니다. */
+    background-color: lightgrey;
+
+    /* 글자 색을 변경합니다. */
+    color: white;
+
+    padding: 3px;
+
+
+    /* 모서리를 둥글게 만듭니다. */
+    border-radius: 5px;
+
+    /* 테두리를 없앱니다. */
+    border: none;
+
+    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
+    text-align: center;
+
+}
+.searchZipCode1:hover{
+    background-color: darkorange;
+}
+
 
 
 /*========================================= 회원정보 변경 버튼*/
@@ -190,7 +279,8 @@ li{
    color: white;
 
     padding: 3px;
-    
+
+    width: 80px;
 
    /* 모서리를 둥글게 만듭니다. */
    border-radius: 5px;
@@ -215,7 +305,7 @@ li{
 
 .changeInfo{
     position: relative;
-    left: 220px;
+    left: 100px;
     padding-bottom: 20px;
 }
 
@@ -227,120 +317,4 @@ li{
 
 
 
-/* 사이드바 */
 
-		/* 마이페이지 */
-		.title {
-			list-style-type: none;
-			padding: 23px;
-			font-size: 30px;
-		}
-
-
-
-.sideBar {
-    box-shadow: 0px 10px 60px rgba(225.83437621593475, 236.193745136261, 248.62500607967377, 0.5);
-    background-color: rgba(255, 255, 255, 1);
-    width: 300px;
-    flex: 0 0 auto;
-    height: 1000px;
-}
-
-.sideBar-menu {
-    width: 234px;
-    height: 100%;
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 30px;
-}
-
-.sideBar-menu ul,
-.sideBar-menu li {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-left: 30px;
-    margin-top: 10px;
-    width: 300px;
-}
-
-.sideBar-menu a {
-    text-decoration: none;
-    color: #555;
-}
-
-.sideBar-toggle li {
-    margin-left: 0px;
-}
-
-.sub li a {
-    margin-left: 60px;
-}
-
-.sideBar-adver {
-    width: 223.856201171875px;
-    height: 134.313720703125px;
-    position: absolute;
-    margin-top: 30%;
-    margin-left: 10px;
-}
-
-.sideBar-adver-back {
-    background-image: linear-gradient(0deg, rgba(249.38867390155792, 202.0311614871025, 163.5030072927475, 1) 0%, rgba(243.00000071525574, 125.00000014901161, 29.000000171363354, 1) 100%);
-    width: 223.856201171875px;
-    height: 134.313720703125px;
-    left: 0px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    
-}
-
-.sideBar-adver-text {
-    color: rgba(255, 255, 255, 1);
-    width: 182px;
-    height: 38px;
-    position: absolute;
-    left: 21px;
-    top: 23px;
-    font-family: Poppins;
-    text-align: center;
-    font-size: 14px;
-    letter-spacing: 1;
-}
-
-.sideBar-adver-button {
-    width: 181.77122497558594px;
-    height: 35.816993713378906px;
-    position: absolute;
-    left: 21px;
-    top: 78.796875px;
-}
-
-.sideBar-adver-button-back {
-    box-shadow: 2px 4px 4px rgba(79.0000256896019, 41.99999749660492, 234.00000125169754, 0.17000000178813934);
-    background-color: rgba(255, 255, 255, 1);
-    width: 181.77122497558594px;
-    height: 35.816993713378906px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.sideBar-adver-button-text {
-    color: rgba(243.00000071525574, 125.00000014901161, 29.000000171363354, 1);
-    width: 117px;
-    height: 19px;
-    position: absolute;
-    left: 32px;
-    top: 8.6484375px;
-    font-family: Poppins;
-    text-align: center;
-    font-size: 14px;
-    letter-spacing: 1;
-		} 

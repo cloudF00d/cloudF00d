@@ -1,9 +1,7 @@
 package com.ohgiraffers.semiproject.member.model.dao;
 
-import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.member.model.dto.*;
 
-import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
-import com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,7 +16,7 @@ public interface MemberMapper {
 
     int updateMember(MemberAndAuthorityDTO member);
 
-    int deleteMember(MemberAndAuthorityDTO member);
+    int deleteMember(String userId);
 
 
     int sendEmail(UserAndEmailDTO userAndEmailDTO);
@@ -28,4 +26,27 @@ public interface MemberMapper {
     int selectLastInsertUserCode();
 
     int insertAuthor(int userCode);
+
+    String findUserIdByEmailAndName(String email, String userName);
+
+    void saveAuthCode(String authCode, int emailCode);
+
+    Boolean verifyAuthCode(String userId, String email, String authCode);
+
+    void updatePassword(String userId, String encodedPassword);
+
+
+    MemberDTO findUserCode(String userId, String email);
+
+    MemberDTO searchLoginMember(String userId);
+
+    MemberDTO findByEmail(String email);
+
+    int update(MemberDTO member);
+
+    int updateProfileImage(ProfileImgDTO profileImgDTO);
+
+    int insertProfile(int userCode);
+
+    MemberAndProfileDTO myInfo(String userId);
 }

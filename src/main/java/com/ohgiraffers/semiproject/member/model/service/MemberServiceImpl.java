@@ -1,19 +1,18 @@
 package com.ohgiraffers.semiproject.member.model.service;
 
 import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
-import com.ohgiraffers.semiproject.common.exception.member.MemberModifyException;
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
+import com.ohgiraffers.semiproject.common.exception.member.MemberUpdateException;
 import com.ohgiraffers.semiproject.member.emailsender.EmailSender;
 import com.ohgiraffers.semiproject.member.model.dao.MemberMapper;
-import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
-import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
-import com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO;
+import com.ohgiraffers.semiproject.member.model.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
+import java.util.NoSuchElementException;
 
 @Service
 @Slf4j
@@ -21,14 +20,20 @@ public class MemberServiceImpl implements MemberService {
     private final PasswordEncoder passwordEncoder;
     private final MemberMapper mapper;
 
+    private final EmailSender emailSender;
 
 
 
 
-    public MemberServiceImpl(PasswordEncoder passwordEncoder, MemberMapper mapper) {
+
+    public MemberServiceImpl(PasswordEncoder passwordEncoder, MemberMapper mapper, EmailSender emailSender) {
         this.passwordEncoder = passwordEncoder;
         this.mapper = mapper;
+        this.emailSender = emailSender;
     }
+
+
+
     private String generateRandomString(int length) {
         String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom secureRandom = new SecureRandom();
@@ -43,6 +48,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 
+
     @Transactional
     @Override
     public void joinMember(MemberDTO memberDTO) throws MemberJoinException {
@@ -51,6 +57,7 @@ public class MemberServiceImpl implements MemberService {
 
 
         log.info("[MemberService] Insert Member : " + memberDTO);
+
         int result = mapper.insertMember(memberDTO);
 
         int userCode = mapper.selectLastInsertUserCode(); // tbl_user 에서 마지막 입력한 pk 값.
@@ -58,13 +65,14 @@ public class MemberServiceImpl implements MemberService {
         log.info(String.valueOf(result));
         log.info(String.valueOf(userCode));
 //        throw new MemberJoinException("임시 오류");
-
         int result1 = mapper.insertAuthor(userCode); // tbl_authority_list에 넣는 값. // insert #{userCode}, 권한명
+        int result2 = mapper.insertProfile(userCode);
 
         System.out.println("result1.getUserId()========== : ");
 
         log.info("[MemberService] Insert result : " + ((result > 0) ? "회원가입 성공" : "회원가입 실패"));
         log.info("[MemberService] Insert result : " + ((result1 > 0) ? "권한주기 성공" : "회원가입 실패"));
+        log.info("[MemberService] Insert result : " + ((result2 > 0) ? "기본프로필 등록 성공" : "회원가입 실패"));
 
         if(!(result > 0 )){
             throw new MemberJoinException("회원 가입에 실패하였습니다.");
@@ -83,24 +91,36 @@ public class MemberServiceImpl implements MemberService {
         return result != null? true : false;
     }
 
-    @Override
-    public void modifyMember(MemberAndAuthorityDTO member) throws MemberModifyException {
-        int result = mapper.updateMember(member);
 
-        if(!(result > 0)) {
-            throw new MemberModifyException("회원 정보 수정에 실패하셨습니다.");
-        }
-    }
 
     @Override
-    public void removeMember(MemberAndAuthorityDTO member) throws MemberRemoveException {
-        int result = mapper.deleteMember(member);
+    public MemberAndAuthorityDTO removeMember(String userId) throws MemberRemoveException {
+        int result = mapper.deleteMember(userId);
 
         if(!(result > 0)) {
             throw new MemberRemoveException("회원 탈퇴에 실패하셨습니다.");
         }
+
+
+        return null;
     }
 
+    @Override
+    public boolean isEmailAvailable(String email) {
+        // 데이터베이스에서 이메일 조회
+        MemberDTO memberDTO = mapper.findByEmail(email);
+        // 이메일이 존재하지 않으면 true, 존재하면 false 반환
+        return memberDTO == null;
+    }
+
+    @Override
+    public void updateMember(MemberDTO member) throws MemberUpdateException {
+        System.out.println("updateMember member ================= " + member);
+        int result = mapper.update(member);
+        if(!(result > 0)) {
+            throw new MemberUpdateException("회원 정보 수정에 실패하셨습니다.");
+        }
+    }
 
     @Override
     @Transactional
@@ -119,7 +139,7 @@ public class MemberServiceImpl implements MemberService {
         return userAndEmailDTO.getEmailCode();
 
     }
-
+    @Transactional
     @Override
     public boolean checkMail(String checkMail) {
         UserAndEmailDTO userAndEmailDTO = mapper.checkMail(checkMail);
@@ -135,4 +155,84 @@ public class MemberServiceImpl implements MemberService {
         return userAndEmailDTO.getEmailCerti().equalsIgnoreCase(checkMail);
     }
 
+
+
+
+
+
+    @Override
+    public String findUserIdByEmail(MemberDTO memberDTO) {
+        String userId = mapper.findUserIdByEmailAndName(memberDTO.getEmail(), memberDTO.getUserName());
+        if (userId != null && emailSender.sendUserId(memberDTO.getEmail(), userId)) {
+            return userId;
+        }
+        return null;
+    }
+
+
+    @Transactional
+    @Override
+    public void sendAuthCodeToEmail(String userId, String email) {
+        String authCode = generateRandomString(6); // 인증번호 생성 로직
+        MemberDTO memberDTO = mapper.findUserCode(userId, email);
+        int emailCode = memberDTO.getEmailCode();
+        mapper.saveAuthCode(authCode, emailCode); // DB에 인증번호 저장
+        emailSender.sendEmail(email, "인증번호", "귀하의 인증번호는 " + authCode + " 입니다."); // 이메일 발송
+    }
+
+    // 비밀번호 복구 로직
+
+    @Override
+    public boolean verifyAuthCode(String userId, String email, String authCode) {
+        Boolean result = mapper.verifyAuthCode(userId, email, authCode);
+        if (result == null) {
+            // 예상치 못한 상황, 적절히 처리
+            return false;
+        }
+        return result;
+    }
+    @Override
+    public String createAndSendTempPassword(String userId, String email) {
+        String tempPassword = generateRandomString(8);
+        String encodedPassword = passwordEncoder.encode(tempPassword);
+        mapper.updatePassword(userId, encodedPassword);
+        emailSender.sendEmail1(email, "CloudFooding임시 비밀번호", "귀하의 임시 비밀번호는 " + tempPassword + " 입니다.");
+        return tempPassword;
+    }
+
+
+    public MemberDTO searchLoginMember(String userId) {
+        if (userId == null || userId.trim().isEmpty()) {
+            // userId가 유효하지 않은 경우에 대한 처리
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
+        MemberDTO memberDTO = mapper.searchLoginMember(userId);
+
+        if (memberDTO == null) {
+            // 사용자 정보가 없는 경우에 대한 처리
+            throw new NoSuchElementException("No user found with the provided user ID");
+        }
+
+        return memberDTO;
+    }
+
+
+    public void updateProfileImage(ProfileImgDTO profileImgDTO) {
+        int result = mapper.updateProfileImage(profileImgDTO);
+        if(result>0){
+            System.out.println("프로필 업로드 성공!");
+
+        }else {
+            System.out.println("프로필 업로드 실패!");
+        }
+    }
+
+    public MemberAndProfileDTO myInfo(String userId) {
+
+        MemberAndProfileDTO memberAndProfileDTO = mapper.myInfo(userId);
+
+        return memberAndProfileDTO;
+    }
 }
+
