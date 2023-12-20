@@ -6,14 +6,16 @@ import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Mapper
 public interface CartMapper {
 
-    List<CartDTO> cartPage();
 
-     int addToCart(ProjectOptionDTO selectedOption);
+     int addToCart(CartDTO cart);
 
+    List<CartInsertDTO> cartPage();
 
+    int insertCart(Map<String, Object> addToCart);
 }
