@@ -50,7 +50,7 @@ public class WebConfig implements WebMvcConfigurer {
 //        // 이게 판매자 사진 경로
 //        registry.addResourceHandler("/imagePath/**")
 //                .addResourceLocations("file:///C:/uploadfile/profileimg/");
-////        MAC
+////        MAC.
 ////        registry.addResourceHandler("/imagePath/**")
 ////                .addResourceLocations("file:///" + macPath);
 //    }
