@@ -20,9 +20,9 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/manager/project/newMain}">신규 프로젝트</a></span>
+                <span><a class="black-link" th:href="@{/manager/project/newMain}">신청 프로젝트</a></span>
                 <span><a class="black-link"> > </a></span>
-                <span><a class="black-link" href="">세부사항</a></span>
+                <span><a class="black-link" th:text="|${project.projectCode}번째 프로젝트|"></a></span>
                 
         
             </div>
@@ -34,29 +34,32 @@
 
                 <div class="CRUD">
 
-                <div class="stop">
-                    <form action="search" method="post">
-                        <select name="nation2"  >
-                            <option value="search"selected>정지</option>
-                            <option value="stopWeek">일주일 정지</option>
-                            <option value="stopMonth">한달 정지</option>
-                            <option value="stopThreeMonth">3달 정지</option>
-                            
-                        </select>
-                    </form>
-                </div>
+<!--                <div class="stop">-->
+<!--                    <form action="search" method="post">-->
+<!--                        <select name="nation2"  >-->
+<!--                            <option value="search">사용자 정지</option>-->
+<!--                            <option value="stopWeek">일주일 정지</option>-->
+<!--                            <option value="stopMonth">한달 정지</option>-->
+<!--                            <option value="stopThreeMonth">3달 정지</option>-->
+<!--                            -->
+<!--                        </select>-->
+<!--                    </form>-->
+<!--                </div>-->
 
                 
 
-                    <div class="delete">
-                    수정
+
+
+                    <div class="delete"
+                     th:onclick="'location.href=\'/manager/project/declineDetail?no='+ @{${project.projectCode}} + '\''"
+
+                    >
+                    반려
                     </div>
 
-                    <div class="delete">
-                    삭제
-                    </div>
-
-                    <div class="update">
+                    <div class="update"
+                         th:onclick="'location.href=\'/manager/project/approve?no='+ @{${project.projectCode}} + '\''"
+                    >
                         승인
                         </div>
 
@@ -116,7 +119,9 @@
                     <tr>
                         <td th:text="${project.projectCode}"></td>
                         <td th:text="${project.projectTitle}"></td>
-                        <td th:text="${project.sellerInfo.userName}"></td>
+                        <td th:text="${project.sellerInfo.userName}"
+                        th:onclick="'location.href=\'/manager/search/userDetail?no='+ @{${project.sellerInfo.userCode}} + '\''"
+                        ></td>
                         <td th:text="${project.submissionDate}"></td>
                         <td><span class="close" th:text="${status}"></span></td>
                     </tr>

@@ -54,4 +54,5 @@ public interface SearchUserMapper {
     int userUpdate(UserDTO userDTO);
 
     int deleteUser(Long no);
+
 }

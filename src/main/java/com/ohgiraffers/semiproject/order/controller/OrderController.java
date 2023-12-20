@@ -59,8 +59,8 @@ public class OrderController {
 //    model.addAttribute("buyepage",member);
 //    String name = firstname + "$" + lastname;
 //    member.setName(name);
-//    String address = adrs + "$" + detailedAdrs;//
-//    member.setAddress(address);
+//    String address = adrs + "$" + detailedAdrs;
+//    member.setAddress(address);//
 
 
    return "/content/order/buypage";

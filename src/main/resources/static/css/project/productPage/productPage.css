@@ -14,6 +14,11 @@ a {
     color: black;
 }
 
+.select-a.selected {
+    background-color: floralwhite; /* 선택된 항목의 배경색 */
+    /* 여기에 추가적인 스타일을 정의할 수 있습니다. */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -535,9 +540,8 @@ body {
 }
 
 .qnaPage {
-    width: 1400px;
+    width: 1500px;
     height: 1200px;
-    border: 1px solid yellowgreen;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -641,7 +645,7 @@ td a {
     margin-top: 4%;
 
 
-    flex-basis: 900px;
+    flex-basis: 1200px;
     /* 가운데 영역의 너비를 50%로 설정 */
     flex-shrink: 0;
 

@@ -6,19 +6,19 @@
 
 <th:block layout:fragment="content">
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신고 게시판</title>
+    <title>사용자 신고 게시판</title>
     <link rel="stylesheet" href="/css/manager/board/complaintMain.css">
 
 
     <div class="container">
-        <th:block th:replace="/fragments/managersidebar.html"></th:block>
+    <th:block th:replace="/fragments/managersidebar.html"></th:block>
 
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/board/complaintMain}">신고 게시판</a></span>
+                <span><a class="black-link" th:href="@{/board/complaintMain}">사용자 신고 게시판</a></span>
             
             </div>
         
@@ -115,7 +115,7 @@
         
         
             <div>
-                <table >
+                <table>
                     
                     <tr>
                         
@@ -127,25 +127,58 @@
                         <th>신고일자</th>
                         <th>처리상태</th>
                     </tr>
-                    <tr id="link"
+                    <tr class="link"
+                        th:each="list : ${user}"
                         th:onclick="'location.href=\'/board/complaintDetail?no='
-                        + @{${user.creationNumber.creationNumber}}
-                        + '&status=' + @{${user.creationNumber.answerCode}}
+                        + @{${list.creationNumber.creationNumber}}
+                        + '&status=' + @{${list.creationNumber.answerCode}}
                         + '\''"
                     >
                         <td id="new">new</td>
-                        <td th:text="${user.creationNumber}"></td>
-                        <td th:text="${user.title}"></a></td>
-                        <td th:text="${user.reportedPerson}"></td>
-                        <td th:text="${user.reporter}"></td>
-                        <td th:text="${user.creationDate}"></td>
-                        <td th:if="${user.creationNumber.answerCode == null or user.creationNumber.answerCode == 0}"
-                            th:text="처리 전"></td>
-                        <td th:if="${user.creationNumber.answerCode} > 0">처리 완료</td>
+                        <td th:text="${list.creationNumber.creationNumber}"></td>
+                        <td th:text="${list.title}"></a></td>
+                        <td th:text="${list.reportedPerson.name}"></td>
+                        <td th:text="${list.reporter.userName}"></td>
+                        <td th:text="${list.creationDate}"></td>
+                        <td th:if="${list.creationNumber.answerCode == null or list.creationNumber.answerCode == 0}"
+                        >처리 전
+                        </td>
+                        <td th:if="${list.creationNumber.answerCode} > 0">처리 완료</td>
                     </tr>
 
                 </table>
             </div>
+
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var rows = document.querySelectorAll('.link');
+
+                    rows.forEach(function (row) {
+                        var dateCell = row.querySelector('td:nth-child(6)');
+                        var dateString = dateCell.textContent;
+
+                        // DB에서 DATE 타입으로 저장된 경우
+                        var parts = dateString.split('-');
+                        var reportDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+                        var currentDate = new Date();
+
+                        // 일자 차이 계산
+                        var timeDifference = currentDate - reportDate;
+                        var daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+                        // 신고일자가 7일 이내라면 해당 <td> 내의 내용을 비움
+                        if (daysDifference >= 7) {
+                            var newCell = row.querySelector('td#new');
+                            newCell.innerHTML = '';  // 내용 비우기
+                        }
+                    });
+                });
+
+                /*]]>*/
+            </script>
             <!-- 페이지 처리 -->
             <div class="pagination" align="center">
                 <div class="pagination-box">
@@ -162,6 +195,7 @@
                             + @{${selectCriteria.pageNo - 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == 1}">
@@ -179,6 +213,7 @@
                             + @{${page}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                                 th:disabled="${ selectCriteria.pageNo eq page }">
@@ -196,6 +231,7 @@
                             + @{${selectCriteria.pageNo + 1}}
                             +'&nation1='+ @{${selectCriteria.nation1}}
                             +'&nation2='+ @{${selectCriteria.nation2}}
+                            +'&authority='+ @{${selectCriteria.authority}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
                             th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"

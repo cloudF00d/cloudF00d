@@ -10,11 +10,11 @@ import java.sql.Date;
 @Getter
 @ToString
 public class UserReportDTO {
-    private UserReportAnswerDTO creationNumber;
     private Date creationDate;
-    private UserDTO reporter;
     private String title;
+    private UserReportAnswerDTO creationNumber;
     private String content;
-    private UserDTO reportedPerson;
+    private UserDTO reporter;
+    private UserDTO1 reportedPerson;
 }
 
