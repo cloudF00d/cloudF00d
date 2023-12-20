@@ -55,6 +55,9 @@ public class MemberAndAuthorityDTO implements UserDetails {
     public String getPassword() {
         return memberDTO.getUserPwd();
     }
+    public int getUserCode() {
+        return memberDTO.getUserCode();
+    }
 
     @Override
     public String getUsername() {

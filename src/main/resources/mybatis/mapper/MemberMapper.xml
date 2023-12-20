@@ -17,6 +17,8 @@
         <result property="activityStatus" column="ACTIVITY_STATUS"/>
         <result property="reportCount" column="REPORT_COUNT"/>
         <result property="couponStatus" column="COUPON_STATUS"/>
+        <result property="emailCode" column="EMAIL_CODE"/>
+
     </resultMap>
     <resultMap id="AuthorityResultMap" type="com.ohgiraffers.semiproject.member.model.dto.AuthorityDTO">
         <id property="authorityCode" column="AUTHORITY_CODE"/>
@@ -29,11 +31,51 @@
         <association property="authorityDTO" resultMap="AuthorityResultMap"/>
 
     </resultMap>
+    <resultMap id="MemberAndEmailResultMap" type="com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO2">
+        <association property="memberDTO" resultMap="memberResultMap"/>
+        <association property="userAndEmailDTO" resultMap="UserAndEmailResultMap"/>
+
+    </resultMap>
 
     <resultMap id="UserAndEmailResultMap" type="com.ohgiraffers.semiproject.member.model.dto.UserAndEmailDTO">
         <id property="emailCode" column="EMAIL_CODE"/>
         <result property="emailCerti" column="EMAIL_CERTIFICATION"/>
     </resultMap>
+
+    <resultMap id="ProfileImgDTOResultMap" type="com.ohgiraffers.semiproject.member.model.dto.ProfileImgDTO">
+        <id property="fileCode" column="FILE_CODE"/>
+        <result property="originalFileName" column="ORIGINAL_FILE_NAME"/>
+        <result property="path" column="PATH"/>
+        <result property="changedproFileName" column="CHANGEDPRO_FILE_NAME"/>
+        <result property="deleteStatus" column="DELETE_STATUS"/>
+        <result property="creationDate" column="CREATION_DATE"/>
+        <result property="userCode" column="USER_CODE"/>
+    </resultMap>
+
+    <resultMap id="MemberAndProfileResultMap" type="com.ohgiraffers.semiproject.member.model.dto.MemberAndProfileDTO">
+        <association property="memberDTO" resultMap="memberResultMap"/>
+        <association property="profileImgDTO" resultMap="ProfileImgDTOResultMap"/>
+    </resultMap>
+
+    <select id="myInfo" resultMap="MemberAndProfileResultMap">
+        SELECT A.EMAIL,
+               A.ADDRESS ,
+               A.USER_NAME ,
+               B.PATH,
+               B.CHANGEDPRO_FILE_NAME,
+               A.DATE_BIRTH,
+               A.PHONE
+
+        FROM tbl_user A
+        JOIN tbl_profile_image B ON ( A.USER_CODE = B.USER_CODE)
+        WHERE A.ACTIVITY_STATUS = '활동'
+          AND A.USER_ID = #{ userId }
+    </select>
+
+
+    <select id="searchLoginMember" resultMap="memberResultMap">
+        SELECT * FROM tbl_user WHERE USER_ID = #{ userId }
+    </select>
 
 
     <insert id="sendEmail" >
@@ -102,6 +144,7 @@
                               , ACTIVITY_STATUS
                               , REPORT_COUNT
                               , COUPON_STATUS
+                              ,EMAIL_CODE
 
         )
         VALUES  (
@@ -116,6 +159,7 @@
                 , default
                 , default
                 , default
+                , #{emailCode}
                 )
     </insert>
 
@@ -132,52 +176,91 @@
 
     </insert>
 
+    <select id="findUserIdByEmailAndName" resultType="string">
+        SELECT USER_ID
+        FROM tbl_user
+        WHERE USER_NAME = #{userName} AND EMAIL = #{email}
+    </select>
 
-<!--    <select id="selectEncryptedPwd" resultType="string">-->
-<!--        SELECT-->
-<!--            A.PASSWORD-->
-<!--        FROM tbl_user A-->
-<!--        WHERE A.ACTIVITY_STATUS = '활동'-->
-<!--          AND A.USER_ID = #{userId}-->
-<!--    </select>-->
+    <select id="findUserCode" resultMap="memberResultMap">
+        SELECT EMAIL_CODE
+        FROM tbl_user
+        WHERE USER_ID = #{userId} AND EMAIL = #{email}
+    </select>
 
-<!--    <select id="selectMember" resultType="MemberDTO">-->
-<!--        SELECT-->
-<!--            A.USER_CODE-->
-<!--             , A.USER_ID-->
-<!--             , A.PASSWORD-->
-<!--             , A.EMAIL-->
-<!--             , A.REGISTRATION_DATE-->
-<!--             , A.ADDRESS-->
-<!--             , A.USER_NAME-->
-<!--             , A.DATE_BIRTH-->
-<!--             , A.PHONE-->
-<!--             , A.PHONE-->
-<!--             , A.ACTIVITY_STATUS-->
+    <update id="saveAuthCode" parameterType="map">
+        UPDATE tbl_email
+        SET EMAIL_CERTIFICATION = #{authCode}
+        WHERE EMAIL_CODE = #{emailCode}
+    </update>
 
-<!--        FROM  tbl_user A-->
-<!--        WHERE  A.ACTIVITY_STATUS = '활동'-->
-<!--          AND  A.MEMBER_ID = #{userId}-->
-<!--    </select>-->
 
-<!--    <update id="updateMember">-->
-<!--        UPDATE-->
-<!--            tbl_user-->
-<!--        SET PASSWORD = #{userPwd}-->
-<!--          , NICKNAME = #{ nickname }-->
-<!--          , PHONE = #{ phone }-->
-<!--          , EMAIL = #{ email }-->
-<!--          , ADDRESS = #{ address }-->
-<!--        WHERE A.ACTIVITY_STATUS = '활동'-->
-<!--          AND USER_ID = #{userId}-->
-<!--    </update>-->
+    <select id="verifyAuthCode" resultType="java.lang.Boolean">
+        SELECT
+            CASE WHEN COUNT(*) > 0 THEN true ELSE false END
+        FROM tbl_user A
+                 JOIN tbl_email E ON ( A.EMAIL_CODE = E.EMAIL_CODE )
+        WHERE A.USER_ID = #{userId} AND A.EMAIL = #{email} AND E.EMAIL_CERTIFICATION = #{authCode}
+    </select>
 
-<!--    <update id="deleteMember">-->
-<!--        UPDATE-->
-<!--            tbl_user-->
-<!--        SET ACTIVITY_STATUS = '휴면'-->
-<!--        WHERE ACTIVITY_STATUS = '활동'-->
-<!--          AND MEMBER_ID = #{userId}-->
-<!--    </update>-->
+    <update id="updatePassword" >
+        UPDATE tbl_user
+        SET PASSWORD = #{encodedPassword}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <select id="findByEmail" resultType="int">
+        SELECT COUNT(*)
+        FROM tbl_user
+        WHERE EMAIL = #{email}
+    </select>
+
+
+
+    <update id="update" >
+        UPDATE tbl_user
+        SET
+        PASSWORD = #{userPwd},
+        EMAIL = #{email},
+        PHONE = #{phone},
+        ADDRESS = #{address},
+        DATE_BIRTH = #{dateBirth}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <update id="updateProfileImage">
+        UPDATE tbl_profile_image
+        SET
+                ORIGINAL_FILE_NAME = #{originalFileName},
+                PATH = #{path},
+                CHANGEDPRO_FILE_NAME = #{changedproFileName},
+                DELETE_STATUS = #{deleteStatus},
+                CREATION_DATE = #{creationDate}
+
+        WHERE USER_CODE = #{userCode}
+    </update>
+    <insert id="insertProfile">
+        INSERT INTO tbl_profile_image
+        VALUES (
+                   null,
+                   'avatar-profile-icon_188544-4755.avif',
+                   'C:/uploadfile/profileimg',
+                   'avatar-profile-icon_188544-4755.avif',
+                   'N',
+                   now(),
+                   #{userCode}
+               )
+    </insert>
+
+    <update id="deleteMember">
+        UPDATE tbl_user
+            SET ACTIVITY_STATUS = '탈퇴'
+        WHERE USER_ID = #{userId}
+    </update>
+
+
+
+
+
 
 </mapper>

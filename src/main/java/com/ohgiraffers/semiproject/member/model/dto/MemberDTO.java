@@ -39,6 +39,7 @@ public class MemberDTO {
     private String couponStatus;
 
     private java.util.Date registrationDate;
+    private int emailCode;
 
 
 
