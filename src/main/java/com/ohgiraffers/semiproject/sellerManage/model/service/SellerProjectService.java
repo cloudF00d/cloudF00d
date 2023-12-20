@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -22,5 +23,19 @@ public class SellerProjectService {
         List<SellerManageProjectDTO> sellerProject = Mapper.sellerProject();
 
         return sellerProject;
+    }
+
+    public SellerManageProjectDTO sellerProjectDetail() {
+
+        SellerManageProjectDTO sellerProjectDetail = Mapper.sellerProjectDetail();
+
+        return sellerProjectDetail;
+    }
+
+    public int selectTotalCount(Map<String, String> searchMap) {
+
+        int result = Mapper.selectTotalCount(searchMap);
+
+        return result;
     }
 }

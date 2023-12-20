@@ -47,6 +47,7 @@
     <select id="newProject" resultMap="projectResultMap">
         select A.*
         from tbl_project A
+
     </select>
 
     <select id="selectTotalCount" resultType="_int" parameterType="hashmap">

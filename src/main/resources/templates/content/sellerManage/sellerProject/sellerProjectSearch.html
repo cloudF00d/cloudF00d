@@ -11,10 +11,6 @@
     <th:block th:replace="/fragments/sellersidebar.html"></th:block>
     <title>seller-project-search</title>
 
-
-
-
-
         <div class="middle_box">
             <div class="middle">
                 <div class="first">
@@ -24,22 +20,20 @@
                 <div>
                     <img class="logo1" src="/images/01_logoimg/textLogoNone.png"  width="150px" height="150px" >
                 </div>
-
             
-            
-                <div class="searchQnA"></div>
+                <div class="searchProject"></div>
                 <div class="searchright">
-                    <form action="search" method="post">
+                    <form th:action="@{/sellerManage/Project}" method="get">
 
                         <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/images/04_etc/magnifying glass.png') center center / cover no-repeat; padding: 0;"></button>
-                        <input type="text" name="search" required>
+                        <input type="text" name="searchValue" id="searchValue">
                         
-                        <select name="sellerProject">
-                            <option value="search"selected>검색설정</option>
+                        <select name="nation3" id="nation3">
+                            <option selected>검색설정</option>
                             <option value="pr">프로젝트명</option>
                             <option value="ti" >기간</option>
-                            <option value="pr" >달성금액</option>
-                            <option value="etc">달성여부</option>
+                            <option value="tat" >목표금액</option>
+                            <option value="ach">달성여부</option>
                         </select>
 
                     </form>
@@ -47,88 +41,39 @@
             
 
             <div>
-                
-                <table>
-                    
-                    <tr> 
-                        <th>번호</th>
-                        <th>프로젝트명</th>
-                        <th>기간</th>
-                        <th>달성금액</th>
-                        <th>달성여부</th>
-                    </tr>
 
+                <div class="table-area">
+                    <table>
 
+                        <tr>
+                            <th>번호</th>
+                            <th>프로젝트명</th>
+                            <th>기간</th>
+                            <th>달성금액</th>
+                            <th>진행상황</th>
+                            <th>달성여부</th>
+                        </tr>
 
-                    <tr>
-                        <td>1</td>
-                        <td><a class="black-link" th:href="@{/sellerManage/ProjectDetail}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 23. 11. 4 ~ 23. 12 . 10</td>
-                        <td>9,500,000</td>
-                        <td><span class="close" >달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a class="black-link" th:href="@{#}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 23. 9. 1 ~ 23. 10. 15</td>
-                        <td>82,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a class="black-link" th:href="@{#}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 23. 5. 20 ~ 23. 6. 29</td>
-                        <td>6,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a class="black-link" th:href="@{#}">쫄깃쫄깃 흑돼지 삼겹살</a></td>
-                        <td> 23. 5. 22 ~ 23. 6. 29</td>
-                        <td>7,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a class="black-link" th:href="@{#}">쫄깃쫄깃 돼지 껍데기</a></td>
-                        <td>23. 3. 2 ~ 23. 4. 12</td>
-                        <td>3,200,000</td>
-                        <td><span class="ing">달성실패</span></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><a class="black-link" th:href="@{#}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 22. 11. 12 ~ 22. 12. 12</td>
-                        <td>6,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td><a class="black-link" th:href="@{#}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 22. 11. 10 ~ 22. 12. 12</td>
-                        <td>8,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><a class="black-link" th:href="@{#}">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td> 22. 8. 12 ~ 22. 9. 12</td>
-                        <td>9,500,000</td>
-                        <td><span class="close">달성성공</span></td>
-                    </tr>
+                        <tr th:each= "project : ${ Project }">
+                            <td class="number" ></td>
+                            <td th:text="${project.projectTitle}"></td>
+                            <td th:text="${project.start + ' ~ ' + project.end}"></td>
+                            <td class="amount" th:text="${project.amount}"></td>
+                            <td class="progress" th:text="${project.progressStatus}"></td>
+                            <td class="achieve" th:text="${project.achievementStatus}"></td>
+                        </tr>
 
-                </table>
+                    </table>
+                </div>
+
+<!--                페이지 처리-->
 
                 <div class="pagination">
                     <div class="pagination-box">
-                        <a th:href="@{#}" class="prev">＜</a>
-                        <div class="page-links">
-                            <a th:href="@{#}" class="page-link">1</a>
-                            <a th:href="@{#}" class="page-link">2</a>
-                            <a th:href="@{#}" class="page-link">3</a>
+                        <!-- 이전 페이지 버튼 -->
 
-                        </div>
-                        <a th:href="@{#}" class="next">＞</a>
+
+
                     </div>
                 </div>
             </div>
@@ -136,7 +81,56 @@
     
     </div>
 
+    <script>
+
+        $(document).ready(function () {
+            var rows = document.querySelectorAll('.number');
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].innerText = i + 1;
+            }
+        });
 
 
+        //진행상태 조건문
+        $(document).ready(function() {
+            const achieveElements = document.querySelectorAll('.achieve');
+
+            achieveElements.forEach(element => {
+                const progressStat = element.parentElement.querySelector('.progress');
+                const progressStatus = progressStat.textContent.trim();
+                const achievementStatus = element.textContent.trim();
+
+                // Remove white spaces from progressStatus and achievementStatus
+                const trimmedProgressStatus = progressStatus.replace(/\s+/g, '');
+                const trimmedAchievementStatus = achievementStatus.replace(/\s+/g, '');
+                progressStat.innerText = trimmedProgressStatus;
+
+                // Your conditions for updating the text content
+                if (trimmedProgressStatus === '진행중') {
+                    element.textContent = '진행중';
+                } else if (trimmedProgressStatus === '마감' && trimmedAchievementStatus === 'N') {
+                    element.textContent = '달성실패';
+                } else if (trimmedProgressStatus === '마감' && trimmedAchievementStatus === 'Y') {
+                    element.textContent = '달성성공';
+                }else if (trimmedProgressStatus === '진행전' ) {
+                    element.textContent = '진행전';
+                }
+            });
+        });
+
+        //가격 쉼표
+        $(document).ready(function() {
+            const amountElements = document.querySelectorAll('.amount');
+
+            amountElements.forEach(element => {
+                const amount = parseInt(element.textContent.trim().replace(',', '')); // Remove existing commas and convert to integer
+                const formattedAmount = amount.toLocaleString(); // Format with commas
+
+                element.textContent = formattedAmount;
+            });
+        });
+
+
+    </script>
 </th:block>
 </html>

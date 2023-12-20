@@ -19,7 +19,7 @@
 
 <!-- 헤더끝 -->
 <div class="bodyking">
-    
+
 
 
         <!-- 사이드바 배경 -->
@@ -32,8 +32,8 @@
         <h3>장바구니</h3>
         <div class="mid">
             <div class="midmenu" >
-              <form  th:action="@{/order/buypage}" method="get" onsubmit="return false;">
-                    <div class="logo">
+              <form  th:action="@{/order/buypage}" method="post" id="cartInfoForm">
+                        <div class="logo">
                         <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                     </div>
                     <div class="mypage">
@@ -45,16 +45,17 @@
                         <span class="criteria3">가격</span>
                     </div>
 
-                    <div class="menucheck" id="cartList" th:each=" cart: ${ cart }">
+                    <div class="menucheck" id="cartList" name="cartList" th:each=" cart: ${ cart }">
                         <div class="checkbox-con">
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" class="checkbox" name="cartCode" th:value="${cart.cartCode}" >
                         </div>
                         <div class="foodimg">
                             <img src="/images/minicon/로고1.PNG" alt="">
                         </div>
                         <div class="nameAndCount">
-                            <div class="name" th:text="${cart.projectTitle}"></div>
-                            <input type="hidden" class="name1" th:value="${cart.projectTitle[0]}"></input>
+                            <div class="projectTitle" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
+                            <input type="hidden" class="name1" name="projectTitle" th:value="${cart.projectTitle[0]}"></input>
+                            <input type="hidden" id="hdProject" name="hdProject" value="${cart.projectTitle[0]}"></input>
                             <div class="name2" th:text="${cart.optionType}"></div>
 
                             <button class="count remain" style="height: 30px" th:onclick="remain" id="remain"></button>
@@ -62,8 +63,9 @@
                         </div>
                         <div class="btn-con">
                             <button class="btn decrease" >-</button>
-                            <span id="counter-value">1</span>
+                            <span id="counter-value" >1</span>
                             <button class="btn increase" >+</button>
+                            <input type="hidden" name="hdCounterValue" id="hdCounterValue" value="counter-value">
                         </div>
                         <div class="price-con" >
                             <div class="total product"  id="total" th:text="${cart.price}"> </div>
@@ -79,14 +81,11 @@
 
                     <div class="bilge-con">
                     <div class="bilge">
-
                             <div class="coupon-action" >
-
                                 <div>
                                     <div>할인쿠폰</div>
-                                  <input class="applybutton1" type="text" name="적용하기"  required>&nbsp;
+<!--                                  <input class="applybutton1" type="text" name="적용하기"  required>&nbsp;-->
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
-
                                 <div class="coupon-btn">
                                     <button class="applybutton" id="applybutton"  >적용하기</button>
                                     <input type="hidden" class="coupon"  th:value="${cart[0].coupon}"></input>
@@ -100,28 +99,32 @@
                         <div class="total-product-amount">
                             <span class="total-amount">상품 전체금액</span>
                             <span class="total-price" id="total-price">0won</span>
+                            <input type="hidden" name="hdTotalPrice" id="hdTotalPrice" value="total-price">
                         </div>
                         <div class="apply-coupon">
                             <span class="total-amount">쿠폰 적용금액</span>
                             <span class="coupon-price" id="coupon-price ">0won</span>
+                            <input type="hidden" name="hdCouponPrice" id="hdCouponPrice" value="coupon-price">
                         </div>
                         <div class="delivery-fee">
                             <span class="shipping-cost">배송비</span>
                             <span class="cost" id="deliveryCost">0won</span>
+                            <input type="hidden" name="hdDeliveryCost" id="hdDeliveryCost" value="deliveryCost">
                         </div>
                         <div class="final-amount">
                             <span class="gun-cost">총금액</span>
                             <span class="gun-won" id="gun-won">0won</span>
+                            <input type="hidden" name="hdGunWon" id="hdGunWon" value="gun-won">
                         </div>
 
                     </div>
 
                     </div>
 
-                <a class="paybtn-con" onclick="payment">
+                <div class="paybtn-con">
 
-                    <button class="paybtn" th:href="@{/order/buypage}">결제하기</button>
-                </a>
+                    <button  type="submit" class="paybtn">결제하기</button>
+                </div>
 
                </form>
 

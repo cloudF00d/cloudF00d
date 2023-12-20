@@ -1,5 +1,8 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
+import lombok.Getter;
+
+@Getter
 public class ProjectCategoryDTO {
 
     private int code;
@@ -15,16 +18,8 @@ public class ProjectCategoryDTO {
     }
 
 
-    public int getCode() {
-        return code;
-    }
-
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {

@@ -59,12 +59,12 @@
 			width: 100%; /* 테이블이 부모 요소에 가득 차도록 함 */
 			border-spacing: 10px;
 		}
-		
+
 		th, td {
-			border-top: 1px solid #ddd; /* 상단에만 회색 선 추가 */
-			border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
-			padding: 16px; /* 셀 안의 여백 설정 */
-			text-align: left; /* 셀 안의 텍스트를 왼쪽 정렬 */
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			padding: 16px;
+			text-align: left;
 		}
 		
 		th {
@@ -111,7 +111,7 @@
 
 				/* 중간영역 시작 */
 .middle {
-	width:1260px;
+	width:1460px;
 	height:900px;
 	position:relative;
 	left:0px;
@@ -124,10 +124,10 @@
 
 .middle_box {
 
-	width:1420px;
+	width:1820px;
 	height:1050px;
 	position:relative;
-	left:460px;
+	left:370px;
 	top:40px
 }
 
@@ -192,9 +192,9 @@
 			
 		.close{
 			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-			width: 110px;
+			width: 65px;
 			padding: 7px 10px ;
-		
+
 			/* 배경색을 주황색으로 설정합니다. */
 			background-color: orange;
 		
@@ -222,9 +222,7 @@
 
 		.close2{
 			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-			width: 110px;
-			padding: 7px 10px ;
-			margin-left: 30px;
+			width: 80px;
 		
 			/* 배경색을 주황색으로 설정합니다. */
 			background-color: orange;

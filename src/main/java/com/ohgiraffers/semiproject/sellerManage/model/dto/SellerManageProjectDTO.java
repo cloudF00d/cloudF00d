@@ -16,19 +16,33 @@ public class SellerManageProjectDTO {
 
     private int amount;
 
-    private String status;
+    private String achievementStatus;
+
+    private String progressStatus;
+
+    private int planCode;
+    private int plan;
+    private int businessCode;
+
+    private String businessName;
+
 
     public SellerManageProjectDTO() {
     }
 
-    public SellerManageProjectDTO(int code, int memberCode, String projectTitle, Date start, Date end, int amount, String status) {
+    public SellerManageProjectDTO(int code, int memberCode, String projectTitle, Date start, Date end, int amount, String achievementStatus, String progressStatus, int planCode, int plan, int businessCode, String businessName) {
         this.code = code;
         this.memberCode = memberCode;
         this.projectTitle = projectTitle;
         this.start = start;
         this.end = end;
         this.amount = amount;
-        this.status = status;
+        this.achievementStatus = achievementStatus;
+        this.progressStatus = progressStatus;
+        this.planCode = planCode;
+        this.plan = plan;
+        this.businessCode = businessCode;
+        this.businessName = businessName;
     }
 
     public int getCode() {
@@ -79,12 +93,52 @@ public class SellerManageProjectDTO {
         this.amount = amount;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAchievementStatus() {
+        return achievementStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAchievementStatus(String achievementStatus) {
+        this.achievementStatus = achievementStatus;
+    }
+
+    public String getProgressStatus() {
+        return progressStatus;
+    }
+
+    public void setProgressStatus(String progressStatus) {
+        this.progressStatus = progressStatus;
+    }
+
+    public int getPlanCode() {
+        return planCode;
+    }
+
+    public void setPlanCode(int planCode) {
+        this.planCode = planCode;
+    }
+
+    public int getPlan() {
+        return plan;
+    }
+
+    public void setPlan(int plan) {
+        this.plan = plan;
+    }
+
+    public int getBusinessCode() {
+        return businessCode;
+    }
+
+    public void setBusinessCode(int businessCode) {
+        this.businessCode = businessCode;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     @Override
@@ -96,7 +150,12 @@ public class SellerManageProjectDTO {
                 ", start=" + start +
                 ", end=" + end +
                 ", amount=" + amount +
-                ", status='" + status + '\'' +
+                ", achievementStatus='" + achievementStatus + '\'' +
+                ", progressStatus='" + progressStatus + '\'' +
+                ", planCode=" + planCode +
+                ", plan=" + plan +
+                ", businessCode=" + businessCode +
+                ", businessName='" + businessName + '\'' +
                 '}';
     }
 }

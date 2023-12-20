@@ -20,7 +20,12 @@ function decrease(event) {
     const currentQuantity = parseInt(quantityElement.innerText);
     const newQuantity = Math.max(currentQuantity - 1, 1);
     quantityElement.innerText = newQuantity;
+
     event.preventDefault();
+    // hidden input에 최종 수량을 설정합니다
+
+    document.getElementById('hdCounterValue').value = newQuantity;
+
 
     // 감소할 때 각 상품의 가격을 업데이트합니다
     onePrice(event);
@@ -30,7 +35,6 @@ function decrease(event) {
 
 
 
-// 증가 버튼 + 가격 합계 + 쿠폰 가격
 
 // 증가 버튼 클릭 이벤트 핸들러 등록
 const increaseButtons = document.querySelectorAll('.increase');
@@ -53,6 +57,11 @@ function increase(event) {
     const currentQuantity = parseInt(quantityElement.innerText);
     const newQuantity = currentQuantity + 1;
     quantityElement.innerText = newQuantity;
+
+    // hidden input에 최종 수량을 설정합니다
+
+    document.getElementById('hdCounterValue').value = newQuantity;
+
     event.preventDefault();
 
     // 추가로 수량이 증가할 때 각 상품의 가격을 업데이트합니다
@@ -181,8 +190,6 @@ function finalTotalPrice() {
     const couponPriceElement = bilgeElement.querySelector('.apply-coupon .coupon-price');
     const deliverElement = bilgeElement.querySelector('.delivery-fee .cost');
 
-
-
     // Extract numeric values from elements
     const deliver = parseInt(deliverElement.textContent.replace(/[^\d]/g, ''), 10) || 0;
     const coupon = parseInt(couponPriceElement.textContent.replace(/[^\d]/g, ''), 10) || 0;
@@ -193,6 +200,9 @@ function finalTotalPrice() {
     // Update the DOM with the formatted final amount
     const finalPriceElement = document.querySelector('.final-amount .gun-won');
     finalPriceElement.innerText = finalAmount.toLocaleString() + " won";
+
+    document.getElementById('hdGunWon').value = finalAmount;
+
 }
 
 
@@ -220,6 +230,8 @@ function updateTotalPrice(event) {
 
     couponPriceElement.textContent = totalPrice.toLocaleString() + "won";
 
+    document.getElementById('hdTotalPrice').value = totalPrice;
+    document.getElementById('hdCouponPrice').value = totalPrice;
 }
 
 
@@ -234,6 +246,8 @@ function deliverPrice() {
 
     const deliverElement = document.querySelector('.bilge .delivery-fee #deliveryCost');
     deliverElement.textContent = feePrice.toLocaleString() + "won";
+
+    document.getElementById('hdDeliveryCost').value = feePrice;
 }
 
 
@@ -244,6 +258,7 @@ function deliverPrice() {
         coupon.addEventListener('click', function (event) {
             applyCoupon(event);
             finalTotalPrice()
+            event.preventDefault();
         });
     });
 
@@ -266,6 +281,7 @@ function applyCoupon(event) {
         return;
     }
 
+
     // 이미 적용했으면 알람창을 띄우고 함수를 종료
     if (isCouponApplied) {
         alert('이미 적용했습니다');
@@ -282,12 +298,14 @@ function applyCoupon(event) {
         let totalPrice = parseInt(totalPriceElement.textContent.replace(/[^\d]/g, ''), 10);
         totalPrice -= couponValue;
         couponPriceElement.innerText = totalPrice.toLocaleString() + "won";
+        document.getElementById('hdCouponPrice').value = totalPrice;
 
         // 쿠폰이 적용되었음을 표시
         isCouponApplied = true;
     } else {
         alert('쿠폰이 없습니다');
     }
+
 }
 
 
@@ -304,12 +322,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const menucheckElement = text.closest('.menucheck');
         const onePriceElement = menucheckElement.querySelector(".price");
         const counterValueElement = menucheckElement.querySelector('.btn-con #counter-value');
+
         // 텍스트 내용을 숫자로 파싱합니다
         const onePrice = parseInt(onePriceElement.value);
         // 총 가격을 계산합니다
         const result = onePrice * parseInt(counterValueElement.textContent);
+        document.getElementById('hdCounterValue').value = parseInt(counterValueElement.textContent);
+
+
         // 버튼 텍스트를 업데이트합니다
         text.innerText = result.toLocaleString() + "won";
+
+
     });
 });
 
@@ -378,9 +402,7 @@ function checkAndProceed() {
 //체크된 정보 결제 화면으로 전달
 function paymentInfo(event) {
     const checkedCheckboxes = $('.checkbox:checked');
-    updateTotalPrice();
-    deliverPrice();
-    finalTotalPrice();
+
 
     // 동적으로 폼 생성
     const form = $('<form>', {
@@ -406,9 +428,16 @@ function paymentInfo(event) {
 
 
 
+function project() {
 
+    const menucheckElement = document.querySelector('.menucheck');
+    const nameAndCountElement = menucheckElement.querySelector(".nameAndCount .name1");
 
+     nameAndCountElement.textContent;
 
+    document.getElementById('hdProject').value = nameAndCountElement;
+
+}
 
 
 
