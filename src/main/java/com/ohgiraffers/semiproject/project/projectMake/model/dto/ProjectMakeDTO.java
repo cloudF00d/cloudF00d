@@ -23,4 +23,5 @@ public class ProjectMakeDTO {
     private String sellerType;
     private int sellerCode;
     private String tag;
+
 }

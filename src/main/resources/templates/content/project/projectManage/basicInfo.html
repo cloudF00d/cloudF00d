@@ -43,7 +43,9 @@
                 <!-- 입력창에 입력이 발생할 때 남은 글자 수 계산 -->
                 <div class="putIn-title">
                     <input type="text" id="putIn-title-text" name="title" placeholder="제목을 입력해 주세요."
-                        oninput="updateCharacterCount()">
+                        oninput="updateCharacterCount()"
+                    th:value="${project.title}"
+                    >
                     <p id="characterCount">(?)자 남음</p>
                 </div>
 
@@ -69,13 +71,13 @@
                     <div class="category-text">프로젝트 종료일<span class="greeting-text-star"> *</span></div>
                     <br>
                         <div class="project-end-container">
-                            <input type="date" name="endDate" class="project-end-text" placeholder="예시: 2023/10/15" oninput="formatDateInput(this)">
+                            <input type="date" name="endDate" class="project-end-text" placeholder="예시: 2023/10/15" oninput="formatDateInput(this)" th:value="${project.endDate}">
                         </div>
 
                     <div class="category-text">검색용 태그(#)<span class="greeting-text-star"> *</span></div>
                     <br>
                         <div class="search-tag-container">
-                            <input name="tag" type="text" class="search-tag-text" placeholder="콤마로 구분해 최대 10개까지" id="tagInput" onkeyup="addTag(event)">
+                            <input name="tag" type="text" class="search-tag-text" placeholder="콤마로 구분해 최대 10개까지" id="tagInput" onkeyup="addTag(event)" th:value="${project.tag}">
                             <br><br>
                             <div class="search-tag-#text" id="outputTag"></div><br>
                             <p id="tagLimitMessage"></p>
@@ -167,7 +169,7 @@
                         
                     <br><br><br><br><br><br>
                 <button class="project-start">
-                    제출하기
+                    저장하기
                     </button>
 
 

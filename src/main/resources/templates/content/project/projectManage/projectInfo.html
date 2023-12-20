@@ -21,7 +21,15 @@
 
     <form th:action="@{/projectMake/projectInfo}" id="yourForm" method="post">
 
-    <div class="back-side-container">
+
+        <input
+                type="hidden"
+                id="memberId"
+                name="sellerCode"
+                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }"
+        >
+
+        <div class="back-side-container">
 
         <section class="back-board-container">
             <!-- 배경 시트 좌측 상단 텍스트 -->
@@ -38,12 +46,12 @@
 
                 <div class="radio-list">
                     <label>
-                        <input type="radio" name="fundingType" value="funding">
+                        <input type="radio" name="type" value="funding">
                         <strong>펀딩</strong>&nbsp;첫 출시예요.<br><br>
                     </label>
 
                     <label>
-                        <input type="radio" name="fundingType" value="repunding">
+                        <input type="radio" name="type" value="refunding">
                         <strong>리펀딩</strong>&nbsp;클라우드푸딩에서 성공한 프로젝트를 다시 공개해요.<br><br>
                     </label>
                 </div>
@@ -59,7 +67,7 @@
                 <div class="owner-container">
                     <p>대표자 이메일</p>
                     <div class="ownerInfo">
-                        <input type="text" id="email" name="email" placeholder="example@example.com">
+                        <input type="text" id="email" name="busiEmail" placeholder="example@example.com" th:value="${business.busiEmail}">
 
 <!--                        <label for="site"></label>-->
 <!--                        <select id="site" name="site" onchange="updateEmailDomain()">-->
@@ -133,7 +141,8 @@
                 <div class="category-text">목표금액<span class="greeting-text-star"> *</span></div>
                 <div class="category-sub-text">최소 50만원 ~ 최대 1억원 사이에서 설정해 주세요.</div><br><br>
                 <div class="priceBox">
-                    <input type="text" id="price" name="targetAmount" placeholder="목표 금액을 입력해 주세요.">
+                    <input type="text" id="price" name="targetAmount" placeholder="목표 금액을 입력해 주세요."
+                    th:value="${project.targetAmount}">
                     <span id="currencyText">원</span>
                 </div>
                 <br>
@@ -146,10 +155,23 @@
                 </script>
 
                 <br><br><br><br><br>
-                <a class="project-start" href="/view/projectMake/projectManage.html">제출하기</a>
+                <button type="submit" class="project-start">저장하기</button>
             </div>
 
 
+
+            <script th:inline="javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+                    var businessType = /*[[${project.type}]]*/ ''; // model에서 project.type 값을 가져옵니다.
+
+                    // businessType 값에 따라 라디오 버튼의 상태를 설정합니다.
+                    if (businessType === 'funding') {
+                        document.querySelector('input[name="type"][value="funding"]').checked = true;
+                    } else if (businessType === 'refunding') {
+                        document.querySelector('input[name="type"][value="refunding"]').checked = true;
+                    }
+                });
+            </script>
 
 
 

@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.project.projectMake.controller;
 
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.service.ProjectMakeService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,7 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/projectMake")
@@ -90,7 +93,17 @@ public class ProjectMakeController {
     }
 
     @GetMapping("basicInfo")
-    public String basicInfo(Model mv){
+    public String basicInfo(@AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+                            Model mv){
+
+        int code = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+
+        ProjectMakeDTO projectMakeDTO = projectMakeService.selectMakingProject(code);
+
+        System.out.println("memberAndAuthorityDTO = " + memberAndAuthorityDTO);
+
+        mv.addAttribute("project", projectMakeDTO);
+
         return "/content/project/projectManage/basicInfo";
 
     }
@@ -105,17 +118,48 @@ public class ProjectMakeController {
 
     }
     @GetMapping("projectInfo")
-    public String projectInfo(){
+    public String projectInfo(@AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+                              Model mv){
+
+        int code = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+
+        ProjectMakeDTO projectMakeDTO = projectMakeService.selectMakingProject(code);
+        BusinessMakeDTO businessMakeDTO = projectMakeService.selectBusiness(code);
+
+        System.out.println("memberAndAuthorityDTO = " + memberAndAuthorityDTO);
+
+        mv.addAttribute("project", projectMakeDTO);
+        mv.addAttribute("business", businessMakeDTO);
+
         return "/content/project/projectManage/projectInfo";
 
     }
 
     @PostMapping("projectInfo")
-    public String projectInfo2(@RequestParam(value = "fundingType", required = false)
-                                   String fundingType){
+    public String projectInfo2(@ModelAttribute ProjectMakeDTO projectMakeDTO,
+                               @ModelAttribute BusinessMakeDTO businessMakeDTO) {
 
-        System.out.println("fundingType = " + fundingType);
-        return "/content/project/projectManage/projectInfo";
+        System.out.println("projectMakeDTO = " + projectMakeDTO); // type 이랑 targetAmount 받기 위함
+
+        System.out.println("businessMakeDTO = " + businessMakeDTO); // busiEmail 받기 위함
+
+        businessMakeDTO.setSellCode(projectMakeDTO.getSellerCode()); // 기준이 될 유저코드 전달
+
+        projectMakeService.typeAndTargetUpdate(projectMakeDTO); // project update
+
+        BusinessMakeDTO businessMakeDTO1 = projectMakeService.alreadyExist(businessMakeDTO); // 기존에 만들어둔 business가 있는지 확인
+
+        if (businessMakeDTO1 == null) {
+            System.out.println("저장된 프로젝트가 없군요! 새로 작성하겠습니다");
+            projectMakeService.businessInsert(businessMakeDTO); // business insert
+
+        } else if (businessMakeDTO1 != null){
+            System.out.println("이미 작성하던 프로젝트가 있군요! 해당 페이지로 이동합니다.");
+            projectMakeService.busiEmailUpdate(businessMakeDTO); // business update
+        }
+
+
+        return "redirect:/projectMake/projectInfo";
 
     }
 
