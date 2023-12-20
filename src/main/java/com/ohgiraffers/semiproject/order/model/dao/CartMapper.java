@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface CartMapper {
 
-    List<CartDTO> cartPage();
+    List<CartInsertDTO> cartPage(String userId);
 }

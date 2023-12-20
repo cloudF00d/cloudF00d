@@ -11,12 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 
 @Controller
 @Slf4j
-@RequestMapping("/order/")
+@RequestMapping("/order")
 public class CartController {
 
     private final CartService cartService;
@@ -32,17 +33,19 @@ public class CartController {
     }
     */
 
-    @GetMapping("cart")
+    @GetMapping("/cart")
     public String cart(
             Model model,
-            @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) {
-
+            Principal principal
+            ) {
+    String userId = principal.getName();
+        System.out.println(userId + "============================================================ userId");
 
         log.info("[OrderController] cartPage ================================== start");
-        log.info("[OrderController] cartPage  ================================== {} ", memberAndAuthorityDTO);
+        log.info("[OrderController] cartPage  ================================== {} ", userId);
 
 
-        List<CartDTO> cartPage = cartService.cart();
+        List<CartInsertDTO> cartPage = cartService.cart(userId);
         model.addAttribute("cart", cartPage);
 
         return "/content/order/cart";

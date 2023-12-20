@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -37,25 +38,25 @@ public class OrderController {
   @PostMapping("buypage")
   public String paymentPage(
           Model model,
+          Principal principal,
           @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
           @RequestParam int hdCounterValue,
           @RequestParam int hdTotalPrice,
           @RequestParam int hdCouponPrice,
           @RequestParam int hdDeliveryCost,
-          @RequestParam int hdGunWon,
-          @ModelAttribute CartInsertDTO cart
+          @RequestParam int hdGunWon
 
 
           ) throws PaymentPageException{
+    String userId = principal.getName();
+    System.out.println(userId + "============================================================ userId");
+
 
 
     System.out.println("hdCounterValue = " + hdCounterValue);
 
-
-
     log.info("[OrderController] paymentPage ================================== start");
-    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
-    log.info("[OrderController] paymentPage ================================== {} ", cart);
+    log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
 
 
@@ -66,7 +67,9 @@ public class OrderController {
     model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
-    model.addAttribute("projectTitle", cart.getProjectTitle());
+    model.addAttribute("hdGunWon", hdGunWon);
+
+
 
 
 

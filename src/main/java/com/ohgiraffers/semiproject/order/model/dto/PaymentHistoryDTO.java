@@ -1,10 +1,14 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
+@Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class PaymentHistoryDTO {
 
     private PaymentDTO payment;
@@ -14,29 +18,6 @@ public class PaymentHistoryDTO {
 
 
 
-    public PaymentHistoryDTO() {
-    }
-
-    public PaymentHistoryDTO(PaymentDTO payment, CartDTO cart) {
-        this.payment = payment;
-        this.cart = cart;
-    }
-
-    public void setPayment(PaymentDTO paymentt) {
-        this.payment = paymentt;
-    }
-
-    public void setCart(CartDTO cart) {
-        this.cart = cart;
-    }
-
-    @Override
-    public String toString() {
-        return "PaymentHistoryDTO{" +
-                "paymentt=" + payment +
-                ", cart=" + cart +
-                '}';
-    }
 
 
 }

@@ -99,7 +99,7 @@
         <result property="phone" column="PHONE"/>
         <result property="projectTitle" column="PROJECT_TITLE"/>
         <result property="optionName" column="OPTION_NAME"/>
-        <result property="price" column="price"/>
+        <result property="price" column="PRICE"/>
         <result property="configure" column="CONFIGURE"/>
         <result property="amount" column="TOTAL_AMOUNT"/>
         <result property="optionType" column="OPTION_TYPE"/>
@@ -109,61 +109,27 @@
 
     <select id="user1" resultMap="userResultMap">
         SELECT
-            B.TOTAL_AMOUNT,
-            D.USER_NAME,
-            D.EMAIL,
-            D.PHONE,
-            D.ADDRESS,
-            D.COUPON_STATUS,
-            F.PROJECT_TITLE,
-            G.OPTION_NAME,
-            G.OPTION_TYPE,
-            G.PRICE,
-            G.CONFIGURE
-
-        FROM TBL_PAYMENT_HISTORY A
-                 JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
-                 JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
-                 JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-                 JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
-                 JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
-                 JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
-        WHERE D.USER_ID = 'user01'
-
-    </select>
+         A.USER_CODE,
+         A.USER_NAME,
+         A.ADDRESS,
+         A.EMAIL,
+         A.PHONE,
+         A.COUPON_STATUS,
+         C.PROJECT_TITLE,
+         D.OPTION_NAME,
+         D.PRICE,
+         D.OPTION_TYPE,
+         D.CONFIGURE
 
 
+        FROM tbl_user A
+                 JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+                 JOIN  tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
+                 JOIN  tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
 
-
-    <select id="paymentPage" resultMap="PaymentHistoryResultMap">
-        SELECT
-            B.TOTAL_AMOUNT,
-            D.USER_NAME,
-            D.EMAIL,
-            D.PHONE,
-            D.ADDRESS,
-
-            F.PROJECT_TITLE,
-            G.OPTION_NAME,
-            G.OPTION_TYPE,
-            G.PRICE,
-            G.CONFIGURE
-
-        FROM TBL_PAYMENT_HISTORY A
-        JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
-        JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
-        JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-        JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
-        JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
-        JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
-
+        WHERE A.USER_ID =  #{ userId }
 
     </select>
-
-
-
-
-
 
 
 
