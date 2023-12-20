@@ -1,11 +1,14 @@
 package com.ohgiraffers.semiproject.common.paging;
 
+
+
 public class Pagenation {
     /* 검색어가 없는 경우 페이징 처리만을 위한 용도 */
     public static SelectCriteria getSelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount , String nation1, String nation2, String authority) {
 
         return getSelectCriteria(pageNo, totalCount, limit, buttonAmount, nation1, nation2, authority, null, null);
     }
+
 
     /* 검색어가 존재하는 경우 검색 조건으로 select 후 페이징 처리를 하기 위한 용도 */
     public static SelectCriteria getSelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, String nation1, String nation2, String authority, String nation3,  String searchValue) {
@@ -59,4 +62,6 @@ public class Pagenation {
 
         return selectCriteria;
     }
+
+
 }

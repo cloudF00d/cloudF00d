@@ -23,9 +23,9 @@ public class CartService {
         Mapper = mapper;
     }
 
-    public List<CartInsertDTO> cart() {
+    public List<CartDTO> cart() {
 
-        List<CartInsertDTO> cart = Mapper.cartPage();
+        List<CartDTO> cart = Mapper.cartPage();
         System.out.println("cart = " + cart);
 
         return cart;

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.sellerManage.model.dao.sellerManage">
+
+
+    <resultMap id="sellerProjectManage" type="com.ohgiraffers.semiproject.sellerManage.model.dto.SellerManageProjectDTO">
+        <id property="code" column="PROJECT_CODE"/>
+        <result property="memberCode" column="SELLER_INFO"/>
+        <result property="projectTitle" column="PROJECT_TITLE"/>
+        <result property="start" column="PROJECT_START_DATE"/>
+        <result property="end" column="PROJECT_END_DATE"/>
+        <result property="amount" column="TARGET_AMOUNT"/>
+        <result property="achievementStatus" column="ACHIEVEMENT_STATUS"/>
+        <result property="progressStatus" column="PROGRESS_STATUS"/>
+        <result property="planCode" column="PLAN_CODE"/>
+        <result property="plan" column="PRICE"/>
+        <result property="businessCode" column="USER_CODE"/>
+        <result property="businessName" column="BUSINESS_NAME"/>
+    </resultMap>
+
+
+    <resultMap id="sellerUserResultMap" type="com.ohgiraffers.semiproject.sellerManage.model.dto.SellerUserMangeDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="projectCode" column="PROJECT_CODE"/>
+        <result property="paymentCode" column="PAYMENT_CODE"/>
+        <result property="cartCode" column="CART_CODE"/>
+        <result property="projectTitle" column="PROJECT_TITLE"/>
+        <result property="option" column="OPTION_TYPE"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="returnHistory" column="APPLICATION_DATE"/>
+        <result property="delivery" column="DELIVERY_DATE"/>
+        <result property="deliveryStatus" column="DELIVERY_STATUS"/>
+    </resultMap>
+
+    <resultMap id="sellerQnAmanageResultMap" type="com.ohgiraffers.semiproject.sellerManage.model.dto.SellerManageQnADTO">
+        <id property="creationNo" column="CREATION_NUMBER"/>
+        <result property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="title" column="TITLE"/>
+        <result property="creation" column="CREATION_DATE"/>
+        <result property="seller" column="SELLER_CODE"/>
+        <result property="content" column="CONTENT"/>
+        <result property="answerNO" column="ANSWER_CODE"/>
+        <result property="answerContent" column="ANSWER_CONTENT"/>
+        <result property="answerDay" column="ANSWER_DATE"/>
+    </resultMap>
+    
+
+
+    <select id="sellerProject" resultMap="sellerProjectManage">
+        SELECT
+            A.PROJECT_CODE,
+            A.PROJECT_TITLE,
+            A.PROJECT_START_DATE,
+            A.PROJECT_END_DATE,
+            A.TARGET_AMOUNT,
+            A.ACHIEVEMENT_STATUS,
+            A.SELLER_INFO,
+            A.PROGRESS_STATUS
+
+        FROM tbl_project A
+                 JOIN tbl_user B ON (A.SELLER_INFO = B.USER_CODE)
+        WHERE B.USER_CODE = 1
+    </select>
+
+    <select id="sellerProjectDetail" resultMap="sellerProjectManage">
+        SELECT
+            A.PROJECT_CODE,
+            A.PROJECT_TITLE,
+            A.TARGET_AMOUNT,
+            A.ACHIEVEMENT_STATUS,
+            A.SELLER_INFO,
+            A.PROGRESS_STATUS,
+            C.PRICE,
+            D.BUSINESS_NAME
+
+        FROM tbl_project A
+                 JOIN tbl_user B ON (A.SELLER_INFO = B.USER_CODE)
+                 JOIN tbl_plan C ON (A.PROJECT_PLAN = C.PLAN_CODE)
+                 JOIN tbl_private_business D ON (B.USER_CODE = D.USER_CODE)
+        WHERE  A.PROJECT_CODE =2
+
+    </select>
+
+    
+   
+    
+
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+        COUNT(*)
+        FROM TBL_PROJECT A
+        JOIN TBL_USER B ON (A.SELLER_INFO = B.USER_CODE)
+
+
+        <where>
+
+            <if test="searchValue != null and !searchValue.equals('')">
+                <if test="nation3 == 'code'">
+                    AND A.PROJECT_CODE LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'title'">
+                    AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'seller'">
+                    AND B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'submissionDate'">
+                    AND A.SUBMISSION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+
+
+    <select id="sellerUser" resultMap="sellerUserResultMap">
+        SELECT
+            A.USER_NAME,
+            A.PHONE,
+            A.ADDRESS,
+            D.PROJECT_TITLE,
+            G.OPTION_TYPE,
+            H.APPLICATION_DATE,
+            D.SELLER_INFO,
+            I.DELIVERY_DATE,
+            I.DELIVERY_STATUS
+
+        FROM tbl_user A
+            JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+            JOIN tbl_payment_history E ON(B.CART_CODE = E.CART_CODE)
+            JOIN tbl_project D ON (B.PROJECT_CODE = D.PROJECT_CODE)
+            JOIN tbl_project_option G ON (D.PROJECT_CODE = G.PROJECT_CODE)
+            JOIN tbl_return_history H ON (H.PAYMENT_CODE = E.PAYMENT_CODE)
+            JOIN tbl_delivery I ON (A.USER_CODE = I.USER_CODE)
+        WHERE D.SELLER_INFO = 1
+
+    </select>
+
+
+    <select id="sellerQnA" resultMap="sellerQnAmanageResultMap">
+        SELECT
+            A.CREATION_NUMBER,
+            A.CREATION_DATE,
+            A.TITLE,
+            A.CONTENT,
+            B.USER_ID,
+            C.ANSWER_CONTENT,
+            C.ANSWER_DATE
+
+        FROM tbl_qna_history A
+            JOIN tbl_user B ON(A.USER_CODE = B.USER_CODE)
+            JOIN tbl_qna_answer C ON(A.CREATION_NUMBER = C.CREATION_NUMBER)
+        WHERE A.SELLER_CODE = 1
+
+    </select>
+
+
+
+
+
+
+</mapper>

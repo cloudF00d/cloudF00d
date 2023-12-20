@@ -1,7 +1,10 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
+import lombok.Getter;
+
 import java.sql.Date;
 
+@Getter
 public class CancelHistoryDTO {
 
     private PaymentDTO paymentCode;
@@ -25,40 +28,20 @@ public class CancelHistoryDTO {
         this.completion = completion;
     }
 
-    public PaymentDTO getPaymentCode() {
-        return paymentCode;
-    }
-
     public void setPaymentCode(PaymentDTO paymentCode) {
         this.paymentCode = paymentCode;
-    }
-
-    public Date getApplication() {
-        return application;
     }
 
     public void setApplication(Date application) {
         this.application = application;
     }
 
-    public String getReason() {
-        return reason;
-    }
-
     public void setReason(String reason) {
         this.reason = reason;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getCompletion() {
-        return completion;
     }
 
     public void setCompletion(Date completion) {

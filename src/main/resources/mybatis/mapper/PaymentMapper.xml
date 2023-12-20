@@ -19,36 +19,29 @@
     </resultMap>
 
 
-    <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
-        <id property="code" column="CART_CODE"/>
-        <result property="status" column="USAGE_STATUS"/>
-        <association property="memberCode" resultMap="MemberResultMap"/>
-        <association property="projectCode" resultMap="ProjectResultMap"/>
-        <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
-    </resultMap>
 
     <resultMap id="DeliverResultMap" type="com.ohgiraffers.semiproject.order.model.dto.DeliverDTO">
         <id property="code" column="DELIVERY_CODE"/>
         <result property="day" column="DELIVERY_DATE"/>
         <result property="status" column="DELIVERY_STATUS"/>
         <result property="request" column="DELIVERY_REQUEST"/>
-        <association property="memberCode" resultMap="MemberResultMap"/>
+        <association property="memberCode" resultMap="MemberMap"/>
     </resultMap>
 
 
-    <resultMap id="MemberResultMap" type="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
-        <id property="code" column="USER_CODE"/>
-        <result property="id" column="USER_ID"/>
-        <result property="paw" column="PASSWORD"/>
+    <resultMap id="MemberMap" type="com.ohgiraffers.semiproject.member.model.dto.MemberDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="PASSWORD"/>
         <result property="email" column="EMAIL"/>
-        <result property="date" column="REGISTRATION_DATE"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
         <result property="address" column="ADDRESS"/>
-        <result property="name" column="USER_NAME"/>
-        <result property="birth" column="DATE_BIRTH"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="dateBirth" column="DATE_BIRTH"/>
         <result property="phone" column="PHONE"/>
-        <result property="status" column="ACTIVITY_STATUS"/>
-        <result property="count" column="REPORT_COUNT"/>
-        <result property="coupon" column="COUPON_STATUS"/>
+        <result property="activityStatus" column="ACTIVITY_STATUS"/>
+        <result property="reportCount" column="REPORT_COUNT"/>
+        <result property="couponStatus" column="COUPON_STATUS"/>
     </resultMap>
 
 
@@ -67,7 +60,7 @@
         <result property="start" column="PROJECT_START_DATE"/>
         <result property="progress" column="PROGRESS_STATUS"/>
         <association property="plan" resultMap="PlanResultMap"/>
-        <association property="seller" resultMap="MemberResultMap"/>
+        <association property="seller" resultMap="MemberMap"/>
         <association property="category" resultMap="ProjectCategoryResultMap"/>
     </resultMap>
 
@@ -138,28 +131,6 @@
         WHERE D.USER_ID = 'user01'
 
     </select>
-
-
-
-<!--    <insert id="member" parameterType="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">-->
-<!--        INSERT tbl_user-->
-<!--        INTO    (-->
-<!--                               A.USER_NAME-->
-<!--                              , A.USER_ID-->
-<!--                              , A.PHONE-->
-<!--                              , A.EMAIL-->
-<!--                              , A.ADDRESS-->
-<!--        )-->
-<!--        VALUES  (-->
-<!--                  #{ name }-->
-<!--                , #{ phone }-->
-<!--                , #{ email }-->
-<!--                , #{address}-->
-<!--                )-->
-
-<!--    </insert>-->
-
-
 
 
 

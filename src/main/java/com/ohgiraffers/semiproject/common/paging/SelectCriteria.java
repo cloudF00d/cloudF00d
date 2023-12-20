@@ -1,7 +1,6 @@
 package com.ohgiraffers.semiproject.common.paging;
 
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,6 +23,8 @@ public class SelectCriteria {
     private String authority;
     private String nation3;
     private String searchValue;			//검색어
+
+
 
 
 }
