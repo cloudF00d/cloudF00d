@@ -425,6 +425,7 @@ public class BoardController {
         System.out.println("nation 1 ===============" + nation1);
         System.out.println("nation 2 ===============" + nation2);
         System.out.println("nation 3 ===============" + nation3);
+
         System.out.println("검색어searchValue ================" + searchValue);
 
 
@@ -439,7 +440,7 @@ public class BoardController {
         // 전체 게시물 수?
 
         /* 한 페이지에 보여 줄 게시물 수 */
-        int limit = 3;        //얘도 파라미터로 전달받아도 된다.
+        int limit = 5;        //얘도 파라미터로 전달받아도 된다.
 
         /* 한 번에 보여질 페이징 버튼의 갯수 */
         int buttonAmount = 5;

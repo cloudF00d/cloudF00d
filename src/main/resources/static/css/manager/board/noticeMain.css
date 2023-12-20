@@ -2,6 +2,19 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+    font-family: Poppins;
+}
+
+/* 배경 보드 */
+.back-board {
+    box-shadow: 0px 10px 60px rgba(225.83437621593475, 236.193745136261, 248.62500607967377, 0.5);
+    background-color: #fff;
+    width: 1300px;
+    height: 100%;
+    border-radius: 30px;
+    margin: 100px 0 100px 100px;
+    padding: 100px;
+    box-sizing: border-box;
 }
 
 a:link, a:visited{
@@ -207,12 +220,14 @@ li{
 .logo1 {
     width: 140px; /* 원하는 너비로 설정하세요. */
     height: auto; /* 높이는 자동으로 조정됩니다. */
-    margin-top: 40px;
 }
+
 .black-link,
 .black-link:visited {
     color: black;
-    text-decoration: none; /* 밑줄 제거 */
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bolder;
 }
 
 .iconlogo {
@@ -227,8 +242,6 @@ li{
     align-items: center;
     margin-top: 20px;
 }
-
-
 
 .pagination-box {
     display: flex;
@@ -245,13 +258,20 @@ li{
     background: rgb(240, 240, 240);
     margin: 0 3px;
     text-decoration: none;
-    color: #333;
-    border-radius: 7px; /* 모서리를 둥글게 만듦 */
+    color: #b9b9b9;
+    border-radius: 5px;
+    border: none;
 }
 
 .page-link:hover, .prev:hover, .next:hover {
-    background-color: darkorange;
+    background-color: #F37B1F;
+    color: #fff;
     cursor: pointer;
+}
+
+.selected {
+    background-color: #F37B1F; /* 클릭된 상태의 배경 색상 */
+    color: #fff; /* 클릭된 상태의 텍스트 색상 */
 }
 
 table {
@@ -260,6 +280,7 @@ table {
     border-spacing: 10px;
 }
 
+/* 게시판 줄 */
 th, td {
     border-top: 1px solid #ddd; /* 상단에만 회색 선 추가 */
     border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
@@ -280,11 +301,7 @@ td a{
 
 .container {
     display: flex;
-    justify-content: space-between; /* 컨테이너 내부 요소들을 좌측과 우측에 배치 */
     width: 100%;
-    height: 1020px;
-    
-    margin: 0 auto; /* 화면 가운데 정렬 */
 }
 
 .left {
@@ -294,35 +311,16 @@ td a{
     box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1);
 }
 
-.middle {
-    /*position: absolute;*/
-    margin-left: 0%;
-
-    margin-top: 4%;
-
-    
-    flex-basis: 900px; 
-    /* 가운데 영역의 너비를 50%로 설정 */
-    flex-shrink: 0;
-    
-        /* 음영 효과 설정 */
-    /* box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1); */
-}
-
-
 #link{
     cursor: pointer;
 }
 
-.right {
-    width: 280px;}
-
 .searchcontainer {
     display: flex;
     justify-content: space-between; /* 좌우에 요소를 배치 */
-    width: 100%;
+    /*width: 100%;*/
     margin-top: 40px;
-    align-items: baseline;
+    /*align-items: baseline;*/
 }
 
 .searchright {
@@ -336,10 +334,10 @@ td a{
     
 }
 .searchleft1{
-    margin-left: 40px;
+    margin: 0px 10px 0px 0px;
 }
 .searchleft2{
-    margin-left: 15px;
+    margin: 0px 20px 0px 0px;
 }
 
 .newWriting{
@@ -364,98 +362,111 @@ td a{
 #new{
     color: red;
 }
-.first{
-    font-size: 30px;
-    font-weight: 1000;
-    margin-top: 40px;
-}
-
-
-
-
 
 .ing{
-        /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
         width: 110px;
         padding: 7px 10px ;
-    
-
-        /* 배경색을 주황색으로 설정합니다. */
         background-color: lightgray;
-    
-        /* 글자 색을 변경합니다. */
         color: white;
-    
-        /* 글자 크기를 크게 설정합니다. */
-        
-    
-        /* 모서리를 둥글게 만듭니다. */
         border-radius: 5px;
-    
-        /* 테두리를 없앱니다. */
         border: none;
-    
-        /* 버튼 안의 텍스트를 가운데 정렬합니다. */
         text-align: center;
-    
-        /* 버튼 안의 텍스트의 여백을 조정합니다. */
-        
-
 }
+
 .success{
-    /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
     width: 110px;
     padding: 7px 10px ;
-
-
-    /* 배경색을 주황색으로 설정합니다. */
     background-color: orange;
-
-    /* 글자 색을 변경합니다. */
     color: white;
-
-    /* 글자 크기를 크게 설정합니다. */
-    
-
-    /* 모서리를 둥글게 만듭니다. */
     border-radius: 5px;
-
-    /* 테두리를 없앱니다. */
     border: none;
-
-    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
     text-align: center;
-
-    /* 버튼 안의 텍스트의 여백을 조정합니다. */
-    
-
 }
+
 .fail{
-    /* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
     width: 110px;
     padding: 7px 10px ;
-
-
-    /* 배경색을 주황색으로 설정합니다. */
     background-color: #404B52;
-
-    /* 글자 색을 변경합니다. */
     color: white;
-
-    /* 글자 크기를 크게 설정합니다. */
-    
-
-    /* 모서리를 둥글게 만듭니다. */
     border-radius: 5px;
-
-    /* 테두리를 없앱니다. */
     border: none;
-
-    /* 버튼 안의 텍스트를 가운데 정렬합니다. */
     text-align: center;
-
-    /* 버튼 안의 텍스트의 여백을 조정합니다. */
-    
-
 }
 
+.nation1 {
+    margin-left: -30px;
+}
+
+.searchright button {
+    width: 100px;
+    height: 35px;
+    background-color: lightgrey;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.searchright button:hover {
+    background-color: #F37B1F;
+}
+
+.submit button {
+    width: 100px;
+    height: 35px;
+    background-color: lightgrey;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.submit button:hover {
+    background-color: #F37B1F;
+}
+
+.searchleft1 select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchleft2 select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchright select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 20px;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchright input {
+    width: 200px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
