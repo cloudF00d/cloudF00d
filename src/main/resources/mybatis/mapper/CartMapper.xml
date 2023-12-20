@@ -24,7 +24,7 @@
         <id property="code" column="CART_CODE"/>
         <result property="status" column="USAGE_STATUS"/>
         <association property="memberCode" resultMap="MemberResultMap"/>
-        <association property="projectCode" resultMap="ProjectResultMap"/>
+        <association property="projectCode" resultMap="ProjectDTOResultMap"/>
         <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
     </resultMap>
 
@@ -33,7 +33,7 @@
         <result property="day" column="DELIVERY_DATE"/>
         <result property="status" column="DELIVERY_STATUS"/>
         <result property="request" column="DELIVERY_REQUEST"/>
-        <association property="memberCode" resultMap="MemberResultMap"/>
+        <association property="memberCode" resultMap="memberResultMap"/>
     </resultMap>
 
 
@@ -52,10 +52,40 @@
         <result property="coupon" column="COUPON_STATUS"/>
     </resultMap>
 
-
-
+    <resultMap type="com.ohgiraffers.semiproject.member.model.dto.MemberDTO" id="memberResultMap">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="PASSWORD"/>
+        <result property="email" column="EMAIL"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="dateBirth" column="DATE_BIRTH"/>
+        <result property="phone" column="PHONE"/>
+        <result property="activityStatus" column="ACTIVITY_STATUS"/>
+        <result property="reportCount" column="REPORT_COUNT"/>
+        <result property="couponStatus" column="COUPON_STATUS"/>
+    </resultMap>
 
     <resultMap id="ProjectResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectDTO">
+        <id property="code" column="PROJECT_CODE"/>
+        <result property="title" column="PROJECT_TITLE"/>
+        <result property="type" column="PROJECT_TYPE"/>
+        <result property="amount" column="TARGET_AMOUNT"/>
+        <result property="end" column="PROJECT_END_DATE"/>
+        <result property="summary" column="PROJECT_SUMMARY"/>
+        <result property="agree" column="POLICY_AGREEMENT"/>
+        <result property="sellerType" column="SELLER_TYPE"/>
+        <result property="status" column="ACHIEVEMENT_STATUS"/>
+        <result property="start" column="PROJECT_START_DATE"/>
+        <result property="progress" column="PROGRESS_STATUS"/>
+        <association property="plan" resultMap="PlanResultMap"/>
+        <association property="seller" resultMap="MemberResultMap"/>
+        <association property="category" resultMap="ProjectCategoryResultMap"/>
+    </resultMap>
+
+
+    <resultMap id="ProjectDTOResultMap" type="com.ohgiraffers.semiproject.project.model.dto.ProjectDTO">
         <id property="code" column="PROJECT_CODE"/>
         <result property="title" column="PROJECT_TITLE"/>
         <result property="type" column="PROJECT_TYPE"/>
@@ -139,16 +169,36 @@
     <insert id="addToCart">
         insert
         into tbl_cart (
+
             user_code,
             project_code,
             option_code,
             usage_status
         )
         values (
-                   #{memberCode},
+
+                   #{userCode},
+                   #{code},
+                   #{optionCode},
+                   default
+               )
+    </insert>
+
+    <insert id="insertCart" parameterType="hashmap">
+        insert
+        into tbl_cart (
+
+            user_code,
+            project_code,
+            option_code,
+            usage_status
+        )
+        values (
+
+                   #{userCode},
                    #{projectCode},
-                   #{projectOptionCode},
-                   #{status}
+                   #{optionCode},
+                   default
                )
     </insert>
 
