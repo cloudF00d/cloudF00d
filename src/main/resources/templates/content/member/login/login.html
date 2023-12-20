@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
-<th:block  layout:fragment="content">
+    <th:block  layout:fragment="content">
     <title>login</title>
 
     <link rel="stylesheet" th:href="@{/css/login/login.css}" type="text/css">
@@ -16,7 +16,7 @@
 
         <br><br><br><br><br>
 
-        <li class="signin_text">Sign In</li>
+        <li class="signin_text">로그인</li>
 
         <br><br><br>
 
@@ -41,7 +41,7 @@
             <br><br><br>
 
         <div class="btlogin">
-            <button  type="submit" value="로그인" id="loginSubmit">Log In</button>
+            <button  type="submit" value="로그인" id="loginSubmit">로그인</button>
         </div>
         </form>
     </ul>
@@ -62,18 +62,29 @@
 
         <br><br><br>
     
-        <div class="signInMessage">회원가입으로 Clud Fooding의 다양한 혜택을 경험해 보세요!</div>
+        <div class="signInMessage">회원가입으로 Cloud Fooding의 다양한 혜택을 경험해 보세요!</div>
 
         <br>
 
-        <li class="btjoin"><a th:href="@{/member/join}"><button>회원가입</button></a></li>
+        <div class="btjoin"><a th:href="@{/member/join}"><button>회원가입</button></a></div>
     </div>
 
-    <div class="down">
-        <span><a th:href="@{/support/usermain}">고객센터</a></span>
-        <span><a th:href="@{/index}">메인으로 돌아가기</span>
-    </div>
-    
+        <div class="downLine">
+            <div class="down"></div>
+        </div>
+
+        <div class="downContainer">
+
+            <a th:href="@{/support/usermain}">고객센터</a>
+            <a th:href="@{/}">메인으로 돌아가기</a>
+
+            <br><br><br><br><br><br>
+
+        </div>
+
+
+
+
 
 </div>
     

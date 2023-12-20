@@ -56,13 +56,14 @@ li{
 .btlogin button {
     width: 350px;
     height: 50px;
-    background-color: orange;
+    background-color: #F37B1F;
     color: white;
     font-size: 18px;
     border-radius: 10px;
     border: none;
     text-align: center;
     transition: background-color 0.5s ease;
+    cursor: pointer;
 }
 
 .btlogin button:hover {
@@ -90,7 +91,7 @@ li{
 .btjoin button {
     width: 350px;
     height: 50px;
-    background-color: orange;
+    background-color: #F37B1F;
     color: white;
     font-size: 16px;
     border-radius: 10px;
@@ -98,6 +99,7 @@ li{
     text-align: center;
     padding: 10px 20px;
     transition: background-color 0.5s ease;
+    cursor: pointer;
 }
 
 .btjoin button:hover {
@@ -107,15 +109,6 @@ li{
 #logo1 {
     width: 300px;
     height: auto;
-}
-
-.down{
-    padding-top: 20px;
-    border-top: 1px solid grey;
-}
-
-.down span{
-    margin: 30px;
 }
 
 .user_id {
@@ -135,10 +128,27 @@ li{
     color: #b9b9b9;
 }
 
-.down a {
-    text-decoration: none;
-    color: inherit;
+.down {
+    width: 1500px;
+    border-top: 1px solid #b9b9b9;
 }
 
+.downLine {
+    justify-content: center;
+    display: flex;
+}
 
+.downContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 100px 0px;
+    align-items: center;
+}
+
+.downContainer a {
+    color: inherit;
+    text-decoration: none;
+    color: #b9b9b9;
+    margin: 0px 50px 0px 50px;
+}
 
