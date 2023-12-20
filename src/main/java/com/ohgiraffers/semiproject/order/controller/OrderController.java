@@ -51,7 +51,7 @@ public class OrderController {
 
     System.out.println("hdCounterValue = " + hdCounterValue);
 
-
+//
 
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
