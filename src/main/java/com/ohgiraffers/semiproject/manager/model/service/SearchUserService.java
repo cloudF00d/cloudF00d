@@ -85,12 +85,13 @@ public class SearchUserService implements SearchUserServiceInter{
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long no) throws NoticeRemoveException {
 
-        int result = Mapper.deleteUser(no);
+        int result = Mapper.deleteUser(no); // user 테이블에서 삭제
 
         if(!(result > 0)) {
-            throw new NoticeRemoveException("공지사항 삭제에 실패하셨습니다.");
+            throw new NoticeRemoveException("회원 삭제에 실패하셨습니다.");
         }
     }
 

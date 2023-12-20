@@ -182,7 +182,8 @@
 
     <select id="findOneProject" resultMap="projectResultMap">
         select A.*,
-               B.USER_NAME
+               B.USER_NAME,
+               B.USER_CODE
         from tbl_project A
                  join tbl_user B ON (A.SELLER_INFO = B.USER_CODE)
         where A.PROJECT_CODE = #{no}

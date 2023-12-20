@@ -23,7 +23,7 @@
         <div class="middle">
             <!-- 가운데 컨텐츠 -->
             <div class="first">
-                <span><a class="black-link" th:href="@{/manager/project/complaintMain}">신고 프로젝트</a></span>
+                <span><a class="black-link" th:href="@{/board/complaintProjectMain}">프로젝트 신고</a></span>
                 <span><a class="black-link"> > </a></span>
                 <span><a class="black-link" href="">세부사항</a></span>
                 
@@ -37,6 +37,8 @@
 
                 <div class="CRUD">
 
+                <th:block th:if="${update} == 1">
+
                 <div class="stop">
                     <form action="search" method="post">
                         <select name="nation2"  >
@@ -44,24 +46,46 @@
                             <option value="stopWeek">일주일 정지</option>
                             <option value="stopMonth">한달 정지</option>
                             <option value="stopThreeMonth">3달 정지</option>
-                            
+
                         </select>
                     </form>
                 </div>
+                </th:block>
 
-                
 
-                    <div class="delete">
+                    <th:block th:if="${update} == 0">
+                    <div class="delete" id="link"
+                     th:onclick="'location.href=\'/board/complaintProjectDetail?no='
+                     + @{${project.projectReportCode}}
+                     + '&update=1'
+                     + '\''"
+
+                    >
                     수정
                     </div>
+                    </th:block>
 
-                    <div class="delete">
+                    <th:block th:if="${update} == 1">
+                        <div class="delete" id="link"
+                             th:onclick="'location.href=\'/board/complaintProjectDetail?no='
+                     + @{${project.projectReportCode}}
+                     + '\''"
+
+                        >
+                            취소
+                        </div>
+                    </th:block>
+
+                    <div class="delete" id="link"
+                     th:onclick="'location.href=\'/board/complaintProjectDelete?no='+ @{${project.projectReportCode}} + '\''"
+
+                    >
                     삭제
                     </div>
 
-                    <div class="update">
-                        승인
-                        </div>
+<!--                    <div class="update">-->
+<!--                        승인-->
+<!--                        </div>-->
 
                     
                 </div>
@@ -110,71 +134,59 @@
                     
                     <tr>
                         
-                        <th>코드(순번)</th>
+                        <th>프로젝트 코드</th>
                         <th>제목</th>
                         <th>판매자</th>
-                        <th>프로젝트 접수일자</th>
-                        <th>처리 현황</th>
                     </tr>
-                    <tr>
-                        <td>Csfda3</td>
-                        <td>풍미가 좋은 드라이에이징 삼겹살</td>
-                        <td>홍길*</td>
-                        <td>2003/11/16</td>
-                        <td ><span class="close">처리중</span></td>
+                    <tr
+                    th:onclick="'location.href=\'/manager/project/newDetail?no='+ @{${project.reportProject.projectCode}} + '\''"
+
+                    >
+                        <td th:text="${project.reportProject.projectCode}"></td>
+                        <td th:text="${project.reportProject.projectTitle}"></td>
+                        <td th:text="${project.reportProject.sellerInfo.userName}"></td>
                     </tr>
                     
                 </table>
             </div>
+<!--            <div class="searchDetail">-->
+<!--                <strong><h4>신고 세부정보</h4></strong>-->
+<!--                <table>-->
+
+<!--                    -->
+<!--                    <th>프로젝트 내용 확인</th>-->
+<!--                    <th>수수료</th>-->
+<!--                    -->
+
+<!--                    <tr>-->
+<!--                    <td>(구매자에게 보여지는 똑같은 디자인의 프로젝트 창으로 이동)</td>-->
+<!--                    <td>베이직</td>-->
+<!--                    </tr>-->
+
+<!--                </table>-->
+<!--            </div>-->
             <div class="searchDetail">
-                <strong><h4>세부정보</h4></strong>
+                <strong><h4>신고 내역</h4></strong>
                 <table>
-
-                    
-                    <th>프로젝트 내용 확인</th>
-                    <th>수수료</th>
-                    
-
-                    <tr>
-                    <td>(구매자에게 보여지는 똑같은 디자인의 프로젝트 창으로 이동)</td>
-                    <td>베이직</td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="searchDetail">
-                <strong><h4>리펀딩 프로젝트</h4></strong>
-                <table>
-                    <th>코드</th>
+                    <th>신고 코드</th>
                     <th>신고 사유</th>
                     <th>세부 내용</th>
                     <th>신고 접수 일자</th>
                     <th>조치</th>
+                    <th>조치내역</th>
                     
 
                     <tr>
-                    <td>1</td>
-                    <td>욕설</td>
-                    <td>제목에 XX 사용</td>
-                    <td>2013.12.12~2013.12.16</td>
-                    <td>일주일 정지</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>욕설</td>
-                        <td>제목에 XX 사용</td>
-                        <td>2013.12.12~2013.12.16</td>
-                        <td>한달 정지</td>
+                    <td th:text="${project.projectReportCode}"></td>
+                    <td th:text="${project.reportType}"></td>
+                    <td th:text="${project.reportReason}"></td>
+                    <td th:text="${project.reportDate}"></td>
+                    <td th:if="${project.actionDetail == NullPointerException}"><span class="close">처리중</span></td>
+                    <td th:if="${project.actionDetail != NullPointerException}"><span class="ing">처리 완료</span></td>
+                    <td th:if="${project.actionDetail == NullPointerException}"></td>
+                    <td th:if="${project.actionDetail != NullPointerException}" th:text="${project.actionDetail}"></td>
                     </tr>
 
-
-                    <tr>
-                            <td>2</td>
-                            <td>욕설</td>
-                            <td>제목에 XX 사용</td>
-                            <td>2013.12.12~2013.12.16</td>
-                            <td>3달 정지</td>
-                    </tr>
 
                 </table>
             </div>

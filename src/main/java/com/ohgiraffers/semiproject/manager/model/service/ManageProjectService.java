@@ -82,6 +82,7 @@ public class ManageProjectService implements ManageProjectServiceInter{
     }
 
     @Override
+    @Transactional
     public void approve(Long no) throws NoticeRegistException {
         int result = mapper.approve(no);
 

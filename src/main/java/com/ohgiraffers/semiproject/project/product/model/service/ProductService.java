@@ -8,13 +8,13 @@ import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
 import java.util.List;
 
 public interface ProductService {
-    TotalStoryDTO totalStoryList();
+    TotalStoryDTO totalStoryList(Long no);
 
-    List<ProjectOptionDTO> optionList();
+    List<ProjectOptionDTO> optionList(Long no);
 
-    List<ProjectFileDTO> projectimage();
+    List<ProjectFileDTO> projectimage(Long no);
 
-    ProfileImageDTO profileimage();
+    ProfileImageDTO profileimage(Long no);
 
 //    static List<ProDTO> selectAllproductStoryList() { 왜 스테틱?
 }

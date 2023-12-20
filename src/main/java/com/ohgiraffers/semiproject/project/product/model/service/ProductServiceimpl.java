@@ -22,8 +22,8 @@ public class ProductServiceimpl implements ProductService {
 
 
     @Override
-    public TotalStoryDTO totalStoryList() {
-        TotalStoryDTO thumbnailList = mapper.totalStoryList();
+    public TotalStoryDTO totalStoryList(Long no) {
+        TotalStoryDTO thumbnailList = mapper.totalStoryList(no);
 
         log.info("");
         log.info("");
@@ -33,18 +33,18 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public List<ProjectOptionDTO> optionList() {
+    public List<ProjectOptionDTO> optionList(Long no) {
 
-        return mapper.optionList();
+        return mapper.optionList(no);
     }
 
     @Override
-    public List<ProjectFileDTO> projectimage() {
-        return mapper.projectimage();
+    public List<ProjectFileDTO> projectimage(Long no) {
+        return mapper.projectimage(no);
     }
 
     @Override
-    public ProfileImageDTO profileimage() {
-        return mapper.profileimage();
+    public ProfileImageDTO profileimage(Long no) {
+        return mapper.profileimage(no);
     }
 }

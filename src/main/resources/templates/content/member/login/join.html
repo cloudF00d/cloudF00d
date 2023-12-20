@@ -60,7 +60,8 @@
                                         if (data) {
                                             alert(email + "메일을 보냈습니다. 확인하세요!");
                                             // 이메일 코드를 숨은 입력 필드에 저장
-                                            document.getElementById("hdValue").value = data.emailCode;
+                                            console.log(data)
+                                            document.getElementById("hdValue").value = data;
                                         } else {
                                             alert("전송 실패 하였습니다. 재시도 하세요!")
                                         }
@@ -70,13 +71,13 @@
                             const checkMailButton = document.querySelector("#checkMail");
                             checkMailButton.addEventListener('click', function () {
                                 const emailCode = document.getElementById("emailCode").value;
-
+                                const hdValue = document.getElementById("hdValue").value;
                                 fetch('/member/checkMail', {
                                     method: "POST",
                                     headers: {
                                         'Content-Type': 'application/json'
                                     },
-                                    body: JSON.stringify({ emailCode: emailCode })
+                                    body: JSON.stringify({ emailCode: emailCode, hdValue })
                                 })
                                     .then(response => response.json())
                                     .then(data => {

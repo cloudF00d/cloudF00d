@@ -2,7 +2,8 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      layout:decorate="~{layouts/layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <th:block  layout:fragment="content">
     <link rel="stylesheet" href="/css/memberWithdrawal/seller.css">
@@ -24,9 +25,10 @@
                     <img class="logo1" src="/images/01_logoimg/textLogoNone.png"  width="150px" height="150px" >
                 </div>
                 
+                    <th:block sec:authorize="isAuthenticated()">
                 <div class="withdrawal">
 
-                    <strong><span class="withdrawal_name">서보혜님!</span></strong>
+                    <strong><span class="withdrawal_name" th:text="${#authentication.getPrincipal().memberDTO.getUserName()}">서보혜님!</span></strong>
                     <span class="withdrawal_not">클라우드 푸딩을 이용하시는데 혹시 아래와 같은 불편함이 있으셨으면, 아래 방법을 한번 이용해보세요.</span>
 
                     <div class="withdrawal_notbox">
@@ -36,16 +38,10 @@
                     <span class="withdrawal4_notinsert">클라우드 푸딩에 문의하기 | cloudfooding@gmail.com</span>
                     </div> 
                     
-                    <span class="incon"> <strong>어떤 점이 불편하셨나요?</strong> <span class="star">*</span></span>
-                    <span class="incon_in">클라우드 푸딩을 이용하면서 불편했던 점을 말씀해주시면, 클라우드 푸딩의 서비스 개선에 참고하도록 하겠습니다.</span>
-                    <form action="" method="post">
-                        <select name="reason" class="incon_reason" >
-                            <option value="search"selected>탈퇴 사유는 무엇인가요?</option>
-                            <option value="reasonl">펀딩 종류가 많이 없어서</option>
-                            <option value="reason2" >22</option>
-                            <option value="reason3" >33</option>
-                            <option value="reason2">44</option>
-                        </select>
+
+
+
+
 
                         <div class="notice">
                             <strong><span class="notice1_input">탈퇴 전, 꼭 확인하세요!</span></strong>
@@ -68,21 +64,26 @@
                             <span class="notice13_input">게시글, 댓글, 펀딩한 프로젝트의 투자 리스트에 남겨진 이름 등 삭제 불가</span>
                             <span class="bar5"></span>
 
-                            <strong><span class="notice_check"><input type="checkbox" name="check"> 상기 와디즈 탈퇴 시 유의 사항을 확인하였습니다. </span></strong>
+                            <strong><span class="notice_check"><input type="checkbox" id="agreeCheckbox" name="check"> 상기 와디즈 탈퇴 시 유의 사항을 확인하였습니다. </span></strong>
 
                         </div>
 
                         <div class="identi">
-                            <strong><span class="identi_title">본인확인</span> <span class="star">*</span></span> </strong>
-                            <p>안전한 탈퇴를 위해 본인 인증 절차를 진행합니다. 본인 확인하기 버튼을 클릭해주세요.</p>
+                            <strong><span class="identi_title">탈퇴하기</span> <span class="star">*</span></span> </strong>
+                            <p>탈퇴를 원하시면 버튼을 클릭해주세요.</p>
 
-                            <button class="identi_box" type="submit" > 본인 확인하기 </button>
+                            <button class="identi_box" type="submit" th:onclick="'location.href=\'/member/delete\''" id="submitButton" disabled> 탈퇴하기 </button>
 
                         </div>
-                    </form>
-                        
+
+                    <script>
+                        document.getElementById('agreeCheckbox').addEventListener('change', function() {
+                            document.getElementById('submitButton').disabled = !this.checked;
+                        });
+                    </script>
                     </div>
-                
+                    </th:block>
+
             
                 </div>
 

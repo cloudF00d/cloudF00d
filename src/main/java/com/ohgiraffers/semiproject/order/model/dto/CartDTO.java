@@ -15,7 +15,7 @@ public class CartDTO {
 
     private MemberDTO memberCode;
 
-    private ProjectDTO projectCode;
+    private ProjectDTO  projectCode;
 
     private ProjectOptionDTO projectOptionCode;
 

@@ -10,11 +10,11 @@ import java.util.List;
 
 @Mapper
 public interface ProjectDetailMapper {
-    TotalStoryDTO totalStoryList();
-    List<ProjectOptionDTO> optionList();
+    TotalStoryDTO totalStoryList(Long no);
+    List<ProjectOptionDTO> optionList(Long no);
 
-    List<ProjectFileDTO> projectimage();
+    List<ProjectFileDTO> projectimage(Long no);
 
-    ProfileImageDTO profileimage();
+    ProfileImageDTO profileimage(Long no);
 }
 //

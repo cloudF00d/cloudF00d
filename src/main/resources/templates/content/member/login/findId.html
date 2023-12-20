@@ -28,17 +28,47 @@
             
             <div class="joininfo">
             <form action="/submit-form">
-            <div class="moveall">
-                    <li>Your Id</li>
-                    <li><span><input class="box1" type="text"></span></li>
+                <div class="moveall">
+                    <li>Your name</li>
+                    <span><input type="text" class="box1" name="userName" id="userName"></span>
                 </div>
 
                 <div class="moveall">
                     <li class="movebox">Your Email</li>
-                    <span><input type="text" class="box2"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" >인증번호 받기</button></span>
-                    <li class="movebox">Authentication Code</li>
-                    <span><input type="text" class="box1"></span>
+                    <span><input type="text" class="box2" name="email" id="email"></span>&nbsp;&nbsp;
+                    <span class="mailbtn"><button type="submit" id="send">아이디 찾기</button></span>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const sendButton = document.querySelector("#send");
+                        sendButton.addEventListener('click', function (event) {
+                            event.preventDefault(); // 폼 제출을 방지하고 JavaScript가 처리하도록 함
+                            const email = document.getElementById("email").value;
+                            const userName = document.getElementById("userName").value;
+                            fetch('/member/findUserId', {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ email, userName })
+                            })
+                                .then(response => response.json()) // 서버로부터 JSON 응답을 기대하고 있음
+                                .then(data => {
+                                    if (data.success) {
+                                        alert(data.message); // 서버로부터의 메시지를 표시
+                                    } else {
+                                        alert(data.message); // 실패 메시지를 표시
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert("오류가 발생했습니다."); // JSON 파싱 실패 시 오류를 표시
+                                });
+                        });
+                    });
+                </script>
+
 
                 <div class="downpart">
                     <ul class="findid">

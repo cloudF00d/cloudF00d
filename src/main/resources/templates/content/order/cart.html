@@ -138,7 +138,29 @@
 
     <script src="/js/cart.js"></script>
 
+    <!--Content-Type: application/json은 데이터가 JSON이라는 것을 명시 -->
+    <script>
+        function sendDataToServer() {
+            const dataToSend = {
+                key: "value"
+            };
 
+            fetch('/order/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataToSend)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 
 
 </th:block>

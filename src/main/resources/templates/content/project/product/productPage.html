@@ -16,8 +16,9 @@
         <div class="main-box">
 
             <div class="story-con">
-                <a th:href="@{/product/productStory}" class="story">스토리</a><br>
-                <a th:href="@{/product/productPage}" class="review">구매후기</a>
+                <a th:href="@{/product/productStory(no=${thumbnailList.projectDTO.projectCode})}" class="story">스토리</a>
+                <br>
+                <a th:href="@{/product/productPage(no=${thumbnailList.projectDTO.projectCode})}" class="story">구매후기</a>
 
             </div>
             <div class="story-con2">
@@ -142,12 +143,9 @@
 
                     <div class="introduction-con">
                         <div>
-                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;">자두의 무한변신!! 철 없는 자두떡! 철
-                                없는
-                                자두청!
+                            <div style="font-size: 36px; margin-bottom: 10px; font-weight: bold;" th:text="${thumbnailList.projectDTO.projectTitle}" >
                             </div>
-                            <div style="font-size: 23px; margin-bottom: 50px;">김천 자두의 색다른 변신~! 사시사철 즐기는 철 없는 자두떡! 철 없는
-                                자두청! 건강하고 맛있는 간식!
+                            <div style="font-size: 23px; margin-bottom: 50px;" th:text="${thumbnailList.projectDTO.projectSummary}">
                             </div>
                             <div style="margin-bottom: 50px;"><span
                                     style="font-size: 40px; font-weight: bold;">37</span><span>명 참여<span
@@ -206,11 +204,13 @@
                     </script>
                     <div class="businesscard-con">
                         <div class="businesscard">
-                            <img src="/images/minicon/good.png" alt="">
-                            <div class="businesscard-right">주식회사 민하킴</div>
+                            <img th:src="@{|/imagePath/${profileImage.getChangedProFileName()}|}" alt="">
+                            <!--                                    여기가 판매자 이름-->
+                            <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
-                        <div class="businesscard-home">홈페이지
-                            <div class="addr">http://minha.com/minhaminha</div>
+                        <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
+                            <!--                                 홈페이지 주소 넣는 곳-->
+                            <div class="addr"></div>
                         </div>
                         <div class="business-sns">SNS <img src="/" alt=""></div>
                     </div>
@@ -223,120 +223,54 @@
                     <!-- 스크롤바 -->
                     <div class="scroll-container">
                         <!-- 상품선택하는 곳 -->
-                        <div class="select-con">
+                        <form id="optionForm" action="@{/order/buypage}" method="post">
+                            <div class="select-con">
 
-                            <div class="select-a">
-                                <div class="product-0">
+                                <div class="select-a" th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
+                                    <div class="product-0">
+                                        <!--                                        가격-->
+                                        <div class="productprice-1">
+                                            <div th:text="${option.price}"></div>
+                                        </div>
+                                        <div class="product-1">
+                                            <div th:text="${option.optionName}"></div>
+                                            <!--                                            옵션 이름-->
 
-                                    <div class="productprice-1">47.000원</div>
-                                    <div class="product-1">
-                                        <div>[ A set 온 가족이 즐겨요 ] (자두떡ver.)</div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <hr>
+                                    <hr>
 
-                                <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 32개)</div>
-
-                                </div>
-                                <hr>
-
-                                <div class="product-3">
-                                    <div>배송비</div>
-                                    <div style="font-weight: bold;">6000원</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-4">
-                                    <div>발송 시작일</div>
-                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-5">
-                                    <div>제한 수량</div>
-                                    <div style="font-weight: bold;">50개</div>
-                                </div>
-                            </div>
-
-                            <div class="select-b">
-                                <div class="product-0">
-
-                                    <div class="productprice-1">38.000원</div>
-                                    <div class="product-1">
-                                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
+                                    <div class="product-2">
+                                        <!--                                    상품 구성-->
+                                        <div th:text="${option.configure}"></div>
                                     </div>
-                                </div>
+                                    <hr>
 
-                                <hr>
-
-                                <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
-                                    <div>자두청 350ml 1병</div>
-                                </div>
-                                <hr>
-
-                                <div class="product-3">
-                                    <div>배송비</div>
-                                    <div style="font-weight: bold;">6000원</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-4">
-                                    <div>발송 시작일</div>
-                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-5">
-                                    <div>제한 수량</div>
-                                    <div style="font-weight: bold;">50개</div>
-                                </div>
-                            </div>
-
-                            <div class="select-c">
-                                <div class="product-0">
-
-                                    <div class="productprice-1">38.000원</div>
-                                    <div class="product-1">
-                                        <div>[ B set 온 가족이 즐겨요 ] (자두떡 + 자두청ver.)</div>
+                                    <div class="product-3">
+                                        <div>배송비</div>
+                                        <div style="font-weight: bold;">6000원</div>
                                     </div>
+
+                                    <hr>
+
+                                    <div class="product-4">
+                                        <div>발송 시작일</div>
+                                        <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="product-5">
+                                        <div>제한 수량</div>
+                                        <div style="font-weight: bold;">50개</div>
+                                    </div>
+                                    <input type="hidden" id="selectedOption" name="selectedOption" value="" />
                                 </div>
 
-                                <hr>
 
-                                <div class="product-2">
-                                    <div>자두떡 8개 세트 4개 (개당 50g 총 16개)</div>
-                                    <div>자두청 350ml 1병</div>
-                                </div>
-                                <hr>
-
-                                <div class="product-3">
-                                    <div>배송비</div>
-                                    <div style="font-weight: bold;">6000원</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-4">
-                                    <div>발송 시작일</div>
-                                    <div style="font-weight: bold;">2023년 12월 말 (21-말일) 예정</div>
-                                </div>
-
-                                <hr>
-
-                                <div class="product-5">
-                                    <div>제한 수량</div>
-                                    <div style="font-weight: bold;">50개</div>
-                                </div>
                             </div>
-
-                        </div>
+                        </form>
                         <br>
                     </div>
                     <div class="btns-con">
@@ -497,6 +431,28 @@
         function updateCounter() {
             document.getElementById('counter-value').innerText = counterValue;
         }
+    </script>
+
+    <script>
+        function selectOption(element, optionIndex) {
+            // 이전에 선택된 모든 옵션의 선택 상태 제거
+            document.querySelectorAll('.select-a').forEach(function(el) {
+                el.classList.remove('selected');
+            });
+
+            // 현재 선택된 옵션에 선택 클래스 추가
+            element.classList.add('selected');
+
+            // 숨겨진 필드에 선택된 옵션의 인덱스 설정
+            document.getElementById('selectedOption').value = optionIndex;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.select-a').forEach((element, index) => {
+                element.setAttribute('onclick', `selectOption(this, ${index})`);
+            });
+        });
     </script>
 
 </th:block>

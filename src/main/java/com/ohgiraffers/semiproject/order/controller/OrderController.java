@@ -55,6 +55,8 @@ public class OrderController {
 
     System.out.println("hdCounterValue = " + hdCounterValue);
 
+
+
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
@@ -67,8 +69,6 @@ public class OrderController {
     model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
-    model.addAttribute("hdGunWon", hdGunWon);
-
 
 
 

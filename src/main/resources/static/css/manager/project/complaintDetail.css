@@ -12,6 +12,10 @@ li{
 	list-style: none;
 }
 
+#link{
+    cursor: pointer;
+}
+
 .logo1 {
     width: 140px; /* 원하는 너비로 설정하세요. */
     height: auto; /* 높이는 자동으로 조정됩니다. */
