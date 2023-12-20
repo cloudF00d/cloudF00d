@@ -16,8 +16,9 @@
         <div class="main-box">
 
             <div class="story-con">
-                <a th:href="@{/product/productStory}" class="story">스토리</a><br>
-                <a th:href="@{/product/productPage}" class="review">구매후기</a>
+                <a th:href="@{/product/productStory(no=${thumbnailList.projectDTO.projectCode})}" class="story">스토리</a>
+                <br>
+                <a th:href="@{/product/productPage(no=${thumbnailList.projectDTO.projectCode})}" class="story">구매후기</a>
 
             </div>
             <div class="story-con2">

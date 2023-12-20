@@ -36,6 +36,7 @@ public class mainPundingController{
                               @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
 
 
+
                               ModelAndView mv) {
 
         System.out.println("nation 1 ===============" + nation1);

@@ -78,7 +78,9 @@
             <div class="second-square-icon-container">
 
                 <div class="first-square-icon-wrapper"
-                     th:each=" project1 : ${firstProject}">
+                     th:each=" project1 : ${firstProject}"
+                     th:onclick="'location.href=\'/product/productStory?no='+ ${project1.projectCode} + '\''"
+                >
                     <img class="first-square-icon"
                          th:src="@{|/thumbPath/${project1.changedFileName}|}"
                          alt="아이콘 1">
@@ -91,7 +93,9 @@
             <div class="second-square-icon-container">
                     <div class="first-square-icon-wrapper"
                          th:if="${!#lists.isEmpty(secondProject)}"
-                         th:each="project2 : ${secondProject}">
+                         th:each="project2 : ${secondProject}"
+                         th:onclick="'location.href=\'/product/productStory?no='+ ${project2.projectCode} + '\''"
+                    >
                         <img class="first-square-icon"
                              th:src="@{|/thumbPath/${project2.changedFileName}|}"
                              alt="아이콘 1">
@@ -171,7 +175,9 @@
             <!-- 아이콘과 텍스트 중앙정렬 -->
             <div class="second-square-icon-wrapper"
 
-            th:each=" list1 : ${re1}">
+            th:each=" list1 : ${re1}"
+                 th:onclick="'location.href=\'/product/productStory?no='+ ${list1.projectCode} + '\''"
+            >
                 <img class="second-square-icon"
                      th:src="@{|/thumbPath/${list1.changedFileName}|}"
                      alt="아이콘 1">
@@ -185,6 +191,7 @@
             <div class="second-square-icon-wrapper"
                  th:if="${!#lists.isEmpty(re2)}"
             th:each="list2 : ${re2}"
+                 th:onclick="'location.href=\'/product/productStory?no='+ ${list2.projectCode} + '\''"
             >
                 <img class="second-square-icon"
                      th:src="@{|/thumbPath/${list2.changedFileName}|}"

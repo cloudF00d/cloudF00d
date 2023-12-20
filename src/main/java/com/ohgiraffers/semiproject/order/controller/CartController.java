@@ -2,6 +2,7 @@ package com.ohgiraffers.semiproject.order.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ohgiraffers.semiproject.common.exception.cart.CartRegistException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
@@ -59,31 +60,33 @@ public class CartController {
 
 
     @PostMapping("cart")
-    public String addToCart(@RequestBody ProjectOptionDTO selectedOption, HttpSession session, Model model) {
+    public String addToCart(@ModelAttribute ProjectOptionDTO selectedOption, HttpSession session, Model model) throws CartRegistException {
         // 이제 selectedOption 객체를 사용하여 필요한 작업을 수행합니다.
         // 예:
 //        int projectCode = selectedOption.getProjectCode();
 //        int optionCode = selectedOption.getOptionCode();
 
         // 로직 수행...
+        System.out.println("post cart 시작 합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        log.info("Received selectedOption========================");
+        log.info("Received selectedOption: {}", selectedOption);
+        log.info("Received selectedOption========================");
 
-        return "redirect:/order/cart";
-    }
+        cartService.addToCart(selectedOption, session);
 //        try {
 //            ObjectMapper objectMapper = new ObjectMapper();
 //
 //            // JSON 문자열을 Java 객체로 변환
-//            SelectedOptionDTO selectedOption = objectMapper.readValue(selectedOptionJson, SelectedOptionDTO.class);
+//            selectedOption = objectMapper.readValue(selectedOptionJson,ProjectOptionDTO.class);
 //
 //            // 변환된 객체를 사용하여 비즈니스 로직 수행
-//            // 예: cartService.addToCart(selectedOption, session);
+//              cartService.addToCart(selectedOption, session);
 //
 //        } catch (JsonProcessingException e) {
 //            log.error("Error parsing selected option JSON", e);
 //            // 에러 처리 로직
 //        }
-//
-//        return "redirect:/order/cart";
-//    }
+        return "redirect:/order/cart";
+    }
 
 }

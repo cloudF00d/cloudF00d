@@ -16,8 +16,10 @@
         <div class="main-box">
 
             <div class="story-con">
-                <a th:href="@{/product/productStory}" class="story">스토리</a><br>
-                <a th:href="@{/product/productPage}" class="review">구매후기</a>
+<!--                <a th:href="@{/product/productStory}" class="story">스토리</a>-->
+                <a th:href="@{/product/productStory(no=${thumbnailList.projectDTO.projectCode})}" class="story">스토리</a>
+                <br>
+                <a th:href="@{/product/productPage(no=${thumbnailList.projectDTO.projectCode})}" class="story">구매후기</a>
 
             </div>
             <div class="story-con2">
@@ -144,7 +146,12 @@
                         <form id="optionForm" th:action="@{/order/cart}" method="post">
                         <div class="select-con">
 
-                            <div class="select-a"  th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
+                            <div class="select-a"   th:each="option, iterStat : ${projectOption}"
+                                                    th:id="'option-' + ${iterStat.index}"
+                                                    onclick="selectOption(this, ${iterStat.index})"
+                                                    th:data-project-code="${option.projectCode}"
+                                                    th:data-option-type="${option.optionType}"
+                                                        >
                                 <div class="product-0">
 <!--                                        가격-->
                                     <div class="productprice-1">
@@ -190,8 +197,9 @@
 
                         </div>
                                 <input type="hidden" id="selectedOptionIndex" name="selectedOptionIndex" value="" />
-                        <input type="hidden" id="projectCode" name="projectCode" value="option.projectCode" />
-                        <input type="hidden" id="optionType" name="optionType" value="option.projectType" />
+                        <input type="hidden" id="projectCode" name="projectCode" th:value="${thumbnailList.projectOptionDTO.projectCode}" />
+                        <input type="hidden" id="optionType" name="optionType" th:value="${thumbnailList.projectOptionDTO.optionType}" />
+
 
                         </form>
 
@@ -260,19 +268,19 @@
                 price: element.querySelector(".productprice-1 div").innerText,
                 optionName: element.querySelector(".product-1 div").innerText,
                 configure: element.querySelector(".product-2 div").innerText,
-                projectType: element.dataset.projectType,
+                projectType: element.dataset.projectCode,
                 optionType: element.dataset.optionType
             };
 
             // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
-            document.getElementById('selectedOption').value = JSON.stringify(selectedOptionDetails);
+            document.getElementById('selectedOptionIndex').value = JSON.stringify(selectedOptionDetails);
         }
     </script>
 
     <script>
         function submitForm() {
             // 선택된 옵션이 있는지 확인
-            var selectedOptionValue = document.getElementById('selectedOption').value;
+            var selectedOptionValue = document.getElementById('selectedOptionIndex').value;
             if (selectedOptionValue) {
                 // 선택된 옵션이 있으면 폼을 제출합니다.
                 document.getElementById('optionForm').submit();
@@ -316,6 +324,8 @@
                 });
         }
     </script>
+
+
 
 </th:block>
 </html>

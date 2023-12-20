@@ -135,6 +135,22 @@
 
     </select>
 
+<!--parameterType="com.ohgiraffers.semiproject.order.model.dto.CartDTO"-->
+    <insert id="addToCart">
+        insert
+        into tbl_cart (
+            user_code,
+            project_code,
+            option_code,
+            usage_status
+        )
+        values (
+                   #{memberCode},
+                   #{projectCode},
+                   #{projectOptionCode},
+                   #{status}
+               )
+    </insert>
 
 
 

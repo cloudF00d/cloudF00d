@@ -138,6 +138,7 @@
             <!-- 아이콘과 텍스트 중앙정렬 -->
             <div class="second-square-icon-wrapper"
                  th:each="list2 : ${list}"
+                 th:onclick="'location.href=\'/product/productStory?no='+ @{${list2.projectCode}} + '\''"
             >
                 <img class="second-square-icon"
                      th:src="@{|/thumbPath/${list2.changedFileName}|}"
