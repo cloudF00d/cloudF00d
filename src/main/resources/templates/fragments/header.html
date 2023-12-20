@@ -14,10 +14,10 @@
     <!-- 상단 메뉴 !!-->
     <nav>
         <ul>
-            <li><a th:href="@{/index}">홈</a></li>
+            <li><a th:href="@{/}">홈</a></li>
             <li><a th:href="@{/pundingButton/mainPunding}">펀딩</a></li>
-            <li><a th:href="@{/support/usermain}">고객센터</a></li>
-            <li><a th:href="@{/board/userNotice}">공지사항</a></li>
+            <li><a th:href="@{/board/inquiryMain}">고객센터</a></li>
+            <li><a th:href="@{/board/noticeMain}">공지사항</a></li>
         </ul>
     </nav>
 
@@ -40,9 +40,7 @@
             </th:block>
 
             <th:block sec:authorize="isAuthenticated()">
-
-
-                    <li><span sec:authentication="principal.username"></span>님의 방문을 환영합니다.</li>
+                    <li><span sec:authentication="principal.memberDTO.userId"></span>님의 방문을 환영합니다.</li>
                     <li><a th:href="@{/member/logout}">로그아웃</a></li>
                     <li><a th:href="@{/member/myInfo}">마이페이지</a></li>
             </th:block>

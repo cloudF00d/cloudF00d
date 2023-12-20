@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.manager.model.service;
 
+import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
 import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
@@ -86,12 +87,12 @@ public class SearchUserService implements SearchUserServiceInter{
 
     @Override
     @Transactional
-    public void deleteUser(Long no) throws NoticeRemoveException {
+    public void deleteUser(Long no) throws MemberRemoveException {
 
         int result = Mapper.deleteUser(no); // user 테이블에서 삭제
 
         if(!(result > 0)) {
-            throw new NoticeRemoveException("회원 삭제에 실패하셨습니다.");
+            throw new MemberRemoveException("회원 삭제에 실패하셨습니다.");
         }
     }
 

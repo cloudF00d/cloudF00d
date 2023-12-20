@@ -17,14 +17,9 @@
 
     <link rel="stylesheet" th:href="@{/css/project/projectMake-main/projectManage-main/projectManage/css.css}">
 
-
-
-
-
-
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
     <div class="back-side-container">
 
-        <th:block th:replace="/fragments/sellersidebar.html"></th:block>
 
 
         <section class="back-board-container">
@@ -43,7 +38,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">요금제 선택</span>
-                        <a class="folder-right" th:href="@{/templates/content/project/projectManage/payChoice}">작성하기</a>
+                        <a class="folder-right" th:href="@{/projectMake/basicInfo}">작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>
@@ -51,7 +46,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">프로젝트 정보</span>
-                        <a class="folder-right" th:href="@{/templates/content/project/projectManage/projectInfo}" >작성하기</a>
+                        <a class="folder-right" th:href="@{/projectMake/projectInfo}" >작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>
@@ -59,7 +54,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">기본 정보</span>
-                        <a class="folder-right" th:href="@{/templates/content/project/projectManage/basicInfo}">작성하기</a>
+                        <a class="folder-right" th:href="@{/projectMake/payChoice}">작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>
@@ -67,7 +62,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">스토리 작성</span>
-                        <a class="folder-right" th:href="@{/templates/content/project/projectManage/projectStory}">작성하기</a>
+                        <a class="folder-right" th:href="@{/projectMake/projectStory}">작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>
@@ -75,7 +70,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">정책</span>
-                        <span class="folder-right">작성하기</span>
+                        <a class="folder-right" th:href="@{/projectMake/projectAgree}">작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>
@@ -83,7 +78,7 @@
                     <div class="folder-background">
                         <span class="folder-left1">작성 대기</span>
                         <span class="folder-left2">판매자 정보</span>
-                        <a class="folder-right" th:href="@{/templates/content/project/projectManage/sellerInfo}" >작성하기</a>
+                        <a class="folder-right" th:href="@{/projectMake/sellerInfo}" >작성하기</a>
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br><br><br>

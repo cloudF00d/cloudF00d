@@ -21,7 +21,7 @@
     <link rel="stylesheet" th:href="@{/css/project/projectMake-main/projectManage-main/payChoice/css.css}">
 
 
-    <th:block th:replace="/fragments/usersidebar.html"></th:block>
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
 
         <section class="back-board-container">
 
@@ -57,13 +57,13 @@
                   <span  class="pay2-vat">VAT 별도</span>
                   <span  class="pay3-vat">VAT 별도</span>
                     <div class=pay1-choice onclick="selectPlan()">
-                        <span  class="pay1-choice-text">요금제 선택</span>
+                        <span  class="pay1-choice-text" value="premium">요금제 선택</span>
                     </div>
                     <div class=pay2-choice onclick="selectPlan()">
-                        <span  class="pay2-choice-text">요금제 선택</span>
+                        <span  class="pay2-choice-text" value="pro">요금제 선택</span>
                     </div>
                     <div class=pay3-choice onclick="selectPlan()">
-                        <span  class="pay3-choice-text">요금제 선택</span>
+                        <span  class="pay3-choice-text" value="basic">요금제 선택</span>
                     </div>
                     <div class="pay-notice"></div>
                         <span  class="pay-notice-text">요금제 선택 전 확인해 주세요. 수수료(VAT)는 별도입니다.</span>
