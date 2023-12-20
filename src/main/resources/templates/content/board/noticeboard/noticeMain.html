@@ -2,7 +2,8 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      layout:decorate="~{layouts/layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <th:block layout:fragment="content">
 
@@ -68,10 +69,17 @@
 
                     <!--                오른쪽 박스-->
                     <div class="searchright">
+
+
+
+
+
+                            <th:block sec:authorize="hasRole('ADMIN')">
                         <button type="button"
                         th:onclick="'location.href=\'/board/noticeWriting\''"
 
                         >글쓰기</button>
+                            </th:block>
                         <input type="text" name="searchValue" id="searchValue" th:value="${selectCriteria.searchValue}">
                         <!--                        검색어 입력 칸 input-->
                         <!--                        <button class="iconlogo" type="submit">입력하기</button>-->
