@@ -4,9 +4,7 @@ import com.ohgiraffers.semiproject.common.exception.payment.MemberOrderPageExcep
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
-import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
-import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
-import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
+import com.ohgiraffers.semiproject.order.model.dto.*;
 import com.ohgiraffers.semiproject.order.model.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ListIterator;
 
 @Controller
 @RequestMapping("/order/")
@@ -30,37 +29,45 @@ public class OrderController {
   }
 
 
-//  @GetMapping("buypage")
-//    public String buypage(){
-//      return "/content/order/buypage";
-//  }
-
   @GetMapping("buypage")
+    public String buypage(){
+      return "/content/order/buypage";
+  }
+
+  @PostMapping("buypage")
   public String paymentPage(
           Model model,
-          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO
-//          @RequestParam String firstname,
-//          @RequestParam String lastname,
-//          @RequestParam String adrs,
-//          @RequestParam String detailedAdrs
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+          @RequestParam int hdCounterValue,
+          @RequestParam int hdTotalPrice,
+          @RequestParam int hdCouponPrice,
+          @RequestParam int hdDeliveryCost,
+          @RequestParam int hdGunWon,
+          @ModelAttribute CartInsertDTO cart
 
-          ) throws PaymentPageException, MemberOrderPageException {
 
+          ) throws PaymentPageException{
+
+
+    System.out.println("hdCounterValue = " + hdCounterValue);
+
+//
 
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
+    log.info("[OrderController] paymentPage ================================== {} ", cart);
 
-//    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO.getAuthorityDTO().getAuthorityName());
+
+
     List<UserDTO> paymentHistory = paymentService.paymentPage();
     model.addAttribute("buypage",paymentHistory);
+    model.addAttribute("counterProduct", hdCounterValue);
+    model.addAttribute("hdTotalPrice", hdTotalPrice);
+    model.addAttribute("hdCouponPrice", hdCouponPrice);
+    model.addAttribute("hdDeliveryCost", hdDeliveryCost);
+    model.addAttribute("hdGunWon", hdGunWon);
+    model.addAttribute("projectTitle", cart.getProjectTitle());
 
-
-//    MemberDTO member = paymentService.member();
-//    model.addAttribute("buyepage",member);
-//    String name = firstname + "$" + lastname;
-//    member.setName(name);
-//    String address = adrs + "$" + detailedAdrs;
-//    member.setAddress(address);//
 
 
    return "/content/order/buypage";

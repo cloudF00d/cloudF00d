@@ -1,7 +1,10 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class PaymentHistoryDTO {
 
     private PaymentDTO payment;
@@ -19,16 +22,8 @@ public class PaymentHistoryDTO {
         this.cart = cart;
     }
 
-    public PaymentDTO getPayment() {
-        return payment;
-    }
-
     public void setPayment(PaymentDTO paymentt) {
         this.payment = paymentt;
-    }
-
-    public CartDTO getCart() {
-        return cart;
     }
 
     public void setCart(CartDTO cart) {

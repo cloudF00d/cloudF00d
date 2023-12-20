@@ -1,6 +1,6 @@
 package com.ohgiraffers.semiproject.deliver.model.dto;
 
-import com.ohgiraffers.semiproject.order.model.dto.MemberDTO;
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
 
 import java.sql.Date;
 

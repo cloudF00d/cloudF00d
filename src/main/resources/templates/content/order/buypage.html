@@ -12,7 +12,8 @@
     <link rel="stylesheet" th:href="@{/css/payment/buypage.css}">
 
 
-    <div id="body">
+    <div id="body" >
+        <form th:action="@{/order/buyok}" method="post">
 
         <div id="left">
             <div class="payment-info">
@@ -27,8 +28,6 @@
 
             <div class="payment-area">
 
-
-
                 <div class="payment-product" >
 
                     <h4>결제상품</h4>
@@ -38,23 +37,18 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name" name="menu" ></span>
-                        <span type="price" class="menu-price" name="price" ></span>
+                        <span class="menu-name" id="projectTitleCheck" th:text="${projectTitle}"></span>
+                        <span  class="menu-price" name="price"></span>
                     </div>
 
 
                     <div id="counter-container">
                         <div id="counter-controls" name="count">
-                            <button class="btn" onclick="decrease(1)">-</button>
-                            <span id="counter-value1">1</span>
-                            <button class="btn" onclick="increase(1)">+</button>
+                            <span  id="count" th:text="${counterProduct}">  </span>
+
                         </div>
-                        <!-- 휴지통버튼 -->
-                        <button class="trash-btn"></button>
                     </div>
-
                 </div>
-
             </div>
 
 
@@ -65,45 +59,38 @@
 
                     <div class="coupon-action">
 
-                        <div>
-<!--                            <div>할인쿠폰</div>-->
-<!--                          <input type="text"  name="적용하기" required>&nbsp;-->
-                            <!-- <input type="submit" value="적용하기">  -->
-                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--                                <button type="submit" name="coupon1" id="coupon" onclick="applyCoupon()" th:if="${buypage[0].coupon == 'Y'}">적용하기</button>-->
-<!--                                <button type="submit" name="coupon1" th:unless="${buypage[0].coupon == 'Y'}" >적용하기</button>-->
-                    </div>
-
-
+                        <div> </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                   </div>
 
 
                 <div class="total-product-amount" >
                     <span class="total-amount">상품 전체금액</span>
-                    <span type="price" class="total-price" name="total">30000</span>
+                    <span class="hdTotalPrice" name="total" id="hdTotalPrice" th:text="${hdTotalPrice}"></span>
                 </div>
                 <div class="apply-coupon">
-                    <span class="total-amount">쿠폰 적용금액</span>
-
+                    <span class="total-amount" >쿠폰 적용금액</span>
+                    <span class="coupon-price" id="hdCouponPrice" th:text="${hdCouponPrice}"></span>
                 </div>
                 <div class="delivery-fee">
                     <span class="shipping-cost">배송비</span>
-                    <span type="price" class="cost">3,000won</span>
+                    <span class="cost" id="hdDeliveryCost" th:text="${hdDeliveryCost}"></span>
                 </div>
                 <div class="final-amount">
                     <span class="gun-cost">총금액</span>
-                    <span type="price" class="gun-won">26,000won</span>
+                    <span class="gun-won"  id="hdGunWon" th:text="${hdGunWon}"></span>
+
                 </div>
 
             </div>
 
-            <a th:onclick="|location.href='@{/order/buyok}'|" class="payment-con">
+            <a  class="payment-con">
                 <button class="payment" type="button">결제</button>
             </a>
 
         </div>
 
 
-        <form class="info" th:action="@{/order/buypage}"  method="post">
+
         <div class="right">
 
         <div id="right">
@@ -167,14 +154,14 @@
                 </div>
 
                     <input type="checkbox" id="confirmationCheckbox">
-                    <label for="confirmationCheckbox">주문0정보를 모두 확인했습니다</label>
+                    <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
             </div>
 
         </div>
         </div>
         </div>
 
-            </form>
+        </form>
     </div>
 
 
@@ -198,38 +185,7 @@
         }
     </script>
 
-    <script>
-        let counterValue1 = 1;
-        let counterValue2 = 1;
-    
-        // 증가 함수
-        function increase(productNumber) {
-            if (productNumber === 1) {
-                counterValue1++;
-                updateCounter(productNumber);
-            } else if (productNumber === 2) {
-                counterValue2++;
-                updateCounter(productNumber);
-            }
-        }
-    
-        // 감소 함수
-        function decrease(productNumber) {
-            if (productNumber === 1 && counterValue1 > 0) {
-                counterValue1--;
-                updateCounter(productNumber);
-            } else if (productNumber === 2 && counterValue2 > 0) {
-                counterValue2--;
-                updateCounter(productNumber);
-            }
-        }
-    
-        function updateCounter(productNumber) {
-            const counterElement = document.getElementById(`counter-value${productNumber}`);
-            const counterValue = productNumber === 1 ? counterValue1 : counterValue2;
-            counterElement.innerText = counterValue;
-        }
-    </script>
+
      
  
 

@@ -1,5 +1,8 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
+import lombok.Getter;
+
+@Getter
 public class ProjectOptionDTO {
 
     private int code;
@@ -26,48 +29,24 @@ public class ProjectOptionDTO {
         this.projectCode = projectCode;
     }
 
-    public int getCode() {
-        return code;
-    }
-
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public void setType(String type) {
         this.type = type;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getConfig() {
-        return config;
-    }
-
     public void setConfig(String config) {
         this.config = config;
-    }
-
-    public ProjectDTO getProjectCode() {
-        return projectCode;
     }
 
     public void setProjectCode(ProjectDTO projectCode) {

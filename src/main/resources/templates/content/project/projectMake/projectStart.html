@@ -2,28 +2,27 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      layout:decorate="~{layouts/layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block  layout:fragment="content">
-
-
-
 
     <script th:src="@{/js/project/projectMake-main/projectMake/projectMake.js}"></script>
     <link rel="stylesheet" th:href="@{/css/project/projectMake-main/projectMake/css.css}">
 
-
-
-
-
-
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
     <div class="back-side-container">
-        <th:block th:replace="/fragments/sellersidebar.html"></th:block>
 
 
+        <form th:action="@{/projectMake/projectStart}" id="search" method="post">
+
+            <input
+                    type="hidden"
+                    id="memberId"
+                    name="sellerCode"
+                    th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }">
 
         <section class="back-board-container">
             <!-- 배경 시트 좌측 상단 텍스트 -->
-            <div class="greeting-text">김민하님, 반갑습니다!</div>
+            <div class="greeting-text"><span sec:authentication="principal.memberDTO.userId"></span>님, 반갑습니다!</div>
             <!-- 배경 시트 -->
             <div class="back-board">
                 <!-- 로고 -->
@@ -35,28 +34,24 @@
                     <div class="category-text">카테고리<span class="greeting-text-star"> *</span></div>
                     <div class="category-sub-text">프로젝트와 가장 잘 어울리는 카테고리를 선택해 주세요. 프로젝트를 만들고 바꿀 수 있어요.</div>
 
-                    <button class="toggle-button" onclick="toggleMenu()">카테고리 선택</button>
-                    <div class="menu-bar" id="menuBar">
-                        <a href="#" onclick="changeMenu(this)">과일</a>
-                        <a href="#" onclick="changeMenu(this)">정육/계란</a>
-                        <a href="#" onclick="changeMenu(this)">밀키트</a>
-                        <a href="#" onclick="changeMenu(this)">냉장/냉동/간편식</a>
-                        <a href="#" onclick="changeMenu(this)">델리/샐러드</a>
-                        <a href="#" onclick="changeMenu(this)">통조림/즉석밥/면</a>
-                        <a href="#" onclick="changeMenu(this)">수산/건어물</a>
-                        <a href="#" onclick="changeMenu(this)">김치/반찬</a>
-                        <a href="#" onclick="changeMenu(this)">쌀/잡곡</a>
-                        <a href="#" onclick="changeMenu(this)">베이커리</a>
-                        <a href="#" onclick="changeMenu(this)">유아식</a>
-                        <a href="#" onclick="changeMenu(this)">장/양념/소스</a>
-                        <a href="#" onclick="changeMenu(this)">간식/떡/빙과</a>
-                        <a href="#" onclick="changeMenu(this)">커피/음료</a>
-                        <a href="#" onclick="changeMenu(this)">우유/유제품</a>
-                        <a href="#" onclick="changeMenu(this)">채소</a>
-                        <a href="#" onclick="changeMenu(this)">건강식품</a>
-                    </div>
+                    <select id="menuBar" name="category">
+                        <option th:each="option : ${option}"
+                                th:value="${option}"
+                                th:text="${option}"
+                                th:selected="${option == project.category}">카테고리 선택</option>
+<!--                        <option href="#" onclick="changeMenu(this)" value="음료">음료</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="주류">주류</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="베이커리">베이커리</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="해외음식">해외음식</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="채소">채소</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="해산물">해산물</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="과일">과일</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="냉동식품">냉동식품</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="소스">소스</option>-->
+<!--                        <option href="#" onclick="changeMenu(this)" value="디저트">디저트</option>-->
+                    </select>
 
-                    <a class="project-start" th:href="@{/projectMake/projectManage}">프로젝트 시작하기</a>
+                    <button type="submit" class="project-start" th:href="@{/projectMake/projectStart}">제출하기</button>
 
                     <br><br><br><br><br>
 
@@ -126,6 +121,7 @@
 
                 </div>
         </section>
+        </form>
         </div>
 
 

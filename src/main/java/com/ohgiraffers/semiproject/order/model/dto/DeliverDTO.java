@@ -1,8 +1,11 @@
 package com.ohgiraffers.semiproject.order.model.dto;
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
+import lombok.Getter;
 
 import java.sql.Date;
 
 
+@Getter
 public class DeliverDTO {
 
     private int code;
@@ -27,40 +30,20 @@ public class DeliverDTO {
         this.request = request;
     }
 
-    public int getCode() {
-        return code;
-    }
-
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public Date getDay() {
-        return day;
     }
 
     public void setDay(Date day) {
         this.day = day;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public MemberDTO getMemberCode() {
-        return memberCode;
-    }
-
     public void setMemberCode(MemberDTO memberCode) {
         this.memberCode = memberCode;
-    }
-
-    public String getRequest() {
-        return request;
     }
 
     public void setRequest(String request) {

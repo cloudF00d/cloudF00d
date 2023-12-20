@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.manager.model.service;
 
+import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.notice.NoticeModifyException;
 import com.ohgiraffers.semiproject.common.notice.NoticeRemoveException;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
@@ -32,5 +33,5 @@ public interface SearchUserServiceInter {
     void businessUpdate(PrivateBusinessDTO privateBusinessDTO)
             throws NoticeModifyException;
 
-    void deleteUser(Long no) throws NoticeRemoveException;
+    void deleteUser(Long no) throws MemberRemoveException;
 }

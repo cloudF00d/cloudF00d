@@ -47,7 +47,7 @@ public class CartController {
         log.info("[OrderController] cartPage  ================================== {} ", memberAndAuthorityDTO);
 
 
-        List<CartInsertDTO> cartPage = cartService.cart();
+        List<CartDTO> cartPage = cartService.cart();
         model.addAttribute("cart", cartPage);
 
 

@@ -1,5 +1,8 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
+import lombok.Getter;
+
+@Getter
 public class PlanDTO {
 
     private int code;
@@ -20,32 +23,16 @@ public class PlanDTO {
         this.detail = detail;
     }
 
-    public int getCode() {
-        return code;
-    }
-
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getDetail() {
-        return detail;
     }
 
     public void setDetail(String detail) {

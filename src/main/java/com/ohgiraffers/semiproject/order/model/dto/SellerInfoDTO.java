@@ -1,5 +1,8 @@
 package com.ohgiraffers.semiproject.order.model.dto;
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
+import lombok.Getter;
 
+@Getter
 public class SellerInfoDTO {
 
 
@@ -7,10 +10,6 @@ public class SellerInfoDTO {
 
     public SellerInfoDTO(MemberDTO seller) {
         this.seller = seller;
-    }
-
-    public MemberDTO getSeller() {
-        return seller;
     }
 
     public void setSeller(MemberDTO seller) {

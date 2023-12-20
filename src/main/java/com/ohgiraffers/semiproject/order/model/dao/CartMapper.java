@@ -11,8 +11,9 @@ import java.util.List;
 @Mapper
 public interface CartMapper {
 
+    List<CartDTO> cartPage();
 
      int addToCart(ProjectOptionDTO selectedOption);
 
-    List<CartInsertDTO> cartPage();
+
 }

@@ -1,8 +1,11 @@
 package com.ohgiraffers.semiproject.order.model.dto;
 
 
+import lombok.Getter;
+
 import java.sql.Date;
 
+@Getter
 public class ProjectDTO {
 
 
@@ -55,112 +58,56 @@ public class ProjectDTO {
     }
 
 
-    public int getCode() {
-        return code;
-    }
-
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public ProjectCategoryDTO getCategory() {
-        return category;
-    }
-
     public void setCategory(ProjectCategoryDTO category) {
         this.category = category;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public PlanDTO getPlan() {
-        return plan;
-    }
-
     public void setPlan(PlanDTO plan) {
         this.plan = plan;
-    }
-
-    public SellerInfoDTO getSeller() {
-        return seller;
     }
 
     public void setSeller(SellerInfoDTO seller) {
         this.seller = seller;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public Date getEnd() {
-        return end;
     }
 
     public void setEnd(Date end) {
         this.end = end;
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public String getAgree() {
-        return agree;
     }
 
     public void setAgree(String agree) {
         this.agree = agree;
     }
 
-    public String getSellerType() {
-        return sellerType;
-    }
-
     public void setSellerType(String sellerType) {
         this.sellerType = sellerType;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public Date getStart() {
-        return start;
-    }
-
     public void setStart(Date start) {
         this.start = start;
-    }
-
-    public String getProgress() {
-        return progress;
     }
 
     public void setProgress(String progress) {
