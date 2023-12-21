@@ -37,20 +37,20 @@
     </resultMap>
 
 
-    <resultMap id="MemberResultMap" type="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">
-        <id property="code" column="USER_CODE"/>
-        <result property="id" column="USER_ID"/>
-        <result property="paw" column="PASSWORD"/>
-        <result property="email" column="EMAIL"/>
-        <result property="date" column="REGISTRATION_DATE"/>
-        <result property="address" column="ADDRESS"/>
-        <result property="name" column="USER_NAME"/>
-        <result property="birth" column="DATE_BIRTH"/>
-        <result property="phone" column="PHONE"/>
-        <result property="status" column="ACTIVITY_STATUS"/>
-        <result property="count" column="REPORT_COUNT"/>
-        <result property="coupon" column="COUPON_STATUS"/>
-    </resultMap>
+<!--    <resultMap id="MemberResultMap" type="com.ohgiraffers.semiproject.order.model.dto.MemberDTO">-->
+<!--        <id property="code" column="USER_CODE"/>-->
+<!--        <result property="id" column="USER_ID"/>-->
+<!--        <result property="paw" column="PASSWORD"/>-->
+<!--        <result property="email" column="EMAIL"/>-->
+<!--        <result property="date" column="REGISTRATION_DATE"/>-->
+<!--        <result property="address" column="ADDRESS"/>-->
+<!--        <result property="name" column="USER_NAME"/>-->
+<!--        <result property="birth" column="DATE_BIRTH"/>-->
+<!--        <result property="phone" column="PHONE"/>-->
+<!--        <result property="status" column="ACTIVITY_STATUS"/>-->
+<!--        <result property="count" column="REPORT_COUNT"/>-->
+<!--        <result property="coupon" column="COUPON_STATUS"/>-->
+<!--    </resultMap>-->
 
 
 
