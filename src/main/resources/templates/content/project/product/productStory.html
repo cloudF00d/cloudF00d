@@ -149,6 +149,8 @@
                                                     onclick="selectOption(this, ${iterStat.index})"
                                                     th:data-project-code="${option.projectCode}"
                                                     th:data-option-type="${option.optionType}"
+                                                    th:data-option-code="${option.optionCode}"
+
                                                         >
                                 <div class="product-0">
 <!--                                        가격-->
@@ -197,6 +199,10 @@
                                 <input type="hidden" id="selectedOptionIndex" name="selectedOptionIndex" value="" />
                         <input type="hidden" id="projectCode" name="projectCode" th:value="${thumbnailList.projectOptionDTO.projectCode}" />
                         <input type="hidden" id="optionType" name="optionType" th:value="${thumbnailList.projectOptionDTO.optionType}" />
+                        <input type="hidden" id="optionCode" name="optionCode" th:value="${thumbnailList.projectOptionDTO.optionCode}" />
+
+<!--                       카트컨트롤러의     @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO 로 맴버코드(usercode가져오는것 생략)-->
+<!--                        <input type="hidden" id="memberCode" name="memberCode" th:value="${thumbnailList.projectUserDTO.userCode}" />-->
 
 
                         </form>
@@ -259,6 +265,7 @@
             // 선택된 옵션의 프로젝트 코드와 옵션 타입을 설정
             document.getElementById('projectCode').value = element.dataset.projectCode;
             document.getElementById('optionType').value = element.dataset.optionType;
+            document.getElementById('optionCode').value = element.dataset.optionCode;
 
 
             // 선택된 옵션 정보를 JSON 객체로 생성
@@ -267,7 +274,9 @@
                 optionName: element.querySelector(".product-1 div").innerText,
                 configure: element.querySelector(".product-2 div").innerText,
                 projectType: element.dataset.projectCode,
-                optionType: element.dataset.optionType
+                optionType: element.dataset.optionType,
+                optionCode: element.dataset.optionCode
+
             };
 
             // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
@@ -282,6 +291,8 @@
             if (selectedOptionValue) {
                 // 선택된 옵션이 있으면 폼을 제출합니다.
                 document.getElementById('optionForm').submit();
+                window.location.href = '/order/cart';
+                // window.href.
             } else {
                 // 선택된 옵션이 없으면 사용자에게 알림
                 alert('옵션을 선택해주세요.');

@@ -9,10 +9,12 @@ import java.util.Map;
 
 
 @Mapper
-public interface CartMapper {
+public interface CartInsertMapper {
 
 
-    List<CartInsertDTO> cartPage(String userId);
 
 
+    int addToCart(CartDTO cart);
+
+    int insertCart(Map<String, Object> addToCart);
 }
