@@ -44,7 +44,6 @@ public class mainPundingController{
         System.out.println("nation 3 ===============" + nation3);
         System.out.println("검색어searchValue ================" + searchValue);
 
-
         Map<String, String> searchMap = new HashMap<>();
         searchMap.put("nation1", nation1);
         searchMap.put("nation2", nation2);
@@ -84,6 +83,7 @@ public class mainPundingController{
         mv.setViewName("/content/project/pundingButton/mainPunding");
 
         return mv;
+
     }
 }
 
