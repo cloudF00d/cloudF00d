@@ -30,7 +30,7 @@ import java.util.*;
 @Slf4j
 @RequestMapping("/projectMake")
 public class ProjectMakeController {
-    @Value("img")
+    @Value("")
     private String IMAGE_DIR;
 
     @Value("C:/uploadfile/")
