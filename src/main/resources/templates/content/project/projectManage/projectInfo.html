@@ -19,7 +19,7 @@
 
     <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
 
-    <form th:action="@{/projectMake/projectInfo}" id="yourForm" method="post">
+    <form th:action="@{/projectMake/projectInfo}" id="yourForm" method="post" enctype="multipart/form-data">
 
 
         <input
@@ -41,7 +41,7 @@
                     <img src="/resources/images/01_logoimg/textLogoNone.png">
                 </div>
 
-                <div class="category-text">카테고리<span class="greeting-text-star"> *</span></div>
+                <div class="category-text">프로젝트 타입<span class="greeting-text-star"> *</span></div>
                 <div class="category-sub-text">프로젝트와 가장 잘 어울리는 카테고리를 선택해 주세요. 프로젝트를 만들고 바꿀 수 있어요.</div><br><br>
 
                 <div class="radio-list">
@@ -90,53 +90,58 @@
 
                 <br><br>
                 <div class="category-text">심사 서류<span class="greeting-text-star"> *</span></div><br>
-                <div class="paper-box-container">
-                    <div class="paper-box" onclick="openFileAttachmentPopup()">
-                        <i class="fas fa-paperclip"></i>
-                        <p id="attachmentMessage">사업자 등록증을 등록해 주세요.</p>
-                    </div>
-                    <div id="attachedFileName"></div>
+                <p id="attachmentMessage">사업자 등록증을 등록해 주세요.</p>
+                <input type="file" accept=".img, .imag, .pdf, .png, .doc, .docx" multiple id="fileInput" name="businessFile"
+                >
+                <div th:each="businessF : ${businessFile}">
+                    <div th:text="|제출한 파일명 : ${businessF.oriFileName}|"></div>
                 </div>
+                <!-- 입력 요소 -->
+                <!--                <div class="paper-box-container">-->
+                <!--                    <div class="paper-box" onclick="openFileAttachmentPopup()">-->
+                <!--                        <i class="fas fa-paperclip"></i>-->
+                <!--                    </div>-->
+<!--                    <div id="attachedFileName"></div>-->
+<!--                </div>-->
 
-                <!-- 파일 첨부 팝업  -->
-                <div id="fileAttachmentPopup">
-                    <!-- 파일 첨부 팝업의 내용 -->
-                    <p>파일을 첨부하세요.</p>
-                    <input type="file" accept=".img, .imag, .pdf, .png, .doc, .docx" id="fileInput"> <!-- 입력 요소 -->
-                    <button onclick="completeFileAttachment()">저장</button>
-                </div>
+<!--                &lt;!&ndash; 파일 첨부 팝업  &ndash;&gt;-->
+<!--                <div id="fileAttachmentPopup">-->
+<!--                    &lt;!&ndash; 파일 첨부 팝업의 내용 &ndash;&gt;-->
+<!--                    <p>파일을 첨부하세요.</p>-->
+<!--&lt;!&ndash;                    <button onclick="completeFileAttachment()">저장</button>&ndash;&gt;-->
+<!--                </div>-->
 
                 <!-- 등록 완료 팝업을 위한 스타일과 스크립트를 추가합니다. -->
-                <div id="registrationCompletePopup">
-                    <p id="registrationCompleteMessage">등록이 완료되었습니다.</p>
-                    <p id="attachedFileName"></p> <!-- 첨부된 파일명을 나타내는 요소 -->
-                    <button onclick="closeRegistrationCompletePopup()">확인</button>
-                </div>
+<!--                <div id="registrationCompletePopup">-->
+<!--                    <p id="registrationCompleteMessage">등록이 완료되었습니다.</p>-->
+<!--                    <p id="attachedFileName"></p> &lt;!&ndash; 첨부된 파일명을 나타내는 요소 &ndash;&gt;-->
+<!--                    <button onclick="closeRegistrationCompletePopup()">확인</button>-->
+<!--                </div>-->
 
-                <script>
-                    function openFileAttachmentPopup() {
-                        document.getElementById('fileAttachmentPopup').style.display = 'block';
-                    }
+<!--                <script>-->
+<!--                    function openFileAttachmentPopup() {-->
+<!--                        document.getElementById('fileAttachmentPopup').style.display = 'block';-->
+<!--                    }-->
 
-                    function completeFileAttachment() {
+<!--                    function completeFileAttachment() {-->
 
-                        var attachedFile = document.getElementById('fileInput').files[0];
+<!--                        var attachedFile = document.getElementById('fileInput').files[0];-->
 
-                        document.getElementById('attachmentMessage').innerText = '등록이 완료되었습니다.';
-                        document.getElementById('attachedFileName').innerText = '등록 파일명: ' + attachedFile.name;
+<!--                        document.getElementById('attachmentMessage').innerText = '등록이 완료되었습니다.';-->
+<!--                        document.getElementById('attachedFileName').innerText = '등록 파일명: ' + attachedFile.name;-->
 
-                        document.getElementById('fileAttachmentPopup').style.display = 'none';
-                        document.getElementById('registrationCompletePopup').style.display = 'block';
-                    }
+<!--                        document.getElementById('fileAttachmentPopup').style.display = 'none';-->
+<!--                        document.getElementById('registrationCompletePopup').style.display = 'block';-->
+<!--                    }-->
 
-                    function closeRegistrationCompletePopup() {
-                        document.getElementById('registrationCompletePopup').style.display = 'none';
-                    }
+<!--                    function closeRegistrationCompletePopup() {-->
+<!--                        document.getElementById('registrationCompletePopup').style.display = 'none';-->
+<!--                    }-->
 
-                    // 등록된 파일명을 표시
-                    var attachedFileNameContainer = document.getElementById('attachedFileNameContainer');
-                    attachedFileNameContainer.innerHTML = '첨부된 파일명: ' + (attachedFile ? attachedFile.name : '없음');
-                </script>
+<!--                    // 등록된 파일명을 표시-->
+<!--                    var attachedFileNameContainer = document.getElementById('attachedFileNameContainer');-->
+<!--                    attachedFileNameContainer.innerHTML = '첨부된 파일명: ' + (attachedFile ? attachedFile.name : '없음');-->
+<!--                </script>-->
 
                 <div class="category-text">목표금액<span class="greeting-text-star"> *</span></div>
                 <div class="category-sub-text">최소 50만원 ~ 최대 1억원 사이에서 설정해 주세요.</div><br><br>
@@ -146,6 +151,22 @@
                     <span id="currencyText">원</span>
                 </div>
                 <br>
+
+
+                <div class="category-text">판매자 타입<span class="greeting-text-star"> *</span></div>
+                <div class="category-sub-text">판매자 타입에 따라 제출하는 서류가 달라져요</div><br><br>
+
+                <div class="radio-list">
+                    <label>
+                        <input type="radio" name="sellerType" value="개인">
+                        <strong>개인</strong> 사업자로 등록하지 않은 사람이에요<br><br>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="sellerType" value="개인사업자">
+                        <strong>개인사업자</strong>&nbsp;사업자 등록증이 필요해요<br><br>
+                    </label>
+                </div>
 
 <!--                <div type="saveButton" class="saveButton" onclick="saveButton()">저장하기</div>-->
                 <script>
@@ -169,6 +190,14 @@
                         document.querySelector('input[name="type"][value="funding"]').checked = true;
                     } else if (businessType === 'refunding') {
                         document.querySelector('input[name="type"][value="refunding"]').checked = true;
+                    }
+                    var sellerType = /*[[${project.sellerType}]]*/ ''; // model에서 project.type 값을 가져옵니다.
+
+                    // businessType 값에 따라 라디오 버튼의 상태를 설정합니다.
+                    if (businessType === '개인') {
+                        document.querySelector('input[name="sellerType"][value="개인"]').checked = true;
+                    } else if (businessType === '개인사업자') {
+                        document.querySelector('input[name="sellerType"][value="개인사업자"]').checked = true;
                     }
                 });
             </script>

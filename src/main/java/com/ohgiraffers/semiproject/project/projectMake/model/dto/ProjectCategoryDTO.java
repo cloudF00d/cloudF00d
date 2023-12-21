@@ -2,12 +2,12 @@ package com.ohgiraffers.semiproject.project.projectMake.model.dto;
 
 import lombok.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@AllArgsConstructor
 @Setter
+@Getter
 @ToString
-public class ProjectDTO {
-    int projectCode;
-    int sellerInfo;
+public class ProjectCategoryDTO {
+    private int categoryCode;
+    private String categoryName;
 }

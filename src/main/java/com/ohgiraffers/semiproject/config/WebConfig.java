@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
         // 프로젝트 스토리 첫번째 들어갈 사진 경로
         registry.addResourceHandler("/thumbPath/**")
                 .addResourceLocations("file:///C:/uploadfile/Representative_image/");
-        // 이게 판매자 사진 경로
+        // 이게 판매자 사진 경로 /thumbPath/thumbnail_904abdbad2ad47d398652fe7dcd23d11.png
         registry.addResourceHandler("/imagePath/**")
                 .addResourceLocations("file:///C:/uploadfile/profileimg/");
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,16 +28,13 @@ public class mainPundingController{
     }
 
     @GetMapping("mainPunding")
-    public ModelAndView mainPunding(@RequestParam(required = false, defaultValue = "all") String nation1, // 정렬 컬럼 선택
-                              @RequestParam(required = false, defaultValue = "all") String nation2, // 정렬 방식 선택
-                              @RequestParam(required = false, defaultValue = "all") String nation3, //검색할 컬럼 선택
+    public ModelAndView mainPunding(@RequestParam(required = false, defaultValue = "전체") String nation1, // 정렬 컬럼 선택
+                              @RequestParam(required = false, defaultValue = "필터 선택") String nation2, // 정렬 방식 선택
+                              @RequestParam(required = false, defaultValue = "검색컬럼") String nation3, //검색할 컬럼 선택
 //                              @RequestParam(required = false, defaultValue = "all") String authority,
                               // 전체, 사용자, 판매자, 신고자 선택
                               @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
                               @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
-
-
-
                               ModelAndView mv) {
 
         System.out.println("nation 1 ===============" + nation1);
@@ -74,6 +72,12 @@ public class mainPundingController{
 
         System.out.println("selectCriteria = " + selectCriteria);
 
+        List<String> categories = Arrays.asList("전체","음료", "주류", "베이커리", "해외음식", "채소", "해산물", "과일", "냉동식품", "소스", "디저트");
+        mv.addObject("option1", categories);
+        List<String> categories1 = Arrays.asList("필터 선택", "가격 낮은 순", "가격 높은 순", "관심 등록 많은 순", "최신 등록 순");
+        mv.addObject("option2", categories1);
+        List<String> categories2 = Arrays.asList("검색컬럼", "제목", "태그");
+        mv.addObject("option3", categories2);
 
         List<List<ProjectDTO>> userDTOS = mainService.findAllProject(selectCriteria);
 

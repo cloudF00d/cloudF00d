@@ -1,22 +1,25 @@
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      >
 <head>
     <meta charset="UTF-8">
     <title>작성하기</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 </head>
 <body>
-<form id="projectDecline" th:action="@{/projectMake/summernote}" method="post">
+<form id="projectDecline" th:action="@{/projectMake/summernote}" method="post" enctype="multipart/form-data">
 
-    <input type="text" id="uploadedImages" name="uploadedImages" value="">
-<textarea id="summernote" name="summernote"></textarea>
-<button type="submit">저장하기</button>
-<script>
+<textarea id="summernote" name="summernote"  th:text="${project.content}"></textarea>
+    <input type="hidden" id="uploadedImages" name="uploadedImages">
+    <button type="submit">저장하기</button>
+</form>
+<script th:inline="javascript">
     $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
         tabsize: 2,
-        height: 1000,
+        height: 600,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
@@ -49,7 +52,7 @@
         $.ajax({
             data: data,
             type: "POST",
-            url: "/autoMailModify/uploadSummernoteImageFile",
+            url: "/projectMake/uploadSummernoteImageFile",
             contentType: false,
             processData: false,
             success: function (data) {
@@ -81,7 +84,9 @@
 
         $("#uploadedImages").val(JSON.stringify(updatedValue));
     };
+
+
 </script>
-</form>
+
 </body>
 </html>

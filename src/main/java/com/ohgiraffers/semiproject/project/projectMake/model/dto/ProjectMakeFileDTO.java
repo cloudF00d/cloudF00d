@@ -17,4 +17,13 @@ public class ProjectMakeFileDTO {
     String filePath;
     Date createDate;
     String type;
+
+    public ProjectMakeFileDTO(String originFileName, int sCode, String changeFileName, String filePath) {
+        this.originFileName = originFileName;
+        this.sCode = sCode;
+        this.changeFileName = changeFileName;
+        this.filePath = filePath;
+    }
 }
+
+

@@ -17,6 +17,12 @@
         <result property="sellerType" column="SELLER_TYPE"/>
         <result property="tag" column="TAG"/>
         <result property="policy" column="POLICY"/>
+        <result property="content" column="CONTENT"/>
+    </resultMap>
+
+    <resultMap id="projectCode" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectDTO">
+        <id property="projectCode" column="PROJECT_CODE"/>
+        <result property="sellerInfo" column="SELLER_INFO"/>
     </resultMap>
 
     <resultMap id="businessMake" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO">
@@ -32,13 +38,33 @@
     </resultMap>
 
     <resultMap id="projectFileMake" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeFileDTO">
-        <id property="fCode" column=""/>
-        <result property="sCode" column=""/>
-        <result property="originFileName" column=""/>
-        <result property="changeFileName" column=""/>
-        <result property="filePath" column=""/>
-        <result property="createDate" column=""/>
+        <id property="fCode" column="F_CODE"/>
+        <result property="sCode" column="S_CODE"/>
+        <result property="originFileName" column="ORIGIN_FILE_NAME"/>
+        <result property="changeFileName" column="CHANGE_FILE_NAME"/>
+        <result property="filePath" column="FILE_PATH"/>
+        <result property="createDate" column="CREATE_DATE"/>
         <result property="type" column="TYPE"/>
+    </resultMap>
+
+    <resultMap id="businessFileMake" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessFileMakeDTO">
+        <id property="codeF" column="CODE_F"/>
+        <result property="codeS" column="CODE_S"/>
+        <result property="oriFileName" column="ORI_FILE_NAME"/>
+        <result property="chanFileName" column="CHAN_FILE_NAME"/>
+        <result property="fPath" column="F_PATH"/>
+        <result property="dateCrea" column="DATE_CREA"/>
+        <result property="fType" column="F_TYPE"/>
+    </resultMap>
+
+    <resultMap id="category" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectCategoryDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+    <resultMap id="plan" type="com.ohgiraffers.semiproject.project.projectMake.model.dto.PlanDTO">
+        <id property="planCode" column="PLAN_CODE"/>
+        <result property="planName" column="PLAN_NAME"/>
     </resultMap>
 
     <insert id="projectStart" parameterType="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO">
@@ -107,7 +133,8 @@
     <update id="typeAndTargetUpdate" parameterType="com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO">
         update tbl_project_make
         set TARGET_AMOUNT = #{targetAmount},
-            TYPE = #{type}
+            TYPE = #{type},
+            SELLER_TYPE = #{sellerType}
         where
             SELLER_CODE = #{sellerCode}
         ;
@@ -199,6 +226,235 @@
                 #{type}
                );
     </insert>
+
+    <select id="selectFileProject">
+        select
+            *
+        from
+            tbl_project_make_file
+        where
+            TYPE = 'Representative_image'
+        and
+            S_CODE = #{code}
+    </select>
+
+
+    <delete id="deleteMainPicture">
+        delete
+        from tbl_project_make_file
+        where
+            TYPE = 'Representative_image'
+        and
+            S_CODE = #{code}
+    </delete>
+
+    <insert id="registBusinessLicense">
+        insert into tbl_business_file_make (
+                                            CODE_F,
+                                            CODE_S,
+                                            ORI_FILE_NAME,
+                                            CHAN_FILE_NAME,
+                                            F_PATH,
+                                            DATE_CREA,
+                                            F_TYPE)
+        values (
+                   null,
+                   #{sCode},
+                   #{originFileName},
+                   #{changeFileName},
+                   #{filePath},
+                   now(),
+                   #{type}
+               );
+    </insert>
+
+    <select id="selectBusinessFile">
+        select
+            *
+        from
+            tbl_business_file_make
+        where
+            CODE_S = #{code}
+        and
+            F_TYPE = 'Business_license'
+    </select>
+
+    <insert id="registProjectDetailImg">
+        insert into tbl_project_make_file(ORIGIN_FILE_NAME,
+                                          F_CODE,
+                                          S_CODE,
+                                          CHANGE_FILE_NAME,
+                                          FILE_PATH,
+                                          CREATE_DATE,
+                                          TYPE)
+        values (
+                   #{originFileName},
+                   null,
+                   #{sCode},
+                   #{changeFileName},
+                   #{filePath},
+                   now(),
+                   #{type}
+               );
+    </insert>
+
+    <update id="updateProjectContent">
+        update tbl_project_make
+        set
+            CONTENT = #{content}
+        where
+            SELLER_CODE = #{sellerCode}
+            ;
+    </update>
+
+    <insert id="projectStoryImages">
+        insert into tbl_project_make_file
+            (
+             ORIGIN_FILE_NAME,
+             F_CODE,
+             S_CODE,
+             CHANGE_FILE_NAME,
+             FILE_PATH,
+             CREATE_DATE,
+             TYPE)
+        values
+            <foreach collection="list" item="item" separator=",">
+                (
+                 #{item.originFileName},
+                 null,
+                 #{item.sCode},
+                 #{item.changeFileName},
+                 #{item.filePath},
+                 now(),
+                'Detailed_image_image'
+                )
+            </foreach>
+
+
+    </insert>
+
+    <update id="updateSummary">
+        update tbl_project_make
+        set
+            summary = #{summary}
+        where
+            SELLER_CODE = #{sellerCode}
+    </update>
+
+    <insert id="moveProject">
+        insert into tbl_project (
+                                 PROJECT_CODE,
+                                 PROJECT_TITLE,
+                                 PROJECT_CATEGORY,
+                                 PROJECT_TYPE,
+                                 PROJECT_PLAN,
+                                 SELLER_INFO,
+                                 TARGET_AMOUNT,
+                                 PROJECT_END_DATE,
+                                 PROJECT_SUMMARY,
+                                 POLICY_AGREEMENT,
+                                 SELLER_TYPE,
+                                 ACHIEVEMENT_STATUS,
+                                 PROJECT_START_DATE,
+                                 PROGRESS_STATUS,
+                                 SUBMISSION_DATE,
+                                 CONTENT)
+        values (
+                null,
+                #{title},
+                #{category},
+                #{type},
+                #{plan},
+                #{sellerCode},
+                #{targetAmount},
+                #{endDate},
+                #{summary},
+                #{policy},
+                #{sellerType},
+                default,
+                #{startDate},
+                default,
+                now(),
+                #{content}
+               );
+    </insert>
+
+    <select id="findCategory">
+        select
+            CATEGORY_CODE
+        from
+            tbl_project_category
+        where
+            CATEGORY_NAME = #{category}
+    </select>
+
+    <select id="findPlan">
+        select
+            PLAN_CODE
+        from
+            tbl_plan
+        where
+            PLAN_NAME = #{plan}
+    </select>
+
+    <insert id="moveProjectFile">
+        insert into tbl_project_file
+            (
+             FILE_CODE,
+             ORIGINAL_FILE_NAME,
+             CHANGED_FILE_NAME,
+             PATH,
+             CREATION_DATE,
+             DELETE_STATUS,
+             FILE_TYPE,
+             PROJECT_CODE)
+        values
+            (
+            null,
+            #{originFileName},
+            #{changeFileName},
+            #{filePath},
+            now(),
+            default,
+            #{type},
+            #{projectCode},
+        )
+    </insert>
+
+    <select id="selectAllFileProject" resultMap="projectFileMake">
+        select
+            *
+        from
+            tbl_project_make_file
+        where
+            S_CODE = #{code}
+    </select>
+
+    <select id="findProjectCode" resultMap="projectCode">
+        select
+            PROJECT_CODE
+        from
+            tbl_project
+        where
+            SELLER_INFO = #{code}
+    </select>
+
+    <insert id="moveBusiness">
+        insert into tbl_private_business
+            (
+             BUSINESS_CODE,
+             BUSINESS_NAME,
+             INDUSTRY,
+             ESTABLISHMENT_DATE,
+             HOMEPAGE,
+             LOCATION,
+             BUSINESS_PHONE,
+             BUSINESS_LICENSE_NUMBER,
+             USER_CODE,
+             BUSINESS_EMAIL)
+        values ();
+    </insert>
+
 
 
 </mapper>

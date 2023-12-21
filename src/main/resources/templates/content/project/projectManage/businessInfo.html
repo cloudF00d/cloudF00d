@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block  layout:fragment="content">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 폰트패밀리: Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- 항상 변경 해야할 js 링크 -->
+    <script src="/js/projectMake-main/projectManage/projectInfo.js"></script>
+
+    <link rel="stylesheet" href="/resources/css/background-board/css.css">
+    <!-- 항상 변경 해야할 css 링크 -->
+    <link rel="stylesheet" href="/css/project/projectMake-main/projectManage-main/projectInfo/css.css">
+
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+
+    <form th:action="@{/projectMake/businessInfo}" id="yourForm" method="post" enctype="multipart/form-data">
+
+
+        <input
+                type="hidden"
+                id="memberId"
+                name="sellerCode"
+                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }"
+        >
+
+        <div class="back-side-container">
+
+        <section class="back-board-container">
+            <!-- 배경 시트 좌측 상단 텍스트 -->
+            <div class="greeting-text">회사 정보</div>
+            <!-- 배경 시트 -->
+            <div class="back-board">
+                <!-- 로고 -->
+                <div class="board-logo img">
+                    <img src="/resources/images/01_logoimg/textLogoNone.png">
+                </div>
+
+
+                <div class="category-text">회사 이름<span class="greeting-text-star"> *</span></div><br>
+                <div class="owner-container">
+                    <p>회사명을 적어주세요.</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="busiName">
+                    </div>
+                </div>
+
+                <div class="category-text">산업<span class="greeting-text-star"> *</span></div><br>
+                <div class="owner-container">
+                    <p>회사와 관련된 산업을 적어주세요.</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="indu">
+                    </div>
+                </div> <!-- owner-container -->
+
+                <div class="category-text">설립일<span class="greeting-text-star"> *</span></div><br>
+                <div class="owner-container">
+                    <p>회사의 설립일을 입력해주세요.</p>
+                    <div class="ownerInfo">
+                        <input type="date" id="email" name="estaDate">
+                    </div>
+                </div> <!-- owner-container -->
+
+                <div class="category-text">홈페이지<span class="greeting-text-star"> </span></div><br>
+                <div class="owner-container">
+                    <p>홈페이지 주소를 적어주세요. 선택사항이에요.</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="home">
+                    </div>
+                </div>
+
+                <div class="category-text">위치<span class="greeting-text-star"> </span></div><br>
+                <div class="owner-container">
+                    <p>회사가 어디에 위치해있나요?</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="loca">
+                    </div>
+                </div>
+
+                <div class="category-text">회사 번호<span class="greeting-text-star"> </span></div><br>
+                <div class="owner-container">
+                    <p>구매자들이 문의할 수 있는 번호를 적어주세요.</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="busiPhone" name="home">
+                    </div>
+                </div>
+
+                <div class="category-text">사업자 번호<span class="greeting-text-star"> </span></div><br>
+                <div class="owner-container">
+                    <p>사업자 등록증 번호를 적어주세요.</p>
+                    <div class="ownerInfo">
+                        <input type="text" id="email" name="busiLicenseNumber">
+                    </div>
+                </div>
+
+
+
+
+
+
+                <script>
+                    function saveButton() {
+                        alert("목표금액이 저장되었습니다.");
+                    }
+                </script>
+
+                <br><br><br><br><br>
+                <button type="submit" class="project-start">저장하기</button>
+            </div>
+
+
+
+
+
+    </section>
+    </div> <!-- back-board -->
+    </form>
+    </div> <!-- greeting-text -->
+
+
+</th:block>
+
+</html>

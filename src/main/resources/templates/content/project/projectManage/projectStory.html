@@ -19,8 +19,9 @@
 
 
 
-    <th:block th:replace="/fragments/sellersidebar.html"></th:block>
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
     <form th:action="@{/projectMake/projectStory}" id="search" method="post" enctype="multipart/form-data">
+
         <input
                 type="hidden"
                 id="memberId"
@@ -38,32 +39,32 @@
                     <img src="/images/01_logoimg/textLogoNone.png">
                 </div>
 
-                <div class="category-text">소개영상, 사진 등록<span class="greeting-text-star"> *</span></div>
-                <div class="category-sub-text">프로젝트 상세페이지 최상단에 노출할 영상 또는 사진을 등록해 주세요. (영상 or 사진 중 택 1)</div><br><br>
+<!--                <div class="category-text">소개영상, 사진 등록<span class="greeting-text-star"> *</span></div>-->
+<!--                <div class="category-sub-text">프로젝트 상세페이지 최상단에 노출할 영상 또는 사진을 등록해 주세요. (영상 or 사진 중 택 1)</div><br><br>-->
 
-                <div class="introduce-container">
-                    <!--                    <div class="introduce-image" onclick="openFileInput()">-->
-                    <!--                        <p>소개 사진</p>-->
-                    <!--                    </div>-->
-                    <input type="file" name="picture">
-                </div>
+<!--                <div class="introduce-container">-->
+<!--                    &lt;!&ndash;                    <div class="introduce-image" onclick="openFileInput()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <p>소개 사진</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <input type="file" name="picture" accept="image/*" multiple>-->
+<!--                </div>-->
 
-                <br>
+<!--                <br>-->
 
-                <div class="introduce-text-container">
-                    <div class="introduce-text-title">소개 사진 등록 가이드</div>
-                    <br><br>
-                    <div class="introduce-text-list">
-                        <li>이미지 용량 제한</li>
-                        <p>GIF: 2MB 이하, 해상도 760x480픽셀 이상 ~ 1440x864 픽셀 이하</p>
-                        <p>JPG, JPEG, PNG, 10MB 이하, 해상도 760x480 픽셀 이상</p>
-                        <br>
-                        <li>최대 10장까지 등록 가능</li>
-                    </div>
-                </div>
-                <input type="file" id="file-input" accept="image/gif, image/jpeg, image/png"
-                       onchange="handleFileSelect(this)">
-                <div id="image-preview"></div>
+<!--                <div class="introduce-text-container">-->
+<!--                    <div class="introduce-text-title">소개 사진 등록 가이드</div>-->
+<!--                    <br><br>-->
+<!--                    <div class="introduce-text-list">-->
+<!--                        <li>이미지 용량 제한</li>-->
+<!--                        <p>GIF: 2MB 이하, 해상도 760x480픽셀 이상 ~ 1440x864 픽셀 이하</p>-->
+<!--                        <p>JPG, JPEG, PNG, 10MB 이하, 해상도 760x480 픽셀 이상</p>-->
+<!--                        <br>-->
+<!--                        <li>최대 10장까지 등록 가능</li>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <input type="file" id="file-input" name="projectImg" accept="image/*" multiple-->
+<!--                       onchange="handleFileSelect(this)">-->
+<!--                <div id="image-preview"></div>-->
 
 
 
@@ -121,13 +122,13 @@
                 <br><br>
 
                 <div class="category-text">프로젝트 요약<span class="greeting-text-star"> *</span></div>
-                <div class="category-sub-text">소개 영상이나 사진과 함께 보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.(영상 or 사진 중 택 1)</div>
+                <div class="category-sub-text">소개 영상이나 사진과 함께 보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.</div>
                 <br><br>
 
                 <div class="project-summary-container">
                     <div class="project-summary-textBox">
-                        <textarea id="project-summary-text" name="project-summary-text" placeholder="내용 입력"
-                                  oninput="updateCharacterCount()"></textarea>
+                        <textarea id="project-summary-text" name="summary" placeholder="내용 입력"
+                                  oninput="updateCharacterCount()" th:text="${project.summary}"></textarea>
                     </div>
                     <br>
                     <p id="characterCount">100자 남음</p>
@@ -149,7 +150,7 @@
                     >스토리 작성하기
                     </button>
                     <br><br><br><br><br><br>
-                    <a class="project-start" href="/view/projectMake/projectManage.html">제출하기</a>
+                    <button type="submit" class="project-start">저장하기</button>
                 </div>
 
 
