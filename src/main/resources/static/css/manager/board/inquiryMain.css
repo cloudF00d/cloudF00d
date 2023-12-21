@@ -286,6 +286,7 @@ th, td {
     border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
     padding: 20px; /* 셀 안의 여백 설정 */
     text-align: center; /* 셀 안의 텍스트를 왼쪽 정렬 */
+    cursor: pointer;
 }
 
 th {
