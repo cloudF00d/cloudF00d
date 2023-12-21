@@ -12,7 +12,7 @@
     width: 1300px;
     height: 100%;
     border-radius: 30px;
-    margin: 100px 0 100px 100px;
+    margin: 100px 0 150px 200px;
     padding: 100px;
     box-sizing: border-box;
 }
@@ -285,7 +285,7 @@ th, td {
     border-top: 1px solid #ddd; /* 상단에만 회색 선 추가 */
     border-bottom: 1px solid #ddd; /* 하단에만 회색 선 추가 */
     padding: 20px; /* 셀 안의 여백 설정 */
-    text-align: left; /* 셀 안의 텍스트를 왼쪽 정렬 */
+    text-align: center; /* 셀 안의 텍스트를 왼쪽 정렬 */
 }
 
 th {
@@ -307,7 +307,6 @@ td a{
 .left {
     flex-basis: 380px; /* 왼쪽 영역의 너비를 30%로 설정 */
     flex-shrink: 0;
-            /* 음영 효과 설정 */
     box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1);
 }
 
@@ -317,20 +316,15 @@ td a{
 
 .searchcontainer {
     display: flex;
-    justify-content: space-between; /* 좌우에 요소를 배치 */
-    /*width: 100%;*/
+    justify-content: space-between;
     margin-top: 40px;
-    /*align-items: baseline;*/
 }
 
 .searchright {
-     /* 우측 영역의 너비를 30%로 설정 */
-    display: flex; /* 내부 요소들을 가로로 배치 */
+    display: flex;
     justify-content: flex-end;
-     /* 내부 요소를 오른쪽으로 정렬 */
     align-items : center;
-     /* 내부 요소를 세로 방향 가운데 정렬 */
-    margin-left: auto; /* 오른쪽으로 이동시킴 */
+    margin-left: auto;
     
 }
 .searchleft1{
@@ -343,16 +337,8 @@ td a{
 .newWriting{
     margin-left: 300px;
     border:solid;
-
     border-radius: 5px;
     border-width: 1px;
-    
-    /* padding-inline-start: 10px; */
-    /* padding-inline-end: 10px; */
-
-
-
-
 }
 
 #newcolumn{
