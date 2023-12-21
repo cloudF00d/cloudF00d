@@ -93,21 +93,38 @@
                     }
 
                     function submitReview() {
+                        // 리뷰 폼과 데이터 가져오기
                         const formElement = document.getElementById('reviewForm');
                         const formData = new FormData(formElement);
 
-                        fetch('/endpoint-for-review-submission', { // 서버의 리뷰 처리 엔드포인트로 변경하세요.
+                        // 'no' 파라미터를 현재 URL에서 추출
+                        const queryParams = new URLSearchParams(window.location.search);
+                        const no = queryParams.get('no');
+
+                        // 'no' 파라미터를 formData에 추가
+                        formData.append('no', no);
+
+                        // 서버로 리뷰 데이터 전송
+                        fetch('/product/productPage', { // 서버의 리뷰 처리 엔드포인트로 변경하세요.
                             method: 'POST',
                             body: formData
                         })
+                            .then(response => {
+                                if(response.ok) {
+                                    // 서버가 리뷰를 성공적으로 처리했다면, 사용자를 리뷰가 포함된 페이지로 리디렉션
+                                    window.location.href = `/product/productPage?no=${no}`;
+                                } else {
+                                    throw new Error('Server responded with an error!');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error submitting review:', error);
+                            });
 
-                        document.getElementById('reviewForm').submit();
-                        window.location.href = '/productPage';
-                        // 여기에 리뷰 작성 완료 시 동작하는 로직 추가
-                        // 예: 작성된 리뷰를 서버에 전송하거나, 화면에 표시 등
-                        // ...
+                        // 기본 폼 제출 동작 방지
+                        event.preventDefault();
 
-                        // 작성이 완료되면 글쓰기 창 제거
+                        // 글쓰기 창 제거
                         const writingBox = document.querySelector('.writing-box');
                         writingBox.parentNode.removeChild(writingBox);
                     }
@@ -183,11 +200,11 @@
                             <!--                                    여기가 판매자 이름-->
                             <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
-                        <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
+                        <div class="businesscard-home">홈페이지:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.homepage}"></span></div>
                             <!--                                 홈페이지 주소 넣는 곳-->
-                            <div class="addr"></div>
-                        </div>
-                        <div class="business-sns">SNS <img src="/" alt=""></div>
+<!--                            <div class="addr"></div>-->
+
+                        <div class="business-sns">email:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.businessEmail}"></span></div>
                     </div>
                     <div class="report-con">
                         <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a th:href="@{/board/inquiryWrite}">신고하러가기  ></a></span></span>

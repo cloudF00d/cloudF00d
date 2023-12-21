@@ -122,15 +122,14 @@
                     <div class="businesscard-con">
                         <div class="businesscard">
                             <img th:src="@{|/imagePath/${profileImage.getChangedProFileName()}|}" alt="">
-<!--                                    여기가 판매자 이름-->
+                            <!--                                    여기가 판매자 이름-->
                             <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
-                        <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
-<!--                                 홈페이지 주소 넣는 곳-->
-                            <div class="addr"></div>
-                        </div>
-<!--                            여기엔 링크로 인스타 걸어 둬야 할듯-->
-                        <div class="business-sns">SNS <img src="/resources/images/insta.png" alt=""></div>
+                        <div class="businesscard-home">홈페이지:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.homepage}"></span></div>
+                        <!--                                 홈페이지 주소 넣는 곳-->
+                        <!--                            <div class="addr"></div>-->
+
+                        <div class="business-sns">email:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.businessEmail}"></span></div>
                     </div>
                     <div class="report-con">
                         <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a th:href="@{/board/inquiryWrite}">신고하러가기  ></a></span></span>
