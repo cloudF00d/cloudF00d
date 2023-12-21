@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.order.model.service;
 
 import com.ohgiraffers.semiproject.common.exception.cart.CartRegistException;
+import com.ohgiraffers.semiproject.order.model.dao.CartInsertMapper;
 import com.ohgiraffers.semiproject.order.model.dao.CartMapper;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
@@ -16,14 +17,16 @@ import java.util.Map;
 public class CartService {
 
     private final CartMapper Mapper;
+    private final CartInsertMapper cartInsertMapper;
 
-    public CartService(CartMapper mapper) {
+    public CartService(CartMapper mapper, CartInsertMapper cartInsertMapper) {
         this.Mapper = mapper;
+        this.cartInsertMapper = cartInsertMapper;
     }
 
-    public List<CartDTO> cart() {
+    public List<CartInsertDTO> cart(String userId) {
 
-        List<CartDTO> cart = Mapper.cartPage();
+        List<CartInsertDTO> cart = Mapper.cartPage(userId);
         System.out.println("cart = " + cart);
 
         return cart;
@@ -43,7 +46,7 @@ public class CartService {
 //        log.info("================================ selectOption " + selectedOption);
 //        log.info("===================================== session " + session);
 
-        int result = Mapper.addToCart(cart);
+        int result = cartInsertMapper.addToCart(cart);
 
 //        int result2 = Mapper.addToOption(session);
         if(!(result > 0)) {
@@ -56,7 +59,7 @@ public class CartService {
 
     public void insertCart(Map<String, Object> addToCart) {
 
-        int result = Mapper.insertCart(addToCart);
+        int result = cartInsertMapper.insertCart(addToCart);
 
         if (result > 0) {
             System.out.println("성공!");
