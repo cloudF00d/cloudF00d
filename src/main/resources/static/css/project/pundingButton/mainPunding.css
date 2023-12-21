@@ -46,3 +46,41 @@
 .first-container-title {
     margin-left: 19%;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-box {
+    display: flex;
+    align-items: center;
+}
+
+.page-links {
+    display: flex;
+    margin: 0 10px;
+}
+
+.page-link, .prev, .next {
+    padding: 5px 10px;
+    background: rgb(240, 240, 240);
+    margin: 0 3px;
+    text-decoration: none;
+    color: #b9b9b9;
+    border-radius: 5px;
+    border: none;
+}
+
+.page-link:hover, .prev:hover, .next:hover {
+    background-color: #F37B1F;
+    color: #fff;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #F37B1F; /* 클릭된 상태의 배경 색상 */
+    color: #fff; /* 클릭된 상태의 텍스트 색상 */
+}
