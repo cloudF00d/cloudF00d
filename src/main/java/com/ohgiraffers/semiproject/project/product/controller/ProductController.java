@@ -95,6 +95,7 @@ public class ProductController {
 
 
 
+
         log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
         mv.addObject("profileImage",profileImage);
