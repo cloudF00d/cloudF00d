@@ -115,7 +115,7 @@
                         <th>펀딩기간</th>
                         <th>달성여부</th>
                     </tr>
-                    <tr id="link"
+                    <tr id="link" class="link"
                         th:each=" projectlist : ${project}"
                         th:onclick="'location.href=\'/manager/revenue/detail?no='+ @{${projectlist.projectCode}} + '\''"
                     >
@@ -204,6 +204,35 @@
             <!-- 우측 컨텐츠 -->
         </div>
     </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
 
+        document.addEventListener('DOMContentLoaded', function () {
+            var rows = document.querySelectorAll('.link');
+
+            rows.forEach(function (row) {
+                var dateCell = row.querySelector('td:nth-child(5)');
+                var dateString = dateCell.textContent;
+
+                // DB에서 DATE 타입으로 저장된 경우
+                var parts = dateString.split('-');
+                var reportDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+                var currentDate = new Date();
+
+                // 일자 차이 계산
+                var timeDifference = currentDate - reportDate;
+                var daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+                // 신고일자가 7일 이내라면 해당 <td> 내의 내용을 비움
+                if (daysDifference >= 7) {
+                    var newCell = row.querySelector('td#new');
+                    newCell.innerHTML = '';  // 내용 비우기
+                }
+            });
+        });
+
+        /*]]>*/
+    </script>
 </th:block>
 </html>

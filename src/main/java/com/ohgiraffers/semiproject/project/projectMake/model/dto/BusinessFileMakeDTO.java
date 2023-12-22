@@ -16,4 +16,5 @@ public class BusinessFileMakeDTO {
     String fPath;
     Date dateCrea;
     String fType;
+    int businessCode;
 }

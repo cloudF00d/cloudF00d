@@ -62,7 +62,29 @@ public interface ProjectMakeMapper {
 
     ProjectDTO findProjectCode(int code);
 
-    int moveProjectFile(ProjectMakeFileDTO projectMakeFileDTO, int projectCode);
+
 
     int moveBusiness(BusinessMakeDTO businessMakeDTO);
+
+    int updateBusiness(BusinessMakeDTO businessMakeDTO);
+
+    BusinessDTO findBusinessCode(int code);
+
+
+
+    int deleteMakeProject(int code);
+
+    int deleteMakeProjectFile(int code);
+
+    int deleteBusinessMake(int code);
+
+    int deleteBusinessFileMake(int code);
+
+    int updateThumbnail(ProjectMakeFileDTO projectMakeFileDTO);
+
+    int insertTag(String str, int projectCode);
+
+    int moveProjectFile(ProjectMakeFileDTO a);
+
+    int moveBusinessFile(BusinessFileMakeDTO a);
 }

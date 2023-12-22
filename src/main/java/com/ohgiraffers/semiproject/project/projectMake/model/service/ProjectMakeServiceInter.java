@@ -59,4 +59,10 @@ public interface ProjectMakeServiceInter {
     List<ProjectMakeFileDTO> selectAllFileProject(int code);
 
     void moveBusiness(BusinessMakeDTO businessMakeDTO);
+
+    void updateBusiness(BusinessMakeDTO businessMakeDTO);
+
+    void moveBusinessFile(List<BusinessFileMakeDTO> businessFileMakeDTOS);
+
+    void updateThumbnail(ProjectMakeDTO projectMakeDTO) throws ThumbnailRegistException;
 }

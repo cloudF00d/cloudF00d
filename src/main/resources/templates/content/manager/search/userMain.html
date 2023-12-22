@@ -118,7 +118,7 @@
                 <table id="table">
 
                     <tr>
-                        <th id="newcolumn">새 글</th>
+                        <th id="newcolumn"></th>
                         <th>이름</th>
                         <th>아이디</th>
                         <th>비밀번호</th>
@@ -131,7 +131,7 @@
                         th:onclick="'location.href=\'/manager/search/userDetail?no='+ @{${search.userCode}} + '\''"
 
                     >
-                        <td id="new">new</td>
+                        <td id="new"></td>
                         <td th:text="${search.userName}"></td>
                         <td th:text="${search.userId}"></td>
                         <td th:text="${search.password}"></td>

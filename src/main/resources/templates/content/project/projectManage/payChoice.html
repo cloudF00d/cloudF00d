@@ -21,8 +21,9 @@
     <link rel="stylesheet" th:href="@{/css/project/projectMake-main/projectManage-main/payChoice/css.css}">
 
 
-    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-
+    <th:block th:if="${sidebar == 'yes'}">
+        <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+    </th:block>
     <form th:action="@{/projectMake/payChoice}" id="yourForm" method="post">
         <input
                 type="hidden"
@@ -33,7 +34,7 @@
         <section class="back-board-container">
 
             <!-- 배경 시트 좌측 상단 텍스트 -->
-            <div class="greeting-text">요금제 선택</div>
+            <div class="greeting-text">4단계 : 요금제 선택</div>
             <!-- 배경 시트 -->
             <div class="back-board">
                 <!-- 로고 -->
@@ -63,10 +64,30 @@
                         // 폼을 JavaScript로 제출
                         document.getElementById('yourForm').submit();
                     }
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var form = document.getElementById('yourForm');
+
+                        form.addEventListener('submit', function(event) {
+                            var typeRadios = document.querySelectorAll('input[name="plan"]'); // 라디오 버튼
+
+                            // 라디오 버튼이 선택되었는지 확인
+                            var typeSelected = Array.from(typeRadios).some(radio => radio.checked);
+
+
+                            if (!typeSelected || typeSelected === '') {
+                                alert('요금제를 선택해주세요.');
+                                event.preventDefault(); // 폼 제출을 취소합니다.
+                            }
+                            else {
+                                alert('저장되었습니다.')
+                            }
+
+                        });
+                    });
                 </script>
 
 
-                <button type="submit">저장하기</button>
+                <button type="submit">다음 단계로</button>
 
 
 <!--                <div class=pay-container>-->

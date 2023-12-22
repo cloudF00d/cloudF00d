@@ -85,6 +85,21 @@
         $("#uploadedImages").val(JSON.stringify(updatedValue));
     };
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('projectDecline');  // 폼 요소 가져오기
+
+        // 폼 제출 이벤트 리스너 추가
+        form.addEventListener('submit', function(event) {
+            // Summernote 에디터의 내용을 가져옵니다.
+            var summernoteContent = document.getElementById('summernote').value;
+
+            // Summernote 에디터의 내용이 비어 있는지 확인합니다.
+            if (!summernoteContent || summernoteContent === '')  {
+                event.preventDefault();  // 폼 제출 취소
+                alert('내용을 입력해주세요.');  // 사용자에게 알림 메시지 표시
+            }
+        });
+    });
 
 </script>
 

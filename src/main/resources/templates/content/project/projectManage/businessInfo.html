@@ -17,23 +17,24 @@
     <!-- 항상 변경 해야할 css 링크 -->
     <link rel="stylesheet" href="/css/project/projectMake-main/projectManage-main/projectInfo/css.css">
 
-    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-
-    <form th:action="@{/projectMake/businessInfo}" id="yourForm" method="post" enctype="multipart/form-data">
-
+    <th:block th:if="${sidebar == 'yes'}">
+        <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+    </th:block>
+    <form th:action="@{/projectMake/businessInfo}" id="yourForm" method="post">
 
         <input
                 type="hidden"
                 id="memberId"
-                name="sellerCode"
+                name="sellCode"
                 th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }"
         >
+
 
         <div class="back-side-container">
 
         <section class="back-board-container">
             <!-- 배경 시트 좌측 상단 텍스트 -->
-            <div class="greeting-text">회사 정보</div>
+            <div class="greeting-text">6단계 : 회사 정보</div>
             <!-- 배경 시트 -->
             <div class="back-board">
                 <!-- 로고 -->
@@ -46,7 +47,7 @@
                 <div class="owner-container">
                     <p>회사명을 적어주세요.</p>
                     <div class="ownerInfo">
-                        <input type="text" id="email" name="busiName">
+                        <input type="text" id="email" name="busiName" th:value="${business.busiName}">
                     </div>
                 </div>
 
@@ -54,7 +55,7 @@
                 <div class="owner-container">
                     <p>회사와 관련된 산업을 적어주세요.</p>
                     <div class="ownerInfo">
-                        <input type="text" id="email" name="indu">
+                        <input type="text" id="email" name="indu" th:value="${business.indu}">
                     </div>
                 </div> <!-- owner-container -->
 
@@ -62,7 +63,7 @@
                 <div class="owner-container">
                     <p>회사의 설립일을 입력해주세요.</p>
                     <div class="ownerInfo">
-                        <input type="date" id="email" name="estaDate">
+                        <input type="date" id="email" name="estaDate" th:value="${business.estaDate}">
                     </div>
                 </div> <!-- owner-container -->
 
@@ -70,31 +71,41 @@
                 <div class="owner-container">
                     <p>홈페이지 주소를 적어주세요. 선택사항이에요.</p>
                     <div class="ownerInfo">
-                        <input type="text" id="email" name="home">
+                        <input type="text" id="email" name="home" th:value="${business.home}">
                     </div>
                 </div>
 
-                <div class="category-text">위치<span class="greeting-text-star"> </span></div><br>
+                <div class="category-text">위치<span class="greeting-text-star"> *</span></div><br>
                 <div class="owner-container">
                     <p>회사가 어디에 위치해있나요?</p>
-                    <div class="ownerInfo">
-                        <input type="text" id="email" name="loca">
-                    </div>
+                <div>
+                    <label >우편번호</label><br>
+                    <input type="text" name="zipCode" id="zipCode" class="box2" readonly th:value="${zipCode}"> &nbsp;
+                    <input type="button" value="검색" class="searchZipCode1" id="searchZipCode">
                 </div>
+                <div>
+                    <label >주소</label><br>
+                    <input type="text" name="address1" id="address1" class="box1" readonly th:value="${address1}" >
+                </div>
+                <div>
+                    <label >상세주소</label><br>
+                    <input type="text" name="address2" id="address2" class="box1" th:value="${address2}">
+                </div>
+            </div>
 
                 <div class="category-text">회사 번호<span class="greeting-text-star"> </span></div><br>
                 <div class="owner-container">
-                    <p>구매자들이 문의할 수 있는 번호를 적어주세요.</p>
+                    <p>구매자들이 문의할 수 있는 번호를 적어주세요. 선택사항 이에요.</p>
                     <div class="ownerInfo">
-                        <input type="text" id="busiPhone" name="home">
+                        <input type="text" id="busiPhone" name="busiPhone" th:value="${business.busiPhone}">
                     </div>
                 </div>
 
-                <div class="category-text">사업자 번호<span class="greeting-text-star"> </span></div><br>
+                <div class="category-text">사업자 번호<span class="greeting-text-star"> *</span></div><br>
                 <div class="owner-container">
                     <p>사업자 등록증 번호를 적어주세요.</p>
                     <div class="ownerInfo">
-                        <input type="text" id="email" name="busiLicenseNumber">
+                        <input type="text" id="email" name="busiLicenseNumber" th:value="${business.busiLicenseNumber}">
                     </div>
                 </div>
 
@@ -107,6 +118,28 @@
                     function saveButton() {
                         alert("목표금액이 저장되었습니다.");
                     }
+                    document.getElementById('yourForm').addEventListener('submit', function(event) {
+                        // 모든 필드를 검사합니다.
+                        const busiName = document.getElementsByName('busiName')[0].value;
+                        const indu = document.getElementsByName('indu')[0].value;
+                        const estaDate = document.getElementsByName('estaDate')[0].value;
+                        const home = document.getElementsByName('home')[0].value;
+                        const zipCode = document.getElementsByName('zipCode')[0].value;
+                        const address1 = document.getElementsByName('address1')[0].value;
+                        const address2 = document.getElementsByName('address2')[0].value;
+                        const busiPhone = document.getElementsByName('busiPhone')[0].value;
+                        const busiLicenseNumber = document.getElementsByName('busiLicenseNumber')[0].value;
+
+                        // 값이 비어있는지 확인하고, 비어있는 필드가 있으면 알림을 표시하고 submit 동작을 중단합니다.
+                        if (!busiName || !indu || !estaDate || !zipCode || !address1 || !busiLicenseNumber) {
+                            alert('모든 필드를 입력해주세요.');
+                            event.preventDefault(); // submit 동작을 중단합니다.
+                        } else {
+                            alert('저장되었습니다.')
+                            // 모든 필드에 값이 제대로 입력되었으므로, 원래의 submit 동작을 계속합니다.
+                            // 추가로 필요한 작업이 있다면 이곳에 코드를 추가할 수 있습니다.
+                        }
+                    });
                 </script>
 
                 <br><br><br><br><br>
@@ -115,6 +148,25 @@
 
 
 
+            <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script th:inline="javascript">
+
+                const $searchZipCode = document.getElementById("searchZipCode");
+                const $goMain = document.getElementById("goMain");
+
+                $searchZipCode.onclick = function() {
+
+                    /* 다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다. */
+                    new daum.Postcode({
+                        oncomplete: function(data){
+                            /* 팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분 */
+                            document.getElementById("zipCode").value = data.zonecode;
+                            document.getElementById("address1").value = data.address;
+                            document.getElementById("address2").focus();
+                        }
+                    }).open();
+                }
+            </script>
 
 
     </section>
