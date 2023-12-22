@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="/css/deliver/deliverDetail.css">
 
 
-            <div class="middle_box">
+            <div class="middle_box" th:each="orderDetail : ${ totalDeliveryDTO2 }">
                 <div class="middle">
                     <div class="first">
                         <a class="black3-link" th:href="@{/deliver/usermain}" id="questionLink"> > </a>
                         <span>주문 상세정보</span>
                     </div>
 
-                    <div class="seller_info"><span>황황정육</span></div>
+                    <div class="seller_info"><span th:text="${orderDetail.getBusinessMakeDTO().getBusiName()}">황황정육</span></div>
                     <div class="ing_loca">
-                        <div class="ing"><a class="black-link" th:href="@{#}">전화번호 보기</a></div>
+<!--                        <div class="ing"><span class="black-link" th:text="${orderDetail[0].getBusinessMakeDTO().getBusiPhone()}"></span><a class="black-link" th:href="@{#}" th:text="${orderDetail[0].getBusinessMakeDTO().getBusiPhone()}">전화번호 보기</a></div>-->
                     </div>
                     <div class="ing_loca2">
                         <div class="ing"><a class="black-link" th:href="@{#}">QnA</a></div>
@@ -26,7 +26,7 @@
                     <div class="deliver_info">
                         <span>판매자에게 직접 연락하시면 빠른 확인이 가능합니다.</span><br>
                         <span>구매확정 이후 상품의 이용방법, 반품 등에 대한 문의는 판매자에게 문의해 주세요.</span><br>
-                        <a class="black2-link" th:href="@{#}" span style="color: orange;">판매자정보 확인하기 ></a>
+<!--                        <a class="black2-link" th:href="@{#}" span style="color: orange;">판매자정보 확인하기 ></a>-->
                     </div>
 
                     <div class="bar"></div>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="order_infoIme">
-                        <img src="/images/food/image_111.png" alt="로고" width="90">
+                        <img th:src="@{|/thumbPath/${orderDetail.projectFileDTO[0].changedFileName}|}" alt="로고" width="90">
                     </div>
                     <div class="order_info">
                         <a class="black3-link" span href="#">풍미가 좋은 드라이에이징 삼겹살</a><br><br>
@@ -44,7 +44,7 @@
                         <span style="font-size: 10px;">옵션: 프렌즈세트</span>
                     </div>
                     <div class="order_infopri">
-                        <span>65,000 won</span>
+                        <span th:text="${orderDetail.getPaymentDTO().getTotalAmount()}">65,000 won</span>
                     </div>
 
                     <div class="bar2"></div>
