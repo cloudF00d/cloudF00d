@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.project.product.controller;
 
 import com.ohgiraffers.semiproject.common.exception.project.StoryRegistException;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
@@ -43,7 +44,6 @@ public class ProductController {
     @GetMapping("productStory")
     public ModelAndView productStory(ModelAndView mv,
                                      @RequestParam Long no
-
                                                                 )  {
 
         log.info("");
@@ -55,7 +55,6 @@ public class ProductController {
 
         List<ProjectOptionDTO> projectOption = productService.optionList(no);
         List<ProjectFileDTO> projectFile = productService.projectimage(no);
-
 
 
 
@@ -91,6 +90,7 @@ public class ProductController {
 
         List<ProjectOptionDTO> projectOption = productService.optionList(no);
         List<ProjectFileDTO> projectFile = productService.projectimage(no);
+
 
 
 
