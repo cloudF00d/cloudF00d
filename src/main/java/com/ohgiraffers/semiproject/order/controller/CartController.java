@@ -1,21 +1,17 @@
 package com.ohgiraffers.semiproject.order.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.ohgiraffers.semiproject.common.exception.cart.CartRegistException;
-import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
-import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
+import com.ohgiraffers.semiproject.order.model.dto.ProjectDTO;
 import com.ohgiraffers.semiproject.order.model.service.CartService;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.util.List;
 
@@ -41,24 +37,28 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(
             Model model,
+            @ModelAttribute ProjectDTO projectTitle,
             Principal principal
             ) {
     String userId = principal.getName();
+
+    String title = projectTitle.getTitle();
         System.out.println(userId + "============================================================ userId");
 
         log.info("[OrderController] cartPage ================================== start");
         log.info("[OrderController] cartPage  ================================== {} ", userId);
 
 
-        List<CartInsertDTO> cartPage = cartService.cart(userId);
+        List<CartInsertDTO> cartPage = cartService.cart(userId,title );
+
+
         model.addAttribute("cart", cartPage);
 
-
-
-
-
         return "/content/order/cart";
+
     }
+
+
 
 
 
@@ -77,7 +77,7 @@ public class CartController {
 
         cartService.addToCart(selectedOption, session);
 //        try {
-//            ObjectMapper objectMapper = new ObjectMapper();
+//
 //
 //            // JSON 문자열을 Java 객체로 변환
 //            selectedOption = objectMapper.readValue(selectedOptionJson,ProjectOptionDTO.class);

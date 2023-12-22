@@ -161,8 +161,8 @@
 			/* 답변중 버튼 */
 			.ing{
 				/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-				width: 110px;
-				padding: 7px 10px ;
+				width: 80px;
+
 			
 				/* 배경색을 주황색으로 설정합니다. */
 				background-color: lightgray;
@@ -190,9 +190,8 @@
 			
 		.close{
 			/* 버튼의 높이와 너비를 조정하여 크게 만듭니다. */
-			width: 110px;
-			padding: 7px 7px ;
-			height: 20px;
+			width: 80px;
+
 		
 		
 			/* 배경색을 주황색으로 설정합니다. */

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -27,13 +28,19 @@ public class SellerManageController {
     @GetMapping("UserManage")
     public String sellerUserLocation(
             Model model,
-            @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) {
+            Principal principal,
+    @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) {
 
+        String userId = principal.getName();
+        int userCode = memberAndAuthorityDTO.getUserCode();
         log.info("[SellerManageUserManageController] UserManage ================================== start");
+        log.info("[SellerManageUserManageController] UserManage  ================================== {} ", userId);
         log.info("[SellerManageUserManageController] UserManage  ================================== {} ", memberAndAuthorityDTO);
+        log.info("[SellerManageUserManageController] UserManage  ================================== {} ", userCode);
 
 
-        List<SellerUserMangeDTO>sellerUser =  sellerUserService.sellerUser();
+
+        List<SellerUserMangeDTO>sellerUser =  sellerUserService.sellerUser(userId,userCode);
         model.addAttribute("sellerUser",sellerUser);
 
 

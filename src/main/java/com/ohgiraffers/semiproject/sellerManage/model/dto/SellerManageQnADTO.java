@@ -13,7 +13,6 @@ public class SellerManageQnADTO {
 
     private int creationNo;
 
-
     private int userCode;
 
     private String userId;

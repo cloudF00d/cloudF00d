@@ -47,6 +47,16 @@
 
 
 
+    <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
+        <id property="code" column="CART_CODE"/>
+        <result property="status" column="USAGE_STATUS"/>
+        <association property="memberCode" resultMap="MemberMap"/>
+        <association property="projectCode" resultMap="ProjectResultMap"/>
+        <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
+    </resultMap>
+
+
+
     <resultMap id="ProjectResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectDTO">
         <id property="code" column="PROJECT_CODE"/>
         <result property="title" column="PROJECT_TITLE"/>
@@ -109,30 +119,50 @@
 
     <select id="user1" resultMap="userResultMap">
         SELECT
-         A.USER_CODE,
-         A.USER_NAME,
-         A.ADDRESS,
-         A.EMAIL,
-         A.PHONE,
-         A.COUPON_STATUS,
-         C.PROJECT_TITLE,
-         D.OPTION_NAME,
-         D.PRICE,
-         D.OPTION_TYPE,
-         D.CONFIGURE
+        A.USER_CODE,
+        A.USER_NAME,
+        A.ADDRESS,
+        A.EMAIL,
+        A.PHONE,
+        A.COUPON_STATUS,
+        B.CART_CODE,
+        C.PROJECT_TITLE,
+        D.OPTION_NAME,
+        D.PRICE,
+        D.OPTION_TYPE,
+        D.CONFIGURE
 
 
         FROM tbl_user A
-                 JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
-                 JOIN  tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
-                 JOIN  tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
+        JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+        JOIN  tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
+        JOIN  tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
 
-        WHERE A.USER_ID =  #{ userId }
+        WHERE A.USER_ID = #{userId}
+          AND C.PROJECT_TITLE = #{title}
 
     </select>
 
 
+<!--    <insert id= >-->
+<!--        insert into tbl_payment-->
+<!--            (PAYMENT_CODE,-->
+<!--             TOTAL_AMOUNT,-->
+<!--             PAYMENT_METHOD,-->
+<!--             PAYMENT_DATE_TIME,-->
+<!--             DELIVERY_CODE,-->
+<!--             PAYMENT_STATUS-->
+<!--        )-->
+<!--        values (-->
+<!--                null,-->
+<!--                #{hdGunWon},-->
+<!--                '카카오결제',-->
+<!--                now(),-->
+<!--                #{deliverCode},-->
+<!--                default-->
+<!--               )-->
 
+<!--    </insert>-->
 
 
 

@@ -51,21 +51,6 @@
     
 
 
-    <select id="sellerProject" resultMap="sellerProjectManage">
-        SELECT
-            A.PROJECT_CODE,
-            A.PROJECT_TITLE,
-            A.PROJECT_START_DATE,
-            A.PROJECT_END_DATE,
-            A.TARGET_AMOUNT,
-            A.ACHIEVEMENT_STATUS,
-            A.SELLER_INFO,
-            A.PROGRESS_STATUS
-
-        FROM tbl_project A
-                 JOIN tbl_user B ON (A.SELLER_INFO = B.USER_CODE)
-        WHERE B.USER_CODE = 1
-    </select>
 
     <select id="sellerProjectDetail" resultMap="sellerProjectManage">
         SELECT
@@ -86,60 +71,51 @@
 
     </select>
 
-    
-   
-    
 
 
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+
+    <select id="sellerProject" resultMap="sellerProjectManage">
         SELECT
-        COUNT(*)
-        FROM TBL_PROJECT A
-        JOIN TBL_USER B ON (A.SELLER_INFO = B.USER_CODE)
+            A.PROJECT_CODE,
+            A.PROJECT_TITLE,
+            A.TARGET_AMOUNT,
+            A.ACHIEVEMENT_STATUS,
+            A.SELLER_INFO,
+            A.PROGRESS_STATUS,
+            A.PROJECT_END_DATE,
+            A.PROJECT_START_DATE
 
+        FROM tbl_project A
+                 JOIN tbl_user B ON (A.SELLER_INFO = B.USER_CODE)
+        WHERE B.USER_ID = #{userId}
 
-        <where>
-
-            <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == 'code'">
-                    AND A.PROJECT_CODE LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
-                <if test="nation3 == 'title'">
-                    AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
-                <if test="nation3 == 'seller'">
-                    AND B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
-                <if test="nation3 == 'submissionDate'">
-                    AND A.SUBMISSION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
-            </if>
-
-        </where>
     </select>
+
+
 
 
 
     <select id="sellerUser" resultMap="sellerUserResultMap">
         SELECT
-            A.USER_NAME,
-            A.PHONE,
-            A.ADDRESS,
-            D.PROJECT_TITLE,
-            G.OPTION_TYPE,
-            H.APPLICATION_DATE,
-            D.SELLER_INFO,
-            I.DELIVERY_DATE,
-            I.DELIVERY_STATUS
+            C.USER_NAME,
+            C.PHONE,
+            C.ADDRESS,
+            C.USER_ID,
+            B.PROJECT_TITLE,
+            B.SELLER_INFO,
+            D.OPTION_TYPE,
+            E.DELIVERY_DATE,
+            E.DELIVERY_STATUS,
+            G.APPLICATION_DATE
 
-        FROM tbl_user A
-            JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
-            JOIN tbl_payment_history E ON(B.CART_CODE = E.CART_CODE)
-            JOIN tbl_project D ON (B.PROJECT_CODE = D.PROJECT_CODE)
-            JOIN tbl_project_option G ON (D.PROJECT_CODE = G.PROJECT_CODE)
-            JOIN tbl_return_history H ON (H.PAYMENT_CODE = E.PAYMENT_CODE)
-            JOIN tbl_delivery I ON (A.USER_CODE = I.USER_CODE)
-        WHERE D.SELLER_INFO = 1
+        FROM tbl_cart A
+                 JOIN tbl_project B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+                 JOIN tbl_user C ON (A.USER_CODE = C.USER_CODE = B.SELLER_INFO )
+                 JOIN tbl_project_option D ON (A.OPTION_CODE = D.OPTION_CODE)
+                 JOIN tbl_delivery E ON (C.USER_CODE = E.USER_CODE)
+                 JOIN tbl_payment_history F ON(A.CART_CODE = F.CART_CODE)
+                 JOIN tbl_cancel_history G ON (F.PAYMENT_CODE = G.PAYMENT_CODE)
+        WHERE  B.SELLER_INFO = #{ userCode }
 
     </select>
 
@@ -150,14 +126,14 @@
             A.CREATION_DATE,
             A.TITLE,
             A.CONTENT,
-            B.USER_ID,
+            B.USER_CODE,
             C.ANSWER_CONTENT,
             C.ANSWER_DATE
 
         FROM tbl_qna_history A
-            JOIN tbl_user B ON(A.USER_CODE = B.USER_CODE)
+            JOIN tbl_user B ON(A.USER_CODE = B.USER_CODE = A.SELLER_CODE)
             JOIN tbl_qna_answer C ON(A.CREATION_NUMBER = C.CREATION_NUMBER)
-        WHERE A.SELLER_CODE = 1
+        WHERE A.SELLER_CODE = #{ userCode }
 
     </select>
 

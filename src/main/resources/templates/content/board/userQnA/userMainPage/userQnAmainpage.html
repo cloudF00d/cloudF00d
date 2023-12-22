@@ -47,7 +47,7 @@
 
             <div>
 
-                <table>
+                <table id="listArea">
 
                     <tr>
                         <th>작성번호</th>
@@ -58,62 +58,15 @@
                     </tr>
 
 
-
-                    <tr>
-                        <td>1</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a></td>
-                        <td>김민*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">명품 토종 옥광밤</a></td>
-                        <td>강다*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td ><p class="ing">답변중</p></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">무설탕 초콜릿</a></td>
-                        <td>서보*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">야마야 모츠 나베</a></td>
-                        <td>이준*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">설향 딸기</a></td>
-                        <td>이동*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">돼지 왕뼈탕</a></td>
-                        <td>이준*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">한우 투뿔 등심</a></td>
-                        <td>김민*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><a class="black-link" th:href="@{#}" id="questionLink">뜨끈한 밀푀유 나베</a></td>
-                        <td>서보*</td>
-                        <td>2023 / 11 / 16</td>
-                        <td><p class="close">답변완료</p></td>
+                  <tr th:each="QnA: ${QnAMainPage}" th:onclick="@{/QnA/userclose(no=${QnA.creationNo})}" >
+                        <td th:text="${QnA.creationNo}"></td>
+                        <td th:text="${QnA.title}"></td>
+                        <td th:text="${QnA.userId}"></td>
+                        <td th:text="${QnA.creation}"></td>
+                        <td>
+                            <button class="status"></button>
+                            <input type="hidden" class="Val" th:value="${QnA.answerDay}"></input>
+                        </td>
                     </tr>
 
                 </table>
@@ -136,9 +89,41 @@
     </div>
 
 
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const answerStatusValElements = document.querySelectorAll('.Val');
+            const answerStatusElements = document.querySelectorAll('.status');
+
+            answerStatusElements.forEach(function (statusElement, index) {
+                const valElement = answerStatusValElements[index];
+                if (valElement.value.trim() !== '') {
+                    statusElement.textContent = '답변완료';
+                    statusElement.classList.add('close');
+                }else {
+                    statusElement.textContent = '답변하기';
+                    statusElement.classList.add('ing');
+                }
+            });
+        });
 
 
 
+        document.addEventListener("DOMContentLoaded", function() {
+            if (document.querySelectorAll("#listArea td")) {
+                const $tds = document.querySelectorAll("#listArea td");
+                for (let i = 0; i < $tds.length; i++) {
+                    $tds[i].onclick = function() {
+                        const no = this.parentNode.children[0].innerText;
+                        location.href = "/QnA/userclose?creationNo=" + no;
+
+                    }
+                }
+            }
+        });
+
+
+    </script>
 
 
 </th:block>

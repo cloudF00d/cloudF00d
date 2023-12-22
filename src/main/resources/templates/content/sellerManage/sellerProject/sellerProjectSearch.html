@@ -20,33 +20,39 @@
                 <div>
                     <img class="logo1" src="/images/01_logoimg/textLogoNone.png"  width="150px" height="150px" >
                 </div>
-            
-                <div class="searchProject"></div>
-                <div class="searchright">
-                    <form th:action="@{/sellerManage/Project}" method="get">
+                <form th:action="@{/sellerManage/Project}" method="get">
 
+
+                    <div class="searchcontainer">
+                        <!--                왼쪽 select 박스-->
+
+
+
+
+                        <div class="searchProject"></div>
+                <div class="searchright">
                         <button class="iconlogo" type="submit" style="width: 20px; height: 20px; border: none; background: url('/images/04_etc/magnifying glass.png') center center / cover no-repeat; padding: 0;"></button>
-                        <input type="text" name="searchValue" id="searchValue">
-                        
+                    <input type="text" name="searchValue" id="searchValue" >
                         <select name="nation3" id="nation3">
                             <option selected>검색설정</option>
-                            <option value="pr">프로젝트명</option>
-                            <option value="ti" >기간</option>
+                            <option value="code">코드</option>
+                            <option value="title">프로젝트명</option>
+                            <option value="date" >기간</option>
                             <option value="tat" >목표금액</option>
                             <option value="ach">달성여부</option>
                         </select>
 
-                    </form>
                 </div>
-            
+                </div>
 
+                </form>
             <div>
 
                 <div class="table-area">
                     <table>
 
                         <tr>
-                            <th>번호</th>
+                            <th>코드</th>
                             <th>프로젝트명</th>
                             <th>기간</th>
                             <th>달성금액</th>
@@ -55,7 +61,7 @@
                         </tr>
 
                         <tr th:each= "project : ${ Project }">
-                            <td class="number" ></td>
+                            <td th:text="${project.code}" ></td>
                             <td th:text="${project.projectTitle}"></td>
                             <td th:text="${project.start + ' ~ ' + project.end}"></td>
                             <td class="amount" th:text="${project.amount}"></td>
@@ -68,14 +74,7 @@
 
 <!--                페이지 처리-->
 
-                <div class="pagination">
-                    <div class="pagination-box">
-                        <!-- 이전 페이지 버튼 -->
 
-
-
-                    </div>
-                </div>
             </div>
         </div>
     
@@ -83,12 +82,6 @@
 
     <script>
 
-        $(document).ready(function () {
-            var rows = document.querySelectorAll('.number');
-            for (var i = 0; i < rows.length; i++) {
-                rows[i].innerText = i + 1;
-            }
-        });
 
 
         //진행상태 조건문

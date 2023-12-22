@@ -6,6 +6,7 @@ import com.ohgiraffers.semiproject.order.model.dao.PaymentMapper;
 
 import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,20 +24,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
-//    결제 페이지
-
-
-
-    public List<UserDTO>  paymentPage() throws PaymentPageException {
-        List<UserDTO> paymentPage = mapper.user1();
-
-        if((paymentPage == null)){
-            throw new PaymentPageException("결제 실패 하였습니다");
-        }
-        System.out.println("paymentPage = " + paymentPage);
-
+    public List<UserDTO>  paymentPage(String userId, String title) {
+        List<UserDTO> paymentPage = mapper.user1(userId, title);
         return paymentPage;
     }
+
+
 
 
     //    결제 취소

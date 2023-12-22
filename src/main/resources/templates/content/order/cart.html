@@ -53,8 +53,8 @@
                             <img src="/images/minicon/로고1.PNG" alt="">
                         </div>
                         <div class="nameAndCount">
-                            <div class="projectTitle" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
-                            <input type="hidden" class="name1" name="projectTitle" th:value="${cart.projectTitle[0]}"></input>
+                            <div class="projectTitle" name="projectTitle" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
+                            <input type="hidden" class="name1" th:value="${cart.projectTitle[0]}"></input>
                             <input type="hidden" id="hdProject" name="hdProject" value="${cart.projectTitle[0]}"></input>
                             <div class="name2" th:text="${cart.optionType}"></div>
 
@@ -72,7 +72,7 @@
                             <input type="hidden" class="price" id="price" th:value="${cart.price}"></input>
                         </div>
                         <div class="trash-con">
-                            <button class="trash-btn" onclick="removeRow(this)">
+                            <button class="trash-btn" onclick="removeRow(this)" >
                                 <img src="/images/minicon/trashicon.png" alt="" width="20px">
                             </button>
                         </div>

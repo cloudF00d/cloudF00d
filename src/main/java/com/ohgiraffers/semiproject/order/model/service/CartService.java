@@ -3,7 +3,6 @@ package com.ohgiraffers.semiproject.order.model.service;
 import com.ohgiraffers.semiproject.common.exception.cart.CartRegistException;
 import com.ohgiraffers.semiproject.order.model.dao.CartMapper;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
-import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import jakarta.servlet.http.HttpSession;
@@ -23,13 +22,14 @@ public class CartService {
         Mapper = mapper;
     }
 
-    public List<CartInsertDTO> cart(String userId) {
+    public List<CartInsertDTO> cart(String userId, String title) {
 
-        List<CartInsertDTO> cart = Mapper.cartPage(userId);
+        List<CartInsertDTO> cart = Mapper.cartPage(userId, title);
         System.out.println("cart = " + cart);
 
         return cart;
     }
+
 
 
     public void addToCart(ProjectOptionDTO selectedOption, HttpSession session) throws CartRegistException {
@@ -49,4 +49,7 @@ public class CartService {
 
         session.setAttribute("cart", cart);
     }
+
+
+
 }
