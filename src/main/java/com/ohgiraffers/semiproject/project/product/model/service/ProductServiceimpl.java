@@ -1,14 +1,12 @@
 package com.ohgiraffers.semiproject.project.product.model.service;
 
 import com.ohgiraffers.semiproject.project.product.model.dao.ProjectDetailMapper;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
+import com.ohgiraffers.semiproject.project.product.model.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -46,5 +44,20 @@ public class ProductServiceimpl implements ProductService {
     @Override
     public ProfileImageDTO profileimage(Long no) {
         return mapper.profileimage(no);
+    }
+
+    @Override
+    public void addReview(ProductReviewDTO review) {
+        int result = mapper.addReview(review);
+
+        if (result > 0) {
+            System.out.println("성공!");
+        }
+
+    }
+
+    @Override
+    public ProfileImageDTO getProfileImage(int userCode) {
+        return mapper.getProfileImage(userCode);
     }
 }

@@ -1,11 +1,9 @@
 package com.ohgiraffers.semiproject.project.product.model.service;
 
-import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
+import com.ohgiraffers.semiproject.project.product.model.dto.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
     TotalStoryDTO totalStoryList(Long no);
@@ -15,6 +13,12 @@ public interface ProductService {
     List<ProjectFileDTO> projectimage(Long no);
 
     ProfileImageDTO profileimage(Long no);
+
+    void addReview(ProductReviewDTO review);
+
+    ProfileImageDTO getProfileImage(int userCode);
+
+//    void addReview(Map<String, Object> productReview);
 
 //    static List<ProDTO> selectAllproductStoryList() { 왜 스테틱?
 }

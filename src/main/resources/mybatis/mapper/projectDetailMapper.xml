@@ -148,5 +148,28 @@
         A.PROJECT_CODE = #{no};
 </select>
 
+    <insert id="addReview" parameterType="com.ohgiraffers.semiproject.project.product.model.dto.ProductReviewDTO">
+        insert into tbl_product_review
+        (
+            user_code,
+            profile_image,
+            product_content
+        ) values (
+                     #{userCode},
+                     #{profileImage},
+                     #{reviewContent}
+                 )
+    </insert>
+
+    <select id="getProfileImage" parameterType="int" resultType="com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO">
+        SELECT file_code, original_file_name,
+               path,
+               changed_pro_file_name,
+               delete_status,
+               creation_date,
+               user_code
+        FROM tbl_profile_image
+        WHERE user_code = #{userCode}
+    </select>
 
 </mapper>

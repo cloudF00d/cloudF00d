@@ -7,8 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    @Value("${img.macurl}") /* MAC용 이미지 출력 url */
-    private String macPath; /* MAC용 이미지 출력 변수 */
+//    @Value("${img.macurl}") /* MAC용 이미지 출력 url */
+//    private String macPath; /* MAC용 이미지 출력 변수 */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -26,16 +26,16 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:///C:/uploadfile/profileimg/");
 
 
-        /* MAC용 이미지 출력 */
-
-        // 이미지 불러오기 세팅
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:///" + macPath);
-        // 프로젝트 스토리 첫번째 들어갈 사진 경로
-        registry.addResourceHandler("/thumbPath/**")
-                .addResourceLocations("file:///" + macPath);
-        // 판매자 사진 경로
-        registry.addResourceHandler("/imagePath/**")
-                .addResourceLocations("file:///" + macPath);
+//        /* MAC용 이미지 출력 */
+//
+//        // 이미지 불러오기 세팅
+//        registry.addResourceHandler("/upload/**")
+//                .addResourceLocations("file:///" + macPath);
+//        // 프로젝트 스토리 첫번째 들어갈 사진 경로
+//        registry.addResourceHandler("/thumbPath/**")
+//                .addResourceLocations("file:///" + macPath);
+//        // 판매자 사진 경로
+//        registry.addResourceHandler("/imagePath/**")
+//                .addResourceLocations("file:///" + macPath);
     }
 }

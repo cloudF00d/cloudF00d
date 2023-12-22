@@ -28,22 +28,25 @@
 
 
                 <div class="left">
-                    <button class="writing" onclick="createWritingBox()">글쓰기</button>
+                    <button class="writing" name="createBox" onclick="createWritingBox()">글쓰기</button>
 
-                    <!-- 추가된 부분 -->
-                    <form class="writing-box" id="reviewForm" th:action="@{/productPage}"  method="post"  style="display: none;">
-                        <textarea name="riviewContent" rows="4" cols="50" placeholder="리뷰를 작성하세요..."></textarea>
-<!--                        <input type="hidden" id="userId" name="userId" th:value="${thumbnailList.projectUserDTO.userId}" />-->
-                        <button type="submit" onclick="submitReview()" form="reviewForm">작성 완료</button>
+                    <!-- 리뷰 폼 -->
+                    <form class="writing-box" id="reviewForm" th:action="@{/productPage}" method="post" style="display: none;">
+                        <textarea id="reviewContent" name="reviewContent" rows="4" cols="50" placeholder="리뷰를 작성하세요..."></textarea>
+                        <input type="hidden" id="projectCode1" name="projectCode" th:value="${thumbnailList.projectDTO.projectCode}" />
+                        <button type="button" onclick="submitReview()">작성 완료</button>
                     </form>
 
                     <div class="review-box" >
                         <div class="img">
-<!--                            <img src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="">-->
+<!--                            <img th:src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="Profile Image">-->
 <!--                            <div class="img-right" th:text="${thumbnailList.projectUserDTO.userId}"></div>-->
+
+<!--                            <img src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="">-->
                         </div>
                         <div class="comment-box">
-                            <div style="margin: 15px;">
+                            <div style="margin: 15px;" >
+
 <!--                                여기가 텍스트 내용-->
                             </div>
                         </div>
@@ -83,7 +86,7 @@
 
                         // 글쓰기 창 내부 HTML 구조
                         writingBox.innerHTML = `
-                            <textarea rows="4" cols="50" placeholder="솔직한 후기를 남겨보세요 !!..."></textarea>
+                            <textarea id="reviewContent" name="reviewContent" rows="4" cols="50" placeholder="솔직한 후기를 남겨보세요 !!..."></textarea>
                             <button onclick="submitReview()">작성 완료</button>
                         `;
 
@@ -93,9 +96,30 @@
                     }
 
                     function submitReview() {
+                        //함수가 호출되나 확인
+                        console.log("submitReview 함수가 호출되었습니다.");
                         // 리뷰 폼과 데이터 가져오기
                         const formElement = document.getElementById('reviewForm');
                         const formData = new FormData(formElement);
+
+                        // 프로젝트 코드를 현재 설정된 값에서 가져옵니다.
+                        const projectCode = document.getElementById('projectCode1').value;
+                        console.log("전송되는 프로젝트 코드: " + projectCode); // 콘솔에 프로젝트 코드를 출력하여 확인합니다.
+
+                        const reviewContent = document.getElementById('reviewContent').value;
+                        // console.log(document.querySelector('textarea[name="reviewContent"]').value)//콘솔에 후기를 가져오나 확인
+                        console.log("textarea에서 추출된 리뷰 내용: ", reviewContent);
+
+
+                        // FormData 객체 내용 확인
+                        console.log("FormData 내용 확인:");
+                        for (let [key, value] of formData.entries()) {
+                            console.log(key, value);
+                        }
+
+                        // 'projectCode' 파라미터를 formData에 추가
+                        formData.append('projectCode', projectCode);
+                        formData.append('reviewContent', reviewContent);
 
                         // 'no' 파라미터를 현재 URL에서 추출
                         const queryParams = new URLSearchParams(window.location.search);
@@ -103,7 +127,7 @@
 
                         // 'no' 파라미터를 formData에 추가
                         formData.append('no', no);
-
+                        formData.append('reviewContent', document.querySelector('textarea[name="reviewContent"]').value);
                         // 서버로 리뷰 데이터 전송
                         fetch('/product/productPage', { // 서버의 리뷰 처리 엔드포인트로 변경하세요.
                             method: 'POST',
@@ -111,6 +135,7 @@
                         })
                             .then(response => {
                                 if(response.ok) {
+                                    // alert("리뷰프로젝트코드전송성공")
                                     // 서버가 리뷰를 성공적으로 처리했다면, 사용자를 리뷰가 포함된 페이지로 리디렉션
                                     window.location.href = `/product/productPage?no=${no}`;
                                 } else {
