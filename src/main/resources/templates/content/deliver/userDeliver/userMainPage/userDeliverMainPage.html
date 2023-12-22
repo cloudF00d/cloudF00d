@@ -15,6 +15,7 @@
          
         <div class="middle_box">
                 <div class="middle">
+
                         <div class="first">
                             <span>배송현황</span>
                         </div>
@@ -57,97 +58,31 @@
 
 
 
-                            <tr>
                                 <form action="" method="post">
+                            <tr th:each="delivery, stat : ${ totalDeliveryDTO }">
 
-                                <td>1</td>
+                                <td th:text="${stat.index + 1}">1</td>
                                 <td>
-                                    <img class="food" src= "/images/food/image_111.png">
+                                    <img class="food" th:src="@{|/thumbPath/${delivery.getProjectFileDTO().getChangedFileName()}|}">
 
-                                    <a class="black-link" th:href="@{/deliver/userdetail}" id="questionLink">풍미가 좋은 드라이에이징 삼겹살</a>
+                                    <a  class="black-link" th:href="@{/deliver/userdetail}" th:text="${delivery.getProjectDTO().getProjectTitle()}"></a>
                                 </td>
-                                <td>2023 / 11 / 20</td>
-                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
-                                <td><span class="close">구매확정완료</span></td>
-                                <td><p class="close">배송완료</p></td>
-                                </form>
+                                <td th:text="${#dates.format(delivery.getPaymentDTO().getPaymentDateTime(), 'yyyy / MM / dd')}">2023 / 11 / 20</td>
+
+
+
+                                <td><p><button class="ing2" type="submit" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'Y'}" th:text="접수중">반품하기</button></p></td>
+                                <td><p><button class="ing2" type="submit" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'N'}" th:text="반품하기">반품하기</button></p></td>
+                                <td><span class="close" th:if="${delivery.getDeliveryDTO().getPurchaseConfirm() == 'N'}" th:text="구매확정하기" >구매확정완료</span></td>
+                                <td><span class="close" th:if="${delivery.getDeliveryDTO().getPurchaseConfirm() == 'Y'}" th:text="구매확정완료" >구매확정</span></td>
+                                <td><p class="close" th:if="${delivery.getDeliveryDTO().getDeliveryStatus() == 'N'}" th:text="배송중">배송완료</p></td>
+                                <td><p class="close" th:if="${delivery.getDeliveryDTO().getDeliveryStatus() == 'Y'}" th:text="배송완료">배송완료</p></td>
 
                             </tr>
-
-
-                            <tr>
-                                <form action="" method="post">
-                                <td>2</td>
-                                <td>
-                                    <img class="food" src="/images/food/image_112.png">
-                                    <a class="black-link" th:href="@{#}" id="questionLink">명품 토종 옥광밤</a>
-                                </td>
-                                <td>2023 / 11 / 16</td>
-                                <td><p class="close">접수중</p></td>
-                                <td><p><button class="ing1" type="submit">구매확정하기</button></p></td>
-                                <td><p class="close" >배송중</p></td>
                                 </form>
 
-                            </tr>
 
 
-                            <tr>
-                                <form action="" method="post">
-                                <td>3</td>
-                                <td>
-                                    <img class="food" src="/images/food/image_113.png">
-                                    <a class="black-link" th:href="@{#}" id="questionLink">무설탕 초콜릿</a>
-                                </td>
-                                <td>2023 / 11 / 16</td>
-                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
-                                <td><span class="close">구매확정완료</span></td>
-                                <td><p class="close">배송완료</p></td>
-                                </form>
-                            </tr>
-
-
-                            <tr>
-                                <form action="" method="post">
-                                <td>4</td>
-                                <td>
-                                    <img class="food" src="/images/food/image_114.png">
-                                    <a class="black-link" th:href="@{#}" id="questionLink">야마야 모츠 나베</a>
-                                </td>
-                                <td>2023 / 11 / 16</td>
-                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
-                                <td><span class="close">구매확정완료</span></td>
-                                <td><p class="close">배송완료</p></td>
-                                </form>
-                            </tr>
-
-                            <tr>
-                                <form action="" method="post">
-                                <td>5</td>
-                                <td>
-                                    <img class="food" src="/images/food/image_115.png">
-                                    <a class="black-link" th:href="@{#}" id="questionLink">설향 딸기</a>
-                                </td>
-                                <td>2023 / 11 / 16</td>
-                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
-                                <td><span class="close">구매확정완료</span></td>
-                                <td><p class="close">배송완료</p></td>
-                                </form>
-                            </tr>
-
-
-                            <tr>
-                                <form action="" method="post">
-                                <td>6</td>
-                                <td>
-                                    <img class="food" src="/images/food/image_116.png">
-                                    <a class="black-link" th:href="@{#}" id="questionLink">돼지 왕뼈탕</a>
-                                </td>
-                                <td>2023 / 11 / 16</td>
-                                <td><p><button class="ing2" type="submit">반품하기</button></p></td>
-                                <td><span class="close">구매확정완료</span></td>
-                                <td><p class="close">배송완료</p></td>
-                                </form>
-                            </tr>
 
 
                         </table>
