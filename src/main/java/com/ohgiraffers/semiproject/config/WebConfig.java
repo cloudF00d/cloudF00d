@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    @Value("${img.macurl}") /* MAC용 이미지 출력 url */
+    private String macPath; /* MAC용 이미지 출력 변수 */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -23,35 +25,17 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/imagePath/**")
                 .addResourceLocations("file:///C:/uploadfile/profileimg/");
 
-    }
 
-//    @Value("${img.macurl}")
-//    private String macPath;
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations("classpath:/templates/", "classpath:/static/");
-//
-//        // 이미지 불러올 수 있도록 세팅
-//        registry.addResourceHandler("/upload/**")
-//                .addResourceLocations("file:///C:/uploadfile/storyimg/");
-////        MAC
-////        registry.addResourceHandler("/upload/**")
-////                .addResourceLocations("file:///" + macPath);
-//        // 프로젝트 스토리 첫번째 들어갈 사진 경로
-//        registry.addResourceHandler("/thumbPath/**")
-//                .addResourceLocations("file:///C:/uploadfile/Representative_image/");
-////        MAC
-////        registry.addResourceHandler("/thumbPath/**")
-////                .addResourceLocations("file:///" + macPath);
-//
-////        System.out.println("macPath ===================== " + macPath);
-//        // 이게 판매자 사진 경로
-//        registry.addResourceHandler("/imagePath/**")
-//                .addResourceLocations("file:///C:/uploadfile/profileimg/");
-////        MAC.
-////        registry.addResourceHandler("/imagePath/**")
-////                .addResourceLocations("file:///" + macPath);
-//    }
+        /* MAC용 이미지 출력 */
+
+        // 이미지 불러오기 세팅
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:///" + macPath);
+        // 프로젝트 스토리 첫번째 들어갈 사진 경로
+        registry.addResourceHandler("/thumbPath/**")
+                .addResourceLocations("file:///" + macPath);
+        // 판매자 사진 경로
+        registry.addResourceHandler("/imagePath/**")
+                .addResourceLocations("file:///" + macPath);
+    }
 }

@@ -31,55 +31,20 @@
                     <button class="writing" onclick="createWritingBox()">글쓰기</button>
 
                     <!-- 추가된 부분 -->
-                    <div class="writing-box" style="display: none;">
-                        <textarea rows="4" cols="50" placeholder="리뷰를 작성하세요..."></textarea>
-                        <button onclick="submitReview()">작성 완료</button>
-                    </div>
+                    <form class="writing-box" id="reviewForm" th:action="@{/productPage}"  method="post"  style="display: none;">
+                        <textarea name="riviewContent" rows="4" cols="50" placeholder="리뷰를 작성하세요..."></textarea>
+<!--                        <input type="hidden" id="userId" name="userId" th:value="${thumbnailList.projectUserDTO.userId}" />-->
+                        <button type="submit" onclick="submitReview()" form="reviewForm">작성 완료</button>
+                    </form>
 
-                    <div class="review-box">
+                    <div class="review-box" >
                         <div class="img">
-                            <img src="/images/minicon/foodbox.png" alt="">
-                            <div class="img-right">김민하</div>
+<!--                            <img src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="">-->
+<!--                            <div class="img-right" th:text="${thumbnailList.projectUserDTO.userId}"></div>-->
                         </div>
                         <div class="comment-box">
-                            <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
-                                클라우드 푸딩에서 만나서 너무너무 반갑네요!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-box">
-                        <div class="img">
-                            <img src="/images/minicon/checkbtn.PNG" alt="">
-                            <div class="img-right">김인하</div>
-                        </div>
-                        <div class="comment-box">
-                            <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
-                                클라우드 푸딩에서 만나서 너무너무 반갑네요!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-box">
-                        <div class="img">
-                            <img src="/images/minicon/insta.png" alt="">
-                            <div class="img-right">김이나</div>
-                        </div>
-                        <div class="comment-box">
-                            <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
-                                클라우드 푸딩에서 만나서 너무너무 반갑네요!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-box">
-                        <div class="img">
-                            <img src="/images/minicon/checkbtn.PNG" alt="">
-                            <div class="img-right">김인하</div>
-                        </div>
-                        <div class="comment-box">
-                            <div style="margin: 15px;">김천 여행하다 먹어봤는데 아주 이색적이고 맛있었어요! 카페에서 파는 자두에이드도 맛있었는데,
-                                클라우드 푸딩에서 만나서 너무너무 반갑네요!
+                            <div style="margin: 15px;">
+<!--                                여기가 텍스트 내용-->
                             </div>
                         </div>
                     </div>
@@ -118,7 +83,7 @@
 
                         // 글쓰기 창 내부 HTML 구조
                         writingBox.innerHTML = `
-                            <textarea rows="4" cols="50" placeholder="리뷰를 작성하세요..."></textarea>
+                            <textarea rows="4" cols="50" placeholder="솔직한 후기를 남겨보세요 !!..."></textarea>
                             <button onclick="submitReview()">작성 완료</button>
                         `;
 
@@ -128,11 +93,38 @@
                     }
 
                     function submitReview() {
-                        // 여기에 리뷰 작성 완료 시 동작하는 로직 추가
-                        // 예: 작성된 리뷰를 서버에 전송하거나, 화면에 표시 등
-                        // ...
+                        // 리뷰 폼과 데이터 가져오기
+                        const formElement = document.getElementById('reviewForm');
+                        const formData = new FormData(formElement);
 
-                        // 작성이 완료되면 글쓰기 창 제거
+                        // 'no' 파라미터를 현재 URL에서 추출
+                        const queryParams = new URLSearchParams(window.location.search);
+                        const no = queryParams.get('no');
+
+                        // 'no' 파라미터를 formData에 추가
+                        formData.append('no', no);
+
+                        // 서버로 리뷰 데이터 전송
+                        fetch('/product/productPage', { // 서버의 리뷰 처리 엔드포인트로 변경하세요.
+                            method: 'POST',
+                            body: formData
+                        })
+                            .then(response => {
+                                if(response.ok) {
+                                    // 서버가 리뷰를 성공적으로 처리했다면, 사용자를 리뷰가 포함된 페이지로 리디렉션
+                                    window.location.href = `/product/productPage?no=${no}`;
+                                } else {
+                                    throw new Error('Server responded with an error!');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error submitting review:', error);
+                            });
+
+                        // 기본 폼 제출 동작 방지
+                        event.preventDefault();
+
+                        // 글쓰기 창 제거
                         const writingBox = document.querySelector('.writing-box');
                         writingBox.parentNode.removeChild(writingBox);
                     }
@@ -208,11 +200,11 @@
                             <!--                                    여기가 판매자 이름-->
                             <div class="businesscard-right" th:text="${thumbnailList.privateBusinessDTO.businessName}"></div>
                         </div>
-                        <div class="businesscard-home" th:text="${thumbnailList.privateBusinessDTO.homepage}">홈페이지
+                        <div class="businesscard-home">홈페이지:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.homepage}"></span></div>
                             <!--                                 홈페이지 주소 넣는 곳-->
-                            <div class="addr"></div>
-                        </div>
-                        <div class="business-sns">SNS <img src="/" alt=""></div>
+<!--                            <div class="addr"></div>-->
+
+                        <div class="business-sns">email:&nbsp;&nbsp;<span th:text="${thumbnailList.privateBusinessDTO.businessEmail}"></span></div>
                     </div>
                     <div class="report-con">
                         <span>프로젝트에 문제가 있나요?<span style="margin-left: 360px;"><a th:href="@{/board/inquiryWrite}">신고하러가기  ></a></span></span>
@@ -223,10 +215,17 @@
                     <!-- 스크롤바 -->
                     <div class="scroll-container">
                         <!-- 상품선택하는 곳 -->
-                        <form id="optionForm" action="@{/order/buypage}" method="post">
+                        <form id="optionForm" th:action="@{/order/cart}" method="post">
                             <div class="select-con">
 
-                                <div class="select-a" th:each="option, iterStat : ${projectOption}" th:id="'option-' + ${iterStat.index}" onclick="selectOption(this, ${iterStat.index})">
+                                <div class="select-a"   th:each="option, iterStat : ${projectOption}"
+                                     th:id="'option-' + ${iterStat.index}"
+                                     onclick="selectOption(this, ${iterStat.index})"
+                                     th:data-project-code="${option.projectCode}"
+                                     th:data-option-type="${option.optionType}"
+                                     th:data-option-code="${option.optionCode}"
+
+                                >
                                     <div class="product-0">
                                         <!--                                        가격-->
                                         <div class="productprice-1">
@@ -234,7 +233,7 @@
                                         </div>
                                         <div class="product-1">
                                             <div th:text="${option.optionName}"></div>
-                                            <!--                                            옵션 이름-->
+                                            <!--                                            옵션 이름ㅇ-->
 
                                         </div>
                                     </div>
@@ -265,11 +264,21 @@
                                         <div>제한 수량</div>
                                         <div style="font-weight: bold;">50개</div>
                                     </div>
-                                    <input type="hidden" id="selectedOption" name="selectedOption" value="" />
+
+
                                 </div>
 
 
                             </div>
+                            <input type="hidden" id="selectedOptionIndex" name="selectedOptionIndex" value="" />
+                            <input type="hidden" id="projectCode" name="projectCode" th:value="${thumbnailList.projectOptionDTO.projectCode}" />
+                            <input type="hidden" id="optionType" name="optionType" th:value="${thumbnailList.projectOptionDTO.optionType}" />
+                            <input type="hidden" id="optionCode" name="optionCode" th:value="${thumbnailList.projectOptionDTO.optionCode}" />
+
+                            <!--                       카트컨트롤러의     @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO 로 맴버코드(usercode가져오는것 생략)-->
+                            <!--                        <input type="hidden" id="memberCode" name="memberCode" th:value="${thumbnailList.projectUserDTO.userCode}" />-->
+
+
                         </form>
                         <br>
                     </div>
@@ -278,9 +287,7 @@
                         <button class="goodbtn">
                             <div onclick="like('button1')" class="like-button" id="button1">&#10084;</div>
                             <span id="likeCount">0</span></button>
-                        <a th:href="@{/order/buypage}">
-                            <button class="buybtn">예약 구매하기</button>
-                        </a>
+                        <button class="buybtn" form="optionForm" type="submit"  onclick="submitForm()">예약 구매하기</button>
 
                     </div>
                 </div>
@@ -395,7 +402,7 @@
 
         </div>
     </div>
-    </div>
+
     <!-- ... (사이드바 내용은 여기에 추가) ... -->
     <!-- 사이드바 배경 -->
 
@@ -434,19 +441,56 @@
     </script>
 
     <script>
-        function selectOption(element, optionIndex) {
-            // 이전에 선택된 모든 옵션의 선택 상태 제거
+        function selectOption(element, index) {
+            // 모든 'select-a' 요소의 'selected' 클래스 제거
             document.querySelectorAll('.select-a').forEach(function(el) {
                 el.classList.remove('selected');
             });
 
-            // 현재 선택된 옵션에 선택 클래스 추가
+            // 클릭된 요소에 'selected' 클래스 추가
             element.classList.add('selected');
 
-            // 숨겨진 필드에 선택된 옵션의 인덱스 설정
-            document.getElementById('selectedOption').value = optionIndex;
+            // 선택된 옵션의 인덱스 설정
+            document.getElementById('selectedOptionIndex').value = index;
+
+            // 선택된 옵션의 프로젝트 코드와 옵션 타입을 설정
+            document.getElementById('projectCode').value = element.dataset.projectCode;
+            document.getElementById('optionType').value = element.dataset.optionType;
+            document.getElementById('optionCode').value = element.dataset.optionCode;
+
+
+            // 선택된 옵션 정보를 JSON 객체로 생성
+            var selectedOptionDetails = {
+                price: element.querySelector(".productprice-1 div").innerText,
+                optionName: element.querySelector(".product-1 div").innerText,
+                configure: element.querySelector(".product-2 div").innerText,
+                projectType: element.dataset.projectCode,
+                optionType: element.dataset.optionType,
+                optionCode: element.dataset.optionCode
+
+            };
+
+            // JSON 객체를 문자열로 변환하여 숨겨진 필드의 값으로 설정
+            document.getElementById('selectedOptionIndex').value = JSON.stringify(selectedOptionDetails);
         }
     </script>
+
+    <script>
+        function submitForm() {
+            // 선택된 옵션이 있는지 확인
+            var selectedOptionValue = document.getElementById('selectedOptionIndex').value;
+            if (selectedOptionValue) {
+                // 선택된 옵션이 있으면 폼을 제출합니다.
+                document.getElementById('optionForm').submit();
+                window.location.href = '/order/cart';
+                // window.href.
+            } else {
+                // 선택된 옵션이 없으면 사용자에게 알림
+                alert('옵션을 선택해주세요.');
+            }
+        }
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('.select-a').forEach((element, index) => {

@@ -144,7 +144,7 @@ article {
 
 /* 아이콘에 호버 효과 */
 .icon-row i:hover {
-    color: rgb(255, 128, 0);
+    color: #F37B1F;
 }
 
 /* 랭킹 전체 스타일 */
