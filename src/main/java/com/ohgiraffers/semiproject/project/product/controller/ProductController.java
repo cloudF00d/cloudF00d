@@ -1,17 +1,18 @@
 package com.ohgiraffers.semiproject.project.product.controller;
 
+import com.ohgiraffers.semiproject.common.exception.project.ProductReviewException;
 import com.ohgiraffers.semiproject.common.exception.project.StoryRegistException;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectFileDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
-import com.ohgiraffers.semiproject.project.product.model.dto.TotalStoryDTO;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.project.product.model.dto.*;
 import com.ohgiraffers.semiproject.project.product.model.service.ProductService;
 import com.ohgiraffers.semiproject.project.product.model.service.ProductServiceimpl;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,6 @@ public class ProductController {
     @GetMapping("productStory")
     public ModelAndView productStory(ModelAndView mv,
                                      @RequestParam Long no
-
                                                                 )  {
 
         log.info("");
@@ -55,7 +55,6 @@ public class ProductController {
 
         List<ProjectOptionDTO> projectOption = productService.optionList(no);
         List<ProjectFileDTO> projectFile = productService.projectimage(no);
-
 
 
 
@@ -92,10 +91,12 @@ public class ProductController {
         List<ProjectOptionDTO> projectOption = productService.optionList(no);
         List<ProjectFileDTO> projectFile = productService.projectimage(no);
 
+//        ProductReviewDTO productreview =
+
+//        int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+//        System.out.println(userCode);
 
 
-
-        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.addObject("thumbnailList", thumbnailList);
         mv.addObject("profileImage",profileImage);
 
@@ -103,11 +104,58 @@ public class ProductController {
         mv.addObject("projectFile",projectFile);
         log.info("[ThumbnailController] ========================================================= end");
 
+        log.info("[ThumbnailController] thumbnailList : " + thumbnailList);
         mv.setViewName("content/project/product/productPage");
 
         log.info("[ThumbnailController] ========================================================= end");
 
         return mv;
+    }
+    @PostMapping("productPage")
+    public String productReview(@AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+                                @RequestParam int projectCode,
+                                @RequestParam("reviewContent") String productContent, // 후기 내용을 받아오는 부분
+                                Model model
+//                                @RequestParam String profileImage,
+//                                @RequestParam String productContent,
+    )throws ProductReviewException
+    {
+        // 유저의 프로필 이미지 정보를 가져오는 로직
+        ProfileImageDTO userProfileImage = productService.getProfileImage(memberAndAuthorityDTO.getMemberDTO().getUserCode());
+
+        ProductReviewDTO review = new ProductReviewDTO();
+        review.setUserCode(memberAndAuthorityDTO.getMemberDTO().getUserCode()); //ProductReviewDTO에 userCode 설정
+        review.setReviewContent(productContent); //후기내용 requestparam으로 받은거 ProductReviewDTO에 넣는 작업
+
+
+
+
+//        review.setProfileImage(ProfileImageDTO.);
+
+
+
+        int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+        String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
+//
+//        Map<String, Object> productReview = new HashMap<>();
+//        productReview.put("userCode", userCode);
+//        productReview.put("userId", userId);
+//        productReview.put("projectCode", projectCode);
+//        productReview.put("reviewContent", productContent);
+
+//        String
+//
+        productService.addReview(review);
+        System.out.println("Review added: " + review);
+
+
+        System.out.println(userCode + "=========================userCode");
+        System.out.println(userId + "=========================userId");
+        System.out.println(projectCode + "=========================ProjectCode");
+        System.out.println(productContent + "=============.============productContent");
+
+
+        return "redirect:/product/productPage?no=" + projectCode; // 적절한 리디렉션 주소로 수정
     }
 
     @GetMapping("productQnA")

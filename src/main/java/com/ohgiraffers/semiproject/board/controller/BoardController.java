@@ -55,7 +55,6 @@ public class BoardController {
 
                 path = "/content/board/complaintboard/complaintBefore";
 
-
             } else if (status > 0 ) {
                 System.out.println("답변기록이 있으므로 조회 페이지로 넘어갑니다.");
 
@@ -74,7 +73,6 @@ public class BoardController {
             }
 
             return path;
-
 
         }
 
@@ -373,7 +371,7 @@ public class BoardController {
         // 전체 게시물 수?
 
         /* 한 페이지에 보여 줄 게시물 수 */
-        int limit = 3;        //얘도 파라미터로 전달받아도 된다.
+        int limit = 5;        //얘도 파라미터로 전달받아도 된다.
 
         /* 한 번에 보여질 페이징 버튼의 갯수 */
         int buttonAmount = 5;
@@ -391,9 +389,7 @@ public class BoardController {
 
         System.out.println("selectCriteria = " + selectCriteria);
 
-
         List<InquiryDTO> userDTOS = boardService.findAllInquiry(selectCriteria);
-
 
         mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
@@ -425,6 +421,7 @@ public class BoardController {
         System.out.println("nation 1 ===============" + nation1);
         System.out.println("nation 2 ===============" + nation2);
         System.out.println("nation 3 ===============" + nation3);
+
         System.out.println("검색어searchValue ================" + searchValue);
 
 
@@ -439,7 +436,7 @@ public class BoardController {
         // 전체 게시물 수?
 
         /* 한 페이지에 보여 줄 게시물 수 */
-        int limit = 3;        //얘도 파라미터로 전달받아도 된다.
+        int limit = 5;        //얘도 파라미터로 전달받아도 된다.
 
         /* 한 번에 보여질 페이징 버튼의 갯수 */
         int buttonAmount = 5;

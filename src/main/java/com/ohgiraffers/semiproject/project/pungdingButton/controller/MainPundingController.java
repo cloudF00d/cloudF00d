@@ -3,9 +3,7 @@ package com.ohgiraffers.semiproject.project.pungdingButton.controller;
 import com.ohgiraffers.semiproject.common.paging.Pagenation;
 import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.main.model.dto.ProjectDTO;
-import com.ohgiraffers.semiproject.main.model.dto.ProjectListDTO;
 import com.ohgiraffers.semiproject.main.model.service.MainService;
-import com.ohgiraffers.semiproject.manager.model.dto.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +16,11 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/pundingButton")
-public class mainPundingController{
+public class MainPundingController {
 
     private final MainService mainService;
 
-    public mainPundingController(MainService mainService) {
+    public MainPundingController(MainService mainService) {
         this.mainService = mainService;
     }
 

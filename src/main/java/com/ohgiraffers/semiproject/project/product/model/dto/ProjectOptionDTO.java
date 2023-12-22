@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.project.product.model.dto;
 
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import lombok.*;
 
 @NoArgsConstructor
@@ -14,5 +16,6 @@ public class ProjectOptionDTO {
     private int price;
     private String configure;
     private int projectCode;
+//    private CartDTO cart;
 
 }

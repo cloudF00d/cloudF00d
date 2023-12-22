@@ -2,8 +2,7 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}"
->
+      layout:decorate="~{layouts/layout}">
 
 <th:block  layout:fragment="content">
 
@@ -11,39 +10,53 @@
     <title>join</title>
     <link rel="stylesheet" th:href="@{/css/login/join.css}" type="text/css">
 
-
-
-
     
-        <div class="container">
+<!--        <div class="container">-->
             <div class="left">
                 <div class="detailLeft">
+
+                    <br><br><br><br><br>
+
                 <div class="jointitle">회원가입</div>
-                <div>
+
+                    <br>
+
+                <div class="alreadyJoin">
                     <span>이미 계정이 있으신가요?</span> 
                     <span class="gologin"><a th:href="@{/member/login}">로그인하기</a></span>
                 </div>
 
-                <!---->
+                    <br><br>
+
+
                 <div class="joininfo">
-                <form id="joinForm" th:action="@{/member/join}" method="post">
-                <div>
-                    <li>이름</li>
-                    <li><span><input class="box1" type="text" maxlength="5" name="userName" id="userName" required></span></li>
-                    <li>아이디</li>
-                    <li><span><input class="box2" type="text" maxlength="13" name="userId" id="userId" required></span>&nbsp;&nbsp;
-                        <span class="mailbtn"><input type="button" value="중복확인"  id="duplicationCheck"></span>
+                    <form id="joinForm" th:action="@{/member/join}" method="post"></form>
+                    <div class="boxContainer">
+                        <div class="boxName">
+                            <p>이름</p>
+                            <input class="box1" type="text" maxlength="5" name="userName" id="userName" required>
+                        </div>
 
-                    </li>
+                        <div class="boxID">
+                            <p>아이디</p>
+                            <input class="box1" type="text" maxlength="13" name="userId" id="userId" required>
+                            <span class="mailbtn"><button type="submit" id="boxID">중복확인</button></span>
+                        </div>
 
+                        <div class="boxEmailAdress">
+                            <p>이메일 주소</p>
+                            <input type="text" class="box1" name="email" id="email">
+                            <span class="mailbtn"><button type="submit" id="boxEmailAdress">인증번호 받기</button></span>
+                            <input type="hidden" name="hdValue" id="hdValue">
+                        </div>
 
-                    </div>
-                    <div>
-                        <li>이메일 주소</li>
-                        <span><input type="text" class="box2" name="email" id="email"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" id="send">인증번호 받기</button></span>
-                        <input type="hidden" name="hdValue" id="hdValue">
-                        <li>이메일 코드입력</li>
-                        <span><input type="text" class="box2" id="emailCode"></span>&nbsp;&nbsp;<span class="mailbtn"><button type="submit" id="checkMail">인증번호 확인</button></span>
+                        <div class="boxEmailCode">
+                            <p>이메일 코드입력</p>
+                            <input type="text" class="box1" id="emailCode">
+                            <span class="mailbtn"><button type="submit" id="boxEmailCode">인증번호 확인</button></span>
+                        </div>
+
+                    <!-- Email Adress Script -->
                         <script>
                             const sendButton = document.querySelector("#send");
                             sendButton.addEventListener('click', function () {
@@ -89,26 +102,26 @@
                                     });
                             });
                         </script>
-                    </div>
 
-                    <div>
-                        <li>
-                            <span>비밀번호</span>
-                            <span class="movetext2">비밀번호 확인</span>
-                        </li>
-                        <li>
-        <span>
-            <input placeholder="8자 이상의 영어, 숫자 입력" class="box3" type="password" maxlength="13" name="userPwd" id="userPwd" required>
-        </span>
-                            &nbsp;&nbsp;
-                            <span>
-            <input class="box3" type="password" maxlength="13" name="memberPwd2">
-        </span>
-                        </li>
+                    <div class="passwordContainer">
+                        <div class="password">
+                            <p>비밀번호</p>
+                            <input class="box2" placeholder="8자 이상의 영어, 숫자 조합" type="password" maxlength="13" name="memberPwd2" id="userPwd" required>
+                        </div>
+                        <div class="passwordCheck">
+                            <p>비밀번호 확인</p>
+                            <input placeholder="8자 이상의 영어, 숫자 조합" class="box2" type="password" maxlength="13" name="userPwd" id="userPwdCheck" required>
+                        </div>
+                    </div> <!-- passwordContainer -->
+
+                    <div class="passwordSee">
                         <input type="checkbox" id="showPassword" onchange="togglePassword()">
                         <label for="showPassword">비밀번호 보이기</label>
                     </div>
 
+                    <br><br>
+
+                    <!-- password Script -->
                     <script>
                         function togglePassword() {
                             const userPwd = document.getElementById("userPwd");
@@ -116,60 +129,74 @@
 
                             if (showPasswordCheckbox.checked) {
                                 userPwd.type = "text";
+                                userPwdCheck.type = "text";
                             } else {
                                 userPwd.type = "password";
+                                userPwdCheck.type = "password";
                             }
                         }
                     </script>
     
-                    <div>
-                        
-                        <label >우편번호</label><br>
-                        <input type="text" name="zipCode" id="zipCode" class="box2" readonly> &nbsp;
-                        <input type="button" value="검색" class="searchZipCode1" id="searchZipCode">
+                    <div class="postNumber">
+                        <label>우편번호</label><br>
+                        <input type="text" name="zipCode" id="zipCode" class="box1" readonly>
+                        <span class="mailbtn"><button type="submit" id="postNumber">검색</button></span>
                     </div>
-                    <div>
+
+                    <div class="">
                         <label >주소</label><br>
                         <input type="text" name="address1" id="address1" class="box1" readonly>
                     </div>
+
                     <div>
                         <label >상세주소</label><br>
                         <input type="text" name="address2" id="address2" class="box1">
                     </div>
+
                     <div>
                         <label >핸드폰번호</label><br>
                         <input type="text" name="phone" id="phone" class="box1">
                     </div>
+
                     <div>
                         <label >생년월일</label><br>
                         <input type="text" name="dateBirth" id="dateBirth" class="box1">
                     </div>
-            
-                <div class="joinbtn"><a th:href="@{/member/login}"><button type="submit" >회원가입</button></a></div>
-            </form>
-            
-    
-        </div>
-    
-            </div>
-        </div>
-    
+
+
+                        <br><br><br>
+
+
+                    <div class="joinbtn">
+                        <a th:href="@{/member/login}"><button type="submit" >회원가입</button></a>
+                    </div>
+
+                        <br><br><br>
+
+                    </div> <!-- boxContainer -->
+        </div> <!-- joininfo -->
+
+                </div>
+
             <div class="right">
                 <div class="detailRight"><img class="kinglogo" src="/images/01_logoimg/logoNone.png" alt=""> </div>
             </div>
-    
+
+            </div> <!-- hr -->
+        </div> <!-- footer -->
+
+        <div class="downLine">
+                <div class="down"></div>
         </div>
-    
-        <div class="down2"><div class="down">
-            <span>Help Center</span>
-            <span>Terms of Service</span>
-            <span>Privacy Policy</span>
-            <span>@2022Yanliudesign</span>
-            </div></div>
 
+        <div class="downContainer">
 
+                <a th:href="@{/support/usermain}">고객센터</a>
+                <a th:href="@{/}">메인으로 돌아가기</a>
 
+            <br><br><br><br><br><br>
 
+        </div>
 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script th:inline="javascript">
@@ -189,14 +216,7 @@
                 }
             }).open();
         }
-
-
-
     </script>
-
-
-
-
 
     </th:block>
     </html>
