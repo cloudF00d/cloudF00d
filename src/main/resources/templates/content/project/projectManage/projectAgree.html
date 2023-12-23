@@ -7,14 +7,21 @@
     <link rel="stylesheet" th:href="@{/css/project/projectAgree/projectAgree.css}">
 
 
-    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+        <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+    <form th:action="@{/projectMake/projectAgree}" id="yourForm" method="post">
+        <input
+                type="hidden"
+                id="memberId"
+                name="sellerCode"
+                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }"
+        >
 
     <div class="container">
 
    <div class="middle">
 
     <!-- 정책 -->
-    <div><H1>정책</H1></div>
+    <div><H1>7단계 : 동의 및 제출</H1></div>
     <!-- 정책 아래 전체 박스 -->
     <div class="middle-a">
 
@@ -43,25 +50,25 @@
             </div>
             -->
             <div class="agree">
-                <input type="checkbox" id="agreeBox1">
+                <input type="checkbox" id="agreeBox1" name="policy">
                 <label for="agreeBox1" id="text">
                     회사에 제출하거나 프로젝트 페이지에 공지한 내용 등이 모두 사실임을 보증하며, 이에 반하는 사실이 발견된 경우 모든 책임을 부담하겠습니다(제10조).
                 </label>
             </div>
             <div class="agree">
-                <input type="checkbox" id="agreeBox2">
+                <input type="checkbox" id="agreeBox2" name="policy">
                 <label for="agreeBox2" id="text">
                     동의한 약관 및 정책에 반하는 행위를 하는 경우 회사에 의해 프로젝트가 취소될 수 있고(제26조, 제35조), 이용 계약이 해제 또는 해지될 수 있음(제31조, 제40조)을 확인했습니다.
                 </label>
             </div>
             <div class="agree">
-                <input type="checkbox" id="agreeBox3">
+                <input type="checkbox" id="agreeBox3" name="policy">
                 <label for="agreeBox3" id="text">
                     서포터 보호가 필요하다 인정되는 경우 리워드 배송 전 결제 취소가 이뤄질 수 있고(제28조), 환불 사유에 해당하는 경우 개별 또는 일괄로 환불이 이뤄질 수 있음(제30조, 제39조)을 확인했습니다.                    
                 </label>
             </div>
             <div class="agree">
-                <input type="checkbox" id="agreeBox4">
+                <input type="checkbox" id="agreeBox4" name="policy">
                 <label for="agreeBox4" id="text">
                     귀책 사유로 인해 회사 또는 제3자에게 손해를 발생하게 한 경우에는 손해를 배상할 책임이 있고(제19조), 프로젝트를 공개한 후 취소하거나 취소되면 손해 배상과는 별도로 위약벌이 발생할 수 있음(제32조, 제41조)을 확인했습니다.                
                 </label>
@@ -116,7 +123,9 @@
     </div>
 
     <div id="save" class="box">
-        <button id="btn" onclick='alert("저장되었습니다.")'>저장하기</button>
+        <button id="btn"
+        type="submit"
+        >제출하기</button>
 
     </div>
 
@@ -129,6 +138,28 @@
        
   
 </div>
+        <script>
+
+            document.getElementById('btn').addEventListener('click', function(event) {
+                // 체크박스들의 상태를 확인
+                var isChecked1 = document.getElementById('agreeBox1').checked;
+                var isChecked2 = document.getElementById('agreeBox2').checked;
+                var isChecked3 = document.getElementById('agreeBox3').checked;
+                var isChecked4 = document.getElementById('agreeBox4').checked;
+
+                // 모든 체크박스가 체크되었는지 확인
+                if (isChecked1 && isChecked2 && isChecked3 && isChecked4) {
+                    // /projectmake 컨트롤러 주소로 'Y' 값을 POST 방식으로 보내기
+                    document.getElementById('yourForm').submit();
+                } else {
+                    // 체크박스가 모두 체크되지 않은 경우 알림 메시지 띄우기
+                    alert("모든 동의 사항에 체크해주세요.");
+                    // 폼 제출 방지
+                    event.preventDefault();
+                }
+            });
+        </script>
+    </form>
 
 
 

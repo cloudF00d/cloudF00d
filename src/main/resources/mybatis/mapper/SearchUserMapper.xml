@@ -86,7 +86,7 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
-            not A.ACTIVITY_STATUS = '삭제'
+            not A.ACTIVITY_STATUS = '삭제' and not A.ACTIVITY_STATUS = '탈퇴'
             <if test="searchValue != null and !searchValue.equals('')">
                 <if test="nation3 == 'name'">
                     AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
@@ -109,21 +109,21 @@
             </if>
             <if test="authority == 'user'">
                 <if test="searchValue != null and !searchValue.equals('')">
-                    AND
+
                 </if>
-                B.AUTHORITY_CODE = 1
+                AND    B.AUTHORITY_CODE = 1
             </if>
             <if test="authority == 'seller'">
                 <if test="searchValue != null and !searchValue.equals('')">
-                    AND
+
                 </if>
-                B.AUTHORITY_CODE = 2
+                AND    B.AUTHORITY_CODE = 2
             </if>
             <if test="authority == 'complaint'">
                 <if test="searchValue != null and !searchValue.equals('')">
-                    AND
+
                 </if>
-                A.REPORT_COUNT > 0
+                AND   A.REPORT_COUNT > 0
             </if>
         </where>
         ORDER BY
@@ -218,7 +218,7 @@
             JOIN tbl_authority_list B ON (A.USER_CODE = B.USER_CODE)
         </if>
         <where>
-            not A.ACTIVITY_STATUS = '삭제'
+            not A.ACTIVITY_STATUS = '삭제' and not A.ACTIVITY_STATUS = '탈퇴'
             <if test="searchValue != null and !searchValue.equals('')">
             <if test="nation3 == 'name'">
                 AND A.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
@@ -241,21 +241,21 @@
             </if>
             <if test="authority == 'user'">
             <if test="searchValue != null and !searchValue.equals('')">
-                AND
+
             </if>
-                B.AUTHORITY_CODE = 1
+                AND B.AUTHORITY_CODE = 1
             </if>
             <if test="authority == 'seller'">
                 <if test="searchValue != null and !searchValue.equals('')">
-                    AND
+
                 </if>
-                B.AUTHORITY_CODE = 2
+                AND    B.AUTHORITY_CODE = 2
             </if>
             <if test="authority == 'complaint'">
                 <if test="searchValue != null and !searchValue.equals('')">
-                    AND
+
                 </if>
-                A.REPORT_COUNT > 0
+                AND  A.REPORT_COUNT > 0
             </if>
         </where>
     </select>

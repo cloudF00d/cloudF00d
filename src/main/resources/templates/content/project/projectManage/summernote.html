@@ -1,0 +1,107 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      >
+<head>
+    <meta charset="UTF-8">
+    <title>작성하기</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+</head>
+<body>
+<form id="projectDecline" th:action="@{/projectMake/summernote}" method="post" enctype="multipart/form-data">
+
+<textarea id="summernote" name="summernote"  th:text="${project.content}"></textarea>
+    <input type="hidden" id="uploadedImages" name="uploadedImages">
+    <button type="submit">저장하기</button>
+</form>
+<script th:inline="javascript">
+    $('#summernote').summernote({
+        tabsize: 2,
+        height: 600,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ],
+        callbacks: {
+            onImageUpload: function (files) {
+                uploadSummernoteImageFile(files[0], this);
+            },
+            onPaste: function (e) {
+                var clipboardData = e.originalEvent.clipboardData;
+                if (clipboardData && clipboardData.items && clipboardData.items.length) {
+                    var item = clipboardData.items[0];
+                    if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        }
+    });
+
+    function uploadSummernoteImageFile(file, editor) {
+        data = new FormData();
+        data.append("file", file);
+
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "/projectMake/uploadSummernoteImageFile",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                // 반환받는 data의 url 값은
+                // <img th:src="|/thumbPath${order.convertPath}|" th:alt="|${order.orderCode}번 제품이미지|">
+                // 여기서 /thumbPath를 포함한 값이다. 하지만 데이터베이스에 저장되는건 뒤의 $ 부분
+                addImageInfoToHiddenInput(data.convertPath, data.savePath, data.sourceName, data.convertName);
+                $(editor).summernote('insertImage', data.url);
+                console.log(data);
+            }
+        })
+    }
+
+    function addImageInfoToHiddenInput(convertPath, savePath, sourceName, convertName) {
+        var hiddenInputValue = $("#uploadedImages").val();
+        var newImageInfo = {
+            convertPath: convertPath,
+            savePath: savePath,
+            sourceName: sourceName,
+            convertName: convertName
+        };
+        try {
+            var updatedValue = hiddenInputValue ? JSON.parse(hiddenInputValue) : [];
+        } catch (e) {
+            console.error('Error parsing JSON:', e);
+            console.error('JSON String:', hiddenInputValue);
+        }
+        updatedValue.push(newImageInfo);
+
+        $("#uploadedImages").val(JSON.stringify(updatedValue));
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('projectDecline');  // 폼 요소 가져오기
+
+        // 폼 제출 이벤트 리스너 추가
+        form.addEventListener('submit', function(event) {
+            // Summernote 에디터의 내용을 가져옵니다.
+            var summernoteContent = document.getElementById('summernote').value;
+
+            // Summernote 에디터의 내용이 비어 있는지 확인합니다.
+            if (!summernoteContent || summernoteContent === '')  {
+                event.preventDefault();  // 폼 제출 취소
+                alert('내용을 입력해주세요.');  // 사용자에게 알림 메시지 표시
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

@@ -19,13 +19,21 @@
 
 
 
-    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-    <div class="back-side-container">
+    <th:block th:if="${sidebar == 'yes'}">
+        <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+    </th:block>
+<form th:action="@{/projectMake/projectStory}" id="search" method="post" enctype="multipart/form-data">
+
+        <input
+                type="hidden"
+                id="memberId"
+                name="sellerCode"
+                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }">
 
 
         <section class="back-board-container">
             <!-- 배경 시트 좌측 상단 텍스트 -->
-            <div class="greeting-text">스토리 작성</div>
+            <div class="greeting-text">5단계: 펀딩 스토리 입력</div>
             <!-- 배경 시트 -->
             <div class="back-board">
                 <!-- 로고 -->
@@ -33,95 +41,46 @@
                     <img src="/images/01_logoimg/textLogoNone.png">
                 </div>
 
-                <div class="category-text">소개영상, 사진 등록<span class="greeting-text-star"> *</span></div>
-                <div class="category-sub-text">프로젝트 상세페이지 최상단에 노출할 영상 또는 사진을 등록해 주세요. (영상 or 사진 중 택 1)</div><br><br>
+<!--                <div class="category-text">소개영상, 사진 등록<span class="greeting-text-star"> *</span></div>-->
+<!--                <div class="category-sub-text">프로젝트 상세페이지 최상단에 노출할 영상 또는 사진을 등록해 주세요. (영상 or 사진 중 택 1)</div><br><br>-->
 
-                <div class="introduce-container">
-                    <div class="introduce-image" onclick="openFileInput()">
-                        <p>소개 사진</p>
-                    </div>
-                </div>
+<!--                <div class="introduce-container">-->
+<!--                    &lt;!&ndash;                    <div class="introduce-image" onclick="openFileInput()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <p>소개 사진</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    <input type="file" name="picture" accept="image/*" multiple>-->
+<!--                </div>-->
 
-                <br>
+<!--                <br>-->
 
-                <div class="introduce-text-container">
-                    <div class="introduce-text-title">소개 사진 등록 가이드</div>
-                    <br><br>
-                    <div class="introduce-text-list">
-                        <li>이미지 용량 제한</li>
-                        <p>GIF: 2MB 이하, 해상도 760x480픽셀 이상 ~ 1440x864 픽셀 이하</p>
-                        <p>JPG, JPEG, PNG, 10MB 이하, 해상도 760x480 픽셀 이상</p>
-                        <br>
-                        <li>최대 10장까지 등록 가능</li>
-                    </div>
-                </div>
-                <input type="file" id="file-input" accept="image/gif, image/jpeg, image/png"
-                    onchange="handleFileSelect(this)">
-                <div id="image-preview"></div>
+<!--                <div class="introduce-text-container">-->
+<!--                    <div class="introduce-text-title">소개 사진 등록 가이드</div>-->
+<!--                    <br><br>-->
+<!--                    <div class="introduce-text-list">-->
+<!--                        <li>이미지 용량 제한</li>-->
+<!--                        <p>GIF: 2MB 이하, 해상도 760x480픽셀 이상 ~ 1440x864 픽셀 이하</p>-->
+<!--                        <p>JPG, JPEG, PNG, 10MB 이하, 해상도 760x480 픽셀 이상</p>-->
+<!--                        <br>-->
+<!--                        <li>최대 10장까지 등록 가능</li>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <input type="file" id="file-input" name="projectImg" accept="image/*" multiple-->
+<!--                       onchange="handleFileSelect(this)">-->
+<!--                <div id="image-preview"></div>-->
 
 
 
-                <script>
-                    function openFileInput() {
-                        document.getElementById('file-input').click();
-                    }
-
-                    function handleFileSelect(input) {
-                        var files = input.files;
-                        var preview = document.getElementById('image-preview');
-
-                        // 이미지 파일 미리보기 추가
-                        for (var i = 0; i < files.length; i++) {
-                            var file = files[i];
-                            var reader = new FileReader();
-
-                            reader.onload = function (e) {
-                                var image = new Image();
-                                image.src = e.target.result;
-
-                                image.onload = function () {
-                                    if (
-                                        (file.type === 'image/gif' && file.size <= 2 * 1024 * 1024 && image.width >= 760 && image.width <= 1440 && image.height >= 480 && image.height <= 864) ||
-                                        ((file.type === 'image/jpeg' || file.type === 'image/png') && file.size <= 10 * 1024 * 1024 && image.width >= 760 && image.height >= 480)
-                                    ) {
-                                        // 조건 충족 시 이미지 미리보기 추가
-                                        var imgElement = document.createElement('img');
-                                        imgElement.src = e.target.result;
-                                        imgElement.style.maxWidth = '80px';
-                                        imgElement.style.maxHeight = '80px';
-
-                                        // 이미지를 클릭하면 삭제되도록 이벤트 추가
-                                        imgElement.addEventListener('click', function () {
-                                            deleteImage(this);
-                                        });
-
-                                        preview.appendChild(imgElement);
-                                    } else {
-                                        alert('이미지 형식 또는 크기가 제한에 맞지 않습니다.');
-                                    }
-                                };
-                            };
-
-                            reader.readAsDataURL(file);
-                        }
-                    }
-
-                    function deleteImage(imgElement) {
-                        // 클릭한 이미지를 삭제
-                        imgElement.parentNode.removeChild(imgElement);
-                    }
-                </script>
 
                 <br><br>
 
                 <div class="category-text">프로젝트 요약<span class="greeting-text-star"> *</span></div>
-                <div class="category-sub-text">소개 영상이나 사진과 함께 보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.(영상 or 사진 중 택 1)</div>
+                <div class="category-sub-text">소개 영상이나 사진과 함께 보이는 글이에요. 프로젝트를 쉽고 간결하게 소개해 주세요.</div>
                 <br><br>
 
                 <div class="project-summary-container">
                     <div class="project-summary-textBox">
-                        <textarea id="project-summary-text" name="project-summary-text" placeholder="내용 입력"
-                            oninput="updateCharacterCount()"></textarea>
+                        <textarea id="project-summary-text" name="summary" placeholder="내용 입력"
+                                  oninput="updateCharacterCount()" th:text="${project.summary}"></textarea>
                     </div>
                     <br>
                     <p id="characterCount">100자 남음</p>
@@ -137,17 +96,185 @@
                     <div class="project-stroy--sub-text">구매자에게 꼭 알려주세요</div>
                     <li>이미지와 설명글 구성으로 스토리를 작성하면 내외부 포털 검색 결과에 상위 노출될 확률이 높아져요.</li>
 
-                    <br><br><br><br><br><br>
 
-                    <a class="project-start" href="/view/projectMake/projectManage.html">제출하기</a>
+                    <button type="button"
+                            th:onclick="'location.href=\'/projectMake/summernote\''" data-story-written="false"
+                    >스토리 작성하기
+                    </button>
+                    <br><br><br><br><br><br>
+                    <button type="submit" class="project-start">다음 단계로</button>
                 </div>
 
 
             </div> <!-- back-board -->
-    </section>
-    </div> <!-- greeting-text -->
+        </section>
+    <script th:inline="javascript">
+    // function openFileInput() {
+    //     document.getElementById('file-input').click();
+    // }
+    //
+    // function handleFileSelect(input) {
+    //     var files = input.files;
+    //     var preview = document.getElementById('image-preview');
+    //
+    //     // 이미지 파일 미리보기 추가
+    //     for (var i = 0; i < files.length; i++) {
+    //         var file = files[i];
+    //         var reader = new FileReader();
+    //
+    //         reader.onload = function (e) {
+    //             var image = new Image();
+    //             image.src = e.target.result;
+    //
+    //             image.onload = function () {
+    //                 if (
+    //                     (file.type === 'image/gif' && file.size <= 2 * 1024 * 1024 && image.width >= 760 && image.width <= 1440 && image.height >= 480 && image.height <= 864) ||
+    //                     ((file.type === 'image/jpeg' || file.type === 'image/png') && file.size <= 10 * 1024 * 1024 && image.width >= 760 && image.height >= 480)
+    //                 ) {
+    //                     // 조건 충족 시 이미지 미리보기 추가
+    //                     var imgElement = document.createElement('img');
+    //                     imgElement.src = e.target.result;
+    //                     imgElement.style.maxWidth = '80px';
+    //                     imgElement.style.maxHeight = '80px';
+    //
+    //                     // 이미지를 클릭하면 삭제되도록 이벤트 추가
+    //                     imgElement.addEventListener('click', function () {
+    //                         deleteImage(this);
+    //                     });
+    //
+    //                     preview.appendChild(imgElement);
+    //                 } else {
+    //                     alert('이미지 형식 또는 크기가 제한에 맞지 않습니다.');
+    //                 }
+    //             };
+    //         };
+    //
+    //         reader.readAsDataURL(file);
+    //     }
+    // }
+    //
+    // function deleteImage(imgElement) {
+    //     // 클릭한 이미지를 삭제
+    //     imgElement.parentNode.removeChild(imgElement);
+    // }
+
+    //
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const form = document.getElementById('search');  // 폼 요소 가져오기
+    //     const submitButton = document.querySelector('.project-start');  // 제출 버튼 가져오기
+    //     const storyButton = document.querySelector('[th:onclick="\'location.href=\\\'/projectMake/summernote\\\'\'"]');  // 스토리 작성하기 버튼 가져오기
+    //
+    //     // 모든 input 요소와 textarea를 가져옵니다.
+    //     const inputs = form.querySelectorAll('input, textarea');
+    //
+    //     // 스토리 작성하기 버튼 클릭 이벤트 리스너 추가
+    //     storyButton.addEventListener('click', function() {
+    //         // 이곳에서 필요한 경우 스토리 작성 페이지로 이동하거나 다른 작업을 수행할 수 있습니다.
+    //     });
+    //
+    //     // 폼 제출 이벤트 리스너 추가
+    //     form.addEventListener('submit', function(event) {
+    //         let storyWritten = false;
+    //
+    //         // 스토리 작성하기 버튼이 클릭되었는지 확인합니다.
+    //         // 여기서는 간단히 storyButton의 클릭 이벤트 리스너에서 변수를 설정했다고 가정합니다.
+    //         // 실제로는 더 복잡한 상태 관리 로직이 필요할 수 있습니다.
+    //         if (storyWritten) {
+    //             // 모든 필드가 채워져 있는지 확인합니다.
+    //             let isValid = true;
+    //             inputs.forEach(function(input) {
+    //                 if (!input.value.trim()) {  // 입력 필드가 비어 있으면
+    //                     isValid = false;
+    //                 }
+    //             });
+    //
+    //             // 유효하지 않은 경우 경고를 표시하고 제출을 취소합니다.
+    //             if (!isValid) {
+    //                 event.preventDefault();  // 폼 제출 취소
+    //                 alert('모든 입력 필드를 완전히 채워주세요.');
+    //             }
+    //         } else {
+    //             // 스토리 작성하기 버튼을 누르지 않았으므로 경고를 표시하고 제출을 취소합니다.
+    //             event.preventDefault();  // 폼 제출 취소
+    //             alert('프로젝트 스토리를 작성하기 위해 "스토리 작성하기" 버튼을 먼저 클릭해주세요.');
+    //         }
+    //     });
+    // });
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const form = document.getElementById('search');  // 폼 요소 가져오기
+    //     const storyButton = document.querySelector('[th:onclick="\'location.href=\\\'/projectMake/summernote\\\'\'"]');  // 스토리 작성하기 버튼 가져오기
+    //
+    //     let storyWritten = false; // 스토리 작성 상태를 나타내는 변수
+    //
+    //     // 스토리 작성하기 버튼 클릭 이벤트 리스너 추가
+    //     storyButton.addEventListener('click', function() {
+    //         storyWritten = true; // 스토리 작성 버튼이 클릭되었음을 표시
+    //     });
+    //
+    //     // 폼 제출 이벤트 리스너 추가
+    //     form.addEventListener('submit', function(event) {
+    //         if (!storyWritten) {
+    //             // 스토리 작성하기 버튼을 누르지 않았으므로 경고를 표시하고 제출을 취소합니다.
+    //             event.preventDefault();  // 폼 제출 취소
+    //             alert('프로젝트 스토리를 작성하기 위해 "스토리 작성하기" 버튼을 먼저 클릭해주세요.');
+    //         }
+    //         // 스토리 작성하기 버튼을 눌렀지만, 필요한 경우 여기에 추가적인 유효성 검사 로직을 구현할 수 있습니다.
+    //     });
+    // });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const form = document.getElementById('search');  // 폼 요소 가져오기
+    //     const storyButton = document.querySelector('button[data-story-written]');  // 데이터 속성을 사용하여 버튼 가져오기
+    //
+    //     let storyWritten = false; // 스토리 작성 상태를 나타내는 변수
+    //
+    //     // 스토리 작성하기 버튼 클릭 이벤트 리스너 추가
+    //     // storyButton.addEventListener('click', function() {
+    //     //     // 데이터 속성을 사용하여 버튼 상태 확인
+    //     //     storyWritten = storyButton.getAttribute('data-story-written') === 'true';
+    //     //
+    //     //     if (!storyWritten) {
+    //     //         alert('프로젝트 스토리를 작성하기 위해 "스토리 작성하기" 버튼을 먼저 클릭해주세요.');
+    //     //     }
+    //     // });
+    //
+    //     // 폼 제출 이벤트 리스너 추가
+    //     form.addEventListener('submit', function(event) {
+    //         if (!storyWritten) {
+    //             // 스토리 작성하기 버튼을 누르지 않았으므로 경고를 표시하고 제출을 취소합니다.
+    //             event.preventDefault();  // 폼 제출 취소
+    //             alert('프로젝트 스토리를 작성하기 위해 "스토리 작성하기" 버튼을 먼저 클릭해주세요.');
+    //         } else {
+    //             alert('저장되었습니다');
+    //         }
+    //         // 스토리 작성하기 버튼을 눌렀지만, 필요한 경우 여기에 추가적인 유효성 검사 로직을 구현할 수 있습니다.
+    //     });
+    // });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var contentValue = /*[[${content}]]*/ '';
+
+        var form = document.getElementById('search');
+
+        form.addEventListener('submit', function(event) {
+
+            var summary = document.getElementById('project-summary-text').value;
+
+            if (contentValue === 'no') {
+                event.preventDefault();
+                alert('스토리 작성하기 버튼을 눌러 작성해주세요.');
+            }  else if (!summary || summary === '') {
+                alert('스토리 요약을 입력해주세요.');
+                event.preventDefault(); // 폼 제출을 취소합니다.
+            }
+        });
+    });
+    </script>
+
+</form>
+        </div> <!-- greeting-text -->
+        <div class="back-side-container"></div>
 
 
-
-</th:block>
+            </th:block>
 </html>

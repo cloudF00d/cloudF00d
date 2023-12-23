@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,7 @@ public class BoardController {
 
                 path = "/content/board/complaintboard/complaintBefore";
 
+
             } else if (status > 0 ) {
                 System.out.println("답변기록이 있으므로 조회 페이지로 넘어갑니다.");
 
@@ -74,6 +76,7 @@ public class BoardController {
 
             return path;
 
+
         }
 
         @GetMapping("/complaintUserDelete")
@@ -90,11 +93,11 @@ public class BoardController {
 
     @GetMapping("/complaintMain")
     public ModelAndView complaintBoard(
-            @RequestParam(required = false, defaultValue = "number") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false, defaultValue = "all") String authority,
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, defaultValue = "작성번호", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+            @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, name = "nation3") String nation3, //검색할 컬럼 선택
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
@@ -138,6 +141,14 @@ public class BoardController {
 
         List<UserReportDTO> userDTOS = boardService.findAllUserComplaint(selectCriteria);
 
+        List<String> categories = Arrays.asList("작성번호","신고사유", "신고자", "작성자", "신고일자");
+        mv.addObject("option1", categories);
+        List<String> categories1 = Arrays.asList("오름차순", "내림차순");
+        mv.addObject("option2", categories1);
+        List<String> categories4 = Arrays.asList("전체", "처리 완료", "처리 중");
+        mv.addObject("option4", categories4);
+        List<String> categories2 = Arrays.asList("작성번호", "신고사유", "신고자","작성자","신고일자");
+        mv.addObject("option3", categories2);
 
         mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
@@ -165,11 +176,11 @@ public class BoardController {
         return "content/board/complaintboard/complaintProjectDetail";}
     @GetMapping("/complaintProjectMain")
     public ModelAndView complaintMain(
-        @RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택
-        @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
-        @RequestParam(required = false, defaultValue = "all") String authority,
-        @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-        @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+        @RequestParam(required = false, defaultValue = "코드", name = "nation1") String nation1, // 정렬 컬럼 선택
+        @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+        @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+        @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
+        @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
         @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
         ModelAndView mv) {
 
@@ -213,11 +224,19 @@ public class BoardController {
 
             List<ProjectReportHistoryDTO> userDTOS = boardService.findAllProjectComplaint(selectCriteria);
 
+        List<String> categories = Arrays.asList("코드","제목", "판매자", "신고일자");
+        mv.addObject("option1", categories);
+        List<String> categories1 = Arrays.asList("전체", "내림차순", "오름차순");
+        mv.addObject("option2", categories1);
+        List<String> categories4 = Arrays.asList("전체", "처리 완료", "처리 중");
+        mv.addObject("option4", categories4);
+        List<String> categories2 = Arrays.asList("검색컬럼", "코드", "제목","사유","판매자","신고일자");
+        mv.addObject("option3", categories2);
 
             mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
             mv.addObject("project", userDTOS);
-            mv.setViewName("content/board/complaintboard/complaintProjectMain");
+            mv.setViewName("/content/board/complaintboard/complaintProjectMain");
 
             return mv;
 
@@ -344,11 +363,11 @@ public class BoardController {
 
     @GetMapping("/inquiryMain")
     public ModelAndView inquiryMain(
-            @RequestParam(required = false, defaultValue = "date") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false, defaultValue = "all") String authority,
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, defaultValue = "작성일자", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+            @RequestParam(required = false, name = "nation1") String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
@@ -389,7 +408,16 @@ public class BoardController {
 
         System.out.println("selectCriteria = " + selectCriteria);
 
+
         List<InquiryDTO> userDTOS = boardService.findAllInquiry(selectCriteria);
+        List<String> categories = Arrays.asList("코드","제목", "작성일자","작성자");
+        mv.addObject("option1", categories);
+        List<String> categories1 = Arrays.asList("내림차순", "오름차순");
+        mv.addObject("option2", categories1);
+        List<String> categories4 = Arrays.asList("전체", "답변 완료", "답변 대기");
+        mv.addObject("option4", categories4);
+        List<String> categories2 = Arrays.asList("검색컬럼", "코드", "작성일자","제목","작성자");
+        mv.addObject("option3", categories2);
 
         mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
@@ -411,17 +439,16 @@ public class BoardController {
 
     @GetMapping("/noticeMain")
     public ModelAndView noticeMain(
-            @RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, defaultValue = "코드", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
         System.out.println("nation 1 ===============" + nation1);
         System.out.println("nation 2 ===============" + nation2);
         System.out.println("nation 3 ===============" + nation3);
-
         System.out.println("검색어searchValue ================" + searchValue);
 
 
@@ -456,7 +483,12 @@ public class BoardController {
 
 
         List<NoticeDTO> userDTOS = boardService.findAllNotice(selectCriteria);
-
+        List<String> categories = Arrays.asList("코드","제목", "작성일자");
+        mv.addObject("option1", categories);
+        List<String> categories1 = Arrays.asList("내림차순", "오름차순");
+        mv.addObject("option2", categories1);
+        List<String> categories2 = Arrays.asList("검색컬럼", "제목", "작성일자");
+        mv.addObject("option3", categories2);
 
         mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
@@ -470,7 +502,7 @@ public class BoardController {
     }
 
     @GetMapping("/noticeWrited")
-    public String noticeWrited(@RequestParam Long no, Model mv){
+    public String noticeWrited(@RequestParam(name = "no") Long no, Model mv){
 
         System.out.println("no ======================== " + no);
 

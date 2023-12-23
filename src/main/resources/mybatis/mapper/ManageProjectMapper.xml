@@ -235,5 +235,15 @@
                 #{projectCode})
     </insert>
 
+    <update id="updateAuthority">
+        update
+            tbl_authority_list
+        set
+            AUTHORITY_CODE = 2
+        where
+            USER_CODE = #{sellerCode}
+            ;
+    </update>
+
 
 </mapper>

@@ -33,8 +33,6 @@ public class MainService implements MainServiceInter{
         List<ProjectDTO> project = mapper.findAllProject(selectCriteria);
         List<List<ProjectDTO>> projectListDTO = new ArrayList<>(); //프로젝트 리스트안에 3개씩 담고 전체는 4개
 
-
-
         System.out.println("project.size() = " + project.size());
 
         System.out.println("project = " + project);

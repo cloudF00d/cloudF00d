@@ -32,7 +32,7 @@ public class SearchUserController {
     }
 
     @GetMapping("/userDetail")
-    public String userDetail(@RequestParam Long no, Model mv) {
+    public String userDetail(@RequestParam(name = "no") Long no, Model mv) {
 
 
         log.info("controller userDetail start===========================");
@@ -57,11 +57,11 @@ public class SearchUserController {
 
     @GetMapping("/userMain")
     public ModelAndView userMain(
-            @RequestParam(required = false, defaultValue = "name") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "asc") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
-            @RequestParam(required = false, defaultValue = "all") String authority, // 전체, 사용자, 판매자, 신고자 선택
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, defaultValue = "name", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "asc", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, name = "nation3") String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, defaultValue = "all", name = "authority") String authority, // 전체, 사용자, 판매자, 신고자 선택
+            @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
 
 
@@ -120,7 +120,7 @@ public class SearchUserController {
     }
 
     @GetMapping("/userUpdate")
-    public String userUpdate(@RequestParam Long no, Model mv) {
+    public String userUpdate(@RequestParam(name = "no") Long no, Model mv) {
 
 
         List<CartDTO> cartDTOS = searchUserService.userBuy(no);
@@ -162,7 +162,7 @@ public class SearchUserController {
     }
 
     @GetMapping("/delete")
-    public String userDelete(@RequestParam Long no,
+    public String userDelete(@RequestParam(name = "no") Long no,
                              HttpServletRequest request,
                              HttpServletResponse response,
                              RedirectAttributes rttr)

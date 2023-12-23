@@ -102,7 +102,6 @@
                             <option selected>검색컬럼</option>
                             <option value="name">이름</option>
                             <option value="id">아이디</option>
-                            <option value="password">비밀번호</option>
                             <option value="phone">전화번호</option>
                             <option value="birth">생년월일</option>
                             <option value="active">활동상태</option>
@@ -118,10 +117,9 @@
                 <table id="table">
 
                     <tr>
-                        <th id="newcolumn">새 글</th>
+                        <th id="newcolumn"></th>
                         <th>이름</th>
                         <th>아이디</th>
-                        <th>비밀번호</th>
                         <th>전화번호</th>
                         <th>생년월일</th>
                         <th>활동상태</th>
@@ -131,10 +129,9 @@
                         th:onclick="'location.href=\'/manager/search/userDetail?no='+ @{${search.userCode}} + '\''"
 
                     >
-                        <td id="new">new</td>
+                        <td id="new"></td>
                         <td th:text="${search.userName}"></td>
                         <td th:text="${search.userId}"></td>
-                        <td th:text="${search.password}"></td>
                         <td th:text="${search.phone}"></td>
                         <td th:text="${search.dateBirth}"></td>
                         <td th:text="${search.activityStatus}"><span class="ing">활동</span></td>
