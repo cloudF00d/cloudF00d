@@ -37,7 +37,7 @@ public class ManagerProjectController {
 
 
     @GetMapping("/approve")
-    public String approve(@RequestParam(name = "no") Long no,
+    public String approve(@RequestParam Long no,
                           RedirectAttributes rttr) throws NoticeRegistException{
 
         manageProjectService.approve(no);
@@ -51,7 +51,7 @@ public class ManagerProjectController {
     }
 
     @GetMapping("/declineDetail")
-    public String declineDetail(@RequestParam(name = "no") Long no, Model mv) {
+    public String declineDetail(@RequestParam Long no, Model mv) {
 
 
         ProjectDTO projectDTO = manageProjectService.findOneProject(no);
@@ -79,7 +79,7 @@ public class ManagerProjectController {
         return "redirect:/manager/project/newMain";
     }
     @GetMapping("/newDetail")
-    public String newDetail(@RequestParam(name = "no") Long no, Model mv){
+    public String newDetail(@RequestParam Long no, Model mv){
 
             log.info("controller projectDetail start===========================");
 
@@ -94,11 +94,11 @@ public class ManagerProjectController {
         }
 
     @GetMapping("/newMain")
-    public ModelAndView newMain(@RequestParam(required = false, defaultValue = "code", name = "nation1") String nation1, // 정렬 컬럼 선택
-                          @RequestParam(required = false, defaultValue = "desc", name = "nation2") String nation2, // 정렬 방식 선택
-                          @RequestParam(required = false, name = "nation3") String nation3, //검색할 컬럼 선택
-                          @RequestParam(required = false, defaultValue = "all", name = "authority") String authority, // 전체, 사용자, 판매자, 신고자 선택
-                          @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
+    public ModelAndView newMain(@RequestParam(required = false, defaultValue = "code") String nation1, // 정렬 컬럼 선택
+                          @RequestParam(required = false, defaultValue = "desc") String nation2, // 정렬 방식 선택
+                          @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+                          @RequestParam(required = false, defaultValue = "all") String authority, // 전체, 사용자, 판매자, 신고자 선택
+                          @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
                           @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
 
 

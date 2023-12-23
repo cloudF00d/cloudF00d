@@ -79,28 +79,7 @@
             <!-- 우측 컨텐츠 -->
         </div>
     </div>
-    <input type="hidden" name="number" id="number" th:value="${notice.creationNumber}">
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // 삭제 버튼 클릭 시 확인 창 표시
-            var deleteButton = document.getElementById('delete');
-            if (deleteButton) {
-                deleteButton.addEventListener('click', function () {
-                    var confirmed = confirm('삭제하시겠습니까?');
-                    if (confirmed) {
-                        // 확인을 누른 경우, 주어진 URL로 이동
-                        var userCode = document.getElementById('number').value;
-                        var deleteUrl = '/board/noticeDelete?no=' + userCode;
-                        window.location.href = deleteUrl;
-                    }
-                });
-            }
-        });
-
-        /*]]>*/
-    </script>
 </th:block>
 </html>

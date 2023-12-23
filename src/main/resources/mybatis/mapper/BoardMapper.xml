@@ -150,11 +150,13 @@
         TBL_NOTICE A
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-
-                <if test="nation3 == '제목'">
+                <if test="nation3 == 'code'">
+                    A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'title'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
@@ -172,27 +174,27 @@
             <if test="nation3 == 'code'">
                 AND A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '제목'">
+            <if test="nation3 == 'title'">
                 AND A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '작성일자'">
+            <if test="nation3 == 'date'">
                 AND A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
         </if>
         ORDER BY
-        <if test="nation1 == '코드' or nation1==null or nation1.equals('')">
+        <if test="nation1 == 'code' or nation1==null or nation1.equals('')">
             A.CREATION_NUMBER
         </if>
-        <if test="nation1 == '제목'">
+        <if test="nation1 == 'title'">
             A.TITLE
         </if>
-        <if test="nation1 == '작성일자'">
+        <if test="nation1 == 'date'">
             A.CREATION_DATE
         </if>
-        <if test="nation2 == '오름차순' or nation2==null or nation2.equals('')">
+        <if test="nation2 == 'asc' or nation2==null or nation2.equals('')">
             ASC
         </if>
-        <if test="nation2 == '내림차순'">
+        <if test="nation2 == 'desc'">
             DESC
         </if>
 
@@ -213,20 +215,20 @@
         left join tbl_inquiry_answer B ON (A.CREATION_NUMBER = B.CREATION_NUMBER)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '코드'">
+                <if test="nation3 == 'code'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '제목'">
+                <if test="nation3 == 'title'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성자'">
+                <if test="nation3 == 'writer'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '답변 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -236,7 +238,7 @@
                 where ANSWER_CODE
                 )
             </if>
-            <if test="authority == '답변 대기'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -261,20 +263,20 @@
         left join tbl_inquiry_answer B ON (A.CREATION_NUMBER = B.CREATION_NUMBER)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '코드'">
+                <if test="nation3 == 'code'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '제목'">
+                <if test="nation3 == 'title'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성자'">
+                <if test="nation3 == 'writer'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '답변 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -285,7 +287,7 @@
                 )
 
             </if>
-            <if test="authority == '답변 대기'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -298,23 +300,23 @@
             </if>
         </where>
         ORDER BY
-        <if test="nation1 == '코드' or nation1==null or nation1.equals('')">
+        <if test="nation1 == 'code' or nation1==null or nation1.equals('')">
             A.CREATION_NUMBER
         </if>
-        <if test="nation1 == '제목'">
+        <if test="nation1 == 'title'">
             A.TITLE
         </if>
-        <if test="nation1 == '작성자'">
+        <if test="nation1 == 'writer'">
             C.USER_NAME
         </if>
-        <if test="nation1 == '작성일자'">
+        <if test="nation1 == 'date'">
             A.CREATION_DATE
         </if>
 
-        <if test="nation2 == '오름차순' or nation2==null or nation2.equals('')">
+        <if test="nation2 == 'asc' or nation2==null or nation2.equals('')">
             ASC
         </if>
-        <if test="nation2 == '내림차순'">
+        <if test="nation2 == 'desc'">
             DESC
         </if>
 
@@ -342,23 +344,23 @@
         join tbl_user C ON (A.REPORTED_PERSON = C.USER_CODE)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '작성번호'">
+                <if test="nation3 == 'number'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고사유'">
+                <if test="nation3 == 'reason'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성자'">
+                <if test="nation3 == 'reported'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고자'">
+                <if test="nation3 == 'reporter'">
                     B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '처리 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -370,7 +372,7 @@
                 )
 
             </if>
-            <if test="authority == '처리 중'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -404,23 +406,23 @@
         join tbl_user C ON (A.REPORTED_PERSON = C.USER_CODE)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '작성번호'">
+                <if test="nation3 == 'number'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고사유'">
+                <if test="nation3 == 'reason'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '작성자'">
+                <if test="nation3 == 'reported'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고자'">
+                <if test="nation3 == 'reporter'">
                     B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '처리 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -432,7 +434,7 @@
                 )
 
             </if>
-            <if test="authority == '처리 중'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -446,26 +448,26 @@
             </if>
         </where>
         ORDER BY
-        <if test="nation1 == '작성번호' or nation1==null or nation1.equals('')">
+        <if test="nation1 == 'number' or nation1==null or nation1.equals('')">
             A.CREATION_NUMBER
         </if>
-        <if test="nation1 == '신고사유'">
+        <if test="nation1 == 'reason'">
             A.TITLE
         </if>
-        <if test="nation1 == '작성자'">
+        <if test="nation1 == 'reported'">
             C.USER_NAME
         </if>
-        <if test="nation1 == '신고자'">
+        <if test="nation1 == 'reporter'">
             B.USER_NAME
         </if>
-        <if test="nation1 == '신고일자'">
+        <if test="nation1 == 'date'">
             A.CREATION_DATE
         </if>
 
-        <if test="nation2 == '오름차순' or nation2==null or nation2.equals('')">
+        <if test="nation2 == 'asc' or nation2==null or nation2.equals('')">
             ASC
         </if>
-        <if test="nation2 == '내림차순'">
+        <if test="nation2 == 'desc'">
             DESC
         </if>
 
@@ -544,30 +546,30 @@
         join tbl_project C ON (A.REPORT_PROJECT = C.PROJECT_CODE)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '코드'">
+                <if test="nation3 == 'code'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '제목'">
+                <if test="nation3 == 'title'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '사유'">
+                <if test="nation3 == 'reason'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '판매자'">
+                <if test="nation3 == 'reported'">
                     B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '신고일자'">
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '처리 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 not isnull(A.ACTION_DETAIL)
 
             </if>
-            <if test="authority == '처리 중'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -597,28 +599,30 @@
         join tbl_user D ON (C.SELLER_INFO = D.USER_CODE)
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == '코드'">
+                <if test="nation3 == 'code'">
                     A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '제목'">
+                <if test="nation3 == 'title'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '판매자'">
+                <if test="nation3 == 'reason'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-
-                <if test="nation3 == '신고일자'">
+                <if test="nation3 == 'reported'">
+                    B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
+                </if>
+                <if test="nation3 == 'date'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
             </if>
-            <if test="authority == '처리 완료'">
+            <if test="authority == 'finish'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
                 not isnull(A.ACTION_DETAIL)
 
             </if>
-            <if test="authority == '처리 중'">
+            <if test="authority == 'yet'">
                 <if test="searchValue != null and !searchValue.equals('')">
                     AND
                 </if>
@@ -627,25 +631,25 @@
             </if>
         </where>
         ORDER BY
-        <if test="nation1 == '코드' or nation1==null or nation1.equals('')">
+        <if test="nation1 == 'code' or nation1==null or nation1.equals('')">
             A.PROJECT_REPORT_CODE
         </if>
-        <if test="nation1 == '제목'">
+        <if test="nation1 == 'title'">
             A.REPORT_TYPE
         </if>
-        <if test="nation1 == '사유'">
+        <if test="nation1 == 'reason'">
             A.REPORT_REASON
         </if>
-        <if test="nation1 == '판매자'">
+        <if test="nation1 == 'reported'">
             D.USER_NAME
         </if>
-        <if test="nation1 == '신고일자'">
+        <if test="nation1 == 'date'">
             A.REPORT_DATE
         </if>
-        <if test="nation2 == '오름차순' or nation2==null or nation2.equals('')">
+        <if test="nation2 == 'asc' or nation2==null or nation2.equals('')">
             ASC
         </if>
-        <if test="nation2 == '내림차순'">
+        <if test="nation2 == 'desc'">
             DESC
         </if>
 

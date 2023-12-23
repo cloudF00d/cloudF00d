@@ -39,7 +39,7 @@
         A.PROJECT_TITLE,
         A.PROJECT_CODE,
         C.CHANGED_FILE_NAME
-        <if test="nation2 == '관심 등록 많은 순'">
+        <if test="nation2 == 'like'">
            , count(D.PROJECT_CODE) as count
         </if>
 
@@ -47,7 +47,9 @@
         tbl_project A
         left join tbl_approval_history B ON (A.PROJECT_CODE = B.PROJECT_CODE)
         left join tbl_project_file C ON (A.PROJECT_CODE = C.PROJECT_CODE)
-        <if test="nation2 != '관심 등록 많은 순'">
+        <if test="nation2 != 'like'">
+
+
             left join samjo.tbl_project_option tpo on A.PROJECT_CODE = tpo.PROJECT_CODE
             left join samjo.tbl_project_tag tpt on A.PROJECT_CODE = tpt.PROJECT_CODE
             left join samjo.tbl_project_category tpc on A.PROJECT_CATEGORY = tpc.CATEGORY_CODE
@@ -58,70 +60,70 @@
         where B.APPROVAL_STATUS = 'Y'
         and C.FILE_TYPE='Representative_image'
         <if test="searchValue != null and !searchValue.equals('')">
-            <if test="nation3 == '검색컬럼'">
+            <if test="nation3 == 'all'">
                 AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 or tpt.TAG_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '제목'">
+            <if test="nation3 == 'name'">
                 AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '태그'">
+            <if test="nation3 == 'tag'">
                 AND tpt.TAG_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
         </if>
-        <if test="nation1 == '음료'">
+        <if test="nation1 == 'drink'">
             AND tpc.CATEGORY_NAME='음료'
         </if>
-        <if test="nation1 == '주류'">
+        <if test="nation1 == 'alcohol'">
             AND tpc.CATEGORY_NAME='주류'
         </if>
-        <if test="nation1 == '베이커리'">
+        <if test="nation1 == 'bake'">
             AND tpc.CATEGORY_NAME='베이커리'
         </if>
-        <if test="nation1 == '해외음식'">
+        <if test="nation1 == 'oversea'">
             AND tpc.CATEGORY_NAME='해외음식'
         </if>
-        <if test="nation1 == '채소'">
+        <if test="nation1 == 'vegetable'">
             AND tpc.CATEGORY_NAME='채소'
         </if>
-        <if test="nation1 == '해산물'">
+        <if test="nation1 == 'seafood'">
             AND tpc.CATEGORY_NAME='해산물'
         </if>
-        <if test="nation1 == '과일'">
+        <if test="nation1 == 'fruit'">
             AND tpc.CATEGORY_NAME='과일'
         </if>
-        <if test="nation1 == '냉동식품'">
+        <if test="nation1 == 'frozen'">
             AND tpc.CATEGORY_NAME='냉동식품'
         </if>
-        <if test="nation1 == '소스'">
+        <if test="nation1 == 'sauce'">
             AND tpc.CATEGORY_NAME='소스'
         </if>
-        <if test="nation1 == '디저트'">
+        <if test="nation1 == 'dessert'">
             AND tpc.CATEGORY_NAME='디저트'
         </if>
 
-        <if test="nation2 == '필터 선택' or nation1==null or nation1.equals('')">
+        <if test="nation2 == 'all' or nation1==null or nation1.equals('')">
             group by
             A.PROJECT_TITLE
             ORDER BY
             A.PROJECT_TITLE
             ASC
         </if>
-        <if test="nation2 == '가격 낮은 순'">
+        <if test="nation2 == 'priceAsc'">
             group by A.PROJECT_TITLE
             ORDER BY
             tpo.PRICE asc
         </if>
-        <if test="nation2 == '가격 높은 순'">
+        <if test="nation2 == 'priceDesc'">
             group by A.PROJECT_TITLE
             ORDER BY
             tpo.PRICE desc
         </if>
-        <if test="nation2 == '관심 등록 많은 순'">
+        <if test="nation2 == 'like'">
             group by A.PROJECT_TITLE
             order by count desc
         </if>
-        <if test="nation2 == '최신 등록 순'">
+        <if test="nation2 == 'recent'">
             group by
             A.PROJECT_TITLE
             ORDER BY
@@ -204,49 +206,47 @@
         C.FILE_TYPE = 'Representative_image'
         and B.APPROVAL_STATUS = 'Y'
         <if test="searchValue != null and !searchValue.equals('')">
-            <if test="nation3 == '검색컬럼'">
+            <if test="nation3 == 'all'">
                 AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 or tpt.TAG_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '제목'">
+            <if test="nation3 == 'name'">
                 AND A.PROJECT_TITLE LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
-            <if test="nation3 == '태그'">
+            <if test="nation3 == 'tag'">
                 AND tpt.TAG_NAME LIKE CONCAT('%', #{ searchValue }, '%')
             </if>
         </if>
-        <if test="nation1 == '음료'">
+        <if test="nation1 == 'drink'">
             AND tpc.CATEGORY_NAME='음료'
         </if>
-        <if test="nation1 == '주류'">
+        <if test="nation1 == 'alcohol'">
             AND tpc.CATEGORY_NAME='주류'
         </if>
-        <if test="nation1 == '베이커리'">
+        <if test="nation1 == 'bake'">
             AND tpc.CATEGORY_NAME='베이커리'
         </if>
-        <if test="nation1 == '해외음식'">
+        <if test="nation1 == 'oversea'">
             AND tpc.CATEGORY_NAME='해외음식'
         </if>
-        <if test="nation1 == '채소'">
+        <if test="nation1 == 'vegetable'">
             AND tpc.CATEGORY_NAME='채소'
         </if>
-        <if test="nation1 == '해산물'">
+        <if test="nation1 == 'seafood'">
             AND tpc.CATEGORY_NAME='해산물'
         </if>
-        <if test="nation1 == '과일'">
+        <if test="nation1 == 'fruit'">
             AND tpc.CATEGORY_NAME='과일'
         </if>
-        <if test="nation1 == '냉동식품'">
+        <if test="nation1 == 'frozen'">
             AND tpc.CATEGORY_NAME='냉동식품'
         </if>
-        <if test="nation1 == '소스'">
+        <if test="nation1 == 'sauce'">
             AND tpc.CATEGORY_NAME='소스'
         </if>
-        <if test="nation1 == '디저트'">
+        <if test="nation1 == 'dessert'">
             AND tpc.CATEGORY_NAME='디저트'
         </if>
-
-
 
 
     </select>

@@ -39,6 +39,7 @@
                         <li><a th:href="@{/support/usermain}">고객센터</a></li>
 
 
+
                     </div>
                     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
                     <script type="text/javascript">
@@ -96,6 +97,9 @@
                         <li><a href="#">신청 프로젝트</a><br>
                             <ul class="sub">
                                 <li><a th:href="@{/manager/project/newMain}">신청 프로젝트</a></li>
+                                <li><a th:href="@{/manager/project/reMain}">재신청</a></li>
+                                <li><a th:href="@{/manager/project/declineMain}">반려 프로젝트</a></li>
+                                <li><a th:href="@{/manager/project/complaintMain}">신고 프로젝트</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -112,7 +116,7 @@
                                 <li><a th:href="@{/board/noticeMain}">공지사항</a></li>
                                 <li><a th:href="@{/board/inquiryMain}">고객센터</a></li>
                                 <li><a th:href="@{/board/complaintMain}">사용자 신고 게시판</a></li>
-                               <!-- <li><a th:href="@{/board/complaintProjectAnswered}">프로젝트 신고 게시판</a></li> -->
+                                <li><a th:href="@{/board/complaintProjectAnswered}">프로젝트 신고 게시판</a></li>
                             </ul>
                         </li>
                     </ul>

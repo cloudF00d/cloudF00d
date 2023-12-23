@@ -50,7 +50,7 @@
 
 
 
-                    <div class="delete" id="delete"
+                    <div class="delete"
                      th:onclick="'location.href=\'/manager/project/declineDetail?no='+ @{${project.projectCode}} + '\''"
 
                     >
@@ -103,9 +103,8 @@
                     </form>
                 </div>
             </div> -->
-            <input type="hidden" name="number" id="number" th:value="${project.projectCode}">
-
-
+        
+        
             <div class="main">
                 <table>
                     
@@ -166,26 +165,6 @@
             <!-- 우측 컨텐츠 -->
         </div>
     </div>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // 삭제 버튼 클릭 시 확인 창 표시
-            var deleteButton = document.getElementById('delete');
-            if (deleteButton) {
-                deleteButton.addEventListener('click', function () {
-                    var confirmed = confirm('반려하시겠습니까?');
-                    if (confirmed) {
-                        // 확인을 누른 경우, 주어진 URL로 이동
-                        var userCode = document.getElementById('number').value;
-                        var deleteUrl = '/manager/project/declineDetail?no=' + userCode;
-                        window.location.href = deleteUrl;
-                    }
-                });
-            }
-        });
-
-        /*]]>*/
-    </script>
 </th:block>
 </html>

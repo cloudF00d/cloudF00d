@@ -21,134 +21,62 @@
     <link rel="stylesheet" th:href="@{/css/project/projectMake-main/projectManage-main/payChoice/css.css}">
 
 
-    <th:block th:if="${sidebar == 'yes'}">
-        <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
-    </th:block>
-    <form th:action="@{/projectMake/payChoice}" id="yourForm" method="post">
-        <input
-                type="hidden"
-                id="memberId"
-                name="sellerCode"
-                th:value="${ #authentication.getPrincipal().memberDTO.getUserCode() }"
-        >
+    <th:block th:replace="/fragments/projectMakesidebar.html"></th:block>
+
         <section class="back-board-container">
 
             <!-- 배경 시트 좌측 상단 텍스트 -->
-            <div class="greeting-text">4단계 : 요금제 선택</div>
+            <div class="greeting-text">요금제 선택</div>
             <!-- 배경 시트 -->
             <div class="back-board">
                 <!-- 로고 -->
                 <div class="board-logo img">
                     <img src="/images/01_logoimg/textLogoNone.png">
                 </div>
+         
+                <div class=pay-container>
+                    <div class="pay-box1-back"></div>
+                    <div class="pay-box2-back"></div>
+                    <div class="pay-box3-back"></div>
+                    <div class="pay-box1-in-back"></div>
+                    <div class="pay-box2-in-back"></div>
+                    <div class="pay-box3-in-back"></div>
+                    <span  class="pay-box1-title">프로젝트 담당 디렉터의 맞춤 관리로 성과를 높이고 싶은 판매자님</span>
+                    <span  class="pay-box2-title">클라우드 푸딩 전체 서비스를 이용해 직접 성과를 높이고 싶은 판매자님</span>
+                    <span  class="pay-box3-title">클라우드 푸딩 필수 서비스를 이용해 직접 성과를 만들고 싶은 판매자님</span>
+                    <span  class="pay-box1-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br>팝업 광고</span>
+                  <span  class="pay-box2-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고</span>
+                  <span  class="pay-box3-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)</span>
+                  <span  class="pay1-title">프리미엄 Premium</span>
+                  <span  class="pay2-title">프로 Pro</span>
+                  <span  class="pay3-title">베이직 Basic</span>
+                  <span  class="pay1-sub-title">수수료 15%</span>
+                  <span  class="pay2-sub-title">수수료 10%</span>
+                  <span  class="pay3-sub-title">수수료 5%</span>
+                  <span  class="pay1-vat">VAT 별도</span>
+                  <span  class="pay2-vat">VAT 별도</span>
+                  <span  class="pay3-vat">VAT 별도</span>
+                    <div class=pay1-choice onclick="selectPlan()">
+                        <span  class="pay1-choice-text" value="premium">요금제 선택</span>
+                    </div>
+                    <div class=pay2-choice onclick="selectPlan()">
+                        <span  class="pay2-choice-text" value="pro">요금제 선택</span>
+                    </div>
+                    <div class=pay3-choice onclick="selectPlan()">
+                        <span  class="pay3-choice-text" value="basic">요금제 선택</span>
+                    </div>
+                    <div class="pay-notice"></div>
+                        <span  class="pay-notice-text">요금제 선택 전 확인해 주세요. 수수료(VAT)는 별도입니다.</span>
+                  </div>
 
-                <div class="radio-list">
-                    <label>
-                        <input type="radio" name="plan" value="basic">
-                        <strong>베이직 수수료 5%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br><br>
-                    </label>
+                  <!-- 요금제 선택시 알림팝업 -->
+                  <script>
+                  function selectPlan() {
+                      alert("해당 요금제가 선택되었습니다.");
+                  }
+                  </script>
 
-                    <label>
-                        <input type="radio" name="plan" value="pro">
-                        <strong>프로 수수료 10%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br><br>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="plan" value="premium">
-                        <strong>프리미엄 수수료 15%</strong>&nbsp;프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br>팝업 광고<br><br>
-                    </label>
-                </div>
-
-                <script>
-                    function submitForm() {
-                        // 폼을 JavaScript로 제출
-                        document.getElementById('yourForm').submit();
-                    }
-                    document.addEventListener("DOMContentLoaded", function () {
-                        var form = document.getElementById('yourForm');
-
-                        form.addEventListener('submit', function(event) {
-                            var typeRadios = document.querySelectorAll('input[name="plan"]'); // 라디오 버튼
-
-                            // 라디오 버튼이 선택되었는지 확인
-                            var typeSelected = Array.from(typeRadios).some(radio => radio.checked);
-
-
-                            if (!typeSelected || typeSelected === '') {
-                                alert('요금제를 선택해주세요.');
-                                event.preventDefault(); // 폼 제출을 취소합니다.
-                            }
-                            else {
-                                alert('저장되었습니다.')
-                            }
-
-                        });
-                    });
-                </script>
-
-
-                <button type="submit">다음 단계로</button>
-
-
-<!--                <div class=pay-container>-->
-<!--                    <div class="radio-list">-->
-<!--                    <div class="pay-box1-back"></div>-->
-<!--                            <div class="pay-box2-back"></div>-->
-<!--                            <div class="pay-box3-back"></div>-->
-<!--                    <div class="pay-box1-in-back"></div>-->
-<!--                    <div class="pay-box2-in-back"></div>-->
-<!--                    <div class="pay-box3-in-back"></div>-->
-<!--                    <span  class="pay-box1-title">프로젝트 담당 디렉터의 맞춤 관리로 성과를 높이고 싶은 판매자님</span>-->
-<!--                    <span  class="pay-box2-title">클라우드 푸딩 전체 서비스를 이용해 직접 성과를 높이고 싶은 판매자님</span>-->
-<!--                    <span  class="pay-box3-title">클라우드 푸딩 필수 서비스를 이용해 직접 성과를 만들고 싶은 판매자님</span>-->
-<!--                    <span  class="pay-box1-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고<br>팝업 광고</span>-->
-<!--                  <span  class="pay-box2-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)<br>디스플레이 배너 광고</span>-->
-<!--                  <span  class="pay-box3-inside">프로그램 응원권 발급 (다음 프로젝트 신청시 신청비 3% 할인)</span>-->
-<!--                  <span  class="pay1-title">프리미엄 Premium</span>-->
-<!--                  <span  class="pay2-title">프로 Pro</span>-->
-<!--                  <span  class="pay3-title">베이직 Basic</span>-->
-<!--                  <span  class="pay1-sub-title">수수료 15%</span>-->
-<!--                  <span  class="pay2-sub-title">수수료 10%</span>-->
-<!--                  <span  class="pay3-sub-title">수수료 5%</span>-->
-<!--                  <span  class="pay1-vat">VAT 별도</span>-->
-<!--                  <span  class="pay2-vat">VAT 별도</span>-->
-<!--                  <span  class="pay3-vat">VAT 별도</span>-->
-<!--                    <div class=pay1-choice onclick="selectPlan()">-->
-<!--                        <span  class="pay1-choice-text" value="premium">요금제 선택</span>-->
-<!--                    </div>-->
-<!--                    <div class=pay2-choice onclick="selectPlan()">-->
-<!--                        <span  class="pay2-choice-text" value="pro">요금제 선택</span>-->
-<!--                    </div>-->
-<!--                    <div class=pay3-choice onclick="selectPlan()">-->
-<!--                        <span  class="pay3-choice-text" value="basic">요금제 선택</span>-->
-<!--                    </div>-->
-<!--                    <div class="pay-notice"></div>-->
-<!--                        <span  class="pay-notice-text">요금제 선택 전 확인해 주세요. 수수료(VAT)는 별도입니다.</span>-->
-<!--                  </div>-->
-
-<!--                  &lt;!&ndash; 요금제 선택시 알림팝업 &ndash;&gt;-->
-<!--                  <script>-->
-<!--                  function selectPlan() {-->
-<!--                      alert("해당 요금제가 선택되었습니다.");-->
-<!--                  }-->
-<!--                  </script>-->
-
-<!--                </div>-->
-
-
-                <script th:inline="javascript">
-                    document.addEventListener("DOMContentLoaded", function() {
-                        var businessType = /*[[${project.plan}]]*/ '';
-
-                        if (businessType === 'basic') {
-                            document.querySelector('input[name="plan"][value="basic"]').checked = true;
-                        } else if (businessType === 'pro') {
-                            document.querySelector('input[name="plan"][value="pro"]').checked = true;
-                        } else if (businessType === 'premium') {
-                            document.querySelector('input[name="plan"][value="premium"]').checked = true;
-                        }
-                    });
-                </script>
+                    <a class="project-start" th:href="@{/projectMake/projectManage}">제출하기</a>
 
             </div> <!-- back-board -->
         </div> <!-- greeting-text -->
