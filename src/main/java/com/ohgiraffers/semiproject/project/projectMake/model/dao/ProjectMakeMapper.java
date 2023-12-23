@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.project.projectMake.model.dao;
 
+import com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -60,7 +61,7 @@ public interface ProjectMakeMapper {
 
     List<ProjectMakeFileDTO> selectAllFileProject(int code);
 
-    ProjectDTO findProjectCode(int code);
+    ProjectDTO findProjectCode(ProjectMakeDTO projectMakeDTO);
 
 
 
@@ -82,9 +83,21 @@ public interface ProjectMakeMapper {
 
     int updateThumbnail(ProjectMakeFileDTO projectMakeFileDTO);
 
-    int insertTag(String str, int projectCode);
+    int insertTag(PlanDTO a);
 
     int moveProjectFile(ProjectMakeFileDTO a);
 
     int moveBusinessFile(BusinessFileMakeDTO a);
+
+    int insertOption(OptionMakeDTO op);
+
+    List<OptionMakeDTO> selectOption(int code);
+
+    void moveOption(OptionMakeDTO op);
+
+    int updateOption(OptionMakeDTO optionMakeDTOS);
+
+    PrivateBusinessDTO findOriginBusiness(int code);
+
+    int deleteOption(int code);
 }

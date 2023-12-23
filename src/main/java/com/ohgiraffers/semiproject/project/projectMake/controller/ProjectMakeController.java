@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ohgiraffers.semiproject.common.exception.thumbnail.ThumbnailRegistException;
+import com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.*;
 import com.ohgiraffers.semiproject.project.projectMake.model.service.ProjectMakeService;
@@ -142,41 +143,41 @@ public class ProjectMakeController {
         // project.title, endDate, tag
         // projectFile.select 대표 이미지
 
-        if (projectMakeDTO.getTitle()!=null && !projectMakeDTO.getTitle().isEmpty() && !projectMakeDTO.getTitle().isBlank()) {
+        if (projectMakeDTO.getTitle() != null && !projectMakeDTO.getTitle().isEmpty() && !projectMakeDTO.getTitle().isBlank()) {
             mv.addAttribute("title", projectMakeDTO.getTitle());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("title", "nothing");
             System.out.println("nothing");
         }
-        if (projectMakeDTO.getEndDate()!=null && !projectMakeDTO.getEndDate().equals("") && !projectMakeDTO.getEndDate().equals("0000-00-00") && !(projectMakeDTO.getEndDate() == null)) {
+        if (projectMakeDTO.getEndDate() != null && !projectMakeDTO.getEndDate().equals("") && !projectMakeDTO.getEndDate().equals("0000-00-00") && !(projectMakeDTO.getEndDate() == null)) {
             mv.addAttribute("endDate", projectMakeDTO.getEndDate());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("endDate", "nothing");
             System.out.println("nothing");
 
         }
-        if (projectMakeDTO.getStartDate()!=null && !projectMakeDTO.getStartDate().equals("") && !projectMakeDTO.getStartDate().equals("0000-00-00") && !(projectMakeDTO.getStartDate() == null)) {
+        if (projectMakeDTO.getStartDate() != null && !projectMakeDTO.getStartDate().equals("") && !projectMakeDTO.getStartDate().equals("0000-00-00") && !(projectMakeDTO.getStartDate() == null)) {
             mv.addAttribute("startDate", projectMakeDTO.getStartDate());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("startDate", "nothing");
             System.out.println("nothing");
 
         }
-        if ( projectMakeDTO.getTag()!=null && !projectMakeDTO.getTag().isEmpty() && !projectMakeDTO.getTag().isBlank() && !(projectMakeDTO.getTitle() == null)) {
+        if (projectMakeDTO.getTag() != null && !projectMakeDTO.getTag().isEmpty() && !projectMakeDTO.getTag().isBlank() && !(projectMakeDTO.getTitle() == null)) {
             mv.addAttribute("tag", projectMakeDTO.getTag());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("tag", "nothing");
             System.out.println("nothing");
 
         }
-        if (projectMakeFileDTO!=null && projectMakeFileDTO.getOriginFileName()!=null && !projectMakeFileDTO.getOriginFileName().isEmpty() && !projectMakeFileDTO.getOriginFileName().isBlank() && !(projectMakeDTO.getTitle() == null)) {
+        if (projectMakeFileDTO != null && projectMakeFileDTO.getOriginFileName() != null && !projectMakeFileDTO.getOriginFileName().isEmpty() && !projectMakeFileDTO.getOriginFileName().isBlank() && !(projectMakeDTO.getTitle() == null)) {
             mv.addAttribute("projectFile", projectMakeFileDTO.getOriginFileName());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("projectFile", "nothing");
             System.out.println("nothing");
 
@@ -199,9 +200,9 @@ public class ProjectMakeController {
 
         System.out.println("mainPicture = " + mainPicture);
 
-            int code = projectMakeDTO.getSellerCode(); // 사용자 코드 추출
+        int code = projectMakeDTO.getSellerCode(); // 사용자 코드 추출
 
-            ProjectMakeFileDTO projectMakeFileDTO = projectMakeService.selectFileProject(code); // 이미 입력한 대표 사진이 있는지 확인
+        ProjectMakeFileDTO projectMakeFileDTO = projectMakeService.selectFileProject(code); // 이미 입력한 대표 사진이 있는지 확인
 
         if (projectMakeFileDTO == null) { // 없으면 insert
 
@@ -471,8 +472,6 @@ public class ProjectMakeController {
         }
 
 
-
-
         projectMakeService.basicInfoUpdate(projectMakeDTO);
 
 
@@ -506,38 +505,38 @@ public class ProjectMakeController {
 //        } else{
 //            mv.addAttribute("project", "nothing");
 //        }
-        if (projectMakeDTO.getType()!=null && !projectMakeDTO.getType().isEmpty() && !projectMakeDTO.getType().isBlank()) {
+        if (projectMakeDTO.getType() != null && !projectMakeDTO.getType().isEmpty() && !projectMakeDTO.getType().isBlank()) {
             mv.addAttribute("type", projectMakeDTO.getType());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("type", "nothing");
             System.out.println("nothing");
         }
-        if (projectMakeDTO.getSellerType()!=null && !projectMakeDTO.getSellerType().isEmpty() && !projectMakeDTO.getSellerType().isBlank()) {
+        if (projectMakeDTO.getSellerType() != null && !projectMakeDTO.getSellerType().isEmpty() && !projectMakeDTO.getSellerType().isBlank()) {
             mv.addAttribute("sellerType", projectMakeDTO.getSellerType());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("sellerType", "nothing");
             System.out.println("nothing");
         }
-        if (projectMakeDTO.getTargetAmount()!=null && !projectMakeDTO.getTargetAmount().equals("") && !projectMakeDTO.getTargetAmount().equals("0000-00-00") && !(projectMakeDTO.getTargetAmount() == null)) {
+        if (projectMakeDTO.getTargetAmount() != null && !projectMakeDTO.getTargetAmount().equals("") && !projectMakeDTO.getTargetAmount().equals("0000-00-00") && !(projectMakeDTO.getTargetAmount() == null)) {
             mv.addAttribute("targetAmount", projectMakeDTO.getTargetAmount());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("targetAmount", "nothing");
             System.out.println("nothing");
         }
-        if ( businessMakeDTO != null && businessMakeDTO.getBusiEmail()!=null && !businessMakeDTO.getBusiEmail().isEmpty() && !businessMakeDTO.getBusiEmail().isBlank() && !(businessMakeDTO.getBusiEmail() == null)) {
+        if (businessMakeDTO != null && businessMakeDTO.getBusiEmail() != null && !businessMakeDTO.getBusiEmail().isEmpty() && !businessMakeDTO.getBusiEmail().isBlank() && !(businessMakeDTO.getBusiEmail() == null)) {
             mv.addAttribute("busiEmail", businessMakeDTO.getBusiEmail());
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("busiEmail", "nothing");
             System.out.println("nothing");
         }
         if (!businessFileMakeDTO.isEmpty() && businessFileMakeDTO != null) {
             mv.addAttribute("projectFile", businessFileMakeDTO);
             System.out.println("공백이 아님");
-        } else{
+        } else {
             mv.addAttribute("projectFile", "nothing");
             System.out.println("nothing");
 
@@ -549,19 +548,27 @@ public class ProjectMakeController {
             mv.addAttribute("sidebar", "no");
         }
 
-        System.out.println("memberAndAuthorityDTO = " + memberAndAuthorityDTO);
+        PrivateBusinessDTO privateBusinessDTO = projectMakeService.findOriginBusiness(code);
+        if(privateBusinessDTO != null){
+            mv.addAttribute("business", privateBusinessDTO);
+        } else {
+            mv.addAttribute("business","nothing");
+        }
 
+        System.out.println("memberAndAuthorityDTO = " + memberAndAuthorityDTO);
 
 
         return "/content/project/projectManage/projectInfo";
 
     }
 
+
     @PostMapping("projectInfo")
     public String projectInfo2(@ModelAttribute ProjectMakeDTO projectMakeDTO,
                                @ModelAttribute BusinessMakeDTO businessMakeDTO,
-                               @RequestParam("businessFile") List<MultipartFile> mainPicture,
+                               @RequestParam(value = "businessFile", required = false) List<MultipartFile> mainPicture,
                                RedirectAttributes rttr) throws ThumbnailRegistException {
+        int code = projectMakeDTO.getSellerCode();
         System.out.println("projectMakeDTO = " + projectMakeDTO); // type 이랑 targetAmount 이랑 sellerType 받기 위함
 
         System.out.println("businessMakeDTO = " + businessMakeDTO); // busiEmail 받기 위함
@@ -570,23 +577,22 @@ public class ProjectMakeController {
 
         projectMakeService.typeAndTargetUpdate(projectMakeDTO); // project의 type 이랑 targetAmount 이랑 sellerType update
 
-        BusinessMakeDTO businessMakeDTO1 = projectMakeService.alreadyExist(businessMakeDTO); // 기존에 만들어둔 business가 있는지 확인
+        PrivateBusinessDTO privateBusinessDTO = projectMakeService.findOriginBusiness(code);
 
-        if (businessMakeDTO1 == null) {
-            System.out.println("저장된 프로젝트가 없군요! 새로 작성하겠습니다");
-            projectMakeService.businessInsert(businessMakeDTO); // business insert
+        if(privateBusinessDTO == null) {
+            BusinessMakeDTO businessMakeDTO1 = projectMakeService.alreadyExist(businessMakeDTO); // 기존에 만들어둔 business가 있는지 확인
 
-        } else if (businessMakeDTO1 != null) {
-            System.out.println("이미 작성하던 프로젝트가 있군요! 해당 페이지로 이동합니다.");
-            projectMakeService.busiEmailUpdate(businessMakeDTO); // business update
-        }
-//        int code = projectMakeDTO.getSellerCode(); // 사용자 코드 추출
-//
-//        ProjectMakeFileDTO projectMakeFileDTO = projectMakeService.selectFileProject(code); //
-//
-//        if(projectMakeFileDTO != null){
-//            projectMakeService.deleteMainPicture(code); // 기존 대표이미지를 지우고 다시 삽입
-//        }
+            if (businessMakeDTO1 == null) {
+                System.out.println("저장된 프로젝트가 없군요! 새로 작성하겠습니다");
+                projectMakeService.businessInsert(businessMakeDTO); // business insert
+
+            } else if (businessMakeDTO1 != null) {
+                System.out.println("이미 작성하던 프로젝트가 있군요! 해당 페이지로 이동합니다.");
+                projectMakeService.busiEmailUpdate(businessMakeDTO); // business update
+            }
+
+
+
 
         String rootLocation = ROOT_LOCATION + IMAGE_DIR;
 
@@ -716,6 +722,7 @@ public class ProjectMakeController {
                 e.printStackTrace();
             }
         }
+        }
 
         log.info("[ThumbnailController] ========================================================= end");
 
@@ -783,7 +790,6 @@ public class ProjectMakeController {
         }
 
 
-
         return "/content/project/projectManage/projectStory";
 
     }
@@ -797,7 +803,7 @@ public class ProjectMakeController {
         projectMakeService.updateSummary(projectMakeDTO);
 
 
-        return "redirect:/projectMake/businessInfo";
+        return "redirect:/projectMake/option";
 
 
     }
@@ -840,15 +846,21 @@ public class ProjectMakeController {
         System.out.println("projectMakeFileDTO = " + projectMakeFileDTO);
         projectMakeService.moveProjectFile(projectMakeFileDTO);
 
-        //business 삽입 (유저코드로 삽입)
-        BusinessMakeDTO businessMakeDTO = projectMakeService.selectBusiness(code);
-        System.out.println("businessMakeDTO = " + businessMakeDTO);
-        projectMakeService.moveBusiness(businessMakeDTO);
+        PrivateBusinessDTO privateBusinessDTO = projectMakeService.findOriginBusiness(code);
 
-        //business file 삽입 (비지니스 코드로 삽입)
-        List<BusinessFileMakeDTO> businessFileMakeDTOS = projectMakeService.selectBusinessFile(code);
-        System.out.println("businessFileMakeDTOS = " + businessFileMakeDTOS);
-        projectMakeService.moveBusinessFile(businessFileMakeDTOS);
+        if(privateBusinessDTO == null){
+
+            //business 삽입 (유저코드로 삽입)
+            BusinessMakeDTO businessMakeDTO = projectMakeService.selectBusiness(code);
+            System.out.println("businessMakeDTO = " + businessMakeDTO);
+            projectMakeService.moveBusiness(businessMakeDTO);
+
+            //business file 삽입 (비지니스 코드로 삽입)
+            List<BusinessFileMakeDTO> businessFileMakeDTOS = projectMakeService.selectBusinessFile(code);
+            System.out.println("businessFileMakeDTOS = " + businessFileMakeDTOS);
+            projectMakeService.moveBusinessFile(businessFileMakeDTOS);
+
+        }
 
 
         return "redirect:/";
@@ -875,8 +887,8 @@ public class ProjectMakeController {
     }
 
     @PostMapping("/summernote")
-    public String summernote2(@RequestParam String summernote,
-                              @RequestParam String uploadedImages,
+    public String summernote2(@RequestParam(name = "summernote") String summernote,
+                              @RequestParam(name = "uploadedImages") String uploadedImages,
                               RedirectAttributes rttr,
                               @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) throws JsonProcessingException {
 
@@ -1013,7 +1025,7 @@ public class ProjectMakeController {
             String loca[] = businessMakeDTO.getLoca().split("\\$");
 
             for (int i = 0; i < loca.length; i++) {
-                System.out.println("  "+i+"번째 인덱스 : "+loca[i]);
+                System.out.println("  " + i + "번째 인덱스 : " + loca[i]);
 
             }
 
@@ -1024,16 +1036,22 @@ public class ProjectMakeController {
             System.out.println("zipCode = " + zipCode);
             System.out.println("address1 = " + address1);
             System.out.println("address2 = " + address2);
-            mv.addAttribute("address1",address1);
-            mv.addAttribute("address2",address2);
-            mv.addAttribute("zipCode",zipCode);
+            mv.addAttribute("address1", address1);
+            mv.addAttribute("address2", address2);
+            mv.addAttribute("zipCode", zipCode);
         } else if (businessMakeDTO != null && businessMakeDTO.getLoca() == null) {
             System.out.println("loca 없음");
-            mv.addAttribute("address1","");
-            mv.addAttribute("address2","");
-            mv.addAttribute("zipCode","");
+            mv.addAttribute("address1", "");
+            mv.addAttribute("address2", "");
+            mv.addAttribute("zipCode", "");
         }
 
+        PrivateBusinessDTO privateBusinessDTO = projectMakeService.findOriginBusiness(code);
+        if(privateBusinessDTO != null){
+            mv.addAttribute("origin",privateBusinessDTO);
+        } else {
+            mv.addAttribute("origin","nothing");
+        }
 
         mv.addAttribute("business", businessMakeDTO);
 
@@ -1045,19 +1063,27 @@ public class ProjectMakeController {
         return "/content/project/projectManage/businessInfo";
 
     }
+
     @PostMapping("/businessInfo")
     public String businessInfo2(@ModelAttribute BusinessMakeDTO businessMakeDTO,
-                                @RequestParam String zipCode,
-                                @RequestParam String address1,
-                                @RequestParam String address2) {
-        String loca= null;
+                                @RequestParam(name = "zipCode", required = false) String zipCode,
+                                @RequestParam(name = "address1", required = false) String address1,
+                                @RequestParam(name = "address2", required = false) String address2) {
+        int code = businessMakeDTO.getSellCode();
+
+        PrivateBusinessDTO privateBusinessDTO = projectMakeService.findOriginBusiness(code);
+
+        if(privateBusinessDTO == null){
+
+
+        String loca = null;
 
         if (zipCode != null && address1 != null) {
-        System.out.println("zipCode = " + zipCode);
-        System.out.println("address1 = " + address1);
-        System.out.println("address2 = " + address2);
-        loca = zipCode + "$" + address1 + "$" + address2;
-    }
+            System.out.println("zipCode = " + zipCode);
+            System.out.println("address1 = " + address1);
+            System.out.println("address2 = " + address2);
+            loca = zipCode + "$" + address1 + "$" + address2;
+        }
         if (loca != "$$" && loca != null) {
             businessMakeDTO.setLoca(loca);
 
@@ -1068,10 +1094,85 @@ public class ProjectMakeController {
 
 
         projectMakeService.updateBusiness(businessMakeDTO);
-
+        }
 
 
         return "redirect:/projectMake/projectAgree";
+
+    }
+
+    @GetMapping("/option")
+    public String option( @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+                          Model mv) {
+
+
+        int code = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+
+        List<OptionMakeDTO> alerady = projectMakeService.selectOption(code); // 이미 있는지 확인
+
+        if(alerady !=null && !alerady.isEmpty()){
+            mv.addAttribute("option",alerady);
+
+        } else {
+            mv.addAttribute("option","nothing");
+        }
+        BusinessMakeDTO businessMakeDTO = projectMakeService.selectBusiness(code);
+
+        if (businessMakeDTO != null && businessMakeDTO.getBusiName() != null) {
+            mv.addAttribute("sidebar", "yes");
+        } else {
+            mv.addAttribute("sidebar", "no");
+        }
+
+        return "/content/project/projectManage/option";
+
+    }
+    @PostMapping("/option")
+    public String option2( @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+                           @RequestParam(name = "nameA") String nameA,
+                          @RequestParam(name = "priceA") int priceA,
+                          @RequestParam(name = "configureA") String configureA,
+                          @RequestParam(name = "nameB") String nameB,
+                          @RequestParam(name = "priceB") int priceB,
+                          @RequestParam(name = "configureB") String configureB,
+                          @RequestParam(name = "nameC") String nameC,
+                          @RequestParam(name = "priceC") int priceC,
+                          @RequestParam(name = "configureC") String configureC) {
+
+            int code = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+
+            List<OptionMakeDTO> alerady = projectMakeService.selectOption(code); // 이미 있는지 확인
+
+        List<OptionMakeDTO> optionMakeDTOS = new ArrayList<>();
+        OptionMakeDTO optionMakeDTO = new OptionMakeDTO(nameA, 'A', priceA, configureA, code);
+        optionMakeDTOS.add(optionMakeDTO);
+        OptionMakeDTO optionMakeDTO2 = new OptionMakeDTO(nameB, 'B', priceB, configureB, code);
+        optionMakeDTOS.add(optionMakeDTO2);
+        OptionMakeDTO optionMakeDTO3 = new OptionMakeDTO(nameC, 'C', priceC, configureC, code);
+        optionMakeDTOS.add(optionMakeDTO3);
+
+            if (alerady == null || alerady.isEmpty()){
+
+                projectMakeService.insertOption(optionMakeDTOS);
+
+            } else{
+
+                projectMakeService.updateOption(optionMakeDTOS);
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+        return "redirect:/projectMake/businessInfo";
 
     }
 }

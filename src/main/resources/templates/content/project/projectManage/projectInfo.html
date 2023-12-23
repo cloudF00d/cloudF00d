@@ -70,13 +70,23 @@
                     <div class="owner-container">
                         <p>대표자 이메일</p>
                         <div class="ownerInfo">
-                            <th:block th:if="${busiEmail != 'nothing'}">
-                                <input type="text" id="email" name="busiEmail" placeholder="example@example.com"
-                                       th:value="${busiEmail}">
+
+                            <th:block th:if="${business != 'nothing'}">
+                                <p th:text="${business.businessEmail}"></p>
                             </th:block>
-                            <th:block th:if="${busiEmail == 'nothing'}">
-                                <input type="text" id="email" name="busiEmail" placeholder="example@example.com">
+                            <th:block th:if="${business == 'nothing'}">
+                                <th:block th:if="${busiEmail != 'nothing'}">
+                                    <input type="text" id="email" name="busiEmail" placeholder="example@example.com"
+                                           th:value="${busiEmail}">
+                                </th:block>
+                                <th:block th:if="${busiEmail == 'nothing'}">
+                                    <input type="text" id="email" name="busiEmail" placeholder="example@example.com">
+                                </th:block>
                             </th:block>
+
+
+
+
                             <!--                        <label for="site"></label>-->
                             <!--                        <select id="site" name="site" onchange="updateEmailDomain()">-->
                             <!--                            <option value="" disabled selected>주소를 선택하세요.</option>-->
@@ -98,6 +108,11 @@
 
                     <br><br>
                     <div class="category-text">심사 서류<span class="greeting-text-star"> *</span></div>
+
+                    <th:block th:if="${business != 'nothing'}">     <br>
+                        <p>이전에 이미 서류를 제출했어요!</p>
+                    </th:block>
+                    <th:block th:if="${business == 'nothing'}">
                     <br>
                     <p id="attachmentMessage">사업자 등록증을 등록해 주세요.</p>
                     <input type="file" accept=".img, .imag, .pdf, .png, .doc, .docx" multiple id="fileInput"
@@ -112,6 +127,7 @@
                         <div>
                             <div></div>
                         </div>
+                    </th:block>
                     </th:block>
                     <!-- 입력 요소 -->
                     <!--                <div class="paper-box-container">-->
@@ -184,12 +200,12 @@
                     <div class="radio-list">
                         <label>
                             <input type="radio" name="sellerType" value="개인">
-                            <strong>개인</strong> 사업자로 등록하지 않은 사람이에요<br><br>
+                            <strong>개인</strong> <br><br>
                         </label>
 
                         <label>
                             <input type="radio" name="sellerType" value="개인사업자">
-                            <strong>개인사업자</strong>&nbsp;사업자 등록증이 필요해요<br><br>
+                            <strong>개인사업자</strong>&nbsp;<br><br>
                         </label>
                     </div>
 

@@ -93,11 +93,11 @@ public class BoardController {
 
     @GetMapping("/complaintMain")
     public ModelAndView complaintBoard(
-            @RequestParam(required = false, defaultValue = "작성번호") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "내림차순") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false, defaultValue = "전체") String authority,
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, defaultValue = "작성번호", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+            @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, name = "nation3") String nation3, //검색할 컬럼 선택
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
@@ -176,11 +176,11 @@ public class BoardController {
         return "content/board/complaintboard/complaintProjectDetail";}
     @GetMapping("/complaintProjectMain")
     public ModelAndView complaintMain(
-        @RequestParam(required = false, defaultValue = "코드") String nation1, // 정렬 컬럼 선택
-        @RequestParam(required = false, defaultValue = "내림차순") String nation2, // 정렬 방식 선택
-        @RequestParam(required = false, defaultValue = "전체") String authority,
-        @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-        @RequestParam(required = false, defaultValue = "검색컬럼") String nation3, //검색할 컬럼 선택
+        @RequestParam(required = false, defaultValue = "코드", name = "nation1") String nation1, // 정렬 컬럼 선택
+        @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+        @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+        @RequestParam(required = false, name = "nation1") String searchValue, // 검색어 입력하는곳 받기
+        @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
         @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
         ModelAndView mv) {
 
@@ -363,11 +363,11 @@ public class BoardController {
 
     @GetMapping("/inquiryMain")
     public ModelAndView inquiryMain(
-            @RequestParam(required = false, defaultValue = "코드") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "내림차순") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false, defaultValue = "전체") String authority,
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-            @RequestParam(required = false, defaultValue = "검색컬럼") String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, defaultValue = "작성일자", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
+            @RequestParam(required = false, name = "nation1") String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
@@ -439,10 +439,10 @@ public class BoardController {
 
     @GetMapping("/noticeMain")
     public ModelAndView noticeMain(
-            @RequestParam(required = false, defaultValue = "코드") String nation1, // 정렬 컬럼 선택
-            @RequestParam(required = false, defaultValue = "내림차순") String nation2, // 정렬 방식 선택
-            @RequestParam(required = false, defaultValue = "검색컬럼") String nation3, //검색할 컬럼 선택
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
+            @RequestParam(required = false, defaultValue = "코드", name = "nation1") String nation1, // 정렬 컬럼 선택
+            @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
+            @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
+            @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
             @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
             ModelAndView mv) {
 
@@ -502,7 +502,7 @@ public class BoardController {
     }
 
     @GetMapping("/noticeWrited")
-    public String noticeWrited(@RequestParam Long no, Model mv){
+    public String noticeWrited(@RequestParam(name = "no") Long no, Model mv){
 
         System.out.println("no ======================== " + no);
 

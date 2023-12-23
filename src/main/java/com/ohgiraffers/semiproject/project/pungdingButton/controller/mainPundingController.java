@@ -28,12 +28,12 @@ public class mainPundingController{
     }
 
     @GetMapping("mainPunding")
-    public ModelAndView mainPunding(@RequestParam(required = false, defaultValue = "전체") String nation1, // 정렬 컬럼 선택
-                              @RequestParam(required = false, defaultValue = "필터 선택") String nation2, // 정렬 방식 선택
-                              @RequestParam(required = false, defaultValue = "검색컬럼") String nation3, //검색할 컬럼 선택
+    public ModelAndView mainPunding(@RequestParam(required = false, defaultValue = "전체", name = "nation1") String nation1, // 정렬 컬럼 선택
+                              @RequestParam(required = false, defaultValue = "필터 선택", name = "nation2") String nation2, // 정렬 방식 선택
+                              @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
 //                              @RequestParam(required = false, defaultValue = "all") String authority,
                               // 전체, 사용자, 판매자, 신고자 선택
-                              @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
+                              @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
                               @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
                               ModelAndView mv) {
 

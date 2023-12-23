@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.project.projectMake.model.service;
 
 import com.ohgiraffers.semiproject.common.exception.thumbnail.ThumbnailRegistException;
+import com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO;
 import com.ohgiraffers.semiproject.project.projectMake.model.dao.ProjectMakeMapper;
 import com.ohgiraffers.semiproject.project.projectMake.model.dto.*;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+
 
 public class ProjectMakeService implements ProjectMakeServiceInter {
     private ProjectMakeMapper mapper;
@@ -298,27 +300,42 @@ public class ProjectMakeService implements ProjectMakeServiceInter {
         int result = mapper.moveProject(projectNumberMakeDTO); // 입력됌
 
         if (result > 0) {
-            System.out.println("성공!");
+            System.out.println("project에 insert 성공!");
 
             //tag 넣기
             int code = projectMakeDTO.getSellerCode(); //sellerCode 가져옴
-            ProjectDTO projectDTO = mapper.findProjectCode(code); // projectCode 조회
+            ProjectMakeDTO projectMakeDTO1 = mapper.selectMakingProject(code); // ProjectMake 조회
+            System.out.println("projectMakeDTO1 = " + projectMakeDTO1);
+            String title = projectMakeDTO1.getTitle(); // projectMake의 title 조회
+            System.out.println("title = " + title);
+            ProjectDTO projectDTO = mapper.findProjectCode(projectMakeDTO1); // code와 title로 project 조회
+            System.out.println("projectDTO = " + projectDTO);
             int projectCode = projectDTO.getProjectCode(); // projectCode 가져옴
+            System.out.println("projectCode = " + projectCode);
 
-            String arr[] = projectMakeDTO.getTag().split("\\s*,\\s*");
+            String tag1 = projectMakeDTO.getTag();
 
-            for (String str : arr) {
-                int tag = mapper.insertTag(str, projectCode); // 태그 입력됌
+        //    String arr[] = projectMakeDTO.getTag().split("\\s*,\\s*"); //tag를 String 배열로 반환
+        //    for (String ar:
+        //         arr) {
+        //        System.out.println("ar : "+ar+"   ");
+        //    }
 
-                if (tag > 0) {
+           // for (String str : arr) {
 
-                    int delete = mapper.deleteMakeProject(code); // 삭제 됌
+                PlanDTO planDTO1 = new PlanDTO(projectCode,tag1);
 
-                    if (delete > 0) {
-                        System.out.println("projectMake 삭제 성공!");
-                    }
-                }
+
+                int tag = mapper.insertTag(planDTO1); // 태그 입력됌
+
+            if(tag>0){
+                System.out.println("tag insert 성공!!");
             }
+
+
+
+
+          //  }
 
         }
 
@@ -329,15 +346,17 @@ public class ProjectMakeService implements ProjectMakeServiceInter {
     @Transactional
     public void moveProjectFile(List<ProjectMakeFileDTO> projectMakeFileDTO) {
         //먼저 프로젝트 코드를 알아야 한다
-        int code = projectMakeFileDTO.get(0).getSCode();
-        ProjectDTO projectDTO = mapper.findProjectCode(code);
-        int projectCode = projectDTO.getProjectCode();
+        int code = projectMakeFileDTO.get(0).getSCode(); // 사용자 코드
+        ProjectMakeDTO projectMakeDTO = mapper.selectMakingProject(code);
+        String title = projectMakeDTO.getTitle();
+        ProjectDTO projectDTO = mapper.findProjectCode(projectMakeDTO);
+        int projectCode = projectDTO.getProjectCode(); // 프로젝트 코드
         System.out.println("projectCode = " + projectCode);
 
         int i = 0;
         for (i = 0; i < projectMakeFileDTO.size(); i++) {
             System.out.println("projectMakeFileDTO = " + projectMakeFileDTO.get(i));
-            if (projectMakeFileDTO.get(i).getOriginFileName() != null){
+            if (projectMakeFileDTO.get(i).getOriginFileName() != null) {
                 ProjectMakeFileDTO A = new ProjectMakeFileDTO(
                         projectMakeFileDTO.get(i).getOriginFileName(),
                         projectMakeFileDTO.get(i).getFCode(),
@@ -353,18 +372,48 @@ public class ProjectMakeService implements ProjectMakeServiceInter {
                     System.out.println("projectFile 옮기기 " + i + "번째 인덱스 성공!");
                 }
             }
+        }
 
 
+        int j = 0;
+        List<OptionMakeDTO> optionMakeDTOS = mapper.selectOption(code);
+        if (i == projectMakeFileDTO.size()) {
+
+            for (j = 0; j < optionMakeDTOS.size(); j++) {
+                OptionMakeDTO op = new OptionMakeDTO(
+                        optionMakeDTOS.get(i).getOName(),
+                        optionMakeDTOS.get(i).getOType(),
+                        optionMakeDTOS.get(i).getOPrice(),
+                        optionMakeDTOS.get(i).getOConfigure(),
+                        optionMakeDTOS.get(i).getOSCode(),
+                        projectCode
+                );
+
+                mapper.moveOption(op);
+
+            }
 
         }
-        if (i == projectMakeFileDTO.size()) {
+
+
+        if (j == optionMakeDTOS.size()) {
+
+            int a = mapper.deleteOption(code);
 
             int delete = mapper.deleteMakeProjectFile(code);
 
             if (delete > 0) {
                 System.out.println("projectMakeFile 삭제 성공!");
+
+                int delete1 = mapper.deleteMakeProject(code); // ProjectMake 삭제
+
+                if (delete1 > 0) {
+                    System.out.println("projectMake 삭제 성공!");
+                }
             }
+
         }
+
     }
 
     @Override
@@ -467,5 +516,45 @@ public class ProjectMakeService implements ProjectMakeServiceInter {
         if (!(attachmentResult == attachmentList.size())) {
             throw new ThumbnailRegistException("사진 게시판 등록에 실패하셨습니다.");
         }
+    }
+
+    @Override
+    @Transactional
+    public void insertOption(List<OptionMakeDTO> optionMakeDTOS) {
+
+        for (OptionMakeDTO op : optionMakeDTOS) {
+
+            int result = mapper.insertOption(op);
+
+            if (result > 0) {
+                System.out.println("성공!");
+            }
+        }
+
+    }
+
+    @Override
+    public List<OptionMakeDTO> selectOption(int code) {
+        List<OptionMakeDTO> already = mapper.selectOption(code);
+
+        return already;
+    }
+
+    @Override
+    @Transactional
+    public void updateOption(List<OptionMakeDTO> optionMakeDTOS) {
+
+        for (OptionMakeDTO op :
+                optionMakeDTOS) {
+
+            int result = mapper.updateOption(op);
+        }
+    }
+
+    @Override
+    public PrivateBusinessDTO findOriginBusiness(int code) {
+        PrivateBusinessDTO privateBusinessDTO = mapper.findOriginBusiness(code);
+
+        return privateBusinessDTO;
     }
 }

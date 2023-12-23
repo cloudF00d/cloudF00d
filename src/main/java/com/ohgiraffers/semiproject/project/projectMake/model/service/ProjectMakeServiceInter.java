@@ -1,10 +1,8 @@
 package com.ohgiraffers.semiproject.project.projectMake.model.service;
 
 import com.ohgiraffers.semiproject.common.exception.thumbnail.ThumbnailRegistException;
-import com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessFileMakeDTO;
-import com.ohgiraffers.semiproject.project.projectMake.model.dto.BusinessMakeDTO;
-import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeDTO;
-import com.ohgiraffers.semiproject.project.projectMake.model.dto.ProjectMakeFileDTO;
+import com.ohgiraffers.semiproject.manager.model.dto.PrivateBusinessDTO;
+import com.ohgiraffers.semiproject.project.projectMake.model.dto.*;
 
 import java.util.List;
 import java.util.Map;
@@ -65,4 +63,12 @@ public interface ProjectMakeServiceInter {
     void moveBusinessFile(List<BusinessFileMakeDTO> businessFileMakeDTOS);
 
     void updateThumbnail(ProjectMakeDTO projectMakeDTO) throws ThumbnailRegistException;
+
+    void insertOption(List<OptionMakeDTO> optionMakeDTOS);
+
+    List<OptionMakeDTO> selectOption(int code);
+
+    void updateOption(List<OptionMakeDTO> optionMakeDTOS);
+
+    PrivateBusinessDTO findOriginBusiness(int code);
 }
