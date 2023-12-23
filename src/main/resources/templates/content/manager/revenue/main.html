@@ -119,7 +119,7 @@
                         th:each=" projectlist : ${project}"
                         th:onclick="'location.href=\'/manager/revenue/detail?no='+ @{${projectlist.projectCode}} + '\''"
                     >
-                        <td id="new">new</td>
+                        <td id="new"></td>
                         <td th:text="${projectlist.projectCode}"></td>
                         <td th:text="${projectlist.projectTitle}"></td>
                         <td th:text="${projectlist.sellerInfo.userName}"></td>

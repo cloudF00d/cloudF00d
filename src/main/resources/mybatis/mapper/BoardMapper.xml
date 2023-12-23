@@ -150,9 +150,7 @@
         TBL_NOTICE A
         <where>
             <if test="searchValue != null and !searchValue.equals('')">
-                <if test="nation3 == 'code'">
-                    A.CREATION_NUMBER LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
+
                 <if test="nation3 == '제목'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
@@ -605,12 +603,10 @@
                 <if test="nation3 == '제목'">
                     A.TITLE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '사유'">
+                <if test="nation3 == '판매자'">
                     C.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>
-                <if test="nation3 == '판매자'">
-                    B.USER_NAME LIKE CONCAT('%', #{ searchValue }, '%')
-                </if>
+
                 <if test="nation3 == '신고일자'">
                     A.CREATION_DATE LIKE CONCAT('%', #{ searchValue }, '%')
                 </if>

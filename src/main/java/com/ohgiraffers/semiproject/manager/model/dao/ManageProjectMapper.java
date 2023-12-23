@@ -26,4 +26,6 @@ public interface ManageProjectMapper {
     int declineReason(ApprovalHistoryDTO approvalHistoryDTO);
 
     int approve(Long no);
+
+    int updateAuthority(int sellerCode);
 }

@@ -179,7 +179,7 @@ public class BoardController {
         @RequestParam(required = false, defaultValue = "코드", name = "nation1") String nation1, // 정렬 컬럼 선택
         @RequestParam(required = false, defaultValue = "내림차순", name = "nation2") String nation2, // 정렬 방식 선택
         @RequestParam(required = false, defaultValue = "전체", name = "authority") String authority,
-        @RequestParam(required = false, name = "nation1") String searchValue, // 검색어 입력하는곳 받기
+        @RequestParam(required = false, name = "searchValue") String searchValue, // 검색어 입력하는곳 받기
         @RequestParam(required = false, defaultValue = "검색컬럼", name = "nation3") String nation3, //검색할 컬럼 선택
         @RequestParam(value = "currentPage", defaultValue = "1") int pageNo, // 보여질 페이지 넘버, 기본이 1
         ModelAndView mv) {
@@ -224,7 +224,7 @@ public class BoardController {
 
             List<ProjectReportHistoryDTO> userDTOS = boardService.findAllProjectComplaint(selectCriteria);
 
-        List<String> categories = Arrays.asList("코드","제목", "사유", "판매자", "신고일자");
+        List<String> categories = Arrays.asList("코드","제목", "판매자", "신고일자");
         mv.addObject("option1", categories);
         List<String> categories1 = Arrays.asList("전체", "내림차순", "오름차순");
         mv.addObject("option2", categories1);
@@ -236,7 +236,7 @@ public class BoardController {
             mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
             mv.addObject("project", userDTOS);
-            mv.setViewName("content/board/complaintboard/complaintProjectMain");
+            mv.setViewName("/content/board/complaintboard/complaintProjectMain");
 
             return mv;
 
