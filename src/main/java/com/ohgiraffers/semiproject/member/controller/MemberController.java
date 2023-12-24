@@ -80,9 +80,6 @@ public class MemberController {
                                RedirectAttributes rttr) throws MemberJoinException {
 
 
-
-
-
         String address = zipCode + "@" + address1 + "@" + address2;
         member.setEmailCode(hdValue);
         member.setPhone(member.getPhone().replace("-",""));

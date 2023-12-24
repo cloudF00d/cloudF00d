@@ -1,6 +1,7 @@
 package com.ohgiraffers.semiproject.order.controller;
 
-import com.ohgiraffers.semiproject.common.exception.payment.MemberOrderPageException;
+import com.ohgiraffers.semiproject.common.exception.payment.DeliverInfoException;
+import com.ohgiraffers.semiproject.common.exception.payment.PaymentInfoException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
@@ -11,10 +12,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 @Controller
 @RequestMapping("/order/")
@@ -34,45 +33,54 @@ public class OrderController {
       return "/content/order/buypage";
   }
 
-  @PostMapping("buypage")
+  @PostMapping("/buypage")
   public String paymentPage(
           Model model,
           @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
-          @RequestParam int hdCounterValue,
-          @RequestParam int hdTotalPrice,
-          @RequestParam int hdCouponPrice,
-          @RequestParam int hdDeliveryCost,
-          @RequestParam int hdGunWon,
-          @ModelAttribute CartInsertDTO cart
+          @RequestParam("hdCounterValue") int hdCounterValue,
+          @RequestParam("hdTotalPrice") int hdTotalPrice,
+          @RequestParam("hdCouponPrice") int hdCouponPrice,
+          @RequestParam("hdDeliveryCost") int hdDeliveryCost,
+          @RequestParam("hdGunWon") int hdGunWon,
+          @RequestParam("hdProject") String hdProject,
+          @RequestParam("hdOptionType") String hdOptionType,
+          @ModelAttribute PaymentDTO payment,
+          @ModelAttribute DeliverDTO deliver
 
 
-          ) throws PaymentPageException{
 
+  ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
+    String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
+    int userCode = memberAndAuthorityDTO.getUserCode();
+    int deliverCode = deliver.getCode();
+    String status = payment.getStatus();
 
-    System.out.println("hdCounterValue = " + hdCounterValue);
+    System.out.println(userId + "============================================================ userId");
 
-//
+    System.out.println("hdCounterValue ========================= " + hdCounterValue);
+    System.out.println("hdOptionType ================================= " + hdOptionType);
 
     log.info("[OrderController] paymentPage ================================== start");
-    log.info("[OrderController] paymentPage ================================== {} ", memberAndAuthorityDTO);
-    log.info("[OrderController] paymentPage ================================== {} ", cart);
+    log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
-
-
-    List<UserDTO> paymentHistory = paymentService.paymentPage();
-    model.addAttribute("buypage",paymentHistory);
-    model.addAttribute("counterProduct", hdCounterValue);
+    List<UserDTO> paymentHistory = paymentService.paymentPage(userId);
+    model.addAttribute("buypage", paymentHistory);
+    model.addAttribute("hdCounterValue", hdCounterValue);
     model.addAttribute("hdTotalPrice", hdTotalPrice);
     model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
-    model.addAttribute("projectTitle", cart.getProjectTitle());
+    model.addAttribute("hdProject", hdProject);
+    model.addAttribute("hdOptionType", hdOptionType);
+
+//     paymentService.paymentInfo(payment, deliverCode ,status); 
+
+//    paymentService.paymentDeliverInfo(deliver, userCode);
 
 
 
-   return "/content/order/buypage";
+    return "/content/order/buypage";
   }
-
 
 
 
@@ -80,6 +88,7 @@ public class OrderController {
 
   @GetMapping("buyok")
     public String buyok(){
+
         return "/content/order/buyok";
     }
 

@@ -18,9 +18,9 @@ public class SellerUserManageService {
     }
 
 
-    public List<SellerUserMangeDTO> sellerUser() {
+    public List<SellerUserMangeDTO> sellerUser(String userId, int userCode) {
 
-        List<SellerUserMangeDTO> sellerUser = Mapper.sellerUser();
+        List<SellerUserMangeDTO> sellerUser = Mapper.sellerUser(userId,userCode);
 
         return sellerUser;
     }

@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.sellerManage.Controller.sellerProject;
 
+import com.ohgiraffers.semiproject.common.paging.Pagenation;
+import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.sellerManage.model.dto.SellerManageProjectDTO;
 import com.ohgiraffers.semiproject.sellerManage.model.service.SellerProjectService;
@@ -10,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,32 +32,24 @@ public class SellerProject {
     }
 
     @GetMapping("Project")
-    public String sellerProjectLocation(
-            @RequestParam(required = false) String nation3, //검색할 컬럼 선택
-            @RequestParam(required = false) String searchValue, // 검색어 입력하는곳 받기
-
-            Model model,
-            @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO) {
+    public ModelAndView sellerProjectLocation(
+            ModelAndView mv,
+            Principal principal) {
 
         log.info("[SellerManageProjectController] sellerProject ================================== start");
-        log.info("[SellerManageProjectController] sellerProject  ================================== {} ", memberAndAuthorityDTO);
-        System.out.println("nation 3 ===============" + nation3);
-        System.out.println("검색어searchValue ================" + searchValue);
-
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("nation3", nation3); // 검색설정
-        searchMap.put("searchValue", searchValue); // 검색어
-
-        sellerProjectService.selectTotalCount(searchMap);
 
 
-        List<SellerManageProjectDTO> sellerProject = sellerProjectService.sellerProject();
-        model.addAttribute("Project", sellerProject);
+        String userId = principal.getName();
+        log.info("[SellerManageProjectController] sellerProject  ================================== {} ", userId);
 
+        List<SellerManageProjectDTO> sellerProject = sellerProjectService.sellerProject(userId);
 
+        mv.addObject("Project", sellerProject);
+        mv.setViewName("content/sellerManage/sellerProject/sellerProjectSearch");
 
-        return "content/sellerManage/sellerProject/sellerProjectSearch";
+        return mv;
     }
+
 
 
     @GetMapping("ProjectDetail")
