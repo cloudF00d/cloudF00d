@@ -177,7 +177,8 @@
             PM.TOTAL_AMOUNT,
             PO.PRICE,
             BM.BUSI_PHONE,
-            BM.BUSI_NAME
+            BM.BUSI_NAME,
+            U.USER_NAME
 
         FROM tbl_payment_history PH
                  LEFT JOIN tbl_payment PM ON (PM.PAYMENT_CODE = PH.PAYMENT_CODE)

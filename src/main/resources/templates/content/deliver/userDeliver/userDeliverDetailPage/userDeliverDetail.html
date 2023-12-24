@@ -77,9 +77,9 @@
 
                         <div class="deliver_buyer_infoinput">
                             <span></span><br>
-                            <span>서보혜</span><br>
-                            <span>010-1234-5678</span><br>
-                            <p style="line-height: 30px;">서울특별시 종로구 인사동길 12 대인빌딩 7층</p>
+                            <span th:text="${orderDetail.getMemberDTO().getUserName()}"></span><br>
+                            <span th:text="${orderDetail.getMemberDTO().getPhone()}">010-1234-5678</span><br>
+                            <p style="line-height: 30px;" th:text="${orderDetail.getMemberDTO().getAddress()}">서울특별시 종로구 인사동길 12 대인빌딩 7층</p>
                         </div>                     
                     </div>
                     
