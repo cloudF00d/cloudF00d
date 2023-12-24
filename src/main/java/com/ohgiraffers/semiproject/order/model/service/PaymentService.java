@@ -12,7 +12,7 @@ import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
 import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 
 
-
+import java.util.Date;
 import java.util.List;
 
 public interface PaymentService {
@@ -21,9 +21,11 @@ public interface PaymentService {
     List<UserDTO> paymentPage(String userId) throws PaymentPageException;
 
 
-    void paymentInfo(PaymentDTO payment ,int deliverCode, String status) throws PaymentInfoException;
+//    void paymentInfo(PaymentDTO payment ,int deliverCode, String status) throws PaymentInfoException;
 
     void paymentDeliverInfo(DeliverDTO deliver,int userCode) throws DeliverInfoException;
+
+    void paymentInfo(int deliverCode, String status, int code, int amount, String method, Date time) throws PaymentInfoException;
 
 
 //    결제 취소

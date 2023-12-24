@@ -12,6 +12,7 @@ import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,15 +34,15 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
-    public void paymentInfo(PaymentDTO payment, int deliverCode, String status) throws PaymentInfoException{
-
-        int result= mapper.insertPaymentInfo(payment ,deliverCode, status);
-        log.info(String.valueOf(result));
-
-        if(!(result > 0 )){
-            throw new PaymentInfoException("결제 정보가 없습니다.");
-        }
-    }
+//    public void paymentInfo(PaymentDTO payment, int deliverCode, String status) throws PaymentInfoException{
+//
+//        int result= mapper.insertPaymentInfo(payment ,deliverCode, status);
+//        log.info(String.valueOf(result));
+//
+//        if(!(result > 0 )){
+//            throw new PaymentInfoException("결제 정보가 없습니다.");
+//        }
+//    }
 
     public void paymentDeliverInfo(DeliverDTO deliver, int userCode) throws DeliverInfoException {
 
@@ -52,7 +53,17 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
+    public void paymentInfo(int deliverCode, String status, int code, int amount, String method, Date time) throws PaymentInfoException {
+        int deliveryCode = mapper.selectLastInsertdeliveryCode();
+        System.out.println("deliveryCode================================================ " + deliveryCode);
+        int result= mapper.insertPaymentInfo(deliverCode ,status, deliveryCode, amount, method, time);
+        log.info(String.valueOf(result));
 
+        if(!(result > 0 )){
+            throw new PaymentInfoException("결제 정보가 없습니다.");
+        }
+    }
 
 
     //    결제 취소

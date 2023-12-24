@@ -37,12 +37,12 @@
                         <button type="button" onclick="submitReview()">작성 완료</button>
                     </form>
 
-                    <div class="review-box" >
+                    <div class="review-box" th:each="review : ${ memberAndReviewDTO }" >
                         <div class="img">
-<!--                            <img th:src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="Profile Image">-->
-<!--                            <div class="img-right" th:text="${thumbnailList.projectUserDTO.userId}"></div>-->
+                            <img th:src="@{|/imagePath/${review.getProductReviewDTO().getProfileImage()}|}" alt="Profile Image">
+                            <div class="img-right" th:text="${review.getMemberDTO().getUserId()}"></div>
 
-<!--                            <img src="@{|/imagePath/${profileImage.changedProFileName}|}" alt="">-->
+
                         </div>
                         <div class="comment-box">
                             <div style="margin: 15px;" >

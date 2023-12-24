@@ -18,6 +18,8 @@ public interface ProductService {
 
     ProfileImageDTO getProfileImage(int userCode);
 
+    List<MemberAndReviewDTO> selectReview();
+
 //    void addReview(Map<String, Object> productReview);
 
 //    static List<ProDTO> selectAllproductStoryList() { 왜 스테틱?
