@@ -49,12 +49,6 @@ public class CartController {
 
         List<CartInsertDTO> cartPage = cartService.cart(userId);
         model.addAttribute("cart", cartPage);
-        model.addAttribute("cart", cartPage);
-
-
-
-
-
         return "/content/order/cart";
     }
 
@@ -73,7 +67,7 @@ public class CartController {
         log.info("Received selectedOption: {}", selectedOption);
         log.info("Received selectedOption========================");
 
-        cartService.addToCart(selectedOption, session);
+//        cartService.addToCart(selectedOption, session);
 //        try {
 //            ObjectMapper objectMapper = new ObjectMapper();
 //

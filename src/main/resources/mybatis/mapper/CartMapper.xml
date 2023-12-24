@@ -35,7 +35,7 @@
 
 
 
-    <select id="cartPage" resultMap="CartResultMap">
+    <select id="cartPage" resultMap="cartInsertResultMap">
         select
             A.CART_CODE,
             B.COUPON_STATUS,
@@ -51,7 +51,7 @@
                 JOIN tbl_project C ON (A.PROJECT_CODE = C.PROJECT_CODE)
                 JOIN tbl_project_option D ON (A.OPTION_CODE = D.OPTION_CODE)
                 JOIN tbl_payment_history E ON (A.CART_CODE = E.CART_CODE)
-        WHERE B.USER_ID ='user01'
+        WHERE B.USER_ID =#{userId}
     </select>
 
 <!--parameterType="com.ohgiraffers.semiproject.order.model.dto.CartDTO"-->
