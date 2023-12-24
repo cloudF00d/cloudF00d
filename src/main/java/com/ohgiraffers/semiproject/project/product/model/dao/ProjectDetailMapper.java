@@ -19,6 +19,8 @@ public interface ProjectDetailMapper {
 
     ProfileImageDTO getProfileImage(int userCode);
 
+    List<MemberAndReviewDTO> selectReview();
+
 //    int addReview(Map<String, Object> productReview);
 }
 //
