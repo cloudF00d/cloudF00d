@@ -19,7 +19,7 @@ public interface ProjectDetailMapper {
 
     ProfileImageDTO getProfileImage(int userCode);
 
-    List<MemberAndReviewDTO> selectReview();
+    List<MemberAndReviewDTO> selectReview(long no);
 
 //    int addReview(Map<String, Object> productReview);
 }

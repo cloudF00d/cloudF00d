@@ -80,9 +80,13 @@
 
                 <script>
                     function createWritingBox() {
+
+
                         // 새로운 글쓰기 창을 생성
                         const writingBox = document.createElement('div');
                         writingBox.className = 'writing-box';
+
+
 
                         // 글쓰기 창 내부 HTML 구조
                         writingBox.innerHTML = `
@@ -91,9 +95,18 @@
                         `;
 
                         // 버튼 아래에 추가
+
                         const writingButton = document.querySelector('.writing');
                         writingButton.parentNode.insertBefore(writingBox, writingButton.nextSibling);
+                        //글쓰기 버튼 한번만 눌리도록, 작성하지 않으면 글쓰기버튼이 계속 눌러져서 글쓰기창이 계속생김
+                        if (writingButton){
+                            writingButton.disabled = true;
+
+                        }
+
+
                     }
+
 
                     function submitReview() {
                         //함수가 호출되나 확인

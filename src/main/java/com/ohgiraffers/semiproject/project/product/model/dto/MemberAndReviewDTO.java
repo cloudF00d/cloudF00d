@@ -11,4 +11,5 @@ import lombok.*;
 public class MemberAndReviewDTO {
     private MemberDTO memberDTO;
     private ProductReviewDTO productReviewDTO;
+
 }

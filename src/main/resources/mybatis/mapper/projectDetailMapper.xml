@@ -111,6 +111,7 @@
         <result property="userCode" column="user_code"/>
         <result property="profileImage" column="profile_image"/>
         <result property="reviewContent" column="product_content"/>
+        <result property="projectCode" column="project_code"/>
     </resultMap>
 
 
@@ -182,12 +183,15 @@
         (
             user_code,
             profile_image,
-            product_content
+            product_content,
+            project_code
         )
         values (
                      #{userCode},
                      #{profileImage},
-                     #{reviewContent}
+                     #{reviewContent},
+                    #{projectCode}
+
                  )
     </insert>
 
@@ -204,6 +208,7 @@
                PR.product_content
         FROM tbl_user U
         JOIN tbl_product_review PR ON  (U.user_code = PR.user_code)
+        WHERE PR.PROJECT_CODE = #{no}
     </select>
 
 </mapper>

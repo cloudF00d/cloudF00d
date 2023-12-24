@@ -97,7 +97,7 @@ public class ProductController {
 //        System.out.println(userCode);
 
 
-        List<MemberAndReviewDTO> memberAndReviewDTO = productService.selectReview();
+        List<MemberAndReviewDTO> memberAndReviewDTO = productService.selectReview(no);
 
         System.out.println("memberAndReviewDTO============================================= = " + memberAndReviewDTO);
 
@@ -128,11 +128,12 @@ public class ProductController {
         // 유저의 프로필 이미지 정보를 가져오는 로직
         int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
 
+
         ProfileImageDTO userProfileImage = productService.getProfileImage(userCode);
         String changedProFileName = userProfileImage.getChangedProFileName();
         ProductReviewDTO review = new ProductReviewDTO();
         review.setUserCode(memberAndAuthorityDTO.getMemberDTO().getUserCode()); //ProductReviewDTO에 userCode 설정
-
+        review.setProjectCode(projectCode);
 //         안녕,안녕 이 기준일 때 "," 기준으로 안녕,안녕 을 나눈다 안녕[0],안녕[1]
 //         db에 후기를 입력하면 자꾸 ,이 앞에 붙어서 저장되길래 스크립트는 수정하기 어려워서 임시조치함
                 String[] addressParts = productContent.split(",");
