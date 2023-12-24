@@ -37,13 +37,13 @@
                     </div>
 
                     <div class="menu-item">
-                        <span class="menu-name" th:text="${hdProject}"></span>
+                        <span class="menu-name" th:text="${hdProject[0]}"></span>
                     </div>
 
                     <div id="counter-container">
                         <div id="counter-controls" name="count">
                             <span id="hdCounterValue" name="hdCounterValue" th:text="${hdCounterValue}"></span>
-                            <span id="hdOptionType" name="hdOptionType" th:text="${hdOptionType}"></span>
+                            <span id="hdOptionType" name="hdOptionType" th:text="${hdOptionType[0]}"></span>
                         </div>
                     </div>
                 </div>
@@ -104,73 +104,71 @@
 
         <div class="right">
 
-        <div id="right">
-            <div id="progress">
-                <span><div class="pay">주문/결제</div></span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+            <div id="right">
+                <div id="progress">
+                    <span><div class="pay">주문/결제</div></span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+                </div>
+
+                <div class="orderer-info-con" >
+                    <div class="orderer-info">
+
+                    <h4>주문자 정보</h4>
+                    <div class="name">
+                        <div class="firstname">
+                            <div>이름</div>
+                            <input type="text" name="name" id="name" ></input>&nbsp;
+                        </div>&nbsp;
+                    </div>
+
+                    </div>
+                    <input class="email">
+                        <div>이메일</div>
+                        <input type="text" name="email" id="email" ></input>
+                    </div>
+
+
+                    <div class="phone">
+                        <div class="number">핸드폰 번호</div>
+                        <input type="text" id="phone" >&nbsp;</input>
+                    </div>
             </div>
 
-            <div class="orderer-info-con" >
-                <div class="orderer-info">
 
-                <h4>주문자 정보</h4>
-                <div class="name">
-                    <div class="firstname">
-                        <div>이름</div>
-                        <input type="text" name="name" id="name" ></input>&nbsp;
-                    </div>&nbsp;&nbsp;&nbsp;
-
-                </div>
-                <input class="email">
-                    <div>이메일</div>
-                    <input type="text" name="email" id="email" ></input>
-                </div>
-
-
-                <div class="phone">
-                    <div class="number">핸드폰 번호</div>
-                    <input type="text" id="phone" >&nbsp;</input>
-                </div>
-        </div>
 
             <div class="void"></div>
 
-        <div class="order-details-con">
+                <div class="order-details-con">
 
-            <div class="order-details" >
-                <h4>주문 상세정보</h4>
-                    <div class="searchZipCode1" >
-                        <input type="button" value="검색" class="searchZipCode" id="address">
-                        <div class="box1">우편주소</div>
-                        <input type="text" name="searchZipCode" id="searchZipCode" required >
-                     </div>
+                    <div class="order-details" >
+                        <h4>주문 상세정보</h4>
+                            <div class="searchZipCode1" >
+                                <input type="button" value="검색" class="searchZipCode" id="address">
+                                <div class="box1">우편주소</div>
+                                <input type="text" name="searchZipCode" id="searchZipCode" required >
+                             </div>
 
-                    <div class="detailed-address">
-                        <div class="req">주소</div>
-                        <input type="text" name="adrs" id="adrs" required >
-                     </div>
+                            <div class="detailed-address">
+                                <div class="req">주소</div>
+                                <input type="text" name="adrs" id="adrs" required >
+                             </div>
 
-                <div class="detailed-address">
-                    <div class="req">상세주소</div>
-                    <input type="text" name="detailedAdrs" id="detailedAdrs" required >&nbsp;
+                        <div class="detailed-address">
+                            <div class="req">상세주소</div>
+                            <input type="text" name="detailedAdrs" id="detailedAdrs" required >&nbsp;
+                        </div>
+
+                        <div class="requested">
+                            <div class="req">요청사항</div>
+                            <input type="text" name="request" id="request" required >&nbsp;
+
+                        </div>
+
+                            <input type="checkbox" id="confirmationCheckbox">
+                            <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
+                    </div>
                 </div>
-
-                <div class="requested">
-                    <div class="req">요청사항</div>
-                    <input type="text" name="request" id="request" required >&nbsp;
-
-                </div>
-
-                    <input type="checkbox" id="confirmationCheckbox">
-                    <label for="confirmationCheckbox">주문정보를 모두 확인했습니다</label>
-            </div>
-
         </div>
 
-        </div>
-        </div>
-
-
-        </div>
     </form>
 
 

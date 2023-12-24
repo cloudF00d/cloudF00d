@@ -47,13 +47,12 @@ public class OrderController {
           @ModelAttribute PaymentDTO payment,
           @ModelAttribute DeliverDTO deliver
 
-
-
   ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
     String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
     int userCode = memberAndAuthorityDTO.getUserCode();
     int deliverCode = deliver.getCode();
     String status = payment.getStatus();
+
 
     System.out.println(userId + "============================================================ userId");
 
