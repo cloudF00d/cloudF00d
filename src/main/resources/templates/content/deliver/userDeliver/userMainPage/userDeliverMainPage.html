@@ -63,16 +63,18 @@
 
                                 <td th:text="${stat.index + 1}">1</td>
                                 <td>
-                                    <img class="food" th:src="@{|/thumbPath/${delivery.getProjectFileDTO().getChangedFileName()}|}">
-
-                                    <a  class="black-link" th:href="@{/deliver/userdetail}" th:text="${delivery.getProjectDTO().getProjectTitle()}"></a>
+                                    <img class="food" th:src="@{|/thumbPath/${delivery.projectFileDTO[0].changedFileName}|}">
+                                    <a class="black-link"
+                                       th:href="@{/deliver/userdetail(projectCode=${delivery.projectDTO.getProjectCode} ,deliveryCode=${delivery.deliveryDTO.getDeliveryCode}, projectTitle=${delivery.projectDTO.getProjectTitle},changedFileName=${delivery.projectFileDTO[0].getChangedFileName()})}"
+                                       th:text="${delivery.projectDTO.projectTitle}">
+                                    </a>
                                 </td>
                                 <td th:text="${#dates.format(delivery.getPaymentDTO().getPaymentDateTime(), 'yyyy / MM / dd')}">2023 / 11 / 20</td>
 
 
 
-                                <td><p><button class="ing2" type="submit" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'Y'}" th:text="접수중">반품하기</button></p></td>
-                                <td><p><button class="ing2" type="submit" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'N'}" th:text="반품하기">반품하기</button></p></td>
+                                <td><p><button class="ing2" type="button" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'Y'}" th:text="반품완료">반품하기</button></p></td>
+                                <td><p><button class="ing2" type="button" th:if="${delivery.getReturnHistoryDTO().getProcessingStatus() == 'N'}" th:text="처리중">반품하기</button></p></td>
                                 <td><span class="close" th:if="${delivery.getDeliveryDTO().getPurchaseConfirm() == 'N'}" th:text="구매확정하기" >구매확정완료</span></td>
                                 <td><span class="close" th:if="${delivery.getDeliveryDTO().getPurchaseConfirm() == 'Y'}" th:text="구매확정완료" >구매확정</span></td>
                                 <td><p class="close" th:if="${delivery.getDeliveryDTO().getDeliveryStatus() == 'N'}" th:text="배송중">배송완료</p></td>

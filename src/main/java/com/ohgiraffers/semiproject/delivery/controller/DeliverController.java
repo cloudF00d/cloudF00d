@@ -2,6 +2,7 @@ package com.ohgiraffers.semiproject.delivery.controller;
 
 
 import com.ohgiraffers.semiproject.delivery.model.dto.TotalDeliveryDTO;
+import com.ohgiraffers.semiproject.delivery.model.dto.TotalDeliveryDTO2;
 import com.ohgiraffers.semiproject.delivery.model.service.DeliveryService;
 
 import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
@@ -26,30 +27,33 @@ public class DeliverController {
         this.deliveryService = deliveryService;
     }
 
+    @GetMapping("/userdetail")
+    public String userdetail(@RequestParam("projectTitle") String projectTitle,
+                             @RequestParam("projectCode") int projectCode,
+                             @RequestParam("changedFileName") String changedFileName,
+                             @RequestParam("deliveryCode") int deliveryCode,
+                             Principal principal,
+                             Model model){
+        String userId = principal.getName();
+        MemberDTO memberDTO = deliveryService.searchUserCodeByUserId(userId);
+        int userCode = memberDTO.getUserCode();
+        List<TotalDeliveryDTO2> totalDeliveryDTO2 = deliveryService.searchDeliveryStatus1(userCode, projectTitle, projectCode,changedFileName,deliveryCode);
+
+        System.out.println("totalDeliveryDTO2======================================" + totalDeliveryDTO2);
+        model.addAttribute("totalDeliveryDTO2", totalDeliveryDTO2);
+        System.out.println("totalDeliveryDTO2 ======================================================== " + totalDeliveryDTO2);
+
+
+        return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
+    }
 //    @GetMapping("/userdetail")
-//    public String userdetail(@RequestParam("projectTitle") String projectTitle,
-//                             @RequestParam("projectCode") int projectCode,
-//                             @RequestParam("changedFileName") String changedFileName,
-//                             @RequestParam("paymentDateTime") Date paymentDateTime,
-//                             @RequestParam("processingStatus") String processingStatus,
-//                             @RequestParam("purchaseConfirm") String purchaseConfirm,
-//                             @RequestParam("deliveryStatus") String deliveryStatus,
-//                             Model model){
-//        TotalDeliveryDTO totalDeliveryDTO = new TotalDeliveryDTO();
-//        totalDeliveryDTO.getCartDTO().
+//    public String userdetail(){
+//
 //
 //
 //
 //        return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
 //    }
-    @GetMapping("/userdetail")
-    public String userdetail(){
-
-
-
-
-        return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
-    }
 
 
     @GetMapping("/usermain")
