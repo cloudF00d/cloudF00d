@@ -3,6 +3,8 @@ package com.ohgiraffers.semiproject.order.model.dto;
 
 import lombok.*;
 
+import java.sql.Date;
+
 
 @Getter
 @Setter
@@ -34,6 +36,12 @@ public class UserDTO {
     private int amount;
 
     private String coupon;
+
+    private int deliverCode;
+
+    private Date deliveryDate;
+
+    private String paymentStatus;
 
 
 }

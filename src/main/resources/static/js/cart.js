@@ -428,17 +428,6 @@ function paymentInfo(event) {
 
 
 
-function project() {
-
-    const menucheckElement = document.querySelector('.menucheck');
-    const nameAndCountElement = menucheckElement.querySelector(".nameAndCount .name1");
-
-     nameAndCountElement.textContent;
-
-    document.getElementById('hdProject').value = nameAndCountElement;
-
-}
-
 
 
 

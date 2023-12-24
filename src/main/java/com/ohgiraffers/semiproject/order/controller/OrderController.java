@@ -1,5 +1,7 @@
 package com.ohgiraffers.semiproject.order.controller;
 
+import com.ohgiraffers.semiproject.common.exception.payment.DeliverInfoException;
+import com.ohgiraffers.semiproject.common.exception.payment.PaymentInfoException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
@@ -31,44 +33,55 @@ public class OrderController {
       return "/content/order/buypage";
   }
 
-  @PostMapping("buypage")
+  @PostMapping("/buypage")
   public String paymentPage(
           Model model,
           @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
-          @RequestParam int hdCounterValue,
-          @RequestParam int hdTotalPrice,
-          @RequestParam int hdCouponPrice,
-          @RequestParam int hdDeliveryCost,
-          @RequestParam int hdGunWon,
-          @RequestParam CartDTO cartInfo
-        ) throws PaymentPageException{
+          @RequestParam("hdCounterValue") int hdCounterValue,
+          @RequestParam("hdTotalPrice") int hdTotalPrice,
+          @RequestParam("hdCouponPrice") int hdCouponPrice,
+          @RequestParam("hdDeliveryCost") int hdDeliveryCost,
+          @RequestParam("hdGunWon") int hdGunWon,
+          @RequestParam("hdProject") String hdProject,
+          @RequestParam("hdOptionType") String hdOptionType,
+          @ModelAttribute PaymentDTO payment,
+          @ModelAttribute DeliverDTO deliver
+
+
+
+  ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
     String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
+    int userCode = memberAndAuthorityDTO.getUserCode();
+    int deliverCode = deliver.getCode();
+    String status = payment.getStatus();
 
     System.out.println(userId + "============================================================ userId");
 
-
-
-    String title = cartInfo.getProjectCode().getTitle();
-
-    System.out.println("hdCounterValue = " + hdCounterValue);
-    System.out.println("title =============================== " + title);
-
+    System.out.println("hdCounterValue ========================= " + hdCounterValue);
+    System.out.println("hdOptionType ================================= " + hdOptionType);
 
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
-    List<UserDTO> paymentHistory = paymentService.paymentPage(userId,title);
+    List<UserDTO> paymentHistory = paymentService.paymentPage(userId);
     model.addAttribute("buypage", paymentHistory);
-    model.addAttribute("counterProduct", hdCounterValue);
+    model.addAttribute("hdCounterValue", hdCounterValue);
     model.addAttribute("hdTotalPrice", hdTotalPrice);
     model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
-    model.addAttribute("title", title);
+    model.addAttribute("hdProject", hdProject);
+    model.addAttribute("hdOptionType", hdOptionType);
+
+//     paymentService.paymentInfo(payment, deliverCode ,status); 
+
+//    paymentService.paymentDeliverInfo(deliver, userCode);
+
+
 
     return "/content/order/buypage";
-
   }
+
 
 
 

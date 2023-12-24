@@ -50,9 +50,9 @@ public class CartController {
 
 
         List<CartInsertDTO> cartPage = cartService.cart(userId,title );
-
-
         model.addAttribute("cart", cartPage);
+
+
 
         return "/content/order/cart";
 

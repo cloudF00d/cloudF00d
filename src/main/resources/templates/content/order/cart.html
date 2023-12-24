@@ -32,7 +32,7 @@
         <h3>장바구니</h3>
         <div class="mid">
             <div class="midmenu" >
-              <form  th:action="@{/order/buypage}" method="post" id="cartInfoForm">
+                <form th:action="@{/order/buypage}" method="post" id="cartInfoForm" onsubmit="sendDataToServer()">
                         <div class="logo">
                         <a href=""><img src="/images/minicon/로고2.png" width="150px" alt=""></a>
                     </div>
@@ -53,10 +53,10 @@
                             <img src="/images/minicon/로고1.PNG" alt="">
                         </div>
                         <div class="nameAndCount">
-                            <div class="projectTitle" name="projectTitle" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
-                            <input type="hidden" class="name1" th:value="${cart.projectTitle[0]}"></input>
-                            <input type="hidden" id="hdProject" name="hdProject" value="${cart.projectTitle[0]}"></input>
+                            <div class="projectTitle" name="name1" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
+                            <input type="hidden" name="hdProject" id="hdProject" th:value="${cart.projectTitle}"></input>
                             <div class="name2" th:text="${cart.optionType}"></div>
+                            <input type="hidden" name="hdOptionType" id="hdOptionType" th:value="${cart.optionType}"></input>
 
                             <button class="count remain" style="height: 30px" th:onclick="remain" id="remain"></button>
                             <input type="hidden" class="count end" th:value="${#dates.format(cart.end, 'yyyy-MM-dd HH:mm:ss')}"></input>
@@ -65,7 +65,7 @@
                             <button class="btn decrease" >-</button>
                             <span id="counter-value" >1</span>
                             <button class="btn increase" >+</button>
-                            <input type="hidden" name="hdCounterValue" id="hdCounterValue" value="counter-value">
+                            <input type="hidden" name="hdCounterValue" id="hdCounterValue" value="counter-value[0]">
                         </div>
                         <div class="price-con" >
                             <div class="total product"  id="total" th:text="${cart.price}"> </div>
@@ -141,25 +141,39 @@
     <!--Content-Type: application/json은 데이터가 JSON이라는 것을 명시 -->
     <script>
         function sendDataToServer() {
-            const dataToSend = {
-                key: "value"
+
+            // 배열 초기화
+            const selectedItems = [];
+
+// 선택된 체크박스를 찾아서 배열에 추가
+            const formData = {
+                selectedItems: selectedItems,
+                hdTotalPrice: $('#hdTotalPrice').val(),
+                hdCouponPrice: $('#hdCouponPrice').val(),
+                hdDeliveryCost: $('#hdDeliveryCost').val(),
+                hdGunWon: $('#hdGunWon').val(),
+                hdOptionType: $('#hdOptionType').val(),
+                hdProject: $('#hdProject').val(),
+                hdCounterValue: $('#hdCounterValue').val(),
             };
 
-            fetch('/order/cart', {
+
+            fetch('/order/buypage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(dataToSend)
+                body: JSON.stringify(formData)
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.error('Error:', error);
                 });
         }
+
     </script>
 
 
