@@ -60,4 +60,12 @@ public class ProductServiceimpl implements ProductService {
     public ProfileImageDTO getProfileImage(int userCode) {
         return mapper.getProfileImage(userCode);
     }
+
+    @Override
+    public List<MemberAndReviewDTO> selectReview() {
+
+        List<MemberAndReviewDTO> memberAndReviewDTOS = mapper.selectReview();
+
+        return memberAndReviewDTOS;
+    }
 }

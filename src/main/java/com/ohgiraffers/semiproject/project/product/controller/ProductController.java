@@ -97,6 +97,10 @@ public class ProductController {
 //        System.out.println(userCode);
 
 
+        List<MemberAndReviewDTO> memberAndReviewDTO = productService.selectReview();
+        System.out.println("memberAndReviewDTO============================================= = " + memberAndReviewDTO);
+
+        mv.addObject("memberAndReviewDTO", memberAndReviewDTO);
         mv.addObject("thumbnailList", thumbnailList);
         mv.addObject("profileImage",profileImage);
 
@@ -116,43 +120,23 @@ public class ProductController {
                                 @RequestParam int projectCode,
                                 @RequestParam("reviewContent") String productContent, // 후기 내용을 받아오는 부분
                                 Model model
-//                                @RequestParam String profileImage,
-//                                @RequestParam String productContent,
+
     )throws ProductReviewException
     {
         // 유저의 프로필 이미지 정보를 가져오는 로직
-        ProfileImageDTO userProfileImage = productService.getProfileImage(memberAndAuthorityDTO.getMemberDTO().getUserCode());
+        int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
 
+        ProfileImageDTO userProfileImage = productService.getProfileImage(userCode);
+        String changedProFileName = userProfileImage.getChangedProFileName();
         ProductReviewDTO review = new ProductReviewDTO();
         review.setUserCode(memberAndAuthorityDTO.getMemberDTO().getUserCode()); //ProductReviewDTO에 userCode 설정
         review.setReviewContent(productContent); //후기내용 requestparam으로 받은거 ProductReviewDTO에 넣는 작업
+        review.setProfileImage(changedProFileName);
 
 
 
-
-//        review.setProfileImage(ProfileImageDTO.);
-
-
-
-        int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
-        String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
-//
-//        Map<String, Object> productReview = new HashMap<>();
-//        productReview.put("userCode", userCode);
-//        productReview.put("userId", userId);
-//        productReview.put("projectCode", projectCode);
-//        productReview.put("reviewContent", productContent);
-
-//        String
-//
         productService.addReview(review);
-        System.out.println("Review added: " + review);
 
-
-        System.out.println(userCode + "=========================userCode");
-        System.out.println(userId + "=========================userId");
-        System.out.println(projectCode + "=========================ProjectCode");
-        System.out.println(productContent + "=============.============productContent");
 
 
         return "redirect:/product/productPage?no=" + projectCode; // 적절한 리디렉션 주소로 수정

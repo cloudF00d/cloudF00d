@@ -46,6 +46,23 @@
         <result property="couponStatus" column="COUPON_STATUS"/>
     </resultMap>
 
+    <resultMap type="com.ohgiraffers.semiproject.member.model.dto.MemberDTO" id="memberResultMap">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="PASSWORD"/>
+        <result property="email" column="EMAIL"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="dateBirth" column="DATE_BIRTH"/>
+        <result property="phone" column="PHONE"/>
+        <result property="activityStatus" column="ACTIVITY_STATUS"/>
+        <result property="reportCount" column="REPORT_COUNT"/>
+        <result property="couponStatus" column="COUPON_STATUS"/>
+        <result property="emailCode" column="EMAIL_CODE"/>
+
+    </resultMap>
+
     <resultMap id="businessResultMap" type="com.ohgiraffers.semiproject.project.product.model.dto.PrivateBusinessDTO">
         <id property="businessCode" column="BUSINESS_CODE"/>
         <result property="businessName" column="BUSINESS_NAME"/>
@@ -88,6 +105,18 @@
         <result property="fileType" column="FILE_TYPE"/>
         <result property="projectCode" column="PROJECT_CODE"/>
 
+    </resultMap>
+    <resultMap id="ProductReviewDTO" type="com.ohgiraffers.semiproject.project.product.model.dto.ProductReviewDTO">
+        <id property="contentNumber" column="content_number"/>
+        <result property="userCode" column="user_code"/>
+        <result property="profileImage" column="profile_image"/>
+        <result property="reviewContent" column="product_content"/>
+    </resultMap>
+
+
+    <resultMap id="MemberAndReviewDTO" type="com.ohgiraffers.semiproject.project.product.model.dto.MemberAndReviewDTO">
+        <association property="memberDTO" resultMap="memberResultMap"/>
+        <association property="productReviewDTO" resultMap="ProductReviewDTO"/>
     </resultMap>
 
     <select id="totalStoryList" resultMap="totalStoryList">
@@ -148,28 +177,33 @@
         A.PROJECT_CODE = #{no};
 </select>
 
-    <insert id="addReview" parameterType="com.ohgiraffers.semiproject.project.product.model.dto.ProductReviewDTO">
+    <insert id="addReview" >
         insert into tbl_product_review
         (
             user_code,
             profile_image,
             product_content
-        ) values (
+        )
+        values (
                      #{userCode},
                      #{profileImage},
                      #{reviewContent}
                  )
     </insert>
 
-    <select id="getProfileImage" parameterType="int" resultType="com.ohgiraffers.semiproject.project.product.model.dto.ProfileImageDTO">
-        SELECT file_code, original_file_name,
-               path,
-               changed_pro_file_name,
-               delete_status,
-               creation_date,
-               user_code
+    <select id="getProfileImage" resultMap="profileImageResult">
+        SELECT CHANGEDPRO_FILE_NAME
         FROM tbl_profile_image
-        WHERE user_code = #{userCode}
+        WHERE USER_CODE = #{userCode}
+    </select>
+
+    <select id="selectReview" resultMap="MemberAndReviewDTO">
+        SELECT U.USER_ID,
+               PR.user_code,
+               PR.profile_image,
+               PR.product_content
+        FROM tbl_user U
+        JOIN tbl_product_review PR ON  (U.user_code = PR.user_code)
     </select>
 
 </mapper>

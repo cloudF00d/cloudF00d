@@ -47,6 +47,16 @@
 
 
 
+    <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
+        <id property="code" column="CART_CODE"/>
+        <result property="status" column="USAGE_STATUS"/>
+        <association property="memberCode" resultMap="MemberMap"/>
+        <association property="projectCode" resultMap="ProjectResultMap"/>
+        <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
+    </resultMap>
+
+
+
     <resultMap id="ProjectResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectDTO">
         <id property="code" column="PROJECT_CODE"/>
         <result property="title" column="PROJECT_TITLE"/>
@@ -97,76 +107,93 @@
         <result property="address" column="ADDRESS"/>
         <result property="email" column="EMAIL"/>
         <result property="phone" column="PHONE"/>
-        <result property="projectTitle" column="PROJECT_TITLE"/>
-        <result property="optionName" column="OPTION_NAME"/>
-        <result property="price" column="price"/>
+        <result property="price" column="PRICE"/>
         <result property="configure" column="CONFIGURE"/>
         <result property="amount" column="TOTAL_AMOUNT"/>
         <result property="optionType" column="OPTION_TYPE"/>
         <result property="coupon" column="COUPON_STATUS"/>
+        <result property="paymentStatus" column="PAYMENT_STATUS"/>
+        <result property="deliverCode" column="DELIVERY_CODE"/>
+        <result property="deliveryDate" column="DELIVERY_DATE"/>
     </resultMap>
 
 
     <select id="user1" resultMap="userResultMap">
         SELECT
-            B.TOTAL_AMOUNT,
-            D.USER_NAME,
-            D.EMAIL,
-            D.PHONE,
-            D.ADDRESS,
-            D.COUPON_STATUS,
-            F.PROJECT_TITLE,
-            G.OPTION_NAME,
-            G.OPTION_TYPE,
-            G.PRICE,
-            G.CONFIGURE
+            A.USER_CODE,
+            A.USER_NAME,
+            A.ADDRESS,
+            A.EMAIL,
+            A.PHONE,
+            A.COUPON_STATUS,
+            B.CART_CODE,
+            C.PROJECT_TITLE,
+            D.OPTION_NAME,
+            D.PRICE,
+            D.OPTION_TYPE,
+            D.CONFIGURE,
+            E.DELIVERY_CODE,
+            E.DELIVERY_DATE,
+            F.PAYMENT_CODE
 
-        FROM TBL_PAYMENT_HISTORY A
-                 JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
-                 JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
-                 JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-                 JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
-                 JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
-                 JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
-        WHERE D.USER_ID = 'user01'
-
+        FROM tbl_user A
+                 JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+                 JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
+                 JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
+                 JOIN tbl_delivery E ON (A.USER_CODE = E.USER_CODE)
+                 JOIN tbl_payment F ON (E.DELIVERY_CODE = F.DELIVERY_CODE)
+        WHERE A.USER_ID = #{userId}
     </select>
 
 
+        <insert id="insertPaymentInfo">
+            INSERT INTO tbl_payment
+            (
+                PAYMENT_CODE,
+                TOTAL_AMOUNT,
+                PAYMENT_METHOD,
+                PAYMENT_DATE_TIME,
+                DELIVERY_CODE,
+                PAYMENT_STATUS
+            )
+            VALUES
+                (
+                    null,
+                    #{amount},
+                    '카카오결제',
+                    now(),
+                    #{code},
+                    default
+                )
+        </insert>
 
+    <insert id="insertDeliverInfo" >
+        INSERT INTO tbl_delivery
+            (
+                DELIVERY_CODE,
+                DELIVERY_DATE,
+                DELIVERY_STATUS,
+                USER_CODE,
+                DELIVERY_REQUEST,
+                PURCHASE_CONFIRM,
+                PURCHASE_CONFIRM_DATE
+        )
+        values (
+                null,
+                null,
+                default,
+                #{userCode},
+                null,
+                default,
+                null
+               )
 
-    <select id="paymentPage" resultMap="PaymentHistoryResultMap">
-        SELECT
-            B.TOTAL_AMOUNT,
-            D.USER_NAME,
-            D.EMAIL,
-            D.PHONE,
-            D.ADDRESS,
+    </insert>
 
-            F.PROJECT_TITLE,
-            G.OPTION_NAME,
-            G.OPTION_TYPE,
-            G.PRICE,
-            G.CONFIGURE
-
-        FROM TBL_PAYMENT_HISTORY A
-        JOIN TBL_PAYMENT B ON (A.PAYMENT_CODE = B.PAYMENT_CODE)
-        JOIN TBL_CART C ON (A.CART_CODE = C.CART_CODE)
-        JOIN TBL_USER D ON (C.USER_CODE = D.USER_CODE)
-        JOIN TBL_DELIVERY E ON (B.DELIVERY_CODE = E.DELIVERY_CODE)
-        JOIN TBL_PROJECT F ON (C.PROJECT_CODE = F.PROJECT_CODE)
-        JOIN TBL_PROJECT_OPTION G ON (C.OPTION_CODE = G.OPTION_CODE)
-
-
+    <select id="selectLastInsertdeliveryCode">
+        SELECT last_insert_id()
+        FROM tbl_delivery LIMIT 1;
     </select>
-
-
-
-
-
-
-
-
 
 
 

@@ -32,11 +32,13 @@
             <form th:action="@{/board/noticeMain}" id="search" method="get">
                 <div class="searchcontainer">
                     <!--                왼쪽 select 박스-->
+
+
                     <div class="searchleft1">
                         <input type="hidden" name="currentPage" value="1">
                         <select name="nation1" id="nation1">
                             <th:block th:if="${selectCriteria.getNation1()} == 'code'">
-                                <option value="code">글 번호</option>
+                                <option value="code">코드</option>
                             </th:block>
                             <th:block th:if="${selectCriteria.getNation1()} == 'title'">
                                 <option value="title">제목</option>
@@ -44,11 +46,9 @@
                             <th:block th:if="${selectCriteria.getNation1()} == 'date'">
                                 <option value="date">작성일자</option>
                             </th:block>
-
-                            <option value="code">글 번호</option>
+                            <option value="code">코드</option>
                             <option value="title">제목</option>
                             <option value="date">작성일자</option>
-
                         </select>
                     </div>
 
@@ -79,6 +79,7 @@
                             <th:block sec:authorize="hasRole('ADMIN')">
                         <button type="button"
                         th:onclick="'location.href=\'/board/noticeWriting\''"
+
                         >글쓰기</button>
                             </th:block>
                         <input type="text" name="searchValue" id="searchValue" th:value="${selectCriteria.searchValue}">
@@ -96,17 +97,17 @@
                 </div>
             </form>
 
-            <br><br><br>
 
-            <div class="table">
+            <div>
                 <table>
+
                     <tr>
+
                         <th id="newcolumn">새 글</th>
-                        <th>글 번호</th>
+                        <th>코드</th>
                         <th>제목</th>
                         <th id="right">작성일자</th>
                     </tr>
-
                     <tr id="link"
                             th:each=" noticelist : ${notice}"
                             th:onclick="'location.href=\'/board/noticeWrited?no='+ @{${noticelist.creationNumber}} + '\''"
@@ -117,12 +118,9 @@
                         <td th:text="${noticelist.creationDate}"></td>
                     </tr>
                 </table>
-            </div> <!-- table -->
-
-            <br><br><br><br><br>
-
-<!--             페이지 처리 -->
-            <div class="pagination">
+            </div>
+            <!-- 페이지 처리 -->
+            <div class="pagination" align="center">
                 <div class="pagination-box">
                     <!--                     맨 앞으로 이동 버튼 -->
                     <!--                    <button class="prev"-->
@@ -172,10 +170,10 @@
                             +'&nation2='+ @{${selectCriteria.nation2}}
                             +'&searchValue='+ @{${selectCriteria.searchValue}}
                             +'&nation3='+ @{${selectCriteria.nation3}} + '\''"
-                            th:disabled="${selectCriteria.pageNo == 1}">
+                            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+                    >
                         >
                     </button>
-
                     <!--                     마지막 페이지로 이동 버튼 -->
                     <!--                    <button class="prev"-->
                     <!--                            th:onclick="'location.href=\'/manager/search/userMain?currentPage='+ @{${selectCriteria.maxPage}} + '\''"-->
@@ -183,11 +181,10 @@
                     <!--                    >-->
                     <!--                        >>-->
                     <!--                    </button>-->
-                </div> <!-- pagination-box -->
-            </div> <!-- pagination -->
+                </div>
+            </div>
+        </div>
 
-        </div> <!-- back board -->
-    </div>
 
     <!-- 하단 버튼 스크립트 -->
     <script th:inline="javascript">

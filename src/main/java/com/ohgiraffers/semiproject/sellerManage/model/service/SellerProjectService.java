@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.sellerManage.model.service;
 
+import com.ohgiraffers.semiproject.common.paging.SelectCriteria;
 import com.ohgiraffers.semiproject.sellerManage.model.dao.sellerManage;
 import com.ohgiraffers.semiproject.sellerManage.model.dto.SellerManageProjectDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,9 @@ public class SellerProjectService {
         Mapper = mapper;
     }
 
-    public List<SellerManageProjectDTO> sellerProject() {
+    public List<SellerManageProjectDTO> sellerProject(String userId) {
 
-        List<SellerManageProjectDTO> sellerProject = Mapper.sellerProject();
+        List<SellerManageProjectDTO> sellerProject = Mapper.sellerProject(userId);
 
         return sellerProject;
     }
