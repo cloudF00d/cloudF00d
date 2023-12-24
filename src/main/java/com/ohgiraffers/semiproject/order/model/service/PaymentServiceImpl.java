@@ -1,13 +1,11 @@
 package com.ohgiraffers.semiproject.order.model.service;
 
 
-import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
 import com.ohgiraffers.semiproject.common.exception.payment.DeliverInfoException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentInfoException;
 import com.ohgiraffers.semiproject.order.model.dao.PaymentMapper;
 
 import com.ohgiraffers.semiproject.order.model.dto.DeliverDTO;
-import com.ohgiraffers.semiproject.order.model.dto.PaymentDTO;
 import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,8 +26,8 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
-    public List<UserDTO>  paymentPage(String userId) {
-        List<UserDTO> paymentPage = mapper.user1(userId);
+    public List<UserDTO>  paymentPage(String userId, int cartCode) {
+        List<UserDTO> paymentPage = mapper.user1(userId, cartCode);
         return paymentPage;
     }
 
@@ -63,6 +61,12 @@ public class PaymentServiceImpl implements PaymentService {
         if(!(result > 0 )){
             throw new PaymentInfoException("결제 정보가 없습니다.");
         }
+    }
+
+    @Override
+    public int paymentCount(int count, int cartCode){
+        int result = mapper.updateCount(count,cartCode);
+        return result;
     }
 
 

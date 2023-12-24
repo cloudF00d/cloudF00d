@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface PaymentMapper {
-   List<UserDTO> user1(String userId);
+   List<UserDTO> user1(String userId, int cartCode);
 
 
 //   int insertPaymentInfo(PaymentDTO payment, int deliverCode, String status);
@@ -22,6 +22,8 @@ public interface PaymentMapper {
    int insertPaymentInfo(int deliverCode, String status, int code, int amount, String method, Date time);
 
    int selectLastInsertdeliveryCode();
+
+    int updateCount(int count,int cartCode);
 }
 
 

@@ -50,6 +50,7 @@
     <resultMap id="CartResultMap" type="com.ohgiraffers.semiproject.order.model.dto.CartDTO">
         <id property="code" column="CART_CODE"/>
         <result property="status" column="USAGE_STATUS"/>
+        <result property="count" column="CART_COUNT"/>
         <association property="memberCode" resultMap="MemberMap"/>
         <association property="projectCode" resultMap="ProjectResultMap"/>
         <association property="projectOptionCode" resultMap="ProjectOptionResultMap"/>
@@ -143,57 +144,65 @@
                  JOIN tbl_delivery E ON (A.USER_CODE = E.USER_CODE)
                  JOIN tbl_payment F ON (E.DELIVERY_CODE = F.DELIVERY_CODE)
         WHERE A.USER_ID = #{userId}
+        AND B.CART_CODE = #{cartCode}
     </select>
 
+    <update id="updateCount" >
+        update tbl_cart
+            SET CART_COUNT = #{count}
+        WHERE CART_CODE = #{cartCode}
+    </update>
 
-        <insert id="insertPaymentInfo">
-            INSERT INTO tbl_payment
-            (
-                PAYMENT_CODE,
-                TOTAL_AMOUNT,
-                PAYMENT_METHOD,
-                PAYMENT_DATE_TIME,
-                DELIVERY_CODE,
-                PAYMENT_STATUS
-            )
-            VALUES
-                (
-                    null,
-                    #{amount},
-                    '카카오결제',
-                    now(),
-                    #{code},
-                    default
-                )
-        </insert>
 
-    <insert id="insertDeliverInfo" >
-        INSERT INTO tbl_delivery
-            (
-                DELIVERY_CODE,
-                DELIVERY_DATE,
-                DELIVERY_STATUS,
-                USER_CODE,
-                DELIVERY_REQUEST,
-                PURCHASE_CONFIRM,
-                PURCHASE_CONFIRM_DATE
-        )
-        values (
-                null,
-                null,
-                default,
-                #{userCode},
-                null,
-                default,
-                null
-               )
 
-    </insert>
+<!--        <insert id="insertPaymentInfo">-->
+<!--            INSERT INTO tbl_payment-->
+<!--            (-->
+<!--                PAYMENT_CODE,-->
+<!--                TOTAL_AMOUNT,-->
+<!--                PAYMENT_METHOD,-->
+<!--                PAYMENT_DATE_TIME,-->
+<!--                DELIVERY_CODE,-->
+<!--                PAYMENT_STATUS-->
+<!--            )-->
+<!--            VALUES-->
+<!--                (-->
+<!--                    null,-->
+<!--                    #{amount},-->
+<!--                    '카카오결제',-->
+<!--                    now(),-->
+<!--                    #{code},-->
+<!--                    default-->
+<!--                )-->
+<!--        </insert>-->
 
-    <select id="selectLastInsertdeliveryCode">
-        SELECT last_insert_id()
-        FROM tbl_delivery LIMIT 1;
-    </select>
+<!--    <insert id="insertDeliverInfo" >-->
+<!--        INSERT INTO tbl_delivery-->
+<!--            (-->
+<!--                DELIVERY_CODE,-->
+<!--                DELIVERY_DATE,-->
+<!--                DELIVERY_STATUS,-->
+<!--                USER_CODE,-->
+<!--                DELIVERY_REQUEST,-->
+<!--                PURCHASE_CONFIRM,-->
+<!--                PURCHASE_CONFIRM_DATE-->
+<!--        )-->
+<!--        values (-->
+<!--                null,-->
+<!--                null,-->
+<!--                default,-->
+<!--                #{userCode},-->
+<!--                null,-->
+<!--                default,-->
+<!--                null-->
+<!--               )-->
+
+<!--    </insert>-->
+
+<!--    <select id="selectLastInsertdeliveryCode">-->
+<!--        SELECT last_insert_id()-->
+<!--        FROM tbl_delivery LIMIT 1;-->
+<!--    </select>-->
 
 
 

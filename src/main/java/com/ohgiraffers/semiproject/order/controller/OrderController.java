@@ -45,22 +45,30 @@ public class OrderController {
           @RequestParam("hdProject") String hdProject,
           @RequestParam("hdOptionType") String hdOptionType,
           @ModelAttribute PaymentDTO payment,
-          @ModelAttribute DeliverDTO deliver
+          @ModelAttribute DeliverDTO deliver,
+          @ModelAttribute CartDTO cart
 
   ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
     String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
     int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
     int deliverCode = deliver.getCode();
     String status = payment.getStatus();
+    int cartCode = cart.getCode();
     int code = payment.getCode();
     int amount = hdGunWon;
+    int count = hdCounterValue;
+    String projectTitle = hdProject;
+    String optionType = hdOptionType;
 
     System.out.println("amount========================================== " + amount);
     String method = payment.getMethod();
     Date time = payment.getTime();
 
+    System.out.println("optionType ================================ " + optionType);
+    System.out.println("projectTitle =================================== " + projectTitle);
 
-
+    System.out.println("cartCode ============================== " + cartCode);
+    System.out.println("count ============================= " + count);
     System.out.println(userId + "============================================================ userId");
     System.out.println("userCode ============================================================ " + userCode);
 
@@ -70,23 +78,22 @@ public class OrderController {
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
-    List<UserDTO> paymentHistory = paymentService.paymentPage(userId);
+    List<UserDTO> paymentHistory = paymentService.paymentPage(userId,cartCode);
     model.addAttribute("buypage", paymentHistory);
     model.addAttribute("hdCounterValue", hdCounterValue);
     model.addAttribute("hdTotalPrice", hdTotalPrice);
     model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
-    model.addAttribute("hdProject", hdProject);
-    model.addAttribute("hdOptionType", hdOptionType);
-
-    paymentService.paymentDeliverInfo(deliver, userCode);
+    model.addAttribute("projectTitle", projectTitle);
+    model.addAttribute("optionType", optionType);
 
 
-    paymentService.paymentInfo(deliverCode ,status, code, amount, method, time);
+//    paymentService.paymentDeliverInfo(deliver, userCode);
+//
+//    paymentService.paymentInfo(deliverCode ,status, code, amount, method, time);
 
-
-
+      paymentService.paymentCount(count,cartCode);
 
     return "/content/order/buypage";
   }
