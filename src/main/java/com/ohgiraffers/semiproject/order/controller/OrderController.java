@@ -51,11 +51,19 @@ public class OrderController {
 
   ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
     String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
-    int userCode = memberAndAuthorityDTO.getUserCode();
+    int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
     int deliverCode = deliver.getCode();
     String status = payment.getStatus();
+    int code = payment.getCode();
+    int amount = hdGunWon;
+
+    System.out.println("amount========================================== " + amount);
+    String method = payment.getMethod();
+    Date time = payment.getTime();
+
 
     System.out.println(userId + "============================================================ userId");
+    System.out.println("userCode ============================================================ " + userCode);
 
     System.out.println("hdCounterValue ========================= " + hdCounterValue);
     System.out.println("hdOptionType ================================= " + hdOptionType);
@@ -73,9 +81,11 @@ public class OrderController {
     model.addAttribute("hdProject", hdProject);
     model.addAttribute("hdOptionType", hdOptionType);
 
-//     paymentService.paymentInfo(payment, deliverCode ,status); 
+    paymentService.paymentDeliverInfo(deliver, userCode);
 
-//    paymentService.paymentDeliverInfo(deliver, userCode);
+
+    paymentService.paymentInfo(deliverCode ,status, code, amount, method, time);
+
 
 
 

@@ -146,7 +146,7 @@
     </select>
 
 
-        <insert id="insertPaymentInfo" parameterType="com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO">
+        <insert id="insertPaymentInfo">
             INSERT INTO tbl_payment
             (
                 PAYMENT_CODE,
@@ -162,29 +162,38 @@
                     #{amount},
                     '카카오결제',
                     now(),
-                    #{deliverCode},
-                    #{status}
+                    #{code},
+                    default
                 )
         </insert>
 
-    <insert id="insertDeliverInfo" parameterType="com.ohgiraffers.semiproject.order.model.dto.DeliverDTO">
+    <insert id="insertDeliverInfo" >
         INSERT INTO tbl_delivery
             (
                 DELIVERY_CODE,
                 DELIVERY_DATE,
                 DELIVERY_STATUS,
                 USER_CODE,
-                DELIVERY_REQUEST
+                DELIVERY_REQUEST,
+                PURCHASE_CONFIRM,
+                PURCHASE_CONFIRM_DATE
         )
         values (
                 null,
-                default,
+                null,
                 default,
                 #{userCode},
-                #{request}
+                null,
+                default,
+                null
                )
 
     </insert>
+
+    <select id="selectLastInsertdeliveryCode">
+        SELECT last_insert_id()
+        FROM tbl_delivery LIMIT 1;
+    </select>
 
 
 
