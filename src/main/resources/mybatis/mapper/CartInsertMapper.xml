@@ -192,22 +192,18 @@
     <insert id="insertCart" parameterType="hashmap">
         insert
         into tbl_cart (
-
             user_code,
             project_code,
             option_code,
             usage_status,
             CART_COUNT
-
         )
         values (
-
                    #{userCode},
                    #{projectCode},
                    #{optionCode},
                    default,
                    default
-
                )
     </insert>
 
