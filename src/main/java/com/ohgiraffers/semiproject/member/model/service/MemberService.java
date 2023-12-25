@@ -4,7 +4,9 @@ import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.exception.member.MemberUpdateException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndProfileDTO;
 import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
+import com.ohgiraffers.semiproject.member.model.dto.ProfileImgDTO;
 
 public interface MemberService {
 
@@ -39,4 +41,8 @@ public interface MemberService {
     boolean verifyAuthCode(String userId, String email, String authCode);
 
     String createAndSendTempPassword(String userId, String email);
+
+    ProfileImgDTO findProfile(int userCode);
+
+    boolean checkEmailDuplication(String email);
 }

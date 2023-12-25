@@ -4,6 +4,7 @@ import com.ohgiraffers.semiproject.member.model.dto.*;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -49,4 +50,9 @@ public interface MemberMapper {
     int insertProfile(int userCode);
 
     MemberAndProfileDTO myInfo(String userId);
+
+    ProfileImgDTO finProfile(int userCode);
+
+
+    MemberDTO findByEmail2(String email);
 }

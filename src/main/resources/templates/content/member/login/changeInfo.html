@@ -26,7 +26,7 @@
 
                     <form id="profileForm" action="/member/inputFile" method="post">
                         <div class="profileimg">
-                            <img class="profileimg1" src="/images/lcon/avatar-profile-icon_188544-4755.avif" alt="">
+                            <img class="profileimg1" th:src="@{|/imagePath/${profileImgDTO.getChangedproFileName()}|}" alt="">
                             <div class="profilebtn" id="profilebtn">등록하기</div>
                             <input type="checkbox" id="layer_popup">
                             <label for="layer_popup"></label>

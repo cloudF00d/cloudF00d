@@ -113,7 +113,10 @@ public class MemberServiceImpl implements MemberService {
         return memberDTO == null;
     }
 
+
+
     @Override
+    @Transactional
     public void updateMember(MemberDTO member) throws MemberUpdateException {
         System.out.println("updateMember member ================= " + member);
         int result = mapper.update(member);
@@ -198,6 +201,24 @@ public class MemberServiceImpl implements MemberService {
         mapper.updatePassword(userId, encodedPassword);
         emailSender.sendEmail1(email, "CloudFooding임시 비밀번호", "귀하의 임시 비밀번호는 " + tempPassword + " 입니다.");
         return tempPassword;
+    }
+
+    @Override
+    public ProfileImgDTO findProfile(int userCode) {
+
+        ProfileImgDTO profileImgDTO = mapper.finProfile(userCode);
+        return profileImgDTO;
+    }
+
+    @Override
+    public boolean checkEmailDuplication(String email) {
+        // MemberMapper를 사용하여 이메일 주소로 데이터베이스를 조회합니다.
+        // 해당 이메일로 등록된 사용자가 있으면 MemberDTO 객체를, 없으면 null을 반환합니다.
+        MemberDTO member = mapper.findByEmail2(email);
+
+        // member가 null이면 이메일이 중복되지 않았음을 의미합니다.
+        // 따라서, member가 null이면 true를, 그렇지 않으면 false를 반환합니다.
+        return member == null;
     }
 
 

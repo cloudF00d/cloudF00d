@@ -57,10 +57,10 @@
 
                     <div class="order_price">
                         
-                        <span>65,000 won</span><br>
-                        <span>63,000 won</span><br>
+                        <span th:text="${orderDetail.getProjectOptionDTO().getPrice()} + ' ' + won">65,000 won</span><br>
+                        <span th:text="${orderDetail.getProjectOptionDTO().getPrice()-2000} + ' ' +won">63,000 won</span><br>
                         <span>3,000 won</span><br>
-                        <span style="color: orange; " >66,000 won</span><br><br>
+                        <span style="color: orange; " th:text="${orderDetail.getPaymentDTO().getTotalAmount()}+ ' ' + won">66,000 won</span><br><br>
                     </div>
                     <div class="bar3"></div>
                     <div class="ing_loca3">

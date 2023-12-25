@@ -214,6 +214,11 @@
         FROM tbl_user
         WHERE EMAIL = #{email}
     </select>
+    <select id="findByEmail2" resultMap="memberResultMap">
+        SELECT EMAIL
+        FROM tbl_user
+        WHERE EMAIL = #{email}
+    </select>
 
 
 
@@ -259,7 +264,12 @@
     </update>
 
 
+<select id="finProfile" resultMap="ProfileImgDTOResultMap">
+    SELECT CHANGEDPRO_FILE_NAME
+    FROM tbl_profile_image
+    WHERE USER_CODE = #{userCode}
 
+</select>
 
 
 
