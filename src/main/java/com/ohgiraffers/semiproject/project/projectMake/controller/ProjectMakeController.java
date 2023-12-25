@@ -44,12 +44,16 @@ public class ProjectMakeController {
         ProjectMakeDTO projectMakeDTO = projectMakeService.selectMakingProject(code);
 
 
+
+
         List<String> categories = Arrays.asList("음료", "주류", "베이커리", "해외음식", "채소", "해산물", "과일", "냉동식품", "소스", "디저트");
 
         System.out.println("memberAndAuthorityDTO = " + memberAndAuthorityDTO);
 
         mv.addAttribute("option", categories);
         mv.addAttribute("project", projectMakeDTO);
+        System.out.println("projectMakeDTO======================================================= " + projectMakeDTO);
+        System.out.println("mv=================================== " + mv);
 
         return "/content/project/projectMake/projectStart";
 
