@@ -98,10 +98,9 @@
             <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
                 <!-- Popup content -->
                 <p>결제합니다</p>
-                <button class="qr" onclick="showImage()">KakaoPay로 결제</button>
-                <div id="imageContainer" style="display: none;">
-                    <img src="/images/food/1hxaX.jpg" alt="Food Image">
-                </div>
+
+                <button class="qr"> KakaoPay 결제 완료 </button>
+                <img src="/images/food/1hxaX.jpg" alt="Food Image">
                 <button onclick="closePopup()">닫기</button>
                 <input type="hidden" name="status" id="status" th:value="${status}">
             </div>

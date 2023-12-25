@@ -280,7 +280,7 @@
             ADDRESS = #{address},
             PHONE = #{phone},
             USER_NAME = #{userName}
-        WHERE USER_ID =#{userId}
+        WHERE USER_CODE =#{userCode}
 
     </update>
 

@@ -39,7 +39,7 @@
         </div>
         <div class="product-status">
             <div class="orderStatus">
-                <span><div class="pay" style="color: orange;"></div></span>&mdash;<span><img src="/images/minicon/checkbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+                <span><div class="pay" style="color: orange;"></div></span>결제완료<span><img src="/images/minicon/checkbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
             </div>
         </div>
         <div class="product-list">
@@ -60,17 +60,17 @@
 
                 <span class="history">
                     <span></span>
-                    <input type="hidden" name="hdTotalPrice" id="hdTotalPrice" th:text="${hdTotalPrice}"></input>
+                    <input type="hidden" name="hdTotalPrice" id="hdTotalPrice" th:value="${hdTotalPrice}"></input>
                     <br>
                     <br>
                     <span></span>
                     <span style="float: right ;" class="won" ></span>
                     <br><br>
                     <span></span>
-                    <input type="hidden" name="hdDeliveryCost" id="hdDeliveryCost" th:text="${hdDeliveryCost}"></input>
+                    <input type="hidden" name="hdDeliveryCost" id="hdDeliveryCost" th:value="${hdDeliveryCost}"></input>
                     <br><br>
                     <span></span>
-                    <input type="hidden" name="hdGunWon" id="hdGunWon" th:text="${hdGunWon}" ></input>
+                    <input type="hidden" name="hdGunWon" id="hdGunWon" th:value="${hdGunWon}" ></input>
                 </span>
 
                         <div>

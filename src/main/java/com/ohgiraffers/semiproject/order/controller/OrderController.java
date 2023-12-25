@@ -58,6 +58,7 @@ public class OrderController {
     String status = payment.getStatus();
     int cartCode = cart.getCartCode();
 
+
     int code = payment.getCode();
     int amount = hdGunWon;
     int count = hdCounterValue;
@@ -85,6 +86,8 @@ public class OrderController {
 
     paymentService.paymentCount(count,cartCode); //수량 업데이트
 
+
+
     List<UserDTO> paymentHistory = paymentService.paymentPage(userId,cartCode);
     model.addAttribute("buypage", paymentHistory);
     model.addAttribute("count", hdCounterValue);
@@ -95,6 +98,8 @@ public class OrderController {
     model.addAttribute("optionType", optionType);
 
     System.out.println("paymentHistory =================== " + paymentHistory);
+    System.out.println("cartCode ============================== " + cartCode);
+
 
 
 

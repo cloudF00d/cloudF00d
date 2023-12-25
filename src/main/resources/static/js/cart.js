@@ -181,9 +181,6 @@ document.querySelectorAll('.checkbox').forEach(function (checkbox) {
     });
 });
 
-
-
-
 // 최종금액 업데이트 함수
 function finalTotalPrice() {
     const bilgeElement = document.querySelector('.bilge');
@@ -354,7 +351,6 @@ function updateRemainingTime(button, endTime) {
 
         button.innerText = "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
     }
-
     // 반환
     return {
         remainingTime: remainingTime,
