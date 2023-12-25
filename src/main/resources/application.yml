@@ -9,6 +9,9 @@ spring:
       enabled: true
       location: C:/thymeleaf-springboot/
 
+#  server:
+#    port: 8081
+
   devtools:
     restart:
       enabled: false

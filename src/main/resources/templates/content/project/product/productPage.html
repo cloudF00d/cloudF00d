@@ -45,8 +45,8 @@
 
                         </div>
                         <div class="comment-box">
-                            <div style="margin: 15px;" >
-
+                            <div style="margin: 15px;"  >
+                        <div th:text="${review.getProductReviewDTO().getReviewContent()}"></div>
 <!--                                여기가 텍스트 내용-->
                             </div>
                         </div>
@@ -80,9 +80,13 @@
 
                 <script>
                     function createWritingBox() {
+
+
                         // 새로운 글쓰기 창을 생성
                         const writingBox = document.createElement('div');
                         writingBox.className = 'writing-box';
+
+
 
                         // 글쓰기 창 내부 HTML 구조
                         writingBox.innerHTML = `
@@ -91,9 +95,18 @@
                         `;
 
                         // 버튼 아래에 추가
+
                         const writingButton = document.querySelector('.writing');
                         writingButton.parentNode.insertBefore(writingBox, writingButton.nextSibling);
+                        //글쓰기 버튼 한번만 눌리도록, 작성하지 않으면 글쓰기버튼이 계속 눌러져서 글쓰기창이 계속생김
+                        if (writingButton){
+                            writingButton.disabled = true;
+
+                        }
+
+
                     }
+
 
                     function submitReview() {
                         //함수가 호출되나 확인
@@ -106,10 +119,6 @@
                         const projectCode = document.getElementById('projectCode1').value;
                         console.log("전송되는 프로젝트 코드: " + projectCode); // 콘솔에 프로젝트 코드를 출력하여 확인합니다.
 
-                        const reviewContent = document.getElementById('reviewContent').value;
-                        // console.log(document.querySelector('textarea[name="reviewContent"]').value)//콘솔에 후기를 가져오나 확인
-                        console.log("textarea에서 추출된 리뷰 내용: ", reviewContent);
-
 
                         // FormData 객체 내용 확인
                         console.log("FormData 내용 확인:");
@@ -119,7 +128,7 @@
 
                         // 'projectCode' 파라미터를 formData에 추가
                         formData.append('projectCode', projectCode);
-                        formData.append('reviewContent', reviewContent);
+
 
                         // 'no' 파라미터를 현재 URL에서 추출
                         const queryParams = new URLSearchParams(window.location.search);
@@ -127,7 +136,8 @@
 
                         // 'no' 파라미터를 formData에 추가
                         formData.append('no', no);
-                        formData.append('reviewContent', document.querySelector('textarea[name="reviewContent"]').value);
+                        let reviewContent = document.querySelector('textarea[name="reviewContent"]').value.trim();
+                        formData.append('reviewContent', reviewContent);
                         // 서버로 리뷰 데이터 전송
                         fetch('/product/productPage', { // 서버의 리뷰 처리 엔드포인트로 변경하세요.
                             method: 'POST',

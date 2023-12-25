@@ -29,6 +29,12 @@ public class MainController {
         List<ProjectDTO> projectDTOS1 = mainService.secondReProject();
 
 
+//        출력 확인
+//        System.out.println("projectDTO: " + projectDTO);
+//        System.out.println("projectDTOS: " + projectDTOS);
+//        System.out.println("projectDTOList: " + projectDTOList);
+//        System.out.println("projectDTOS1: " + projectDTOS1);
+
         mv.addObject("firstProject", projectDTO);
         mv.addObject("secondProject", projectDTOS);
         mv.addObject("re1", projectDTOList);

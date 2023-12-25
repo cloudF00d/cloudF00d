@@ -46,14 +46,7 @@ public class DeliverController {
 
         return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
     }
-//    @GetMapping("/userdetail")
-//    public String userdetail(){
-//
-//
-//
-//
-//        return "content/deliver/userDeliver/userDeliverDetailPage/userDeliverDetail";
-//    }
+
 
 
     @GetMapping("/usermain")

@@ -1,3 +1,7 @@
+* {
+    font-family: Poppins;
+}
+
 /* 신규 리펀딩 */
 .second-square-icon-container {
     display: flex;
@@ -83,4 +87,93 @@
 .selected {
     background-color: #F37B1F; /* 클릭된 상태의 배경 색상 */
     color: #fff; /* 클릭된 상태의 텍스트 색상 */
+}
+
+.searchleft1{
+    margin: 0px 10px 0px 0px;
+}
+
+.searchleft2{
+    margin: 0px 10px 0px 0px;
+}
+
+.searchleft1 select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchleft2 select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchright select {
+    width: 150px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+    margin-left: 5px;
+}
+
+.searchright input {
+    width: 200px;
+    height: 35px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    border-style: none;
+    border: 1px solid #b9b9b9;
+}
+
+.searchleft button {
+    width: 100px;
+    height: 35px;
+    background-color: lightgrey;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 150px;
+}
+
+.searchleft button:hover {
+    background-color: #F37B1F;
+}
+
+.searchright button {
+    width: 100px;
+    height: 35px;
+    background-color: lightgrey;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.searchright button:hover {
+    background-color: #F37B1F;
+}
+
+.searchcontainer {
+    display: flex;
+    justify-content: center;
 }

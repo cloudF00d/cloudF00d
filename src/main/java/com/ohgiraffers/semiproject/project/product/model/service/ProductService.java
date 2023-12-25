@@ -3,7 +3,6 @@ package com.ohgiraffers.semiproject.project.product.model.service;
 import com.ohgiraffers.semiproject.project.product.model.dto.*;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ProductService {
     TotalStoryDTO totalStoryList(Long no);
@@ -18,7 +17,7 @@ public interface ProductService {
 
     ProfileImageDTO getProfileImage(int userCode);
 
-    List<MemberAndReviewDTO> selectReview();
+    List<MemberAndReviewDTO> selectReview(Long no);
 
 //    void addReview(Map<String, Object> productReview);
 

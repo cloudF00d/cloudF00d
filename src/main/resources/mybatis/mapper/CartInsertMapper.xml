@@ -165,14 +165,19 @@
             user_code,
             project_code,
             option_code,
-            usage_status
+            usage_status,
+            CART_COUNT
+
         )
         values (
 
                    #{userCode},
                    #{code},
                    #{optionCode},
-                   default
+                   default,
+                default
+
+
                )
     </insert>
 
@@ -183,14 +188,18 @@
             user_code,
             project_code,
             option_code,
-            usage_status
+            usage_status,
+            CART_COUNT
+
         )
         values (
 
                    #{userCode},
                    #{projectCode},
                    #{optionCode},
+                   default,
                    default
+
                )
     </insert>
 

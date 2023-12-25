@@ -13,4 +13,5 @@ public class CartDTO {
     private int projectCode;
     private int optionCode;
     private String usageStatus;
+    private int cartCount;
 }

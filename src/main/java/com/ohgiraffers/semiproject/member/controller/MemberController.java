@@ -121,6 +121,9 @@ public class MemberController {
         return ResponseEntity.ok(result);
     }
 
+
+
+
     @GetMapping("findId")
     public String findId() {
 
@@ -205,12 +208,6 @@ public class MemberController {
     }
 
 
-    private String getUserCode() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        String userCode = ((UserDetails) authentication.getPrincipal()).getUsername();
-        return userCode;
-    }
 
 
 
@@ -329,7 +326,8 @@ public class MemberController {
     public String searchLoginMember(Principal principal, Model model){
         String username = principal.getName();
         MemberDTO memberDTO = memberService.searchLoginMember(username);
-
+        int userCode = memberDTO.getUserCode();
+        ProfileImgDTO profileImgDTO = memberService.findProfile(userCode);
         if (memberDTO != null && memberDTO.getAddress() != null) {
             String[] addressParts = memberDTO.getAddress().split("@");
             if (addressParts.length == 3) {
@@ -342,6 +340,7 @@ public class MemberController {
         }
 
         model.addAttribute("memberDTO", memberDTO);
+        model.addAttribute("profileImgDTO", profileImgDTO);
         System.out.println("model ======================================================== " + model);
         return "/content/member/login/changeInfo"; // 뷰의 이름을 반환
     }
@@ -434,6 +433,13 @@ public class MemberController {
         return result;
     }
 
+    @PostMapping(value = "checkEmailDuplication", produces = "application/json; charset=utf-8")
+
+    public ResponseEntity<?> checkEmailDuplication(@RequestBody MemberDTO memberDTO) {
+
+        boolean isUnique = memberService.checkEmailDuplication(memberDTO.getEmail());
+        return ResponseEntity.ok(isUnique);
+    }
     @PostMapping(value = "checkMail", produces = "application/json; charset=utf-8")
     @ResponseBody
     public boolean checkMail(@RequestBody Map<String, String> requestBody) {

@@ -12,4 +12,5 @@ public class ProductReviewDTO {
     private int userCode;
     private String profileImage;
     private String reviewContent;
+    private int projectCode;
 }
