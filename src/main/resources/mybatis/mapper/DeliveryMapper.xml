@@ -37,6 +37,7 @@
         <result property="projectCode" column="PROJECT_CODE"/>
         <result property="optionCode" column="OPTION_CODE"/>
         <result property="usageStatus" column="USAGE_STATUS"/>
+        <result property="cartCount" column="CART_COUNTS"/>
     </resultMap>
     
     <resultMap id="PaymentDTO" type="com.ohgiraffers.semiproject.delivery.model.dto.PaymentDTO">
@@ -178,7 +179,8 @@
             PO.PRICE,
             BM.BUSI_PHONE,
             BM.BUSI_NAME,
-            U.USER_NAME
+            U.USER_NAME,
+            C.CART_COUNTS
 
         FROM tbl_payment_history PH
                  LEFT JOIN tbl_payment PM ON (PM.PAYMENT_CODE = PH.PAYMENT_CODE)
