@@ -47,7 +47,7 @@
                             <p>이메일 주소</p>
                             <input type="text" class="box1" name="email" id="email">
                             <span class="mailbtn"><button type="submit" id="emailDuplicationCheck">중복확인</button></span>
-                            <span class="mailbtn"><button type="submit" id="send">인증번호 받기</button></span>
+                            <span class="mailbtn"><button type="button" id="send">인증번호 받기</button></span>
                             <input type="hidden" name="hdValue" id="hdValue">
                         </div>
 
@@ -104,81 +104,81 @@
                                     });
                             });
                         </script>
-                        <script>
+<!--                        <script>-->
 
-                            const emailDuplicationCheckButton = document.querySelector("#emailDuplicationCheck");
-                            emailDuplicationCheckButton.addEventListener('click', function () {
-                                const email = document.getElementById("email").value;
-                                fetch('/member/checkEmailDuplication', {
-                                    method: "POST",
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({ email: email })
-                                })
-                                    .then(response => {
-                                        if(!response.ok) {
-                                            throw new Error('Network response was not ok ' + response.statusText);
-                                        }
-                                        return response.json();
-                                    })
-                                    .then(data => {
-                                        if (data) {
-                                            alert("사용 가능한 이메일입니다. 인증번호를 받으세요!");
-                                            document.querySelector("#send").disabled = false;
-                                        } else {
-                                            alert("이미 사용중인 이메일입니다. 아이디 찾기를 진행하거나 다른 이메일을 입력해주세요.");
-                                            document.querySelector("#send").disabled = true;
+<!--                            const emailDuplicationCheckButton = document.querySelector("#emailDuplicationCheck");-->
+<!--                            emailDuplicationCheckButton.addEventListener('click', function () {-->
+<!--                                const email = document.getElementById("email").value;-->
+<!--                                fetch('/member/checkEmailDuplication', {-->
+<!--                                    method: "POST",-->
+<!--                                    headers: {-->
+<!--                                        'Content-Type': 'application/json'-->
+<!--                                    },-->
+<!--                                    body: JSON.stringify({ email: email })-->
+<!--                                })-->
+<!--                                    .then(response => {-->
+<!--                                        if(!response.ok) {-->
+<!--                                            throw new Error('Network response was not ok ' + response.statusText);-->
+<!--                                        }-->
+<!--                                        return response.json();-->
+<!--                                    })-->
+<!--                                    .then(data => {-->
+<!--                                        if (data) {-->
+<!--                                            alert("사용 가능한 이메일입니다. 인증번호를 받으세요!");-->
+<!--                                            document.querySelector("#send").disabled = false;-->
+<!--                                        } else {-->
+<!--                                            alert("이미 사용중인 이메일입니다. 아이디 찾기를 진행하거나 다른 이메일을 입력해주세요.");-->
+<!--                                            document.querySelector("#send").disabled = true;-->
 
-                                        }
-                                    });
-                            });
+<!--                                        }-->
+<!--                                    });-->
+<!--                            });-->
 
-                            // 인증번호 보내기 스크립트
-                            const sendButton = document.querySelector("#send");
-                            sendButton.addEventListener('click', function () {
-                                const email = document.getElementById("email").value;
-                                fetch('/member/sendEmail', {
-                                    method: "POST",
-                                    headers: {
-                                        'Content-Type': 'text/plain'
-                                    },
-                                    body: email
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data) {
-                                            alert(email + "메일을 보냈습니다. 확인하세요!");
-                                            // 이메일 코드를 숨은 입력 필드에 저장
-                                            console.log(data)
-                                            document.getElementById("hdValue").value = data;
-                                        } else {
-                                            alert("전송 실패 하였습니다. 재시도 하세요!")
-                                        }
-                                    });
-                            });
+<!--                            // 인증번호 보내기 스크립트-->
+<!--                            const sendButton = document.querySelector("#send");-->
+<!--                            sendButton.addEventListener('click', function () {-->
+<!--                                const email = document.getElementById("email").value;-->
+<!--                                fetch('/member/sendEmail', {-->
+<!--                                    method: "POST",-->
+<!--                                    headers: {-->
+<!--                                        'Content-Type': 'text/plain'-->
+<!--                                    },-->
+<!--                                    body: email-->
+<!--                                })-->
+<!--                                    .then(response => response.json())-->
+<!--                                    .then(data => {-->
+<!--                                        if (data) {-->
+<!--                                            alert(email + "메일을 보냈습니다. 확인하세요!");-->
+<!--                                            // 이메일 코드를 숨은 입력 필드에 저장-->
+<!--                                            console.log(data)-->
+<!--                                            document.getElementById("hdValue").value = data;-->
+<!--                                        } else {-->
+<!--                                            alert("전송 실패 하였습니다. 재시도 하세요!")-->
+<!--                                        }-->
+<!--                                    });-->
+<!--                            });-->
 
-                            const checkMailButton = document.querySelector("#checkMail");
-                            checkMailButton.addEventListener('click', function () {
-                                const emailCode = document.getElementById("emailCode").value;
-                                const hdValue = document.getElementById("hdValue").value;
-                                fetch('/member/checkMail', {
-                                    method: "POST",
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({ emailCode: emailCode, hdValue })
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data) {
-                                            alert("인증성공");
-                                        } else {
-                                            alert("인증실패");
-                                        }
-                                    });
-                            });
-                        </script>
+<!--                            const checkMailButton = document.querySelector("#checkMail");-->
+<!--                            checkMailButton.addEventListener('click', function () {-->
+<!--                                const emailCode = document.getElementById("emailCode").value;-->
+<!--                                const hdValue = document.getElementById("hdValue").value;-->
+<!--                                fetch('/member/checkMail', {-->
+<!--                                    method: "POST",-->
+<!--                                    headers: {-->
+<!--                                        'Content-Type': 'application/json'-->
+<!--                                    },-->
+<!--                                    body: JSON.stringify({ emailCode: emailCode, hdValue })-->
+<!--                                })-->
+<!--                                    .then(response => response.json())-->
+<!--                                    .then(data => {-->
+<!--                                        if (data) {-->
+<!--                                            alert("인증성공");-->
+<!--                                        } else {-->
+<!--                                            alert("인증실패");-->
+<!--                                        }-->
+<!--                                    });-->
+<!--                            });-->
+<!--                        </script>-->
 
                     <div class="passwordContainer">
                         <div class="password">
@@ -187,7 +187,7 @@
                         </div>
                         <div class="passwordCheck">
                             <p>비밀번호 확인</p>
-                            <input  class="box2" type="password" maxlength="13" name="userPwd" id="userPwdCheck" required>
+                            <input  class="box2" type="password" maxlength="13" name="userPwd2" id="userPwdCheck" required>
                         </div>
                     </div> <!-- passwordContainer -->
 

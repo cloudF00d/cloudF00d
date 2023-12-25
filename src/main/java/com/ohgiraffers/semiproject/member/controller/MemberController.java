@@ -78,6 +78,7 @@ public class MemberController {
                                @RequestParam int hdValue,
                                RedirectAttributes rttr) throws MemberJoinException {
 
+        System.out.println(member+"=============================member");
         System.out.println("hdValue = " + hdValue);
         String address = zipCode + "@" + address1 + "@" + address2;
         member.setEmailCode(hdValue);
