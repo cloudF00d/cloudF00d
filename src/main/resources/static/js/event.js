@@ -9,8 +9,6 @@ window.onload = function() {
     }
 
 
-
-
     if(document.getElementById("duplicationCheck")) {
 
         const $duplication = document.getElementById("duplicationCheck");
