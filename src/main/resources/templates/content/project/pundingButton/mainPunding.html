@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{layouts/layout}">
 <th:block layout:fragment="content">
 
@@ -128,22 +129,55 @@
             </div> <!-- searchcontainer -->
         </form>
 
-        <!-- 펀딩 아이콘 -1 -->
-        <div class="second-square-icon-container"
-             th:each="list : ${project}">
-            <!-- 아이콘과 텍스트 중앙정렬 -->
-            <div class="second-square-icon-wrapper"
-                 th:each="list2 : ${list}"
+<!--        &lt;!&ndash; 펀딩 아이콘 -1 &ndash;&gt;-->
+<!--        <div class="second-square-icon-container"-->
+<!--             th:each="list : ${project}">-->
+<!--            &lt;!&ndash; 아이콘과 텍스트 중앙정렬 &ndash;&gt;-->
+<!--            <div class="second-square-icon-wrapper"-->
+<!--                 th:each="list2 : ${list}"-->
+<!--                 th:onclick="'location.href=\'/product/productStory?no='+ @{${list2.projectCode}} + '\''"-->
+<!--            >-->
+<!--                <img class="second-square-icon"-->
+<!--                     th:src="@{|/thumbPath/${list2.changedFileName}|}"-->
+<!--                     alt="아이콘 1">-->
 
-                 th:onclick="'location.href=\'/product/productStory?no='+ @{${list2.projectCode}} + '\''"
-            >
-                <img class="second-square-icon"
-                     th:src="@{|/thumbPath/${list2.changedFileName}|}"
-                     alt="아이콘 1">
-                <i class="fas fa-heart"></i>
-                <p th:text="${list2.projectTitle}"></p>
-            </div> <!-- second-square-icon-wrapper -->
-        </div> <!-- second-square-icon-container -->
+<!--                <th:block sec:authorize="isAuthenticated()">-->
+<!--                    <input type="text" th:value="${list2.projectCode}">-->
+<!--                    <button class="fas fa-heart"></button>-->
+<!--                </th:block>-->
+
+<!--                <p th:text="${list2.projectTitle}"></p>-->
+<!--            </div> &lt;!&ndash; second-square-icon-wrapper &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; second-square-icon-container &ndash;&gt;-->
+
+<!--        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+
+
+<!--        <script>-->
+<!--            $(document).ready(function () {-->
+<!--                // 좋아요 버튼 클릭 시-->
+<!--                $('.fas.fa-heart').click(function () {-->
+<!--                    // 현재 클릭한 아이콘의 부모 요소에서 data-project-id 속성을 가져옴 -> 이 프로젝트가 좋아요 몇 개인지-->
+<!--                     var projectCode = this.previousElementSibling.value-->
+<!--                     console.log(projectCode);-->
+<!--                    // saveLike(projectId);-->
+<!--                });-->
+<!--            });-->
+
+<!--            function saveLike(projectId) {-->
+<!--                $.ajax({-->
+<!--                    type: 'POST',-->
+<!--                    url: '/saveLike',-->
+<!--                    data: { projectId: projectId },-->
+<!--                    success: function (response) {-->
+<!--                        console.log('좋아요가 성공적으로 저장되었습니다.');-->
+<!--                    },-->
+<!--                    error: function (error) {-->
+<!--                        console.error('좋아요 저장 중 오류가 발생했습니다.', error);-->
+<!--                    }-->
+<!--                });-->
+<!--            }-->
+<!--        </script>-->
 
         <!--        &lt;!&ndash; 펀딩 아이콘 -2 &ndash;&gt;-->
         <!--        <div class="second-square-icon-container">-->
@@ -315,6 +349,8 @@
         <br><br><br><br><br>
 
     </article>
+
+
 
 </th:block>
 </html>

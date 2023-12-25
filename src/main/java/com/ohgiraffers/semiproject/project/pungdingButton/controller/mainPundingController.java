@@ -6,10 +6,11 @@ import com.ohgiraffers.semiproject.main.model.dto.ProjectDTO;
 import com.ohgiraffers.semiproject.main.model.dto.ProjectListDTO;
 import com.ohgiraffers.semiproject.main.model.service.MainService;
 import com.ohgiraffers.semiproject.manager.model.dto.UserDTO;
+import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -73,9 +74,7 @@ public class mainPundingController{
 
         System.out.println("selectCriteria = " + selectCriteria);
 
-
         List<List<ProjectDTO>> userDTOS = mainService.findAllProject(selectCriteria);
-
 
         mv.addObject("selectCriteria", selectCriteria);
 //        페이징 처리에 대한 정보가 담겨있는 DTO를 넘겨 쿼리문에서 사용하기 위함
@@ -83,6 +82,25 @@ public class mainPundingController{
         mv.setViewName("/content/project/pundingButton/mainPunding");
 
         return mv;
+    }
+
+    @PostMapping("/saveLike")
+    @ResponseBody
+//    시큐리티로 유저 정보 가져오기
+    public String saveLike(@AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO){
+        System.out.println("MemberAndAuthorityDTO" + memberAndAuthorityDTO);
+        try {
+//        클릭한 요소 값 받기 -> 좋아요 했는지 안 했는지 중복체크, (있으면 - delete / 없으면 - insert)
+//
+//        좋아요 데이터베이스 저장 (비즈니스 로직)
+//        LikeDTO 생성? - @RequestBody LikeDTO likeDTO
+//        좋아요 정보 - 데이터베이스 저장 - boolean????
+
+        return "좋아요가 성공적으로 저장되었습니다.";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "좋아요 저장 중 오류가 발생했습니다.";
+    }
 
     }
 }
