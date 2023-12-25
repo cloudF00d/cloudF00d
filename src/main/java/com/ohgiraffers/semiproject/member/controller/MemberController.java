@@ -1,7 +1,7 @@
 package com.ohgiraffers.semiproject.member.controller;
 
 import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
-import com.ohgiraffers.semiproject.common.exception.member.MemberUpdateException;
+
 import com.ohgiraffers.semiproject.common.exception.member.MemberRemoveException;
 import com.ohgiraffers.semiproject.common.util.SessionUtil;
 import com.ohgiraffers.semiproject.member.emailsender.EmailSender;
@@ -13,14 +13,12 @@ import com.ohgiraffers.semiproject.member.model.service.MemberServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,6 +70,7 @@ public class MemberController {
 
     }
     @PostMapping("join")
+
     public String joinMember(@ModelAttribute MemberDTO member,
                                @RequestParam String zipCode,
                                @RequestParam String address1,
@@ -79,7 +78,7 @@ public class MemberController {
                                @RequestParam int hdValue,
                                RedirectAttributes rttr) throws MemberJoinException {
 
-
+        System.out.println("hdValue = " + hdValue);
         String address = zipCode + "@" + address1 + "@" + address2;
         member.setEmailCode(hdValue);
         member.setPhone(member.getPhone().replace("-",""));
@@ -443,7 +442,7 @@ public class MemberController {
     @PostMapping(value = "checkMail", produces = "application/json; charset=utf-8")
     @ResponseBody
     public boolean checkMail(@RequestBody Map<String, String> requestBody) {
-        String checkMail = requestBody.get("emailCode");
+        String checkMail = requestBody.get("emailCerti");
 
         if (checkMail == null || checkMail.isEmpty()) {
             // 예외 처리: 이메일 코드가 없는 경우

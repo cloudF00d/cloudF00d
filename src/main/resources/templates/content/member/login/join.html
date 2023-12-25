@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/login/join.css}" type="text/css">
 
     
-<!--        <div class="container">-->
+
             <div class="left">
                 <div class="detailLeft">
 
@@ -30,7 +30,7 @@
 
 
                 <div class="joininfo">
-                    <form id="joinForm" th:action="@{/member/join}" method="post"></form>
+                    <form id="joinForm" th:action="@{/member/join}" method="post">
                     <div class="boxContainer">
                         <div class="boxName">
                             <p>이름</p>
@@ -53,57 +53,57 @@
 
                         <div class="boxEmailCode">
                             <p>이메일 코드입력</p>
-                            <input type="text" class="box1" name="emailCode" id="emailCode">
+                            <input type="text" class="box1" name="emailCerti" id="emailCerti">
                             <span class="mailbtn"><button type="submit" id="checkMail">인증번호 확인</button></span>
                         </div>
 
                     <!-- Email Adress Script -->
-<!--                        <script>-->
+                        <script>
 
-<!--                            const sendButton = document.querySelector("#send");-->
-<!--                            sendButton.addEventListener('click', function () {-->
-<!--                                const email = document.getElementById("email").value;-->
-<!--                                fetch('/member/sendEmail', {-->
-<!--                                    method: "POST",-->
-<!--                                    headers: {-->
-<!--                                        'Content-Type': 'text/plain'-->
-<!--                                    },-->
-<!--                                    body: email-->
-<!--                                })-->
-<!--                                    .then(response => response.json())-->
-<!--                                    .then(data => {-->
-<!--                                        if (data) {-->
-<!--                                            alert(email + "메일을 보냈습니다. 확인하세요!");-->
-<!--                                            // 이메일 코드를 숨은 입력 필드에 저장-->
-<!--                                            console.log(data)-->
-<!--                                            document.getElementById("hdValue").value = data;-->
-<!--                                        } else {-->
-<!--                                            alert("전송 실패 하였습니다. 재시도 하세요!")-->
-<!--                                        }-->
-<!--                                    });-->
-<!--                            });-->
+                            const sendButton = document.querySelector("#send");
+                            sendButton.addEventListener('click', function () {
+                                const email = document.getElementById("email").value;
+                                fetch('/member/sendEmail', {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'text/plain'
+                                    },
+                                    body: email
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data) {
+                                            alert(email + "메일을 보냈습니다. 확인하세요!");
+                                            // 이메일 코드를 숨은 입력 필드에 저장
+                                            console.log(data)
+                                            document.getElementById("hdValue").value = data;
+                                        } else {
+                                            alert("전송 실패 하였습니다. 재시도 하세요!")
+                                        }
+                                    });
+                            });
 
-<!--                            const checkMailButton = document.querySelector("#checkMail");-->
-<!--                            checkMailButton.addEventListener('click', function () {-->
-<!--                                const emailCode = document.getElementById("emailCode").value;-->
-<!--                                const hdValue = document.getElementById("hdValue").value;-->
-<!--                                fetch('/member/checkMail', {-->
-<!--                                    method: "POST",-->
-<!--                                    headers: {-->
-<!--                                        'Content-Type': 'application/json'-->
-<!--                                    },-->
-<!--                                    body: JSON.stringify({ emailCode: emailCode, hdValue })-->
-<!--                                })-->
-<!--                                    .then(response => response.json())-->
-<!--                                    .then(data => {-->
-<!--                                        if (data) {-->
-<!--                                            alert("인증성공");-->
-<!--                                        } else {-->
-<!--                                            alert("인증실패");-->
-<!--                                        }-->
-<!--                                    });-->
-<!--                            });-->
-<!--                        </script>-->
+                            const checkMailButton = document.querySelector("#checkMail");
+                            checkMailButton.addEventListener('click', function () {
+                                const emailCerti = document.getElementById("emailCerti").value;
+                                const hdValue = document.getElementById("hdValue").value;
+                                fetch('/member/checkMail', {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ emailCerti: emailCerti, hdValue })
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data) {
+                                            alert("인증성공");
+                                        } else {
+                                            alert("인증실패");
+                                        }
+                                    });
+                            });
+                        </script>
                         <script>
 
                             const emailDuplicationCheckButton = document.querySelector("#emailDuplicationCheck");
@@ -217,7 +217,7 @@
                     <div class="postNumber">
                         <label>우편번호</label><br>
                         <input type="text" name="zipCode" id="zipCode" class="box1" readonly>
-                        <span class="mailbtn"><button type="submit" id="searchZipCode">검색</button></span>
+                        <span class="mailbtn"><button type="button" name="searchZipCode" id="searchZipCode">검색</button></span>
                     </div>
 
                     <div class="">
@@ -251,10 +251,10 @@
                         <br><br><br>
 
                     </div> <!-- boxContainer -->
+                </form>
         </div> <!-- joininfo -->
 
                 </div>
-
             <div class="right">
                 <div class="detailRight"><img class="kinglogo" src="/images/01_logoimg/logoNone.png" alt=""> </div>
             </div>
