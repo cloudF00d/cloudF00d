@@ -70,7 +70,7 @@ public class OrderController {
     String method = payment.getMethod();
     Date time = payment.getTime();
 
-    System.out.println("optionType ================================ " + optionType);
+    System.out.println("optionType ================================= " + optionType);
     System.out.println("projectTitle =================================== " + projectTitle);
 
     System.out.println("cartCode ============================== " + cartCode);
