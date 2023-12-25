@@ -1,14 +1,18 @@
 package com.ohgiraffers.semiproject.order.model.service;
 
 
+import com.ohgiraffers.semiproject.common.exception.member.MemberJoinException;
 import com.ohgiraffers.semiproject.common.exception.payment.DeliverInfoException;
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentInfoException;
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
 import com.ohgiraffers.semiproject.order.model.dao.PaymentMapper;
 
 import com.ohgiraffers.semiproject.order.model.dto.DeliverDTO;
+import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
 import com.ohgiraffers.semiproject.order.model.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -32,16 +36,6 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
-//    public void paymentInfo(PaymentDTO payment, int deliverCode, String status) throws PaymentInfoException{
-//
-//        int result= mapper.insertPaymentInfo(payment ,deliverCode, status);
-//        log.info(String.valueOf(result));
-//
-//        if(!(result > 0 )){
-//            throw new PaymentInfoException("결제 정보가 없습니다.");
-//        }
-//    }
-
     public void paymentDeliverInfo(DeliverDTO deliver, int userCode) throws DeliverInfoException {
 
 
@@ -64,13 +58,26 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public int paymentCount(int count, int cartCode){
-        int result = mapper.updateCount(count,cartCode);
+    public int paymentCount(int count, int cartNo){
+        int result = mapper.updateCount(count,cartNo);
         return result;
     }
 
+    public  List<PaymentHistoryDTO> butHistory(){
+        List<PaymentHistoryDTO> butHistory = mapper.buyHistory();
+        return butHistory;
+    }
 
-    //    결제 취소
+
+    public void deliverInfoUpdate(MemberDTO member){
+
+        int result = mapper.deliverUserInfo(member);
+
+        if(!(result > 0 )){
+            System.out.println("배송 정보가 없습니다");
+        }
+    }
+
 
 
 

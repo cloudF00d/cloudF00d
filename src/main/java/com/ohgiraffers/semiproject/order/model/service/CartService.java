@@ -5,6 +5,7 @@ import com.ohgiraffers.semiproject.order.model.dao.CartInsertMapper;
 import com.ohgiraffers.semiproject.order.model.dao.CartMapper;
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
+import com.ohgiraffers.semiproject.order.model.dto.ProjectFileDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -64,5 +65,10 @@ public class CartService {
         if (result > 0) {
             System.out.println("성공!");
         }
+    }
+
+    public ProjectFileDTO cartFile(int projectCode) {
+        ProjectFileDTO projectFileDTO = Mapper.cartFile(projectCode);
+        return projectFileDTO;
     }
 }

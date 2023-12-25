@@ -1,5 +1,6 @@
 package com.ohgiraffers.semiproject.order.model.dao;
 
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
 import com.ohgiraffers.semiproject.order.model.dto.DeliverDTO;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentDTO;
 import com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO;
@@ -23,14 +24,15 @@ public interface PaymentMapper {
 
    int selectLastInsertdeliveryCode();
 
-    int updateCount(int count,int cartCode);
+    int updateCount(int count, int cartNo);
+
+    List<PaymentHistoryDTO> buyHistory();
+
+    int deliverUserInfo(MemberDTO member);
+
 }
 
 
-//    결제 페이지
-   
-
-//    결제 취소
 
 
 

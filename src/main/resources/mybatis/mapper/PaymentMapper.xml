@@ -5,6 +5,7 @@
 <mapper namespace="com.ohgiraffers.semiproject.order.model.dao.PaymentMapper">
 
     <resultMap id="PaymentHistoryResultMap" type="com.ohgiraffers.semiproject.order.model.dto.PaymentHistoryDTO">
+        <result property="changeName" column="CHANGED_FILE_NAME"/>
         <association property="payment" resultMap="PaymentResultMap"/>
         <association property="cart" resultMap="CartResultMap"/>
     </resultMap>
@@ -116,11 +117,48 @@
         <result property="paymentStatus" column="PAYMENT_STATUS"/>
         <result property="deliverCode" column="DELIVERY_CODE"/>
         <result property="deliveryDate" column="DELIVERY_DATE"/>
+        <result property="cartNumber" column="CART_CODE"/>
+        <result property="count" column="CART_COUNT"/>
+        <result property="changeName" column="CHANGED_FILE_NAME"/>
     </resultMap>
 
 
-    <select id="user1" resultMap="userResultMap">
+    <select id="buyHistory" resultMap="PaymentHistoryResultMap">
         SELECT
+            A.PAYMENT_CODE,
+            A.TOTAL_AMOUNT,
+            A.PAYMENT_METHOD,
+            A.PAYMENT_DATE_TIME,
+            A.PAYMENT_STATUS,
+            B.DELIVERY_DATE,
+            B.DELIVERY_STATUS,
+            D.USER_ID,
+            D.USER_NAME,
+            D.ADDRESS,
+            D.PHONE,
+            E.CART_COUNT,
+            F.PROJECT_TITLE,
+            G.OPTION_TYPE,
+            G.PRICE
+
+        FROM tbl_payment A
+            JOIN tbl_delivery B ON (A.DELIVERY_CODE = B.DELIVERY_CODE)
+            JOIN tbl_user D ON (B.USER_CODE = D.USER_CODE)
+            JOIN tbl_payment_history C ON (A.PAYMENT_CODE = C.PAYMENT_CODE)
+            JOIN tbl_cart E ON (C.CART_CODE = E.CART_CODE)
+            JOIN tbl_project F ON (F.PROJECT_CODE = E.PROJECT_CODE)
+            JOIN tbl_project_option G ON (E.OPTION_CODE = G.OPTION_CODE)
+            JOIN tbl_project_file H ON (F.PROJECT_CODE = H.PROJECT_CODE)
+        WHERE C.PAYMENT_CODE = #{paymentCode}
+
+
+
+    </select>
+
+
+    <select id="user1" resultMap="userResultMap">
+        WITH RankedResults AS (
+            SELECT
             A.USER_CODE,
             A.USER_NAME,
             A.ADDRESS,
@@ -128,83 +166,122 @@
             A.PHONE,
             A.COUPON_STATUS,
             B.CART_CODE,
+            B.CART_COUNT,
             C.PROJECT_TITLE,
+            C.PROJECT_CODE,
             D.OPTION_NAME,
             D.PRICE,
             D.OPTION_TYPE,
             D.CONFIGURE,
             E.DELIVERY_CODE,
             E.DELIVERY_DATE,
-            F.PAYMENT_CODE
+            F.PAYMENT_CODE,
+            G.CHANGED_FILE_NAME,
+            ROW_NUMBER() OVER (PARTITION BY B.CART_CODE ORDER BY A.USER_CODE) AS RowNum
+            FROM
+            tbl_user A
+            JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+            JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
+            JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
+            JOIN tbl_delivery E ON (A.USER_CODE = E.USER_CODE)
+            JOIN tbl_payment F ON (E.DELIVERY_CODE = F.DELIVERY_CODE)
+            JOIN tbl_project_file G ON (C.PROJECT_CODE = G.PROJECT_CODE)
+            WHERE
+            A.USER_ID = #{userId}
+            AND B.CART_CODE = #{cartCode}
+            )
+        SELECT
+            USER_CODE,
+            USER_NAME,
+            ADDRESS,
+            EMAIL,
+            PHONE,
+            COUPON_STATUS,
+            CART_CODE,
+            CART_COUNT,
+            PROJECT_TITLE,
+            PROJECT_CODE,
+            OPTION_NAME,
+            PRICE,
+            OPTION_TYPE,
+            CONFIGURE,
+            DELIVERY_CODE,
+            DELIVERY_DATE,
+            PAYMENT_CODE,
+            CHANGED_FILE_NAME
+        FROM
+            RankedResults
+        WHERE
+            RowNum = 1;
 
-        FROM tbl_user A
-                 JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
-                 JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
-                 JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
-                 JOIN tbl_delivery E ON (A.USER_CODE = E.USER_CODE)
-                 JOIN tbl_payment F ON (E.DELIVERY_CODE = F.DELIVERY_CODE)
-        WHERE A.USER_ID = #{userId}
-        AND B.CART_CODE = #{cartCode}
     </select>
 
     <update id="updateCount" >
         update tbl_cart
             SET CART_COUNT = #{count}
-        WHERE CART_CODE = #{cartCode}
+        WHERE CART_CODE = #{cartNo}
     </update>
 
 
 
-<!--        <insert id="insertPaymentInfo">-->
-<!--            INSERT INTO tbl_payment-->
-<!--            (-->
-<!--                PAYMENT_CODE,-->
-<!--                TOTAL_AMOUNT,-->
-<!--                PAYMENT_METHOD,-->
-<!--                PAYMENT_DATE_TIME,-->
-<!--                DELIVERY_CODE,-->
-<!--                PAYMENT_STATUS-->
-<!--            )-->
-<!--            VALUES-->
-<!--                (-->
-<!--                    null,-->
-<!--                    #{amount},-->
-<!--                    '카카오결제',-->
-<!--                    now(),-->
-<!--                    #{code},-->
-<!--                    default-->
-<!--                )-->
-<!--        </insert>-->
+        <insert id="insertPaymentInfo">
+            INSERT INTO tbl_payment
+            (
+                PAYMENT_CODE,
+                TOTAL_AMOUNT,
+                PAYMENT_METHOD,
+                PAYMENT_DATE_TIME,
+                DELIVERY_CODE,
+                PAYMENT_STATUS
+            )
+            VALUES
+                (
+                    null,
+                    #{amount},
+                    '카카오결제',
+                    now(),
+                    #{code},
+                    default
+                )
+        </insert>
 
-<!--    <insert id="insertDeliverInfo" >-->
-<!--        INSERT INTO tbl_delivery-->
-<!--            (-->
-<!--                DELIVERY_CODE,-->
-<!--                DELIVERY_DATE,-->
-<!--                DELIVERY_STATUS,-->
-<!--                USER_CODE,-->
-<!--                DELIVERY_REQUEST,-->
-<!--                PURCHASE_CONFIRM,-->
-<!--                PURCHASE_CONFIRM_DATE-->
-<!--        )-->
-<!--        values (-->
-<!--                null,-->
-<!--                null,-->
-<!--                default,-->
-<!--                #{userCode},-->
-<!--                null,-->
-<!--                default,-->
-<!--                null-->
-<!--               )-->
+    <insert id="insertDeliverInfo" >
+        INSERT INTO tbl_delivery
+            (
+                DELIVERY_CODE,
+                DELIVERY_DATE,
+                DELIVERY_STATUS,
+                USER_CODE,
+                DELIVERY_REQUEST,
+                PURCHASE_CONFIRM,
+                PURCHASE_CONFIRM_DATE
+        )
+        values (
+                null,
+                null,
+                default,
+                #{userCode},
+                null,
+                default,
+                null
+               )
 
-<!--    </insert>-->
+    </insert>
 
-<!--    <select id="selectLastInsertdeliveryCode">-->
-<!--        SELECT last_insert_id()-->
-<!--        FROM tbl_delivery LIMIT 1;-->
-<!--    </select>-->
+    <select id="selectLastInsertdeliveryCode">
+        SELECT last_insert_id()
+        FROM tbl_delivery LIMIT 1;
+    </select>
 
 
+    <update id="deliverUserInfo">
+        update tbl_user
+            SET
+            ADDRESS = #{address},
+            PHONE = #{phone},
+            USER_NAME = #{userName}
+        WHERE USER_ID =#{userId}
 
+    </update>
 
 </mapper>

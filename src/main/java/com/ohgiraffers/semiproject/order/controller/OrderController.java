@@ -5,14 +5,17 @@ import com.ohgiraffers.semiproject.common.exception.payment.PaymentInfoException
 import com.ohgiraffers.semiproject.common.exception.payment.PaymentPageException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 
+import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
 import com.ohgiraffers.semiproject.order.model.dto.*;
 import com.ohgiraffers.semiproject.order.model.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -39,26 +42,28 @@ public class OrderController {
           @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
           @RequestParam("hdCounterValue") int hdCounterValue,
           @RequestParam("hdTotalPrice") int hdTotalPrice,
-          @RequestParam("hdCouponPrice") int hdCouponPrice,
           @RequestParam("hdDeliveryCost") int hdDeliveryCost,
           @RequestParam("hdGunWon") int hdGunWon,
           @RequestParam("hdProject") String hdProject,
           @RequestParam("hdOptionType") String hdOptionType,
           @ModelAttribute PaymentDTO payment,
           @ModelAttribute DeliverDTO deliver,
-          @ModelAttribute CartDTO cart
+          @ModelAttribute CartInsertDTO cart,
+          @ModelAttribute MemberDTO member
 
-  ) throws PaymentPageException, PaymentInfoException, DeliverInfoException {
+          ) throws PaymentPageException {
     String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
     int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
     int deliverCode = deliver.getCode();
     String status = payment.getStatus();
-    int cartCode = cart.getCode();
+    int cartCode = cart.getCartCode();
+
     int code = payment.getCode();
     int amount = hdGunWon;
     int count = hdCounterValue;
     String projectTitle = hdProject;
     String optionType = hdOptionType;
+
 
     System.out.println("amount========================================== " + amount);
     String method = payment.getMethod();
@@ -78,22 +83,22 @@ public class OrderController {
     log.info("[OrderController] paymentPage ================================== start");
     log.info("[OrderController] paymentPage ================================== " + memberAndAuthorityDTO);
 
+    paymentService.paymentCount(count,cartCode); //수량 업데이트
+
     List<UserDTO> paymentHistory = paymentService.paymentPage(userId,cartCode);
     model.addAttribute("buypage", paymentHistory);
-    model.addAttribute("hdCounterValue", hdCounterValue);
+    model.addAttribute("count", hdCounterValue);
     model.addAttribute("hdTotalPrice", hdTotalPrice);
-    model.addAttribute("hdCouponPrice", hdCouponPrice);
     model.addAttribute("hdDeliveryCost", hdDeliveryCost);
     model.addAttribute("hdGunWon", hdGunWon);
     model.addAttribute("projectTitle", projectTitle);
     model.addAttribute("optionType", optionType);
 
+    System.out.println("paymentHistory =================== " + paymentHistory);
 
-//    paymentService.paymentDeliverInfo(deliver, userCode);
-//
-//    paymentService.paymentInfo(deliverCode ,status, code, amount, method, time);
 
-      paymentService.paymentCount(count,cartCode);
+
+
 
     return "/content/order/buypage";
   }
@@ -102,10 +107,85 @@ public class OrderController {
 
 
 
-  @GetMapping("buyok")
-    public String buyok(){
 
-        return "/content/order/buyok";
+  @GetMapping("buyok")
+  public String buyok(){
+    return "/content/order/buyok";
+  }
+
+  @PostMapping ("buyok")
+    public String buyok(
+          Model model,
+          @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO,
+          @RequestParam("CounterValue") int CounterValue,
+          @RequestParam("Project") String Project,
+          @RequestParam("OptionType") String OptionType,
+          @RequestParam("TotalPrice") int TotalPrice,
+          @RequestParam("DeliveryCost") int DeliveryCost,
+          @RequestParam("GunWon") int GunWon,
+          @ModelAttribute PaymentDTO payment,
+          @ModelAttribute DeliverDTO deliver,
+          @RequestParam String searchZipCode,
+          @RequestParam String adrs,
+          @RequestParam String detailedAdrs,
+          @ModelAttribute MemberDTO member
+
+          ) throws DeliverInfoException, PaymentInfoException {
+
+    int hdCounterValue = CounterValue;
+    String hdProject = Project;
+    String hdOptionType = OptionType;
+    int hdTotalPrice = TotalPrice;
+    int hdDeliveryCost = DeliveryCost;
+    int hdGunWon = GunWon;
+
+    int deliverCode = deliver.getCode();
+    String status = payment.getStatus();
+
+    int code = payment.getCode();
+    int amount = hdGunWon;
+    String method = payment.getMethod();
+    Date time = payment.getTime();
+
+
+    System.out.println("hdCounterValue ======================= " + hdCounterValue);
+    System.out.println("hdProject ============================== " + hdProject);
+    System.out.println("hdOptionType ============================= " + hdOptionType);
+
+    System.out.println("memberAndAuthorityDTO ======================= " + memberAndAuthorityDTO);
+          String userId = memberAndAuthorityDTO.getMemberDTO().getUserId();
+          int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
+    System.out.println("userId =================================== " + userId);
+    System.out.println("userId =================================== " + userCode);
+
+
+    paymentService.paymentDeliverInfo(deliver, userCode);
+
+    paymentService.paymentInfo(deliverCode ,status, code, amount, method, time);
+
+    List<PaymentHistoryDTO> buyHistoryInfo = paymentService.butHistory();
+    model.addAttribute("buyHistoryInfo", buyHistoryInfo);
+    model.addAttribute("hdCounterValue", hdCounterValue);
+    model.addAttribute("hdTotalPrice", hdTotalPrice);
+    model.addAttribute("hdDeliveryCost", hdDeliveryCost);
+    model.addAttribute("hdGunWon", hdGunWon);
+    model.addAttribute("hdProject", hdProject);
+    model.addAttribute("hdOptionType", hdOptionType);
+
+
+    String userName = memberAndAuthorityDTO.getMemberDTO().getUserName();
+    System.out.println("userName ================ " + userName);
+
+    String address = String.join("@", searchZipCode, adrs, detailedAdrs);
+    member.setAddress(address);
+    member.setPhone(member.getPhone().replace("-", ""));
+    System.out.println("member ======================================= " + member);
+
+
+    paymentService.deliverInfoUpdate(member);
+
+
+    return "/content/order/buyok";
     }
 
 

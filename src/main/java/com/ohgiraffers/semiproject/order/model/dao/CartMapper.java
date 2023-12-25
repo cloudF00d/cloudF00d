@@ -2,6 +2,7 @@ package com.ohgiraffers.semiproject.order.model.dao;
 
 import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
 import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
+import com.ohgiraffers.semiproject.order.model.dto.ProjectFileDTO;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,4 +17,5 @@ public interface CartMapper {
      int addToCart(ProjectOptionDTO selectedOption);
 
 
+    ProjectFileDTO cartFile(int projectCode);
 }

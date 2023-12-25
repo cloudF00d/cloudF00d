@@ -111,7 +111,36 @@
         <result property="coupon" column="COUPON_STATUS"/>
         <result property="end" column="PROJECT_END_DATE"/>
         <result property="start" column="PROJECT_START_DATE"/>
+        <result property="changeName" column="CHANGED_FILE_NAME"/>
+        <result property="projectCode1" column="PROJECT_CODE"/>
+        <result property="projectCode" column="PROJECT_CODE"/>
     </resultMap>
+
+    <resultMap id="cartFileResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectFileDTO">
+        <id property="fileCode" column="FILE_CODE"/>
+        <result property="originName" column="ORIGINAL_FILE_NAME"/>
+        <result property="changeName" column="CHANGED_FILE_NAME"/>
+        <result property="path" column="PATH"/>
+        <result property="creationDate" column="CREATION_DATE"/>
+        <result property="deleteStatus" column="DELETE_STATUS"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <association property="projectDTO" resultMap="ProjectResultMap"/>
+    </resultMap>
+
+
+    <select id="cartFile" resultMap="cartFileResultMap">
+        SELECT
+            A.FILE_CODE,
+            A.PATH,
+            B.PROJECT_CODE
+        FROM tbl_project_file A
+            JOIN tbl_project B ON (A.PROJECT_CODE = B.PROJECT_CODE)
+        WHERE B.PROJECT_CODE = #{projectCode}
+
+    </select>
+
+
+
 
 
     <select id="cartPage" resultMap="cartInsertResultMap">
@@ -124,14 +153,16 @@
             D.OPTION_NAME,
             D.OPTION_TYPE,
             D.PRICE,
-            D.CONFIGURE
+            D.CONFIGURE,
+            E.CHANGED_FILE_NAME
 
         FROM tbl_cart A
                  JOIN tbl_user B ON (A.USER_CODE = B.USER_CODE)
                  JOIN tbl_project C ON (A.PROJECT_CODE = C.PROJECT_CODE)
                  JOIN tbl_project_option D ON (A.OPTION_CODE = D.OPTION_CODE)
+                JOIN tbl_project_file E ON (C.PROJECT_CODE = E.PROJECT_CODE)
 
-        WHERE B.USER_ID = 'user01'
+        WHERE B.USER_ID = #{userID}
 
     </select>
 

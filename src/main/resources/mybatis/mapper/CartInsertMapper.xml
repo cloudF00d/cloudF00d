@@ -144,26 +144,18 @@
     </resultMap>
 
 
-    <select id="cartPage" resultMap="cartInsertResultMap">
-        SELECT
-            A.CART_CODE,
-            B.COUPON_STATUS,
-            C.PROJECT_TITLE,
-            C.PROJECT_END_DATE,
-            C.PROJECT_START_DATE,
-            D.OPTION_NAME,
-            D.OPTION_TYPE,
-            D.PRICE,
-            D.CONFIGURE
+    <resultMap id="cartFileResultMap" type="com.ohgiraffers.semiproject.order.model.dto.ProjectFileDTO">
+        <id property="fileCode" column="FILE_CODE"/>
+        <result property="originName" column="ORIGINAL_FILE_NAME"/>
+        <result property="changeName" column="CHANGED_FILE_NAME"/>
+        <result property="path" column="PATH"/>
+        <result property="creationDate" column="CREATION_DATE"/>
+        <result property="deleteStatus" column="DELETE_STATUS"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <association property="projectDTO" resultMap="ProjectResultMap"/>
+    </resultMap>
 
-        FROM tbl_cart A
-                 JOIN tbl_user B ON (A.USER_CODE = B.USER_CODE)
-                 JOIN tbl_project C ON (A.PROJECT_CODE = C.PROJECT_CODE)
-                 JOIN tbl_project_option D ON (A.OPTION_CODE = D.OPTION_CODE)
 
-        WHERE B.USER_ID = 'user01'
-
-    </select>
 
     <!--parameterType="com.ohgiraffers.semiproject.order.model.dto.CartDTO"-->
     <insert id="addToCart">
