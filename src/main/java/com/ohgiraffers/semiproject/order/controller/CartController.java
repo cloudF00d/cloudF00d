@@ -44,7 +44,7 @@ public class CartController {
     String title = projectTitle.getTitle();
         System.out.println(userId + "============================================================ userId");
 
-        log.info("[OrderController] cartPage ================================== start");
+        log.info("[OrderController] cartPage ==================================== start");
         log.info("[OrderController] cartPage  ================================== {} ", userId);
 
         List<CartInsertDTO> cartPage = cartService.cart(userId);
