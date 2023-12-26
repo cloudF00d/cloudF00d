@@ -184,7 +184,7 @@
                    #{userCode},
                    #{code},
                    #{optionCode},
-                   default
+                   null
                )
     </insert>
 
