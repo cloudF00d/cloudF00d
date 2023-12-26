@@ -44,7 +44,7 @@ public class SecurityConfig {
         http// 페이지 권한 설정
                 .authorizeHttpRequests(auth ->{
                     auth.requestMatchers("/manager/**").hasAuthority("ROLE_ADMIN");
-                    auth.requestMatchers("/order/**").hasAnyAuthority("ROLE_ADMIN","ROLE_SELLER","ROLE_USER");
+//                    auth.requestMatchers("/order/**").hasAnyAuthority("ROLE_ADMIN","ROLE_SELLER","ROLE_USER");
 //                    auth.requestMatchers("/*", "/member/*").permitAll();// 모든 리소스를 권한 없이 사용가능
 //                    auth.anyRequest().authenticated();
 //                    auth.requestMatchers("/manager/**").hasRole("ROLE_1");

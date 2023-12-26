@@ -175,8 +175,7 @@
                    #{code},
                    #{optionCode},
                    default,
-                default
-
+                    null
 
                )
     </insert>
@@ -198,7 +197,7 @@
                    #{projectCode},
                    #{optionCode},
                    default,
-                   default
+                   null
 
                )
     </insert>

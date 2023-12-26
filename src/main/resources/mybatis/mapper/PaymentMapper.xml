@@ -157,7 +157,6 @@
 
 
     <select id="user1" resultMap="userResultMap">
-        WITH RankedResults AS (
             SELECT
             A.USER_CODE,
             A.USER_NAME,
@@ -173,46 +172,17 @@
             D.PRICE,
             D.OPTION_TYPE,
             D.CONFIGURE,
-            E.DELIVERY_CODE,
-            E.DELIVERY_DATE,
-            F.PAYMENT_CODE,
-            G.CHANGED_FILE_NAME,
-            ROW_NUMBER() OVER (PARTITION BY B.CART_CODE ORDER BY A.USER_CODE) AS RowNum
+            G.CHANGED_FILE_NAME
             FROM
             tbl_user A
             JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
             JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
             JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
-            JOIN tbl_delivery E ON (A.USER_CODE = E.USER_CODE)
-            JOIN tbl_payment F ON (E.DELIVERY_CODE = F.DELIVERY_CODE)
             JOIN tbl_project_file G ON (C.PROJECT_CODE = G.PROJECT_CODE)
             WHERE
             A.USER_ID = #{userId}
             AND B.CART_CODE = #{cartCode}
-            )
-        SELECT
-            USER_CODE,
-            USER_NAME,
-            ADDRESS,
-            EMAIL,
-            PHONE,
-            COUPON_STATUS,
-            CART_CODE,
-            CART_COUNT,
-            PROJECT_TITLE,
-            PROJECT_CODE,
-            OPTION_NAME,
-            PRICE,
-            OPTION_TYPE,
-            CONFIGURE,
-            DELIVERY_CODE,
-            DELIVERY_DATE,
-            PAYMENT_CODE,
-            CHANGED_FILE_NAME
-        FROM
-            RankedResults
-        WHERE
-            RowNum = 1;
+
 
     </select>
 
