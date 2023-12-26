@@ -157,31 +157,54 @@
 
 
     <select id="user1" resultMap="userResultMap">
+        WITH RankedResults AS (
             SELECT
-            A.USER_CODE,
-            A.USER_NAME,
-            A.ADDRESS,
-            A.EMAIL,
-            A.PHONE,
-            A.COUPON_STATUS,
-            B.CART_CODE,
-            B.CART_COUNT,
-            C.PROJECT_TITLE,
-            C.PROJECT_CODE,
-            D.OPTION_NAME,
-            D.PRICE,
-            D.OPTION_TYPE,
-            D.CONFIGURE,
-            G.CHANGED_FILE_NAME
+                A.USER_CODE,
+                A.USER_NAME,
+                A.ADDRESS,
+                A.EMAIL,
+                A.PHONE,
+                A.COUPON_STATUS,
+                B.CART_CODE,
+                B.CART_COUNT,
+                C.PROJECT_TITLE,
+                C.PROJECT_CODE,
+                D.OPTION_NAME,
+                D.PRICE,
+                D.OPTION_TYPE,
+                D.CONFIGURE,
+                G.CHANGED_FILE_NAME,
+                ROW_NUMBER() OVER (PARTITION BY B.CART_CODE ORDER BY A.USER_CODE) AS RowNum
             FROM
-            tbl_user A
-            JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
-            JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
-            JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
-            JOIN tbl_project_file G ON (C.PROJECT_CODE = G.PROJECT_CODE)
+                tbl_user A
+                    JOIN tbl_cart B ON (A.USER_CODE = B.USER_CODE)
+                    JOIN tbl_project C ON (B.PROJECT_CODE = C.PROJECT_CODE)
+                    JOIN tbl_project_option D ON (B.OPTION_CODE = D.OPTION_CODE)
+                    JOIN tbl_project_file G ON (C.PROJECT_CODE = G.PROJECT_CODE)
             WHERE
-            A.USER_ID = #{userId}
-            AND B.CART_CODE = #{cartCode}
+                A.USER_ID = #{userId}
+              AND B.CART_CODE = #{cartCode}
+        )
+        SELECT
+            USER_CODE,
+            USER_NAME,
+            ADDRESS,
+            EMAIL,
+            PHONE,
+            COUPON_STATUS,
+            CART_CODE,
+            CART_COUNT,
+            PROJECT_TITLE,
+            PROJECT_CODE,
+            OPTION_NAME,
+            PRICE,
+            OPTION_TYPE,
+            CONFIGURE,
+            CHANGED_FILE_NAME
+        FROM
+            RankedResults
+        WHERE
+            RowNum = 1;
 
 
     </select>
