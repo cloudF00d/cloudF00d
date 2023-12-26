@@ -22,8 +22,8 @@
         
         <div class="payinfo">
             <div style="float: left;">
-                <a th:href="@{/order/buypage}"><img src="/images/minicon/backbtn.jpg"
-                     width="25px" height="25px"></a>
+<!--                <a th:href="@{/order/buyok}"><img src="/images/minicon/backbtn.jpg"-->
+<!--                     width="25px" height="25px"></a>-->
             </div>
         <div><h2>결제 정보</h2></div>
     </div>
@@ -39,51 +39,45 @@
         </div>
         <div class="product-status">
             <div class="orderStatus">
-                <span><div class="pay" style="color: orange;">주문/결제</div></span>&mdash;<span><img src="/images/minicon/checkbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
+                <span><div class="pay" style="color: orange;"></div></span>결제완료<span><img src="/images/minicon/checkbtn.PNG" class="uncheck"></span>&mdash;<span>배송중</span>&mdash;<span><img src="/images/minicon/uncheckbtn.PNG" class="uncheck"></span>&mdash;<span>배송완료</span>
             </div>
         </div>
         <div class="product-list">
-            <!-- <div class="payProct"><h4>결제상품</h4></div> -->
             <div class="under">
-                <div class="prd"><h4>결제 상품</h4></div>
-                
-                <div class="product-area">  
+                <div class="prd"><h4></h4></div>
+
+                <div class="product-area" th:each="buyHistoryInfo : ${buyHistoryInfo}">
                     <div class="food">
-                    <span class="tt" style="float: left;"><img src="/images/minicon/TT.jpg" alt=""></span>
-                    <span>주문한 음식이름</span>
-                    <span style="float: right ;" class="won">음식가격</span>
-                    <div class="amt">수량</div> 
+                        <input type="hidden"><img style="float: left;" th:src="@{|/thumbPath/${buyHistoryInfo.changeName}|}"></input>
+                        <input type="hidden" name="hdProject" id="hdProject" th:text="${buyHistoryInfo.projectName}"></input>
+                        <input type="hidden" style="float: right ;" name="hdOptionType" id="hdOptionType" th:text="${buyHistoryInfo.optionType}"></input>
+                        <input type="hidden" class="amt" name="hdCounterValue" id="hdCounterValue" th:text="${buyHistoryInfo.counterValue}"></input>
+                    </div>
+
                 </div>
-                
-                <div class="food">
-                    <span class="tt" style="float: left;"><img src="/images/minicon/TT.jpg" alt=""></span>
-                    <span>주문한 음식이름</span>
-                    <span style="float: right ;" class="won">음식가격</span>
-                    <div class="amt">수량</div> 
-                </div>
-                </div>
-                
-            
-            
+
+
+
                 <span class="history">
-                    <span>상품 전체금액</span>
-                    <span style="float: right ;" class="won">상품전체금액</span>
+                    <span></span>
+                    <input type="hidden" name="hdTotalPrice" id="hdTotalPrice" th:value="${hdTotalPrice}"></input>
                     <br>
                     <br>
-                    <span>쿠폰 적용금액</span>
-                    <span style="float: right ;" class="won">쿠폰 적용금액</span>
+                    <span></span>
+                    <span style="float: right ;" class="won" ></span>
                     <br><br>
-                    <span>배송비</span>
-                    <span style="float: right ;" class="won">배송비</span>
+                    <span></span>
+                    <input type="hidden" name="hdDeliveryCost" id="hdDeliveryCost" th:value="${hdDeliveryCost}"></input>
                     <br><br>
-                    <span style="color: orange;">총 금액</span>
-                    <span style="float: right ; color: orange;" class="won" >총 금액</span>
+                    <span></span>
+                    <input type="hidden" name="hdGunWon" id="hdGunWon" th:value="${hdGunWon}" ></input>
                 </span>
 
-                <div class="btn-con">
-                    <button class="btn1"><a th:href="@{/}" style="color: white;">메인으로 돌아가기</a></button>
-                    <button class="btn2"><a th:href="@{/order/watchlist}" style="color: white;">구매내역</a></button>
-                </div>
+                        <div>
+                            <input type="hidden" name="searchZipCode" ></input>
+                            <input type="hidden" name="adrs" ></input>
+                            <input type="hidden" name="detailedAdrs" ></input>
+                        </div>
             </div>
         </div>
 

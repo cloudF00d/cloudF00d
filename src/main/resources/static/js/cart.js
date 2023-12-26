@@ -181,9 +181,6 @@ document.querySelectorAll('.checkbox').forEach(function (checkbox) {
     });
 });
 
-
-
-
 // 최종금액 업데이트 함수
 function finalTotalPrice() {
     const bilgeElement = document.querySelector('.bilge');
@@ -354,7 +351,6 @@ function updateRemainingTime(button, endTime) {
 
         button.innerText = "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
     }
-
     // 반환
     return {
         remainingTime: remainingTime,
@@ -426,7 +422,24 @@ function paymentInfo(event) {
 }
 
 
+function projectOneName() {
+    // 'projectTitle' 클래스를 가진 모든 요소를 선택합니다.
+    const allNameElements = document.querySelectorAll('.projectTitle');
 
+    // 'projectTitle' 클래스를 가진 요소가 적어도 하나 이상인지 확인합니다.
+    if (allNameElements.length > 0) {
+        // NodeList에서 첫 번째 요소에 접근합니다.
+        const oneNameElement = allNameElements[0];
+
+        // 이제 'oneNameElement'에는 'projectTitle' 클래스를 가진 첫 번째 요소에 대한 참조가 저장됩니다.
+        // 'oneNameElement'를 사용하여 원하는 작업을 수행할 수 있습니다.
+    } else {
+        // 'projectTitle' 클래스를 가진 요소가 하나도 없는 경우 처리할 내용을 여기에 작성합니다.
+        console.error("클래스 'projectTitle'을 가진 요소를 찾을 수 없습니다.");
+    }
+
+    document.getElementById('hdProject').value = oneNameElement.textContent;
+}
 
 
 

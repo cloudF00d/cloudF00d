@@ -16,6 +16,8 @@ public class PaymentHistoryDTO {
 
     private CartDTO cart;
 
+    private String changeName ;
+
 
 
 

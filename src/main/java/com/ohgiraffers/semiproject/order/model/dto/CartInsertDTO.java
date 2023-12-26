@@ -36,6 +36,12 @@ public class CartInsertDTO {
 
     private Date start;
 
+    private int projectCode;
+
+    private int projectCode1;
+
+    private String changeName;
+
 
 
 
