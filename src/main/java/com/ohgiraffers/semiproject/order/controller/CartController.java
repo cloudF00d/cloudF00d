@@ -4,14 +4,12 @@ package com.ohgiraffers.semiproject.order.controller;
 import com.ohgiraffers.semiproject.common.exception.cart.CartRegistException;
 import com.ohgiraffers.semiproject.member.model.dto.MemberAndAuthorityDTO;
 import com.ohgiraffers.semiproject.member.model.dto.MemberDTO;
-import com.ohgiraffers.semiproject.order.model.dto.CartDTO;
-import com.ohgiraffers.semiproject.order.model.dto.SelectOptionDTO;
-import com.ohgiraffers.semiproject.order.model.dto.CartInsertDTO;
-import com.ohgiraffers.semiproject.order.model.dto.ProjectDTO;
+import com.ohgiraffers.semiproject.order.model.dto.*;
 import com.ohgiraffers.semiproject.order.model.service.CartService;
 import com.ohgiraffers.semiproject.project.product.model.dto.ProjectOptionDTO;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +37,8 @@ public class CartController {
             Model model,
             @ModelAttribute ProjectDTO projectTitle,
             Principal principal
-            ) {
+
+    ) {
     String userId = principal.getName();
 
     String title = projectTitle.getTitle();
@@ -48,11 +47,13 @@ public class CartController {
         log.info("[OrderController] cartPage ================================== start");
         log.info("[OrderController] cartPage  ================================== {} ", userId);
 
-
-
         List<CartInsertDTO> cartPage = cartService.cart(userId);
         model.addAttribute("cart", cartPage);
+
+        System.out.println("cartPage ======================= " + cartPage);
+
         return "/content/order/cart";
+
     }
 
 
@@ -63,9 +64,6 @@ public class CartController {
                             HttpSession session, Model m,
                             @AuthenticationPrincipal MemberAndAuthorityDTO memberAndAuthorityDTO)
             throws CartRegistException {
-
-
-
 
         int userCode = memberAndAuthorityDTO.getMemberDTO().getUserCode();
 

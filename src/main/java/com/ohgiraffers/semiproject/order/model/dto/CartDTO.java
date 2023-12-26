@@ -21,6 +21,7 @@ public class CartDTO {
 
     private String status;
 
+    private int count;
 
 
 

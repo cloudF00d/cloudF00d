@@ -50,7 +50,7 @@
                             <input type="checkbox" class="checkbox" name="cartCode" th:value="${cart.cartCode}" >
                         </div>
                         <div class="foodimg">
-                            <img src="/images/minicon/로고1.PNG" alt="">
+                            <img th:src="@{|/thumbPath/${cart.getChangeName()}|}" >
                         </div>
                         <div class="nameAndCount">
                             <div class="projectTitle" name="name1" th:text="${cart.projectTitle}" id="projectTitleCheck"></div>
@@ -83,13 +83,9 @@
                     <div class="bilge">
                             <div class="coupon-action" >
                                 <div>
-                                    <div>할인쿠폰</div>
-<!--                                  <input class="applybutton1" type="text" name="적용하기"  required>&nbsp;-->
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="coupon-btn">
-                                    <button class="applybutton" id="applybutton"  >적용하기</button>
-                                    <input type="hidden" class="coupon"  th:value="${cart[0].coupon}"></input>
-
+                                    <input type="hidden" class="coupon" th:value="${cart[0].coupon}"></input>
                                 </div>
 
                             </div>
@@ -102,8 +98,8 @@
                             <input type="hidden" name="hdTotalPrice" id="hdTotalPrice" value="total-price">
                         </div>
                         <div class="apply-coupon">
-                            <span class="total-amount">쿠폰 적용금액</span>
-                            <span class="coupon-price" id="coupon-price ">0won</span>
+                            <span class="total-amount"></span>
+                            <input type="hidden" class="coupon-price" id="coupon-price "></input>
                             <input type="hidden" name="hdCouponPrice" id="hdCouponPrice" value="coupon-price">
                         </div>
                         <div class="delivery-fee">

@@ -43,5 +43,13 @@ public class UserDTO {
 
     private String paymentStatus;
 
+    private int cartNumber;
+
+    private int count;
+
+    private int projectCode;
+
+
+    private String changeName;
 
 }
